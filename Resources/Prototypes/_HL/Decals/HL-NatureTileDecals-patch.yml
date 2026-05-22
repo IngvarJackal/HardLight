@@ -1,0 +1,69 @@
+# Patch versions of nature tile decals for custom transition respriting.
+# Edit the PNGs in Textures/_HL/Decals/tile-patch.rsi/ to soften tile edges.
+
+# --- Desert / Sand ---
+- type: decal
+  id: TileDesert-patch
+  tags: ["flora", "station", "markings"]
+  snapCardinals: false
+  defaultSnap: false
+  sprite:
+    sprite: /Textures/_HL/Decals/tile-patch.rsi
+    state: desert
+
+- type: decal
+  id: TileLowDesert-patch
+  tags: ["flora", "station", "markings"]
+  snapCardinals: false
+  defaultSnap: false
+  sprite:
+    sprite: /Textures/_HL/Decals/tile-patch.rsi
+    state: low_desert
+
+# --- Bedrock ---
+- type: decal
+  id: TileBedrock-patch
+  tags: ["rock", "station", "markings"]
+  snapCardinals: false
+  defaultSnap: false
+  sprite:
+    sprite: /Textures/_HL/Decals/tile-patch.rsi
+    state: floor-bedrock
+
+# --- Snow / Ice ---
+- type: decal
+  id: TileSnow-patch
+  tags: ["flora", "station", "markings"]
+  snapCardinals: false
+  defaultSnap: false
+  sprite:
+    sprite: /Textures/_HL/Decals/tile-patch.rsi
+    state: floor-snow
+
+- type: decal
+  id: TileIce-patch
+  tags: ["flora", "station", "markings"]
+  snapCardinals: false
+  defaultSnap: false
+  sprite:
+    sprite: /Textures/_HL/Decals/tile-patch.rsi
+    state: floor-ice
+
+- type: decal
+  id: TilePermafrost-patch
+  tags: ["flora", "station", "markings"]
+  snapCardinals: false
+  defaultSnap: false
+  sprite:
+    sprite: /Textures/_HL/Decals/tile-patch.rsi
+    state: permafrost
+
+# --- Astro variants ---
+- type: decal
+  id: TileAstroAsteroid-patch
+  tags: ["rock", "station", "markings"]
+  snapCardinals: false
+  defaultSnap: false
+  sprite:
+    sprite: /Textures/_HL/Decals/tile-patch.rsi
+    state: floor-astroasteroid

@@ -1,0 +1,38 @@
+# Patch versions of grass tile decals for custom transition respriting.
+# Edit the PNGs in Textures/_HL/Decals/tile-patch.rsi/ to soften tile edges.
+
+- type: decal
+  id: TileGrass-patch
+  tags: ["flora", "station", "markings"]
+  snapCardinals: false
+  defaultSnap: false
+  sprite:
+    sprite: /Textures/_HL/Decals/tile-patch.rsi
+    state: floor-grass
+
+- type: decal
+  id: TileGrassJungle-patch
+  tags: ["flora", "station", "markings"]
+  snapCardinals: false
+  defaultSnap: false
+  sprite:
+    sprite: /Textures/_HL/Decals/tile-patch.rsi
+    state: floor-grassjungle
+
+- type: decal
+  id: TileGrassDark-patch
+  tags: ["flora", "station", "markings"]
+  snapCardinals: false
+  defaultSnap: false
+  sprite:
+    sprite: /Textures/_HL/Decals/tile-patch.rsi
+    state: floor-grassdark
+
+- type: decal
+  id: TileGrassLight-patch
+  tags: ["flora", "station", "markings"]
+  snapCardinals: false
+  defaultSnap: false
+  sprite:
+    sprite: /Textures/_HL/Decals/tile-patch.rsi
+    state: floor-grasslight
