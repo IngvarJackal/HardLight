@@ -12,7 +12,6 @@
     size: Normal
   - type: SpawnItemsOnUse
     items:
-    - id: EncryptionKeyManawaRite
     - id: ManaCore
     sound:
       path: /Audio/Effects/unwrap.ogg
