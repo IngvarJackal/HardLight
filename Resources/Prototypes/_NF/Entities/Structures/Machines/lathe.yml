@@ -555,6 +555,10 @@
     - NFBlueprints
   - type: RequireProjectileTarget
   - type: OreSiloClient
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Paper
   - type: DeviceLinkSink
     ports:
       - FillbotAnyItem

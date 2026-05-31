@@ -45,6 +45,12 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
     private TimeSpan _bandRequestTimer = TimeSpan.Zero;
     private readonly List<InstrumentBandRequestBuiMessage> _bandRequestQueue = new();
 
+    // VRS: cached entity queries (previously fetched every Update tick and inside GetBands).
+    private EntityQuery<ActiveInstrumentComponent> _activeInstrumentQuery;
+    private EntityQuery<InstrumentComponent> _instrumentQuery;
+    private EntityQuery<TransformComponent> _transformQuery;
+    private EntityQuery<MetaDataComponent> _metadataQuery;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -66,6 +72,12 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
         });
 
         SubscribeLocalEvent<InstrumentComponent, ComponentGetState>(OnStrumentGetState);
+
+        // VRS: cache hot entity queries used by Update and GetBands.
+        _activeInstrumentQuery = GetEntityQuery<ActiveInstrumentComponent>();
+        _instrumentQuery = GetEntityQuery<InstrumentComponent>();
+        _transformQuery = GetEntityQuery<TransformComponent>();
+        _metadataQuery = GetEntityQuery<MetaDataComponent>();
 
         _conHost.RegisterCommand("addtoband", AddToBandCommand);
     }
@@ -268,13 +280,10 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
     public (NetEntity, string)[] GetBands(EntityUid uid)
     {
-        var metadataQuery = EntityManager.GetEntityQuery<MetaDataComponent>();
-
         if (Deleted(uid))
             return Array.Empty<(NetEntity, string)>();
 
         var list = new ValueList<(NetEntity, string)>();
-        var instrumentQuery = EntityManager.GetEntityQuery<InstrumentComponent>();
 
         if (!TryComp(uid, out InstrumentComponent? originInstrument)
             || originInstrument.InstrumentPlayer is not {} originPlayer)
@@ -288,7 +297,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
                 continue;
 
             // Don't grab puppet instruments.
-            if (!instrumentQuery.TryGetComponent(entity, out var instrument) || instrument.Master != null)
+            if (!_instrumentQuery.TryGetComponent(entity, out var instrument) || instrument.Master != null)
                 continue;
 
             // We want to use the instrument player's name.
@@ -300,8 +309,8 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             if (!_examineSystem.InRangeUnOccluded(uid, entity, MaxInstrumentBandRange, e => e == playerUid || e == originPlayer))
                 continue;
 
-            if (!metadataQuery.TryGetComponent(playerUid, out var playerMetadata)
-                || !metadataQuery.TryGetComponent(entity, out var metadata))
+            if (!_metadataQuery.TryGetComponent(playerUid, out var playerMetadata)
+                || !_metadataQuery.TryGetComponent(entity, out var metadata))
                 continue;
 
             list.Add((GetNetEntity(entity), $"{playerMetadata.EntityName} - {metadata.EntityName}"));
@@ -424,9 +433,6 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             _bandRequestQueue.Clear();
         }
 
-        var activeQuery = EntityManager.GetEntityQuery<ActiveInstrumentComponent>();
-        var transformQuery = EntityManager.GetEntityQuery<TransformComponent>();
-
         var query = AllEntityQuery<ActiveInstrumentComponent, InstrumentComponent>();
         while (query.MoveNext(out var uid, out _, out var instrument))
         {
@@ -437,14 +443,14 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
                     Clean(uid, instrument);
                 }
 
-                var masterActive = activeQuery.CompOrNull(master);
+                var masterActive = _activeInstrumentQuery.CompOrNull(master);
                 if (masterActive == null)
                 {
                     Clean(uid, instrument);
                 }
 
-                var trans = transformQuery.GetComponent(uid);
-                var masterTrans = transformQuery.GetComponent(master);
+                var trans = _transformQuery.GetComponent(uid);
+                var masterTrans = _transformQuery.GetComponent(master);
                 if (!_transform.InRange(masterTrans.Coordinates, trans.Coordinates, 10f)
 )
                 {

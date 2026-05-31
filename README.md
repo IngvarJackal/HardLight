@@ -30,13 +30,16 @@ Content under these subdirectories originate from their respective forks and may
 | `_Emberfall` | Emberfall | https://github.com/emberfall-14/emberfall | MPL 2.0 |
 | `_EstacaoPirata` | Estacao Pirata | https://github.com/Day-OS/estacao-pirata-14 | AGPL 3.0 |
 | `_Goobstation` | Goob Station | https://github.com/Goob-Station/Goob-Station | AGPL 3.0 |
+| `_HL` | HardLight | https://github.com/HardlightLabs/HardLight-Station-14 | AGPL 3.0 |
 | `_Impstation` | Impstation | https://github.com/impstation/imp-station-14 | AGPL 3.0 |
 | `_NC14` | Nuclear 14 | https://github.com/Vault-Overseers/nuclear-14 | AGPL 3.0 |
 | `Nyanotrasen` | Nyanotrasen | https://github.com/Nyanotrasen/Nyanotrasen | MIT |
 | `_StarLight` | StarLight | https://github.com/ss14Starlight/space-station-14 | MIT |
+| `_Triad` | Triad Sector | https://github.com/Triad-Sector/Triad_Sector | AGPL 3.0 |
 | `_RMC14` | RMC-14 | https://github.com/RMC-14/RMC-14 | MIT |
 | `_FarHorizons` | Far-Horizons | https://github.com/Far-Horizons-SS14/Far-Horizons-SS14.git | MIT |
 | `_Crescent` | Hullrot | https://github.com/Sector-Crescent/Hullrot.git | AGPL 3.0|
+| `_Mono` | Monolith | https://github.com/Monolith-Station/Monolith | AGPL 3.0|
 | `_CS` | Coyote Station | https://github.com/ARF-SS13/coyote-frontier/ | AGPL 3.0|
 
 Additional repos that we have ported features from without subdirectories are listed below.

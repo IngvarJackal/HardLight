@@ -5,7 +5,6 @@ using Content.Server.Disposal.Tube;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles;
 using Content.Server.Mind;
-using Content.Server.Mind.Commands;
 using Content.Server.Prayer;
 using Content.Server.Station.Systems;
 using Content.Server.Traits; // HardLight
@@ -494,7 +493,7 @@ namespace Content.Server.Administration.Systems
                     Text = Loc.GetString("make-sentient-verb-get-data-text"),
                     Category = VerbCategory.Debug,
                     Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")),
-                    Act = () => MakeSentientCommand.MakeSentient(args.Target, EntityManager),
+                    Act = () => _mindSystem.MakeSentient(args.Target),
                     Impact = LogImpact.Medium
                 };
                 args.Verbs.Add(verb);

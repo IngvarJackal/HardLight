@@ -1,0 +1,7 @@
+# VRS: Ported from Triad_Sector — entity table selector for Monolithic fragment events.
+
+- type: entityTable
+  id: MonoMonolithicEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - id: MonolithFragmentSmallAppearance

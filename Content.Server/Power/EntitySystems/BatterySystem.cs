@@ -38,6 +38,7 @@ namespace Content.Server.Power.EntitySystems
             SubscribeLocalEvent<NetworkBatteryPostSync>(PostSync);
         }
 
+
         private void OnNetBatteryRejuvenate(EntityUid uid, PowerNetworkBatteryComponent component, RejuvenateEvent args)
         {
             component.NetworkBattery.CurrentStorage = component.NetworkBattery.Capacity;

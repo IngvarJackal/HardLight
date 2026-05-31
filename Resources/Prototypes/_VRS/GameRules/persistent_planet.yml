@@ -1,0 +1,28 @@
+# VRS persistent planet game rule.
+# Adds a single biome planet at round start with the Landgrab plot system,
+# ambient mob marker layers and procedural dungeon rolling enabled.
+# Reachable from any shuttle console (auto-listed via FTL beacon at the planet origin).
+
+- type: entity
+  id: VRSPersistentPlanet
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: VRSPersistentPlanetRule
+    # Continental gives grass + snow + lava + caves on a single planet so
+    # exploration always finds variety. Override per-server if you want a
+    # mono-biome planet (Snow, Lava, Grasslands, LowDesert, Caves, Asteroid).
+    biomeTemplate: Continental
+    purchaseCost: 5000
+    iffColor: "#66D98C"
+    namePool:
+    - Aetheria
+    - "New Eden"
+    - Frontier-7
+    - Hadley
+    - Tartarus
+    - Vesper
+    - Yggdrasil
+    - Cygnus Reach
+    - Pyrrhus
+    - Halcyon

@@ -6,7 +6,7 @@
   dollPrototype: MobOniDummy
   markingLimits: MobOniMarkingLimits
   sprites: MobHumanSprites
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   maleFirstNames: NamesOniMale
   femaleFirstNames: NamesOniFemale
   lastNames: NamesOniLocation

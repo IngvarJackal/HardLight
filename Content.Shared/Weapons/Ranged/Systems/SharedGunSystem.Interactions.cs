@@ -29,6 +29,12 @@ public abstract partial class SharedGunSystem
                 ("mode", GetLocSelector(component.SelectedMode))));
             //args.PushMarkup(Loc.GetString("gun-fire-rate-examine", ("color", FireRateExamineColor), // Emberfall
             //    ("fireRate", $"{component.FireRateModified:0.0}"))); // Emberfall
+
+            // VRS (Triad #3731)
+            if (component.DamageModifier != 1f)
+                args.PushMarkup(Loc.GetString("gun-damage-modifier-examine",
+                    ("color", FireRateExamineColor),
+                    ("modifier", $"{component.DamageModifier:P0}")));
         }
     }
 

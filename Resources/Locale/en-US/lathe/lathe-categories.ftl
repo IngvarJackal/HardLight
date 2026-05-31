@@ -41,3 +41,5 @@ lathe-category-jumpsuits = Jumpsuits
 lathe-category-neck = Neck
 # HL
 lathe-category-pillows = Pillows
+lathe-category-misc = Misc
+lathe-category-harbormaster = Harbor Master

@@ -7,7 +7,7 @@
   defaultSkinTone: "#385878"
   markingLimits: MobArachnidMarkingLimits
   dollPrototype: MobArachnidDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   maleFirstNames: NamesArachnidFirst
   femaleFirstNames: NamesArachnidFirst
   lastNames: NamesArachnidLast

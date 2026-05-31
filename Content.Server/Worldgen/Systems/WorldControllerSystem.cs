@@ -5,6 +5,7 @@ using Content.Shared.Mind.Components;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration; // HL: for IConfigurationManager
 
@@ -19,8 +20,11 @@ public sealed class WorldControllerSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!; // VRS: world loader velocity compensation
 
     private const int PlayerLoadRadius = 2;
+    // VRS: class-level field to avoid per-frame allocation (Mono #3882)
+    private readonly Dictionary<EntityUid, Dictionary<Vector2i, List<EntityUid>>> _chunksToLoad = new();
 
     private ISawmill _sawmill = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!; // HL: to gate debug logs
@@ -86,16 +90,16 @@ public sealed class WorldControllerSystem : EntitySystem
     /// <inheritdoc />
     public override void Update(float frameTime)
     {
-        //there was a to-do here about every frame alloc but it turns out it's a nothing burger here.
-        var chunksToLoad = new Dictionary<EntityUid, Dictionary<Vector2i, List<EntityUid>>>();
+        // VRS: reuse class-level dict to avoid per-frame allocation; clear it at the start of each tick (Mono #3882)
+        _chunksToLoad.Clear();
 
         var controllerEnum = EntityQueryEnumerator<WorldControllerComponent>();
         while (controllerEnum.MoveNext(out var uid, out _))
         {
-            chunksToLoad[uid] = new Dictionary<Vector2i, List<EntityUid>>();
+            _chunksToLoad[uid] = new Dictionary<Vector2i, List<EntityUid>>();
         }
 
-        if (chunksToLoad.Count == 0)
+        if (_chunksToLoad.Count == 0)
             return; // Just bail early.
 
         var loaderEnum = EntityQueryEnumerator<WorldLoaderComponent, TransformComponent>();
@@ -109,15 +113,17 @@ public sealed class WorldControllerSystem : EntitySystem
             if (mapOrNull is null)
                 continue;
             var map = mapOrNull.Value;
-            if (!chunksToLoad.ContainsKey(map))
+            if (!_chunksToLoad.ContainsKey(map))
                 continue;
 
             var wc = _xformSys.GetWorldPosition(xform);
+            // VRS: preload ahead in the direction of travel so fast ships don't spawn asteroids on themselves (Mono #3882)
+            wc += _physics.GetMapLinearVelocity(uid, xform: xform);
             var coords = WorldGen.WorldToChunkCoords(wc);
             var chunkRadius = (int)Math.Ceiling(worldLoader.Radius / (float)WorldGen.ChunkSize) + 1;
             var chunks = new GridPointsNearEnumerator(coords.Floored(), chunkRadius);
 
-            var set = chunksToLoad[map];
+            var set = _chunksToLoad[map];
 
             while (chunks.MoveNext(out var chunk))
             {
@@ -141,14 +147,16 @@ public sealed class WorldControllerSystem : EntitySystem
             if (mapOrNull is null)
                 continue;
             var map = mapOrNull.Value;
-            if (!chunksToLoad.ContainsKey(map))
+            if (!_chunksToLoad.ContainsKey(map))
                 continue;
 
             var wc = _xformSys.GetWorldPosition(xform);
+            // VRS: preload ahead in the direction of travel (Mono #3882)
+            wc += _physics.GetMapLinearVelocity(uid, xform: xform);
             var coords = WorldGen.WorldToChunkCoords(wc);
             var chunks = new GridPointsNearEnumerator(coords.Floored(), PlayerLoadRadius);
 
-            var set = chunksToLoad[map];
+            var set = _chunksToLoad[map];
 
             while (chunks.MoveNext(out var chunk))
             {
@@ -166,7 +174,7 @@ public sealed class WorldControllerSystem : EntitySystem
         {
             var coords = chunk.Coordinates;
 
-            if (!chunksToLoad.TryGetValue(chunk.Map, out var chunkDict) || !chunkDict.ContainsKey(coords))
+            if (!_chunksToLoad.TryGetValue(chunk.Map, out var chunkDict) || !chunkDict.ContainsKey(coords))
             {
                 RemCompDeferred<LoadedChunkComponent>(uid);
                 chunksUnloaded++;
@@ -176,14 +184,14 @@ public sealed class WorldControllerSystem : EntitySystem
         if (chunksUnloaded > 0 && _cfg.GetCVar(Content.Shared.HL.CCVar.HLCCVars.WorldChunkDebugLogs))
             _sawmill.Debug($"Queued {chunksUnloaded} chunks for unload.");
 
-        if (chunksToLoad.All(x => x.Value.Count == 0))
+        if (_chunksToLoad.All(x => x.Value.Count == 0))
             return;
 
         var startTime = _gameTiming.RealTime;
         var count = 0;
         var loadedQuery = GetEntityQuery<LoadedChunkComponent>();
         var controllerQuery = GetEntityQuery<WorldControllerComponent>();
-        foreach (var (map, chunks) in chunksToLoad)
+        foreach (var (map, chunks) in _chunksToLoad)
         {
             var controller = controllerQuery.GetComponent(map);
             foreach (var (chunk, loaders) in chunks)

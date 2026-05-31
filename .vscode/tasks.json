@@ -9,6 +9,7 @@
             "type": "shell",
             "args": [
                 "build",
+                "/property:DirectoryBuildPropsPath=${workspaceFolder}/Directory.Build.props",
                 "/property:GenerateFullPaths=true", // Ask dotnet build to generate full paths for file names.
                 "/consoleloggerparameters:'ForceNoAlign;NoSummary'" // Do not generate summary otherwise it leads to duplicate errors in Problems panel
             ],
@@ -29,6 +30,7 @@
             "args": [
                 "build",
                 "--configuration=Release", // Build in release mode. Note: --, not /. /configuration doesn't work, because Microsoft.
+                "/property:DirectoryBuildPropsPath=${workspaceFolder}/Directory.Build.props",
                 "/property:GenerateFullPaths=true", // Ask dotnet build to generate full paths for file names.
                 "/consoleloggerparameters:NoSummary" // Do not generate summary otherwise it leads to duplicate errors in Problems panel
             ],
@@ -48,6 +50,7 @@
             "args": [
                 "build",
                 "${workspaceFolder}/Content.YAMLLinter/Content.YAMLLinter.csproj",
+                "/property:DirectoryBuildPropsPath=${workspaceFolder}/Directory.Build.props",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:'ForceNoAlign;NoSummary'"
             ],

@@ -8,6 +8,7 @@ using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chat; // Starlight
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;

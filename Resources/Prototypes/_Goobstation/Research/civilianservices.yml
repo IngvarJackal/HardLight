@@ -10,6 +10,7 @@
     state: icon
   discipline: CivilianServices
   tier: 1
+  position: 2, -1
   cost: 5000
   recipeUnlocks:
   - StationRadioCircuitboard
@@ -23,6 +24,7 @@
     state: mecha_bananamrtr
   discipline: CivilianServices
   tier: 2
+  position: 4, 9
   cost: 6000
   recipeUnlocks:
   - MechEquipmentHonkerBananaMortar

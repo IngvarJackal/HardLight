@@ -592,7 +592,7 @@
   id: BulletFoamRPG
   description: Looks like the REAL THING... if you squint. I hope your target's wearing face protection.
   name: foam RPG rocket
-  parent: BaseItem
+  parent: BaseItemHarmless
   components:
     - type: Tag
       tags:

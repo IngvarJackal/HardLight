@@ -1,0 +1,61 @@
+- type: entity
+  abstract: true
+  parent: ClothingEyesBase
+  id: RMCGogglesBallistic
+  components:
+  - type: EyeProtection
+
+- type: entity
+  parent: RMCGogglesBallistic
+  id: AU14GogglesM1A1ClearBallistic
+  name: clear M1A1 ballistic goggles
+  description: Newer issue USCM goggles. They are capable of preventing insects, dust, and other things from getting into one's eyes.
+  components:
+  - type: Sprite
+    sprite: _AU14/Clothing/Goggles/m1a1clear.rsi
+  - type: Clothing
+    sprite: _AU14/Clothing/Goggles/m1a1clear.rsi
+
+- type: entity
+  parent: RMCGogglesBallistic
+  id: AU14GogglesM1A1Ballistic
+  name: M1A1 ballistic goggles
+  description: Newer issue USCM goggles. They are capable of preventing insects, dust, and other things from getting into one's eyes.
+  components:
+  - type: Sprite
+    sprite: _AU14/Clothing/Goggles/m1a1.rsi
+  - type: Clothing
+    sprite: _AU14/Clothing/Goggles/m1a1.rsi
+
+- type: entity
+  parent: RMCGogglesBallistic
+  id: AU14GogglesM1A1DarkBallistic
+  name: dark M1A1 ballistic goggles
+  description: Newer issue USCM goggles. They are capable of preventing insects, dust, and other things from getting into one's eyes.
+  components:
+  - type: Sprite
+    sprite: _AU14/Clothing/Goggles/m1a1dark.rsi
+  - type: Clothing
+    sprite: _AU14/Clothing/Goggles/m1a1dark.rsi
+
+- type: entity
+  parent: RMCGogglesBallistic
+  id: AU14GogglesM60
+  name: M60 ballistic goggles
+  description: Older issue USCM goggles. They are capable of preventing insects, dust, and other things from getting into one's eyes.
+  components:
+  - type: Sprite
+    sprite: _AU14/Clothing/Goggles/m1a1darkalt.rsi
+  - type: Clothing
+    sprite: _AU14/Clothing/Goggles/m1a1darkalt.rsi
+
+- type: entity
+  parent: RMCGogglesBallistic
+  id: AU14GogglesM1A1LaserBallistic
+  name: laser shielded M1A1 ballistic goggles
+  description: Newer issue USCM goggles. They are capable of preventing insects, dust, and other things from getting into one's eyes. Also protects your eyes from lasers!
+  components:
+  - type: Sprite
+    sprite: _AU14/Clothing/Goggles/m1a1green.rsi
+  - type: Clothing
+    sprite: _AU14/Clothing/Goggles/m1a1green.rsi

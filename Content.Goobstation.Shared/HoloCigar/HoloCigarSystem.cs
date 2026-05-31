@@ -188,7 +188,7 @@ public sealed class HoloCigarSystem : EntitySystem
 
         if (ent.Comp.Lit == false)
         {
-            var audio = _audio.PlayPvs(ent.Comp.Music, ent);
+            var audio = _audio.PlayPvs(ent.Comp.Music, ent, ent.Comp.Music.Params);
 
             if (audio is null)
                 return;

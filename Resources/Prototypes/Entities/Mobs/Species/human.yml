@@ -5,6 +5,15 @@
   name: Urist McHands
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - SolCommon
+    understands:
+    - GalacticCommon
+    - SolCommon
+  # Starlight-end
   - type: Hunger
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
     sprite: Mobs/Species/Human/parts.rsi
@@ -45,7 +54,7 @@
   - type: Carriable # Frontier: Carrying system from nyanotrasen.
   - type: Speech # Frontier
     allowedEmotes: ['Belch'] # Frontier
-  - type: PotentialPsionic #Nyano - Summary: makes potentially psionic. 
+  - type: PotentialPsionic #Nyano - Summary: makes potentially psionic.
 
 - type: entity
   parent: BaseSpeciesDummy

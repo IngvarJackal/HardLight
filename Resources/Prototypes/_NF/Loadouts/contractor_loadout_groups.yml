@@ -1039,6 +1039,9 @@
   - ContractorRubberStampMime
     # Misc
   - ContractorClothingHeadHatHairflower
+    # Posters
+  - ContractorNFPosterCorporate
+  - ContractorNFPosterContraband
 
 - type: loadoutGroup
   id: ContractorHandItems

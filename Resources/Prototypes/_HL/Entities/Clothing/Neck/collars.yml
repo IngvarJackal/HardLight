@@ -66,3 +66,18 @@
     equipDelay: 3
     unequipDelay: 10
   - type: GovernorLawAccess
+
+- type: entity
+  parent: ClothingNeckCollarBase
+  id: ClothingNeckCerulCollar
+  name: Cerulean Collective uplink collar
+  description: A collar that provides a wireless uplink to the Cerulean Collective's network when worn by authorized members.
+  components:
+  - type: Sprite
+    sprite: _HL/Clothing/Neck/Collars/collar_cerul.rsi
+  - type: Clothing
+    sprite: _HL/Clothing/Neck/Collars/collar_cerul.rsi
+    clothingVisuals:
+      neck-quadborg:
+      - sprite: _HL/Clothing/Neck/QuadCollars/collar_cerul_quad.rsi
+        state: equipped-NECK-quadborg

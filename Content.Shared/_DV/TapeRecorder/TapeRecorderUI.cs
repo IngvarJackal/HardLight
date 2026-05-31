@@ -34,6 +34,9 @@ public sealed class ChangeModeTapeRecorderMessage(TapeRecorderMode mode) : Bound
 public sealed class PrintTapeRecorderMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
+public sealed class EraseTapeRecorderMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
 public sealed class TapeRecorderState : BoundUserInterfaceState
 {
     // TODO: check the itemslot on client instead of putting easy casette stuff in the state

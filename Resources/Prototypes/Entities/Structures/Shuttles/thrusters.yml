@@ -147,6 +147,11 @@
       behaviors:
         - !type:DoActsBehavior
           acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior # Mono: return to frame on destruction
+          node: machineFrame
     - trigger:
         !type:DamageTrigger
         damage: 900
@@ -210,7 +215,13 @@
       machine_board: !type:Container
       machine_parts: !type:Container
   - type: Machine
-    board: CivBigThrusterBoard # HL end
+    board: CivBigThrusterBoard
+  - type: Construction # Mono: 2x2 frame construction chain
+    graph: Machine2x2
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board # HL end
 
 - type: entity
   id: ThrusterUnanchored

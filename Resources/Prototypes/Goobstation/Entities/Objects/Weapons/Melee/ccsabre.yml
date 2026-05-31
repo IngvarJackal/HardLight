@@ -1,0 +1,25 @@
+- type: entity
+  name: colonial officer's sabre # HardLight rename
+  parent: [ BaseSword, BaseColcommContraband ] # HardLight change centcom to colcom contra
+  id: CCOfficerSabre
+  description: A ceremonial weapon belonging to a high ranking Colonial Command official. #HardLight rename
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Weapons/Melee/ccsabre.rsi
+  - type: MeleeWeapon
+    # heavyStaminaCost: 2.5 # goob edit # HardLight commented out
+    attackRate: 1.6
+    damage:
+      types:
+        Slash: 20 # Seem important to keep the message from goob.// #HardLight change from 30 to 20, slightly better than cap saber at 17. 
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: .2 # HardLight change from .6 to .2, if someone wants to fuck with colcomm they should get to suffer the consequences. cap saber is .1 
+    spread: 90
+  - type: Item
+    sprite: _Goobstation/Objects/Weapons/Melee/ccsabre.rsi
+  - type: Tag
+    tags:
+    - CCSabre # HardLight CaptainSabre to CCSabre
+  - type: DisarmMalus

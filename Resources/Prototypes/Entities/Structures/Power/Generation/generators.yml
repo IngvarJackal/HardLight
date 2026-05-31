@@ -295,8 +295,9 @@
             acts: [ "Destruction" ]
   - type: PirateBountyItem # Frontier
     id: GeneratorRTG # Frontier
-  # Mono - no board so it's probably fine?
+# Mono - no board so it's probably fine?
   - type: ShipRepairable
+    repairTo: GeneratorRTG
     repairTime: 10
     repairCost: 20
 
@@ -320,7 +321,7 @@
   - type: RadiationSource # ideally only when opened.
     intensity: 1
   - type: RadCritterSpawnLocation
-    
+
 # TODO: need radioactive fallout when destroyed
 
 - type: entity
@@ -368,8 +369,3 @@
             max: 5
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  # Mono - no board so it's probably fine?
-  - type: ShipRepairable
-    repairTo: GeneratorRTG
-    repairTime: 10
-    repairCost: 20

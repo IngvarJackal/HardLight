@@ -33,13 +33,16 @@ namespace Content.Server.Database
     public abstract class ServerDbBase
     {
         private readonly ISawmill _opsLog;
+        private readonly IPrototypeManager _prototypeManager;
 
         public event Action<DatabaseNotification>? OnNotificationReceived;
 
         /// <param name="opsLog">Sawmill to trace log database operations to.</param>
-        public ServerDbBase(ISawmill opsLog)
+        /// <param name="prototypeManager">Used for fetching species prototype</param>
+        public ServerDbBase(ISawmill opsLog, IPrototypeManager prototypeManager)
         {
             _opsLog = opsLog;
+            _prototypeManager = prototypeManager;
         }
 
         #region Preferences
@@ -85,7 +88,7 @@ namespace Content.Server.Database
             {
                 try
                 {
-                    profiles[profile.Slot] = ConvertProfiles(profile);
+                    profiles[profile.Slot] = ConvertProfiles(profile, _prototypeManager);
                 }
                 catch (Exception e)
                 {
@@ -243,7 +246,7 @@ namespace Content.Server.Database
             prefs.SelectedCharacterSlot = newSlot;
         }
 
-        private static HumanoidCharacterProfile ConvertProfiles(Profile profile)
+        private static HumanoidCharacterProfile ConvertProfiles(Profile profile, IPrototypeManager prototypeManager)
         {
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
@@ -306,7 +309,6 @@ namespace Content.Server.Database
             if (loadouts.Remove(HumanoidCharacterProfile.SpeciesLoadoutDatabaseKey, out var speciesLoadoutValue))
             {
                 speciesLoadout = speciesLoadoutValue;
-                var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
 
                 // `__species_loadout` is only the DB storage key. Restore the actual role prototype
                 // immediately so later profile validation never indexes the sentinel as a prototype.

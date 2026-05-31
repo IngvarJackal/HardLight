@@ -73,14 +73,14 @@ public struct PathfindingData : IEquatable<PathfindingData>
     {
         return CollisionLayer.Equals(other.CollisionLayer) &&
                CollisionMask.Equals(other.CollisionMask) &&
-               Flags.Equals(other.Flags);
+               Flags == other.Flags; // VRS: avoid boxing enum (Triad #3853)
     }
 
     public bool Equals(PathfindingData other)
     {
         return CollisionLayer.Equals(other.CollisionLayer) &&
                CollisionMask.Equals(other.CollisionMask) &&
-               Flags.Equals(other.Flags) &&
+               Flags == other.Flags && // VRS: avoid boxing enum (Triad #3853)
                Damage.Equals(other.Damage);
     }
 

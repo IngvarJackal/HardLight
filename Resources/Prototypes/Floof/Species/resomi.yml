@@ -7,7 +7,7 @@
   defaultSkinTone: "#faf7f7"
   markingLimits: MobResomiMarkingLimits
   dollPrototype: MobResomiDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   maleFirstNames: NamesResomiMale
   femaleFirstNames: NamesResomiFemale
   naming: First

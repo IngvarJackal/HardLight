@@ -215,6 +215,25 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         // Reset round-scoped data and reporting guards
         _players.Clear();
         _lastReportedRoundId = -1;
+
+        // VRS: delete all POI grid entities spawned during the round.
+        // POIs without a matching GameMapPrototype are not station-owned and therefore
+        // not cleaned up by StationSystem.DeleteStation(); we delete them explicitly here.
+        // QueueDel is safe on already-deleted entities, so station-owned grids are fine too.
+        var query = EntityQueryEnumerator<NFAdventureRuleComponent>();
+        while (query.MoveNext(out _, out var comp))
+        {
+            foreach (var uid in comp.CargoDepots)
+                QueueDel(uid);
+            foreach (var uid in comp.MarketStations)
+                QueueDel(uid);
+            foreach (var uid in comp.RequiredPois)
+                QueueDel(uid);
+            foreach (var uid in comp.OptionalPois)
+                QueueDel(uid);
+            foreach (var uid in comp.UniquePois)
+                QueueDel(uid);
+        }
     }
 
     protected override void Started(EntityUid uid, NFAdventureRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)

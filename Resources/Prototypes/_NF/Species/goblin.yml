@@ -7,7 +7,7 @@
   sprites: MobGoblinSprites
   markingLimits: MobGoblinMarkingLimits
   dollPrototype: MobGoblinDummy
-  skinColoration: HumanToned #Possible values: TintedHues, Hues, HumanToned
+  skinColoration: AnyColour # Hardlight
   maleFirstNames: NamesGoblinFirstMale
   femaleFirstNames: NamesGoblinFirstFemale
   lastNames: NamesGoblinLast

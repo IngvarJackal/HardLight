@@ -1,0 +1,63 @@
+- type: listing
+  id: UplinkMercenaryHFKatana
+  name: uplink-mercenary-hfkatana-name
+  description: uplink-mercenary-hfkatana-desc
+  productEntity: WeaponHFKatana
+  icon: { sprite: _Mono/Objects/Weapons/Melee/hfblade.rsi, state: icon }
+  cost:
+    MercCoin: 15
+  categories:
+    - UplinkMercenaryMelee
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - MercenaryUplink
+
+- type: listing
+  id: UplinkMercenaryHFKatanaBeta
+  name: uplink-mercenary-hfkatanabeta-name
+  description: uplink-mercenary-hfkatanabeta-desc
+  productEntity: WeaponHFKatanaBeta
+  icon: { sprite: _Mono/Objects/Weapons/Melee/murasama.rsi, state: icon }
+  cost:
+    MercCoin: 15
+  categories:
+    - UplinkMercenaryMelee
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - MercenaryUplink
+
+- type: listing
+  id: UplinkMercenaryHFKatanaGamma
+  name: uplink-mercenary-hfkatanagamma-name
+  description: uplink-mercenary-hfkatanagamma-desc
+  productEntity: WeaponHFKatanaGamma
+  icon: { sprite: _Mono/Objects/Weapons/Melee/phaseblade.rsi, state: e_sword }
+  cost:
+    MercCoin: 20 # it's rads
+  categories:
+    - UplinkMercenaryMelee
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - MercenaryUplink
+
+- type: listing
+  id: UplinkMercenaryKatanaSheath
+  name: uplink-mercenary-katanasheath-name
+  description: uplink-mercenary-katanasheath-desc
+  productEntity: ClothingBeltKatanaSheathFilled
+  icon: { sprite: Nyanotrasen/Clothing/Belt/katanasheath.rsi, state: sheath-sabre }
+  cost:
+    MercCoin: 20
+  categories:
+    - UplinkMercenaryMelee
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - MercenaryUplink

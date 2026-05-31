@@ -112,13 +112,13 @@
       - SecurityUplink
 
 #- type: listing
-#  id: UplinkSecurityNavyOfficerSword
-#  name:  uplink-security-navyofficersword-name
-#  description: uplink-security-navyofficersword-desc
-#  productEntity: ClothingBeltSheathFilledNavy
-#  icon: { sprite: _Mono/Objects/Weapons/Melee/ccsabre.rsi, state: icon }
+#  id: UplinkSecurityCCOfficerSword
+#  name:  uplink-security-ccofficersword-name # Hardlight renamed
+#  description: uplink-security-ccofficersword-desc # Hardlight renamed
+#  productEntity: ClothingBeltOrnateSheathFilled # Hardlight New sprite and belt
+#  icon: { sprite: _Goobstation/Objects/Weapons/Melee/ccsabre.rsi, state: icon } # HardLight point it to the correct sprite location
 #  cost:
-#    FederationMilitaryCredit: 2 #From 10 to 2
+#    FrontierUplinkCoin: 1000 # Hardlight Silly number for testing reasons, but definitely feels like should be near to or higher than 500
 #  categories:
 #    - UplinkSecurityWeapons
 #  conditions:

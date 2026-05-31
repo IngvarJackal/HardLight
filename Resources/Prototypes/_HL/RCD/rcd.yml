@@ -13,7 +13,7 @@
 - type: rcd
   id: PlatingNE
   name: NE plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/ne.png
   mode: ConstructTile
   prototype: PlatingCornerNE
@@ -27,7 +27,7 @@
 - type: rcd
   id: PlatingNW
   name: NW plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/nw.png
   mode: ConstructTile
   prototype: PlatingCornerNW
@@ -41,7 +41,7 @@
 - type: rcd
   id: PlatingSE
   name: SE plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/se.png
   mode: ConstructTile
   prototype: PlatingCornerSE
@@ -55,7 +55,7 @@
 - type: rcd
   id: PlatingSW
   name: SW plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/sw.png
   mode: ConstructTile
   prototype: PlatingCornerSW
@@ -145,7 +145,7 @@
 - type: rcd
   id: PlatingHalfV
   name: V half-plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/half_v.png
   mode: ConstructTile
   prototype: PlatingHalfV
@@ -159,7 +159,7 @@
 - type: rcd
   id: PlatingHalfH
   name: H half-plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/half_h.png
   mode: ConstructTile
   prototype: PlatingHalfH
@@ -173,7 +173,7 @@
 - type: rcd
   id: PlatingWedgeN
   name: north wedge plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/wedge_n.png
   mode: ConstructTile
   prototype: PlatingWedgeN
@@ -187,7 +187,7 @@
 - type: rcd
   id: PlatingWedgeE
   name: east wedge plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/wedge_e.png
   mode: ConstructTile
   prototype: PlatingWedgeE
@@ -201,7 +201,7 @@
 - type: rcd
   id: PlatingWedgeS
   name: south wedge plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/wedge_s.png
   mode: ConstructTile
   prototype: PlatingWedgeS
@@ -215,7 +215,7 @@
 - type: rcd
   id: PlatingWedgeW
   name: west wedge plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/wedge_w.png
   mode: ConstructTile
   prototype: PlatingWedgeW
@@ -229,7 +229,7 @@
 - type: rcd
   id: PlatingHalfTiltNESLower
   name: NE-S lower half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_ne_s_l.png
   mode: ConstructTile
   prototype: PlatingHalfTiltNESLower
@@ -243,7 +243,7 @@
 - type: rcd
   id: PlatingHalfTiltSEWLower
   name: SE-W lower half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_se_w_l.png
   mode: ConstructTile
   prototype: PlatingHalfTiltSEWLower
@@ -257,7 +257,7 @@
 - type: rcd
   id: PlatingHalfTiltSWNLower
   name: SW-N lower half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_sw_n_l.png
   mode: ConstructTile
   prototype: PlatingHalfTiltSWNLower
@@ -271,7 +271,7 @@
 - type: rcd
   id: PlatingHalfTiltNWELower
   name: NW-E lower half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_nw_e_l.png
   mode: ConstructTile
   prototype: PlatingHalfTiltNWELower
@@ -285,7 +285,7 @@
 - type: rcd
   id: PlatingHalfTiltNESUpper
   name: NE-S upper half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_ne_s_u.png
   mode: ConstructTile
   prototype: PlatingHalfTiltNESUpper
@@ -299,7 +299,7 @@
 - type: rcd
   id: PlatingHalfTiltSEWUpper
   name: SE-W upper half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_se_w_u.png
   mode: ConstructTile
   prototype: PlatingHalfTiltSEWUpper
@@ -313,7 +313,7 @@
 - type: rcd
   id: PlatingHalfTiltSWNUpper
   name: SW-N upper half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_sw_n_u.png
   mode: ConstructTile
   prototype: PlatingHalfTiltSWNUpper
@@ -327,7 +327,7 @@
 - type: rcd
   id: PlatingHalfTiltNWEUpper
   name: NW-E upper half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_nw_e_u.png
   mode: ConstructTile
   prototype: PlatingHalfTiltNWEUpper
@@ -341,7 +341,7 @@
 - type: rcd
   id: PlatingHalfTiltNEWLower
   name: NE-W lower half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_ne_w_l.png
   mode: ConstructTile
   prototype: PlatingHalfTiltNEWLower
@@ -355,7 +355,7 @@
 - type: rcd
   id: PlatingHalfTiltSENLower
   name: SE-N lower half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_se_n_l.png
   mode: ConstructTile
   prototype: PlatingHalfTiltSENLower
@@ -369,7 +369,7 @@
 - type: rcd
   id: PlatingHalfTiltSWELower
   name: SW-E lower half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_sw_e_l.png
   mode: ConstructTile
   prototype: PlatingHalfTiltSWELower
@@ -383,7 +383,7 @@
 - type: rcd
   id: PlatingHalfTiltNWSLower
   name: NW-S lower half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_nw_s_l.png
   mode: ConstructTile
   prototype: PlatingHalfTiltNWSLower
@@ -397,7 +397,7 @@
 - type: rcd
   id: PlatingHalfTiltNEWUpper
   name: NE-W upper half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_ne_w_u.png
   mode: ConstructTile
   prototype: PlatingHalfTiltNEWUpper
@@ -411,7 +411,7 @@
 - type: rcd
   id: PlatingHalfTiltSENUpper
   name: SE-N upper half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_se_n_u.png
   mode: ConstructTile
   prototype: PlatingHalfTiltSENUpper
@@ -425,7 +425,7 @@
 - type: rcd
   id: PlatingHalfTiltSWEUpper
   name: SW-E upper half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_sw_e_u.png
   mode: ConstructTile
   prototype: PlatingHalfTiltSWEUpper
@@ -439,7 +439,7 @@
 - type: rcd
   id: PlatingHalfTiltNWSUpper
   name: NW-S upper half-tilt plating
-  category: Floors
+  category: PlatingTiles
   sprite: /Textures/_Mono/Tiles/plating/script/halftilt_nw_s_u.png
   mode: ConstructTile
   prototype: PlatingHalfTiltNWSUpper
@@ -449,3 +449,148 @@
   rules:
     - CanBuildOnEmptyTile
   fx: EffectRCDConstruct1
+
+# VRS: Consolidated rotatable plating recipes. One menu entry per family; the player rotates
+# the construction ghost (R) and ConstructTileByDirection picks the right tile per facing.
+# The original per-direction recipes above remain ID-resolvable for backward compatibility,
+# but are no longer surfaced in any RCD's availablePrototypes.
+
+- type: rcd
+  id: PlatingDiagonal
+  name: diagonal plating
+  category: PlatingTiles
+  sprite: /Textures/_Mono/Tiles/plating/ne.png
+  mode: ConstructTile
+  prototype: PlatingCornerNE
+  constructTileByDirection:
+    North: PlatingCornerNE
+    East: PlatingCornerSE
+    South: PlatingCornerSW
+    West: PlatingCornerNW
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+  allowMultiDirection: true
+
+- type: rcd
+  id: PlatingHalf
+  name: half plating
+  category: PlatingTiles
+  sprite: /Textures/_Mono/Tiles/plating/script/half_v.png
+  mode: ConstructTile
+  prototype: PlatingHalfV
+  constructTileByDirection:
+    North: PlatingHalfV
+    East: PlatingHalfH
+    South: PlatingHalfV
+    West: PlatingHalfH
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+  allowMultiDirection: true
+
+- type: rcd
+  id: PlatingWedge
+  name: wedge plating
+  category: PlatingTiles
+  sprite: /Textures/_Mono/Tiles/plating/script/wedge_n.png
+  mode: ConstructTile
+  prototype: PlatingWedgeN
+  constructTileByDirection:
+    North: PlatingWedgeN
+    East: PlatingWedgeE
+    South: PlatingWedgeS
+    West: PlatingWedgeW
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+  allowMultiDirection: true
+
+- type: rcd
+  id: PlatingHalfTiltLowerAxis
+  name: lower half-tilt plating (axis)
+  category: PlatingTiles
+  sprite: /Textures/_Mono/Tiles/plating/script/halftilt_ne_s_l.png
+  mode: ConstructTile
+  prototype: PlatingHalfTiltNESLower
+  constructTileByDirection:
+    North: PlatingHalfTiltNESLower
+    East: PlatingHalfTiltSEWLower
+    South: PlatingHalfTiltSWNLower
+    West: PlatingHalfTiltNWELower
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+  allowMultiDirection: true
+
+- type: rcd
+  id: PlatingHalfTiltLowerOffset
+  name: lower half-tilt plating (offset)
+  category: PlatingTiles
+  sprite: /Textures/_Mono/Tiles/plating/script/halftilt_ne_w_l.png
+  mode: ConstructTile
+  prototype: PlatingHalfTiltNEWLower
+  constructTileByDirection:
+    North: PlatingHalfTiltNEWLower
+    East: PlatingHalfTiltSENLower
+    South: PlatingHalfTiltSWELower
+    West: PlatingHalfTiltNWSLower
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+  allowMultiDirection: true
+
+- type: rcd
+  id: PlatingHalfTiltUpperAxis
+  name: upper half-tilt plating (axis)
+  category: PlatingTiles
+  sprite: /Textures/_Mono/Tiles/plating/script/halftilt_ne_s_u.png
+  mode: ConstructTile
+  prototype: PlatingHalfTiltNESUpper
+  constructTileByDirection:
+    North: PlatingHalfTiltNESUpper
+    East: PlatingHalfTiltSEWUpper
+    South: PlatingHalfTiltSWNUpper
+    West: PlatingHalfTiltNWEUpper
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+  allowMultiDirection: true
+
+- type: rcd
+  id: PlatingHalfTiltUpperOffset
+  name: upper half-tilt plating (offset)
+  category: PlatingTiles
+  sprite: /Textures/_Mono/Tiles/plating/script/halftilt_ne_w_u.png
+  mode: ConstructTile
+  prototype: PlatingHalfTiltNEWUpper
+  constructTileByDirection:
+    North: PlatingHalfTiltNEWUpper
+    East: PlatingHalfTiltSENUpper
+    South: PlatingHalfTiltSWEUpper
+    West: PlatingHalfTiltNWSUpper
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+  allowMultiDirection: true

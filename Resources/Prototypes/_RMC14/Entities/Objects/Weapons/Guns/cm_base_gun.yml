@@ -1,0 +1,38 @@
+﻿- type: entity
+  abstract: true
+  parent: [ BaseC3ExpeditionContraband, NFBaseItemWeaponGun ]
+  id: CMBaseWeaponGun
+  components:
+  - type: Clothing
+    quickEquip: false
+  - type: UseDelay
+    delay: 0
+  - type: WieldDelay
+  - type: AltFireMelee
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: GenericHit
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RMCEquipGun
+  - type: EmitSoundOnLand
+    sound:
+      collection: RMCRustleGun
+  - type: Gun
+    meleeCooldownOnShoot: false
+    resetOnHandSelected: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseBullet
+  id: RMCBaseBullet
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Projectiles/bullet_projectiles.rsi
+    layers:
+    - state: bullet
+      shader: unshaded

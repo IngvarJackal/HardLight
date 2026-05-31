@@ -7,6 +7,14 @@
   name: Urist McToaster
   abstract: true
   components:
+  # HardLight start
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    understands:
+    - GalacticCommon
+    - Machine
+  # HardLight end
   - type: Carriable # Frontier: Carrying system from nyanotrasen.
   - type: PotentialPsionic #Nyano - Summary: makes potentially psionic.
   - type: Sprite
@@ -1090,7 +1098,7 @@
     - map: [ "clownedon" ]
       sprite: "Effects/creampie.rsi"
       state: "creampie_vox" # Not default
-      visible: false      
+      visible: false
   - type: DamageVisuals
     thresholds: [ 10, 30, 50, 70]
     targetLayers:
@@ -2487,12 +2495,12 @@
           sizeMaps:
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: back  
+              state: back
         outerClothing:
           sizeMaps:
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: outerclothing   
+              state: outerclothing
 
 #region ARACHNID ####
 

@@ -557,6 +557,10 @@
     context: "human"
   - type: BeamPrism
 
+  - type: Construction
+    graph: BeamPrism
+    node: BeamPrism
+
 - type: entity
   id: AIBeamPrism
   name: Hostile beam prism

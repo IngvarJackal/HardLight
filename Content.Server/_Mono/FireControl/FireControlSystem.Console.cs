@@ -1,8 +1,12 @@
+using Content.Server._Mono.Ships.Systems;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Crescent.ShipShields;
 using Content.Shared._Mono.FireControl;
+using Content.Shared._Mono.Ships.Components;
+using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Shuttles.BUIStates;
+using Content.Shared.UserInterface;
 using Robust.Shared.Network;
 using Robust.Server.GameObjects;
 
@@ -12,6 +16,8 @@ public sealed partial class FireControlSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ShuttleConsoleSystem _shuttleConsoleSystem = default!;
+    [Dependency] private readonly CrewedShuttleSystem _crewedShuttle = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     private void InitializeConsole()
     {
         SubscribeLocalEvent<FireControlConsoleComponent, PowerChangedEvent>(OnPowerChanged);
@@ -20,6 +26,22 @@ public sealed partial class FireControlSystem : EntitySystem
         SubscribeLocalEvent<FireControlConsoleComponent, FireControlConsoleFireMessage>(OnFire);
         SubscribeLocalEvent<FireControlConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
         SubscribeLocalEvent<FireControlConsoleComponent, ComponentStartup>(OnConsoleStartup);
+        SubscribeLocalEvent<FireControlConsoleComponent, ActivatableUIOpenAttemptEvent>(OnConsoleUIOpenAttempt);
+    }
+
+    private void OnConsoleUIOpenAttempt(EntityUid uid, FireControlConsoleComponent component, ActivatableUIOpenAttemptEvent args)
+    {
+        // Mono: on crewed shuttles, deny opening a gunnery console if this user already has
+        // a shuttle console open on the same grid (unless they are an AdvancedPilot).
+        var shuttle = _xform.GetParentUid(uid);
+        var uiOpen = _crewedShuttle.AnyShuttleConsoleActiveByPlayer(shuttle, args.User);
+        var forceOne = HasComp<CrewedShuttleComponent>(shuttle) && !HasComp<AdvancedPilotComponent>(args.User);
+
+        if (uiOpen && forceOne)
+        {
+            args.Cancel();
+            _popup.PopupClient(Loc.GetString("shuttle-console-crewed"), args.User);
+        }
     }
 
     private void OnConsoleStartup(EntityUid uid, FireControlConsoleComponent component, ComponentStartup args)

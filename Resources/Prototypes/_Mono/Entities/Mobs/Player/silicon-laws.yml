@@ -1,0 +1,143 @@
+# VRS port: Mono — silicon lawsets for civilian / faction AI cores.
+#
+# Subset of Triad's _Mono/Entities/Mobs/Player/silicon-laws.yml. The
+# "Redacted" ADS lawset is deferred because it depends on the
+# law-ads-* locale strings owned by the hostile-shuttle events
+# subsystem (PR #33). Once that locale block is also ported, a
+# follow-up PR can re-introduce the Redacted / RedactedBorg lawsets.
+#
+# All lawsets here reuse the upstream siliconLaw / siliconLawset
+# prototypes and the existing laws-owner-crew obeysTo string.
+
+# Vessel lawset
+- type: siliconLaw
+  id: Vessel0
+  order: 0
+  lawString: law-vessel-0
+
+- type: siliconLaw
+  id: Vessel1
+  order: 1
+  lawString: law-vessel-1
+
+- type: siliconLaw
+  id: Vessel2
+  order: 2
+  lawString: law-vessel-2
+
+- type: siliconLaw
+  id: Vessel3
+  order: 3
+  lawString: law-vessel-3
+
+- type: siliconLawset
+  id: VesselLawset
+  laws:
+  - Vessel0
+  - Vessel1
+  - Vessel2
+  - Vessel3
+  obeysTo: laws-owner-crew
+
+# PDV lawset
+- type: siliconLaw
+  id: PDV1
+  order: 1
+  lawString: law-pdv-1
+
+- type: siliconLaw
+  id: PDV2
+  order: 2
+  lawString: law-pdv-2
+
+- type: siliconLaw
+  id: PDV3
+  order: 3
+  lawString: law-pdv-3
+
+- type: siliconLawset
+  id: PDVLawset
+  laws:
+  - PDV1
+  - PDV2
+  - PDV3
+  obeysTo: laws-owner-crew
+
+# TSFMC lawset
+- type: siliconLaw
+  id: TSFMC1
+  order: 1
+  lawString: law-tsfmc-1
+
+- type: siliconLaw
+  id: TSFMC2
+  order: 2
+  lawString: law-tsfmc-2
+
+- type: siliconLaw
+  id: TSFMC3
+  order: 3
+  lawString: law-tsfmc-3
+
+- type: siliconLaw
+  id: TSFMC4
+  order: 4
+  lawString: law-tsfmc-4
+
+- type: siliconLaw
+  id: TSFMCBORG3
+  order: 3
+  lawString: law-tsfmc-borg-3
+
+- type: siliconLawset
+  id: TSFMCLawset
+  laws:
+  - TSFMC1
+  - TSFMC2
+  - TSFMC3
+  - TSFMC4
+  obeysTo: laws-owner-crew
+
+- type: siliconLawset
+  id: TSFMCBorgLawset
+  laws:
+  - TSFMC1
+  - TSFMC2
+  - TSFMCBORG3
+  obeysTo: laws-owner-crew
+
+# Freeman lawset
+- type: siliconLaw
+  id: Freeman1
+  order: 1
+  lawString: law-freeman-1
+
+- type: siliconLawset
+  id: FreemanLawset
+  laws:
+  - Freeman1
+  obeysTo: laws-owner-crew
+
+# Entertainer lawset
+- type: siliconLaw
+  id: Entertainer1
+  order: 1
+  lawString: law-entertainer-1
+
+- type: siliconLaw
+  id: Entertainer2
+  order: 2
+  lawString: law-entertainer-2
+
+- type: siliconLaw
+  id: Entertainer3
+  order: 3
+  lawString: law-entertainer-3
+
+- type: siliconLawset
+  id: EntertainerLawset
+  laws:
+  - Entertainer1
+  - Entertainer2
+  - Entertainer3
+  obeysTo: laws-owner-crew

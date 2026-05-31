@@ -138,6 +138,7 @@
     metabolizerTypes: [Human]
     groups:
     - id: Medicine
+    - id: Cryogenic
     - id: Poison
     - id: Narcotic
   - type: Item
@@ -317,6 +318,7 @@
     metabolizerTypes: [Avali]
     groups:
     - id: Medicine
+    - id: Cryogenic
     - id: Poison
     - id: Narcotic
 
@@ -351,6 +353,7 @@
     metabolizerTypes: [Arachnid]
     groups:
     - id: Medicine
+    - id: Cryogenic
     - id: Poison
     - id: Narcotic
 

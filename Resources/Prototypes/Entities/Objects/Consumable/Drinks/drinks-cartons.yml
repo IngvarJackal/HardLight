@@ -43,6 +43,9 @@
   - type: TrashOnSolutionEmpty
     solution: drink
   - type: DnaSubstanceTrace
+  - type: Tag # Hardlight / Frontier
+    tags:
+    - DrinkBottle
 
 - type: entity
   parent: DrinkCartonBaseFull

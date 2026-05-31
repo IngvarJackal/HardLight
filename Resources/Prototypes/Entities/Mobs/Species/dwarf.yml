@@ -5,6 +5,15 @@
   id: BaseMobDwarf
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - SolCommon
+    understands:
+    - GalacticCommon
+    - SolCommon
+  # Starlight-end
   - type: Hunger
   - type: Thirst
   - type: Carriable # Carrying system from nyanotrasen.

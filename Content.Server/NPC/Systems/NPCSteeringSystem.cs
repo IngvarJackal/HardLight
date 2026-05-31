@@ -9,6 +9,7 @@ using Content.Server.NPC.Pathfinding;
 using Content.Shared.CCVar;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.CombatMode;
+using Content.Shared.Doors.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
@@ -68,6 +69,8 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
     private EntityQuery<NpcFactionMemberComponent> _factionQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<TransformComponent> _xformQuery;
+    // VRS: cache door query (was fetched twice per TryHandleFlags call in Obstacles.cs).
+    private EntityQuery<DoorComponent> _doorQuery;
 
     private ObjectPool<HashSet<EntityUid>> _entSetPool =
         new DefaultObjectPool<HashSet<EntityUid>>(new SetPolicy<EntityUid>());
@@ -97,6 +100,7 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         _factionQuery = GetEntityQuery<NpcFactionMemberComponent>();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
+        _doorQuery = GetEntityQuery<DoorComponent>(); // VRS
 
         for (var i = 0; i < InterestDirections; i++)
         {

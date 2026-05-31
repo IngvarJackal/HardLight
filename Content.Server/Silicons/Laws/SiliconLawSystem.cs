@@ -406,8 +406,17 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         if (!TryComp<SiliconLawProviderComponent>(to, out var _))
             return;
 
-        var lawset = GetLawset(fromLawsComp.Laws);
-        var lawCopies = lawset.Laws.Select(x => x.ShallowClone()).ToList();
+        // VRS: Prefer the source provider's *live* Lawset over its prototype default. The
+        // shunt/jump path used to call GetLawset(fromLawsComp.Laws), which always rebuilds the
+        // lawset from the prototype id stored in `Laws` and so wiped any in-game modifications
+        // (subverted/uploaded laws, removed laws) on the destination chassis.
+        // See HardLight issue #1361.
+        List<SiliconLaw> lawCopies;
+        if (fromLawsComp.Lawset is { Laws: { } liveLaws })
+            lawCopies = liveLaws.Select(x => x.ShallowClone()).ToList();
+        else
+            lawCopies = GetLawset(fromLawsComp.Laws).Laws.Select(x => x.ShallowClone()).ToList();
+
         SetLawsSilent(lawCopies, to);
     }
     // Corvax-Next-AiRemoteControl-End

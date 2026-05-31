@@ -68,3 +68,17 @@
     begin: 0, 0.5
     end: 1, 1
 
+
+- type: entity
+  parent: RadarEdgeMarkerBase
+  id: RadarEdgeMarkerCenter
+  name: central radar edge marker
+  components:
+  - type: Sprite
+    layers:
+      - state: label
+      - state: edge
+        offset: -0.5, 0
+  - type: GridEdgeMarker
+    begin: 0, -0.5
+    end: 0, 0.5

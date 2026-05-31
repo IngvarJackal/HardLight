@@ -89,10 +89,19 @@
   longRange: true
 
 - type: radioChannel
+  id: Open
+  name: chat-radio-freelance
+  keycode: 'o'
+  frequency: 1984
+  color: "#f6ce64"
+  # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
+  #longRange: true # Frontier - Move to server on cove
+  
+- type: radioChannel
   id: Freelance
   name: chat-radio-freelance
-  keycode: 'f'
-  frequency: 1984
+  keycode: '1'
+  frequency: 2004
   color: "#f6ce64"
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
   #longRange: true # Frontier - Move to server on cove
@@ -116,11 +125,20 @@
   color: "#ff2222"
   # long range since I don't wanna make a special xenoborg telecomm server
   longRange: true
-
+  
 - type: radioChannel
-  id: DominosRobotics
-  name: chat-radio-dominos-robotics
-  keycode: "/"
+  id: Faction
+  name: chat-radio-faction
+  keycode: 'f'
   frequency: 1995
-  color: "#9900ff"
+  color: "#7600B5"
+  longRange: true
+  restrictToSharedFaction: true
+
+# - type: radioChannel
+  # id: DominosRobotics
+  # name: chat-radio-dominos-robotics
+  # keycode: "/"
+  # frequency: 1995
+  # color: "#9900ff"
 

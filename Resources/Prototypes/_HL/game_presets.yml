@@ -261,6 +261,12 @@
     - BasicRoundstartVariation
 #    - NFRoundstartVariation
     - DynamicJobAllocation
+    - VRSPersistentPlanet # VRS — adds the persistent biome planet at round start
+    # VRS: Mono hostile-ship station events (damaged AI, Chimera, Asakim factions)
+    - MonoAISTCShuttleSpawnerScheduler
+    - MonoAISTCShuttleSpawnerSchedulerTier2
+    - MonoAsakimSTCShuttleSpawnerScheduler
+    - MonoChimeraSTCShuttleSpawnerScheduler
 
 - type: gamePreset
   id: NFPirate

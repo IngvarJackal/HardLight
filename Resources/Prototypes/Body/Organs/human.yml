@@ -52,6 +52,8 @@
   - type: AtmosExposed
   - type: Temperature
     currentTemperature: 290 # copied from meat
+  - type: StaticPrice
+    price: 4500 # Mono - #3899 organ harvesting
 
 - type: entity
   id: BaseHumanCyberOrgan # Parent for cybernetic Organs / Cybernetic Eyes

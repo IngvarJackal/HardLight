@@ -320,6 +320,11 @@
     critThresholdDelta: -15
   - type: GunAccuracyModifier
     spreadMultiplier: 2
+  - type: GunUserThrowback
+    strength: 10
+    collisionStunTime: 1
+    impulseMultiplier: 2
+    damageMultiplier: 1
   - type: MeleeDamageModifier
     flatBonus: -2
     damageType: Blunt
@@ -362,6 +367,10 @@
   - type: GunAccuracyModifier
     spreadMultiplier: 3
   - type: GunUserThrowback
+    strength: 25
+    collisionStunTime: 2
+    impulseMultiplier: 5
+    damageMultiplier: 2
   - type: MeleeDamageModifier
     flatBonus: -3.5
     damageType: Blunt

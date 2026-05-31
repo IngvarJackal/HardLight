@@ -16,6 +16,8 @@
   - BoozeDispenserMachineCircuitboard
   - SodaDispenserMachineCircuitboard
   - ImpCoffeeMachineCircuitboard #imp
+  - NFCookingBag
+  position: 3, -2
 
 - type: technology
   id: MiscellaneousItemsOrganization
@@ -25,7 +27,8 @@
     state: closed
   discipline: CivilianServices
   tier: 1
-  cost: 2500
+  cost: 5000
+
   recipeUnlocks:
   - NFPouchUtility
   - NFPouchEngineering
@@ -46,6 +49,7 @@
   - NFPouchCaptain
   - NFPouchCargo
   - HLFreezerPouch # Hardlight
+  position: 3, -3
 
 # Tier 2
 
@@ -57,6 +61,7 @@
     state: industrial-working
   discipline: CivilianServices
   tier: 2
+  position: 3, -1
   cost: 10000
   recipeUnlocks:
   - ChemMasterMachineCircuitboard
@@ -70,10 +75,14 @@
     state: icon
   discipline: CivilianServices
   tier: 2
-  cost: 5000
+  cost: 13500
+
   recipeUnlocks:
   - MedicalAssemblerMachineCircuitboard
   - HotplateMachineCircuitboard
+  technologyPrerequisites:
+  - AdvancedParts
+  position: -2, 10
 
 # Tier 3
 
@@ -88,6 +97,9 @@
   cost: 15000
   recipeUnlocks:
   - JetpackVoid
+  technologyPrerequisites:
+  - Shuttlecraft
+  position: -4, 7
 
 - type: technology
   id: AdvancedFoodService
@@ -97,6 +109,7 @@
     state: composite_off
   discipline: CivilianServices
   tier: 2
+  position: 4, -2
   cost: 7500
   recipeUnlocks:
   - DeepFryerMachineCircuitboard #Nyano - Summary: adds deep fryer circuit board to service research.
@@ -113,6 +126,7 @@
     state: icon
   discipline: CivilianServices
   tier: 2
+  position: 2, -4
   cost: 5000
   recipeUnlocks:
     - JanicartFlatpack

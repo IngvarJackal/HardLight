@@ -6,7 +6,7 @@
   sprites: MobHumanSprites
   markingLimits: MobKitsuneMarkingLimits
   dollPrototype: MobKitsuneDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
 
 - type: speciesBaseSprites
   id: MobKitsuneSprites

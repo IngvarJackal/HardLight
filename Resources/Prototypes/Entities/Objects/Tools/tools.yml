@@ -453,37 +453,51 @@
     #Hardlight
     - AtmosDeviceFanDirectional
     - PuckLight
-    - PlatingNE
-    - PlatingNW
-    - PlatingSE
-    - PlatingSW
-    - PlatingHalfV
-    - PlatingHalfH
-    - PlatingWedgeN
-    - PlatingWedgeE
-    - PlatingWedgeS
-    - PlatingWedgeW
-    - PlatingHalfTiltNESLower
-    - PlatingHalfTiltSEWLower
-    - PlatingHalfTiltSWNLower
-    - PlatingHalfTiltNWELower
-    - PlatingHalfTiltNESUpper
-    - PlatingHalfTiltSEWUpper
-    - PlatingHalfTiltSWNUpper
-    - PlatingHalfTiltNWEUpper
-    - PlatingHalfTiltNEWLower
-    - PlatingHalfTiltSENLower
-    - PlatingHalfTiltSWELower
-    - PlatingHalfTiltNWSLower
-    - PlatingHalfTiltNEWUpper
-    - PlatingHalfTiltSENUpper
-    - PlatingHalfTiltSWEUpper
-    - PlatingHalfTiltNWSUpper
+    # VRS: consolidated rotatable plating recipes (replace 27 per-direction entries; legacy IDs remain resolvable).
+    - PlatingDiagonal
+    - PlatingHalf
+    - PlatingWedge
+    - PlatingHalfTiltLowerAxis
+    - PlatingHalfTiltLowerOffset
+    - PlatingHalfTiltUpperAxis
+    - PlatingHalfTiltUpperOffset
     - WindowDirectionalShuttle
     - WindowShuttle
     - WallShuttleDiagonal
     - WallReinforcedDiagonal
     - WallSolidDiagonal
+    # Mono - #3919
+    - Lattice
+    - LatticeCornerNE
+    - LatticeCornerNW
+    - LatticeCornerSE
+    - LatticeCornerSW
+    - LatticeHalfV
+    - LatticeHalfH
+    - LatticeWedgeN
+    - LatticeWedgeE
+    - LatticeWedgeS
+    - LatticeWedgeW
+    - LatticeHalfTiltNESLower
+    - LatticeHalfTiltSEWLower
+    - LatticeHalfTiltSWNLower
+    - LatticeHalfTiltNWELower
+    - LatticeHalfTiltNESUpper
+    - LatticeHalfTiltSEWUpper
+    - LatticeHalfTiltSWNUpper
+    - LatticeHalfTiltNWEUpper
+    - LatticeHalfTiltNEWLower
+    - LatticeHalfTiltSENLower
+    - LatticeHalfTiltSWELower
+    - LatticeHalfTiltNWSLower
+    - LatticeHalfTiltNEWUpper
+    - LatticeHalfTiltSENUpper
+    - LatticeHalfTiltSWEUpper
+    - LatticeHalfTiltNWSUpper
+    - PlatingCornerNE
+    - PlatingCornerNW
+    - PlatingCornerSE
+    - PlatingCornerSW
   - type: LimitedCharges
     maxCharges: 30
   - type: Sprite

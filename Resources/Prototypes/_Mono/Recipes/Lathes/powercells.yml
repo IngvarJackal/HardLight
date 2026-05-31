@@ -1,0 +1,17 @@
+# VRS port: Mono — combat power cell lathe recipe. The Triad
+# LargePowerCell700Thz / LargePowerCell400Thz Smilodon recipes are deferred
+# pending a port of those battery entities.
+
+- type: latheRecipe
+  id: PowerCellCombat
+  result: PowerCellCombatPrinted
+  categories:
+  - Parts
+  completetime: 10
+  materials:
+    Steel: 500
+    Plasteel: 250
+    Glass: 400
+    Plastic: 200
+    Gold: 200
+    Diamond: 25

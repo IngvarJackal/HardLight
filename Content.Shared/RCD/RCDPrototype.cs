@@ -1,4 +1,5 @@
 using Content.Shared.Physics;
+using Robust.Shared.Maths;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -43,6 +44,15 @@ public sealed partial class RCDPrototype : IPrototype
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public string? Prototype { get; private set; }
+
+    /// <summary>
+    /// VRS: For <see cref="RcdMode.ConstructTile"/>, optional mapping from the player's construction direction to a
+    /// <see cref="Content.Shared.Maps.ContentTileDefinition"/> id. When set, the tile placed for that direction is
+    /// chosen from this map; missing directions fall back to <see cref="Prototype"/>. Lets a single radial-menu
+    /// recipe rotate through a family of related tiles instead of needing one menu entry per facing.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<Direction, string>? ConstructTileByDirection { get; private set; }
 
     /// <summary>
     /// If true, allows placing the entity once per direction (North, West, South and East)

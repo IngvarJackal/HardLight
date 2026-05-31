@@ -25,6 +25,8 @@ using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using System.Linq;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Audio;
 
 namespace Content.Shared.RCD.Systems;
@@ -47,6 +49,7 @@ public sealed class RCDSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!; // Starlight
 
     private readonly int _instantConstructionDelay = 0;
     private readonly EntProtoId _instantConstructionFx = "EffectRCDConstruct0";
@@ -55,6 +58,22 @@ public sealed class RCDSystem : EntitySystem
     private static readonly ProtoId<TagPrototype> CatwalkTag = "Catwalk";
 
     private HashSet<EntityUid> _intersectingEntities = new();
+
+    /// <summary>
+    /// VRS: Resolves the tile prototype id to place for an RCD ConstructTile recipe, using
+    /// <see cref="RCDPrototype.ConstructTileByDirection"/> if set, otherwise falling back to
+    /// <see cref="RCDPrototype.Prototype"/>. Lets one menu entry rotate through a family of related tiles.
+    /// </summary>
+    public string? GetConstructTileTypeId(RCDPrototype prototype, Direction direction)
+    {
+        if (prototype.ConstructTileByDirection is { } byDirection &&
+            byDirection.TryGetValue(direction, out var dirTile))
+        {
+            return dirTile;
+        }
+
+        return prototype.Prototype;
+    }
 
     public override void Initialize()
     {
@@ -67,10 +86,34 @@ public sealed class RCDSystem : EntitySystem
         SubscribeLocalEvent<RCDComponent, DoAfterAttemptEvent<RCDDoAfterEvent>>(OnDoAfterAttempt);
         SubscribeLocalEvent<RCDComponent, RCDSystemMessage>(OnRCDSystemMessage);
         SubscribeNetworkEvent<RCDConstructionGhostRotationEvent>(OnRCDconstructionGhostRotationEvent);
+        SubscribeNetworkEvent<RPDSelectedLayerEvent>(OnRPDSelectedLayerEvent);
         SubscribeLocalEvent<IdCardComponent, AfterInteractEvent>(OnIdCardSwipeHappened); // Frontier
     }
 
     #region Event handling
+
+    // Starlight: RPLD
+    private void OnRPDSelectedLayerEvent(RPDSelectedLayerEvent ev, EntitySessionEventArgs session)
+    {
+        var uid = GetEntity(ev.NetEntity);
+
+        if (session.SenderSession.AttachedEntity is not { } player)
+            return;
+
+        if (_hands.GetActiveItem(player) != uid)
+            return;
+
+        if (!TryComp<RCDComponent>(uid, out var rcd))
+            return;
+
+        var layerInt = Math.Clamp(ev.Layer, (byte) AtmosPipeLayer.Primary, (byte) AtmosPipeLayer.Tertiary); // HL: Replace with Quinary when we get 5 layers lol
+        var selectedLayer = (AtmosPipeLayer) layerInt;
+
+        if (rcd.IsRPLD && selectedLayer > AtmosPipeLayer.Tertiary)
+            selectedLayer = AtmosPipeLayer.Tertiary;
+
+        rcd.LastSelectedLayer = selectedLayer;
+    }
 
     private void OnMapInit(EntityUid uid, RCDComponent component, MapInitEvent args)
     {
@@ -420,7 +463,7 @@ public sealed class RCDSystem : EntitySystem
         }
 
         // Finalize the operation (this should handle prediction properly)
-        FinalizeRCDOperation(uid, component, gridUid, mapGrid, tile, position, args.Direction, args.Target, args.User);
+        FinalizeRCDOperation(uid, component, gridUid, mapGrid, tile, position, args.Direction, args.PipeLayer, args.Target, args.User);
 
         // Play audio and consume charges
         _audio.PlayPredicted(component.SuccessSound, uid, args.User);
@@ -546,8 +589,11 @@ public sealed class RCDSystem : EntitySystem
 
             var tileDef = tile.GetContentTileDefinition();
 
+            // VRS: resolve target tile through ConstructTileByDirection if present, otherwise fall back to Prototype.
+            var resolvedTileId = GetConstructTileTypeId(prototype, direction);
+
             // Check rule: Respect baseTurf and baseWhitelist
-            if (prototype.Prototype != null && _tileDefMan.TryGetDefinition(prototype.Prototype, out var replacementDef))
+            if (resolvedTileId != null && _tileDefMan.TryGetDefinition(resolvedTileId, out var replacementDef))
             {
                 var replacementContentDef = (ContentTileDefinition) replacementDef;
 
@@ -561,7 +607,7 @@ public sealed class RCDSystem : EntitySystem
             }
 
             // Check rule: Tiles can't be identical
-            if (tileDef.ID == prototype.Prototype)
+            if (tileDef.ID == resolvedTileId)
             {
                 if (popMsgs)
                     _popup.PopupClient(Loc.GetString("rcd-component-cannot-build-identical-tile"), uid, user);
@@ -681,7 +727,7 @@ public sealed class RCDSystem : EntitySystem
         else
         {
             // The object is not in the whitelist
-            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !deconstructible.Deconstructable)
+            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !deconstructible.Deconstructable || TryComp<RCDComponent>(uid, out var rcd) && !deconstructible.RpldDeconstructable && rcd.IsRPLD) // Starlight: RPLD
             {
                 if (popMsgs)
                     _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
@@ -697,24 +743,28 @@ public sealed class RCDSystem : EntitySystem
 
     #region Entity construction/deconstruction
 
-    private void FinalizeRCDOperation(EntityUid uid, RCDComponent component, EntityUid gridUid, MapGridComponent mapGrid, TileRef tile, Vector2i position, Direction direction, EntityUid? target, EntityUid user)
+    // Starlight Edit: Add layer to finalize for deterministic layer placement.
+    private void FinalizeRCDOperation(EntityUid uid, RCDComponent component, EntityUid gridUid, MapGridComponent mapGrid, TileRef tile, Vector2i position, Direction direction, AtmosPipeLayer pipeLayer, EntityUid? target, EntityUid user)
     {
         if (!_net.IsServer)
             return;
 
         var prototype = _protoManager.Index(component.ProtoId);
 
-        if (prototype.Prototype == null)
+        // VRS: ConstructTile recipes may carry only ConstructTileByDirection without a Prototype fallback.
+        if (prototype.Prototype == null && prototype.ConstructTileByDirection == null)
             return;
 
         switch (prototype.Mode)
         {
             case RcdMode.ConstructTile:
-                if (!_tileDefMan.TryGetDefinition(prototype.Prototype, out var tileDef))
+                // VRS: respect ConstructTileByDirection so rotatable tile recipes resolve the correct tile id.
+                var tileTypeId = GetConstructTileTypeId(prototype, direction);
+                if (tileTypeId == null || !_tileDefMan.TryGetDefinition(tileTypeId, out var tileDef))
                     return;
 
                 _tile.ReplaceTile(tile, (ContentTileDefinition) tileDef, gridUid, mapGrid);
-                _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to set grid: {gridUid} {position} to {prototype.Prototype}");
+                _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to set grid: {gridUid} {position} to {tileTypeId}");
                 break;
 
             case RcdMode.ConstructObject:
@@ -781,6 +831,9 @@ public sealed partial class RCDDoAfterEvent : DoAfterEvent
 
     [DataField]
     public Direction Direction { get; private set; }
+
+    [DataField]
+    public AtmosPipeLayer PipeLayer { get; private set; } = AtmosPipeLayer.Primary;     // Starlight Edit: Layer snapshot captured at doafter start and replayed on finalize.
 
     [DataField]
     public ProtoId<RCDPrototype> StartingProtoId { get; private set; }

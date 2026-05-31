@@ -69,6 +69,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.AltUseItemInHand);
             human.AddFunction(ContentKeyFunctions.OpenCharacterMenu);
             human.AddFunction(ContentKeyFunctions.OpenEmotesMenu);
+            human.AddFunction(ContentKeyFunctions.OpenLanguageMenu); // Starlight
             human.AddFunction(ContentKeyFunctions.ActivateItemInWorld);
             human.AddFunction(ContentKeyFunctions.ThrowItemInHand);
             human.AddFunction(ContentKeyFunctions.AltActivateItemInWorld);
@@ -80,6 +81,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.SmartEquipBackpack);
             human.AddFunction(ContentKeyFunctions.SmartEquipBelt);
             human.AddFunction(ContentKeyFunctions.SmartEquipWallet); // Frontier
+            human.AddFunction(ContentKeyFunctions.SmartEquipSuitStorage); // Hardlight
             human.AddFunction(ContentKeyFunctions.OpenBackpack);
             human.AddFunction(ContentKeyFunctions.OpenBelt);
             human.AddFunction(ContentKeyFunctions.ToggleStanding); // EE

@@ -15,7 +15,7 @@
   id: AbilityAphrodesiacBite
   name: trait-aphrodesiacbite-name
   description: trait-aphrodesiacbite-desc
-  category: Physical
+  category: Lewd
   mutuallyExclusiveTraits:
   - AbilityPhilterexBite
   - AbilityPomelustineBite
@@ -27,7 +27,7 @@
   id: AbilityPhilterexBite
   name: trait-philterexbite-name
   description: trait-philterexbite-desc
-  category: Physical
+  category: Lewd
   mutuallyExclusiveTraits:
   - AbilityAphrodesiacBite
   - AbilityPomelustineBite
@@ -41,7 +41,7 @@
   id: AbilityPomelustineBite
   name: trait-pomelustinebite-name
   description: trait-pomelustinebite-desc
-  category: Physical
+  category: Lewd
   mutuallyExclusiveTraits:
   - AbilityAphrodesiacBite
   - AbilityPhilterexBite

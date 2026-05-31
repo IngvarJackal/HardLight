@@ -4,6 +4,16 @@
   id: MobFelinidBase
   abstract: true
   components:
+  # HardLight start
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Nekomimetic
+    understands:
+    - GalacticCommon
+    - Nekomimetic
+    - Cat
+  # HardLight end
   - type: Sprite
     scale: 0.8, 0.8
   - type: HumanoidAppearance

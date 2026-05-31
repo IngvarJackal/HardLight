@@ -7,7 +7,7 @@
   defaultSkinTone: "#cdb369"
   markingLimits: MobDionaMarkingLimits
   dollPrototype: MobDionaDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   maleFirstNames: NamesDionaFirst
   femaleFirstNames: NamesDionaFirst
   lastNames: NamesDionaLast

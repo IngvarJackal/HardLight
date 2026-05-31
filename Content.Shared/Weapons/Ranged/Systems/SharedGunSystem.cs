@@ -21,6 +21,7 @@ using Content.Shared.Item;
 using Content.Shared.Mech.Components; // Delta-V: Felinids in duffelbags can't shoot.
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared.Stacks;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
@@ -31,6 +32,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
+using Content.Shared._CM14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.Prediction;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -46,6 +48,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Goobstation.Common.Weapons.Multishot;
+using Content.Shared.Weapons.Ranged.Events;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -72,6 +75,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly SharedPopupSystem PopupSystem = default!;
     [Dependency] protected readonly SharedPhysicsSystem Physics = default!;
     [Dependency] protected readonly SharedProjectileSystem Projectiles = default!;
+    [Dependency] protected readonly SharedStackSystem StackSystem = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] protected readonly TagSystem TagSystem = default!;
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
@@ -117,6 +121,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         SubscribeLocalEvent<GunComponent, CycleModeEvent>(OnCycleMode);
         SubscribeLocalEvent<GunComponent, HandSelectedEvent>(OnGunSelected);
         SubscribeLocalEvent<GunComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<GunDamageModifierComponent, AmmoShotEvent>(OnGunDamageModifierAmmoShot);
 
         _physQuery = GetEntityQuery<PhysicsComponent>(); // Mono
         _projQuery = GetEntityQuery<ProjectileComponent>(); // Mono
@@ -143,6 +148,17 @@ public abstract partial class SharedGunSystem : EntitySystem
         {
             component.NextFire = melee.NextAttack;
             EntityManager.DirtyField(uid, component, nameof(GunComponent.NextFire));
+        }
+    }
+
+    private void OnGunDamageModifierAmmoShot(Entity<GunDamageModifierComponent> ent, ref AmmoShotEvent args)
+    {
+        foreach (var projectile in args.FiredProjectiles)
+        {
+            if (!_projQuery.TryGetComponent(projectile, out var comp))
+                continue;
+
+            comp.Damage *= ent.Comp.Multiplier;
         }
     }
 
@@ -304,6 +320,13 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (!gun.LockOnTargetBurst || !gun.BurstActivated) // Goob edit
             gun.Target = null;
         Dirty(uid, gun);
+
+        // If running on the server, notify clients to stop any lingering muzzle-flash animations/lights
+        if (_netManager.IsServer)
+        {
+            var stopEv = new StopMuzzleFlashEvent(GetNetEntity(uid));
+            RaiseNetworkEvent(stopEv, Filter.Pvs(uid, entityManager: EntityManager));
+        }
     }
 
     /// <summary>
@@ -369,6 +392,11 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         if (toCoordinates == null)
             return;
+
+        // Freeze the requested aim point in map space so burst/auto fire does not pivot with the shooter
+        // after recoil or other movement changes the gun's local transform.
+        toCoordinates = TransformSystem.ToCoordinates(TransformSystem.ToMapCoordinates(toCoordinates.Value));
+        gun.ShootCoordinates = toCoordinates;
 
         var curTime = Timing.CurTime;
 
@@ -451,7 +479,10 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
         }
 
-        var fromCoordinates = Transform(user).Coordinates;
+        // Use the weapon's transform as the authoritative muzzle origin.
+        // For mounted ship guns, callers may pass a controlling entity as `user`; using that
+        // transform can produce center-origin shots on moving grids (HL #1631).
+        var fromCoordinates = Transform(gunUid).Coordinates;
         // Remove ammo
         var ev = new TakeAmmoEvent(shots, new List<(EntityUid? Entity, IShootable Shootable)>(), fromCoordinates, user, true); // Frontier: add intent to fire
 
@@ -521,8 +552,8 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         // Shoot confirmed - sounds also played here in case it's invalid (e.g. cartridge already spent).
         Shoot(gunUid, gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out var userImpulse, user, throwItems: attemptEv.ThrowItems);
-        var shotEv = new GunShotEvent(user, ev.Ammo, toCoordinates.Value); // Mono - pass coordinates
-        RaiseLocalEvent(gunUid, ref shotEv);
+        var shotEv = new GunShotEvent(user, gunUid, ev.Ammo, fromCoordinates, toCoordinates.Value); // Mono - pass coordinates
+        RaiseLocalEvent(gunUid, ref shotEv, broadcast: true);
 
         CauseImpulse(toCoordinates.Value, (gunUid, gun), ev.Ammo.Count);
 
@@ -606,6 +637,34 @@ public abstract partial class SharedGunSystem : EntitySystem
             return ProtoManager.Index(cartComp.Prototype);
         }
         return cartridge;
+    }
+
+    protected EntityUid? ExtractSingleAmmoForInsert(EntityUid uid, EntityCoordinates coordinates, StackComponent? stack = null)
+    {
+        if (!Resolve(uid, ref stack, false) || stack.Count <= 1)
+            return uid;
+
+        return StackSystem.Split(uid, 1, coordinates, stack);
+    }
+
+    // VRS (Triad #3732)
+    public DamageSpecifier GetNextDamage(Entity<GunComponent?> gun)
+    {
+        if (!TryNextShootPrototype(gun, out var shoot))
+            return new();
+
+        return GetBulletDamage(shoot);
+    }
+
+    // VRS (Triad #3732)
+    public DamageSpecifier GetBulletDamage(EntityPrototype bullet)
+    {
+        var shoot = GetBulletPrototype(bullet);
+        if (shoot.TryGetComponent<HitscanBasicDamageComponent>(out var hitscan, Factory))
+            return hitscan.Damage;
+        if (shoot.TryGetComponent<ProjectileComponent>(out var proj, Factory))
+            return proj.Damage;
+        return new();
     }
 
     // Mono - used for multiple-per-frame projectile offset
@@ -841,8 +900,9 @@ public record struct AttemptShootEvent(EntityUid User, string? Message, bool Can
 ///     Raised directed on the gun after firing.
 /// </summary>
 /// <param name="User">The user that fired this gun.</param>
+/// <param name="Gun">The gun that fired.</param>
 [ByRefEvent]
-public record struct GunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootable Shootable)> Ammo, EntityCoordinates ToCoordinates); // Mono - pass coordinates
+public record struct GunShotEvent(EntityUid User, EntityUid Gun, List<(EntityUid? Uid, IShootable Shootable)> Ammo, EntityCoordinates FromCoordinates, EntityCoordinates ToCoordinates); // Mono - pass coordinates
 
 public enum EffectLayers : byte
 {

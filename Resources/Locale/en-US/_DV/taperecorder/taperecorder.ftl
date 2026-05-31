@@ -19,9 +19,13 @@ tape-recorder-menu-recording-button = Record
 tape-recorder-menu-playing-button = Playback
 tape-recorder-menu-rewinding-button = Rewind
 tape-recorder-menu-print-button = Print record transcript
+tape-recorder-menu-erase-button = Erase
 tape-recorder-menu-cassette-label = Cassette tape: {$cassetteName}
 tape-recorder-menu-no-cassette-label = Cassette tape is not inserted
 
 tape-recorder-print-start-text = [bold]Start of recorded transcript[/bold]
 tape-recorder-print-message-text = [bold][{$time}] {$source}: [/bold] {$message}
 tape-recorder-print-end-text = [bold]End of recorded transcript[/bold]
+
+tape-recorder-stopped-tape-full = The tape recorder clicks to a stop - the tape is full.
+tape-recorder-stopped-transcript-full = The tape recorder clicks to a stop - the recording limit has been reached.

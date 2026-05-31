@@ -16,7 +16,7 @@
     - id: ClothingNeckPinDuskEnclave
     - id: ClothingNeckMantleDuskEnclave
     - id: ClothingHeadHatBeretDuskEnclave
-    - id: EncryptionKeyDuskEnclave
+    #- id: EncryptionKeyDuskEnclave
     - id: PlushieShadekin
     sound:
       path: /Audio/Effects/unwrap.ogg

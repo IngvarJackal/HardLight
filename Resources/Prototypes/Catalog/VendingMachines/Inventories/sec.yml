@@ -37,6 +37,8 @@
     ClothingEyesGlassesNullSpace: 4
     BluespaceFlasher: 4
     ClothingNullHarness: 4
+    NullspaceLocator: 2
+    BluespaceFlash: 1
   contrabandInventory:
     PinkFluffyHandcuffs: 1 # pretty funny
 

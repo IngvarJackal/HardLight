@@ -41,25 +41,25 @@
   components:
   - type: Paper
     content: |2
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]CC[/bold]◣ [bold]Colonial Outpost Command[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Employment Contract[/head]
 
-      [bold]Name:[/bold]
-      [bold]Species:[/bold]
-      [bold]Position Title:[/bold]
+      [bold]Name:[/bold][form]
+      [bold]Species:[/bold][form]
+      [bold]Position Title:[/bold][form]
       [bold]Position Responsibilities:[/bold]
-          [bullet/]
-          [bullet/]
-          [bullet/]
+          [bullet/][form]
+          [bullet/][form]
+          [bullet/][form]
 
-      [bold]Hourly Wage:[/bold]
+      [bold]Hourly Wage:[/bold][form]
 
-      [bold]Shift Time:[/bold]
+      [bold]Shift Time:[/bold][form]
 
 
 
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of the department heads.[/color]
 
 - type: entity
   id: PaperWrittenFrontierEmployeePayHistory
@@ -69,24 +69,24 @@
   components:
   - type: Paper
     content: |2 # If editing this, edit PaperWrittenNfsdPayHistory
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]CC[/bold]◣ [bold]Colonial Outpost Command[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Employee Pay History[/head]
 
-      [bold]Name:[/bold]
-      [bold]Position Title:[/bold]
-      [bold]Hourly Wage:[/bold]
+      [bold]Name:[/bold][form]
+      [bold]Position Title:[/bold][form]
+      [bold]Hourly Wage:[/bold][form]
       [bold]Pay History (Shift Time, Wage Recieved):[/bold]
-          [bullet/]
-          [bullet/]
-          [bullet/]
-          [bullet/]
-          [bullet/]
-          [bullet/]
+          [bullet/][form]
+          [bullet/][form]
+          [bullet/][form]
+          [bullet/][form]
+          [bullet/][form]
+          [bullet/][form]
 
 
 
-      [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]This Form is void without the signature and stamp of the head of department.[/color]
 
 - type: entity # Based on form made by Willzile1 (Jon-Gah)
   id: PaperWrittenFrontierFundRequisition
@@ -96,18 +96,18 @@
   components:
   - type: Paper
     content: |2
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]CC[/bold]◣ [bold]Colonial Outpost Command[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Fund Requisition[/head]
 
-      [bold]Name:[/bold]
-      [bold]Amount:[/bold]
-      [bold]Reason:[/bold]
-      [bold]Shift Time:[/bold]
+      [bold]Name:[/bold][form]
+      [bold]Amount:[/bold][form]
+      [bold]Reason:[/bold][form]
+      [bold]Shift Time:[/bold][form]
 
 
 
-      [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]This Form is void without the signature and stamp of the head of department.[/color]
 
 - type: entity # Based on form made by Starly (Shaw Clifflower)
   id: PaperWrittenFrontierAuthorization
@@ -117,21 +117,20 @@
   components:
   - type: Paper
     content: |2 # When updating this, update PaperWrittenNfsdAuthorization
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]CC[/bold]◣ [bold]Colonial Outpost Command[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Authorization for Bluespace Threats[/head]
 
-      [color=#660000]This Form may only be issued without an acting Sheriff or with the acting Sheriff's approval.[/color]
+      [color=#660000]This Form may only be issued without an acting Head of Security or with the acting Head of Securities approval.[/color]
 
-      [bold]Vessel Captain:[/bold]
-      [bold]Vessel IFF:[/bold]
-      [bold]Shift Time:[/bold]
+      [bold]Vessel Captain:[/bold][form]
+      [bold]Vessel IFF:[/bold][form]
+      [bold]Shift Time:[/bold][form]
 
       [bold]Issuing Frontier Command:[/bold]
-          [bullet]XXXXXXXX, Colonial Liason
-          [bullet]XXXXXXXX, Colonel
+          [bullet][form], Head of Security
 
-      This document authorizes the above vessel and its captain to assist and cooperate with the ColSec and Frontier authorities in neutralizing hostile bluespace threats to Frontier. These include, but are not limited to:
+      This document authorizes the above vessel and its captain to assist and cooperate with ColSec and Frontier authorities in neutralizing hostile bluespace threats to Frontier. These include, but are not limited to:
           [bullet] Cultist vessels
           [bullet] Syndicate vessels
           [bullet] Wizard Federation vessels
@@ -139,15 +138,15 @@
 
       This document does NOT deputize the authorized party. The authorized party is not granted special privileges to arrest, detain, and prosecute individuals associated with Nanotrasen.
 
-      [bold]Any contraband seized during operations aboard hostile vessels must be surrendered, either to the ColSec or the Colonial Liaison, for a cash bounty. Failure to surrender contraband will lead to the forfeiture of this agreement, and the authorized party may be liable for criminal charges.[/bold]
+      [bold]Any contraband seized during operations aboard hostile vessels must be surrendered, either to ColSec or the Colonial Liaison, for a cash bounty. Failure to surrender contraband will lead to the forfeiture of this agreement, and the authorized party may be liable for criminal charges.[/bold]
 
       The authorized party is to keep a copy of this document for inspection. The authorized party is expected to maintain contact with ColSec command and/or the Colonial Liaison to minimize casualties.
 
-      Before engaging with hostile vessels, the authorized party is expected to follow any instructions given by the ColSec for staging or other preparation prior to boarding.
+      Before engaging with hostile vessels, the authorized party is expected to follow any instructions given by ColSec for staging or other preparation prior to boarding.
 
 
 
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of the acting head of security.[/color]
 
 - type: entity # Based on form made by Willzile1 (Jon-Gah)
   id: PaperWrittenFrontierShuttleTitleChange
@@ -157,7 +156,7 @@
   components:
   - type: Paper
     content: |2
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]CC[/bold]◣ [bold]Colonial Outpost Command[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Shuttle Title Change[/head]
 
@@ -178,23 +177,23 @@
   components:
   - type: Paper
     content: |2
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]CC[/bold]◣ [bold]Colonial Outpost Command[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Declaration of Salvage[/head]
 
-      [bold]Vessel IFF:[/bold] [color=#2200BD][/color]
-      [bold]Time of First Hail:[/bold] [color=#2200BD][/color]
-      [bold]Shift Time:[/bold] [color=#2200BD][/color]
+      [bold]Vessel IFF:[/bold] [color=#2200BD][form][/color]
+      [bold]Time of First Hail:[/bold] [color=#2200BD][form][/color]
+      [bold]Shift Time:[/bold] [color=#2200BD][form][/color]
 
       This is a formal declaration from Frontier's Station Traffic Controller, hereby declaring the above vessel to be abandoned by its captain, and recognized as salvage. This vessel has been unresponsive on both radio and fax for over twenty (20) minutes.
 
-      Pursuant to Space Law §9.3, this vessel will be moved out to three hundred (300) meters from Frontier Station by an agent representing Frontier Station or the ColSec, and will be salvageable by any other vessel operating within the sector.
+      Pursuant to Space Law §9.3, this vessel will be moved out to three hundred (300) meters from Frontier Station by an agent representing Frontier Station or ColSec, and will be salvageable by any other vessel operating within the sector.
 
-      Neither the TSF Administration, nor the Nanotrasen Corporation, nor the Frontier Expansion Union, nor any other group will reimburse any party affiliated with this vessel for losses incurred.
+      Neither the Station Administration, nor Colonial Command, nor any other group will reimburse any party affiliated with this vessel for losses incurred.
 
 
 
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Colonel or Colonial Liason).[/color]
+      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of the harbor master or acting captain.[/color]
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierContrabandAmnesty
@@ -204,7 +203,7 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenNfsdContrabandAmnesty
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]CC[/bold]◣ [bold]Colonial Outpost Command[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Contraband Amnesty Agreement[/head]
 

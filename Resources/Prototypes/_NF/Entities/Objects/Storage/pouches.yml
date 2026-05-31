@@ -1044,7 +1044,7 @@
   description: Holds your magazines securely. # Hardlight: Specific description
   components:
   - type: Storage # Hardlight: 6x4, but only holds magazines.
-    maxItemSize: Small
+    maxItemSize: Normal
     grid:
     - 0,0,5,3
     whitelist:
@@ -1150,6 +1150,15 @@
         - Magazine45_magnumSubMachineGunFMJ
         - Magazine8x65mmSKR # mono
         - Magazine40mm
+        # RMC14
+        - CMMagazinePistol
+        - CMMagazineRifle
+        - CMMagazineSmg
+        - CMMagazineSniper
+        - RMCMagazineLMG
+        - RMCMagazineSmartGun
+        - RMCMagazineRevolver
+        - RMCShellShotgun
   - type: Sprite
     layers:
     - state: base

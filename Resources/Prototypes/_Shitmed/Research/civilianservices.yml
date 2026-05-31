@@ -12,6 +12,10 @@
     state: omnimed
   discipline: CivilianServices
   tier: 3
-  cost: 10000
+  cost: 45000
+
   recipeUnlocks:
   - ShitmedOmnimedTool
+  technologyPrerequisites:
+  - CyberneticEnhancements
+  position: -2, 13

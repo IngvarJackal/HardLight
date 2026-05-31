@@ -37,9 +37,11 @@
   - type: ActiveRadio
     intrinsicChannels:
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Common
+    - Faction
   # HardLight end
   - type: Sprite
     sprite: Clothing/Ears/Headsets/base.rsi
@@ -55,10 +57,12 @@
     intrinsicChannels:
     - Supply
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Supply
     - Common
+    - Faction
   # HardLight end
   - type: Sprite
     sprite: Clothing/Ears/Headsets/cargo.rsi
@@ -88,15 +92,17 @@
     - Command
     - Supply
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Command
     - Supply
     - Common
+    - Faction
   # HardLight end
 
 - type: entity
-  parent: [ClothingHeadset, BaseCentcommContraband]
+  parent: [ClothingHeadset, BaseColcommContraband] # Hardlight Change from centcom to colcomm contra
   id: ClothingHeadsetCentCom
   name: ColComm headset # HardLight
   description: A headset used by the upper echelons of the Trans-Solar Federation.
@@ -114,6 +120,7 @@
     - Supply
     - Service
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - ColCom
@@ -126,6 +133,7 @@
     - Supply
     - Service
     - Common
+    - Faction
   # HardLight end
   - type: Sprite
     sprite: Clothing/Ears/Headsets/centcom.rsi
@@ -150,6 +158,7 @@
     - Supply
     - Service
     - Common
+    - Faction
     - Freelance
   - type: EncryptionKeyHolder
     intrinsicChannels:
@@ -162,6 +171,7 @@
     - Supply
     - Service
     - Common
+    - Faction
     - Freelance
   # HardLight end
   - type: Sprite
@@ -180,10 +190,12 @@
     intrinsicChannels:
     - Engineering
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Engineering
     - Common
+    - Faction
   # HardLight end
   - type: Sprite
     sprite: Clothing/Ears/Headsets/engineering.rsi
@@ -202,11 +214,13 @@
     - Command
     - Engineering
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Command
     - Engineering
     - Common
+    - Faction
   # HardLight end
 
 - type: entity
@@ -220,10 +234,12 @@
     intrinsicChannels:
     - Medical
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Medical
     - Common
+    - Faction
   # HardLight end
   - type: Sprite
     sprite: Clothing/Ears/Headsets/medical.rsi
@@ -242,11 +258,13 @@
     - Command
     - Medical
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Command
     - Medical
     - Common
+    - Faction
   # HardLight end
 
 - type: entity
@@ -260,10 +278,12 @@
     intrinsicChannels:
     - Science
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Science
     - Common
+    - Faction
   # HardLight end
   - type: Sprite
     sprite: Clothing/Ears/Headsets/science.rsi
@@ -282,11 +302,13 @@
     - Medical
     - Science
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Medical
     - Science
     - Common
+    - Faction
   # HardLight end
   - type: Sprite
     sprite: Clothing/Ears/Headsets/medicalscience.rsi
@@ -304,10 +326,12 @@
     intrinsicChannels:
     - Science
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Science
     - Common
+    - Faction
   # HardLight end
   - type: Sprite
     sprite: Clothing/Ears/Headsets/robotics.rsi
@@ -327,12 +351,14 @@
     - Command
     - Science
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Trinary # HL: Move RD's headset to Trinary
     - Command
     - Science
     - Common
+    - Faction
   # HardLight end
 
 - type: entity
@@ -346,10 +372,12 @@
     intrinsicChannels:
     - Security
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Security
     - Common
+    - Faction
   # HardLight end
   - type: Sprite
     sprite: Clothing/Ears/Headsets/security.rsi
@@ -368,11 +396,13 @@
     - Security
     - Medical
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Security
     - Medical
     - Common
+    - Faction
   # HardLight end
   - type: Sprite
     sprite: Clothing/Ears/Headsets/brigmedic.rsi
@@ -390,10 +420,12 @@
     intrinsicChannels:
     - Service
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Service
     - Common
+    - Faction
   # HardLight end
   - type: Sprite
     sprite: Clothing/Ears/Headsets/service.rsi
@@ -429,9 +461,11 @@
   - type: ActiveRadio
     intrinsicChannels:
     - Common
+    - Faction
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Common
+    - Faction
   # HardLight end
   - type: Sprite
     sprite: Clothing/Ears/Headsets/wizard.rsi

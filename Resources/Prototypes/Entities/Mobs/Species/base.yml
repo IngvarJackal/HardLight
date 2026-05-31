@@ -9,6 +9,13 @@
   id: BaseMobSpecies
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    understands:
+    - GalacticCommon
+  # Starlight-end
   - type: Wagging # Coyote: Wagging my tail :3
   - type: Sprite
     layers:

@@ -1,0 +1,177 @@
+- type: latheRecipe
+  id: WeaponRiflePrometheus
+  parent: BaseWeaponRecipeLong
+  result: WeaponRifleAk
+  categories:
+  - Rifles
+  - Ballistic
+  - Weapons
+  materials:
+    Steel: 2500
+    Plastic: 2000
+- type: latheRecipe
+  id: WeaponRifleVulcanFCMC
+  parent: BaseWeaponRecipeLong
+  result: WeaponRifleVulcan
+  categories:
+  - Rifles
+  - Ballistic
+  - Weapons
+  materials:
+    Steel: 2500
+    Plastic: 1500
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponRifleVulcanMerc
+  result: WeaponRifleVulcan
+  categories:
+  - Rifles
+  - Ballistic
+  - Weapons
+  materials:
+    Steel: 1800
+    Plasteel: 1000
+    Plastic: 200
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponShotgunEnforcerMerc
+  result: WeaponShotgunEnforcer
+  categories:
+  - Shotguns
+  - Ballistic
+  - Weapons
+  materials:
+    Steel: 2000
+    Plasteel: 1000
+    Plastic: 300
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponLMGRatel
+  result: WeaponSubMachineGunWt550
+  categories:
+  - Rifles
+  - MGs
+  - Ballistic
+  - Weapons
+  materials:
+    Steel: 3000
+    Plasteel: 2500
+    Plastic: 700
+- type: latheRecipe
+  id: WeaponSubMachineGunWt550
+  parent: BaseWeaponRecipeLong
+  result: WeaponSubMachineGunWt550
+  categories:
+  - SMGs
+  - Ballistic
+  - Weapons
+  materials:
+    Steel: 1500
+    Plastic: 1000
+- type: latheRecipe
+  id: WeaponRifleAk
+  parent: BaseWeaponRecipeLong
+  result: WeaponRifleAk
+  categories:
+  - Weapons
+  - Rifles
+  - Ballistic
+  materials:
+    Steel: 2500
+    Plasteel: 1000
+    Plastic: 1000
+- type: latheRecipe
+  id: ASMGTUniversallyHostile
+  parent: BaseWeaponRecipeLong
+  result: WeaponTurretAsmgtHostileUniversallyPacked
+  categories:
+  - Weapons
+  materials:
+    Steel: 1500
+    Plasteel: 1000
+    Plastic: 3000
+    Plasma: 1500
+    Gold: 1000
+    Diamond: 150
+
+- type: latheRecipe
+  id: WeaponSubMachineGunVector9x19mm
+  parent: BaseWeaponRecipeLong
+  result: WeaponSubMachineGunVector9x19mm
+  categories:
+  - SMGs
+  - Ballistic
+  - Weapons
+  materials:
+    Steel: 1400
+    Plastic: 900
+
+- type: latheRecipe
+  id: WeaponShotgunBigJohnny
+  parent: BaseWeaponRecipeLong
+  result: WeaponShotgunBigJohnny
+  categories:
+  - Shotguns
+  - Ballistic
+  - Weapons
+  materials:
+    Steel: 1800
+    Plastic: 800
+
+- type: latheRecipe
+  id: WeaponSubMachineGunFirestarter
+  parent: BaseWeaponRecipeLong
+  result: WeaponSubMachineGunFirestarter
+  categories:
+  - SMGs
+  - Ballistic
+  - Weapons
+  materials:
+    Steel: 1500
+    Plastic: 1000
+    Plasma: 150
+
+- type: latheRecipe
+  id: WeaponShotgunBigBuddy
+  parent: BaseWeaponRecipeLong
+  result: WeaponShotgunBigBuddy
+  categories:
+  - Shotguns
+  - Ballistic
+  - Weapons
+  materials:
+    Steel: 2200
+    Plastic: 900
+
+- type: latheRecipe
+  id: WeaponRadAx
+  parent: BaseWeaponRecipeMelee
+  result: WeaponRadAx
+  categories:
+  - Weapons
+  materials:
+    Steel: 1200
+    Plastic: 400
+    Uranium: 800
+
+- type: latheRecipe
+  id: HardlightShield
+  parent: BaseShieldRecipe
+  result: HardlightShield
+  categories:
+  - Tools
+  materials:
+    Steel: 900
+    Glass: 800
+    Plasma: 300
+
+- type: latheRecipe
+  id: WeaponShockMaul
+  parent: BaseWeaponRecipeMelee
+  result: WeaponShockMaul
+  categories:
+  - Weapons
+  materials:
+    Steel: 1800
+    Plastic: 500
+    Silver: 500

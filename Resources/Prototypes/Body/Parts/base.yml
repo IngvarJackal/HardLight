@@ -103,6 +103,7 @@
 - type: entity
   id: BaseHead
   name: "head"
+  description: "Doesn't make sense not to live for fun, your brain gets smart but your head gets dumb." # Mono - #3899
   parent: BasePart
   abstract: true
   components:

@@ -1,0 +1,39 @@
+# Mono port: hostile shuttle event Frontier syndicate laser turret + spawner.
+- type: entity
+  id: WeaponTurretLaserSyndicateNF
+  name: laser turret
+  suffix: Frontier, Syndicate
+  parent:
+  - BaseTurretSearchBeam
+  - BaseWeaponTurretEnergyNF
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      params:
+        variation: 0.125
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 10
+  - type: NpcFactionMember
+    factions:
+    - SyndicateNF
+
+- type: entity
+  id: SpawnMobWeaponTurretLaserSyndicateNF
+  parent: MarkerBase
+  name: syndicate laser turret spawner
+  suffix: Hostile, Frontier
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
+      state: base
+  - type: ConditionalSpawner
+    prototypes:
+    - WeaponTurretLaserSyndicateNF

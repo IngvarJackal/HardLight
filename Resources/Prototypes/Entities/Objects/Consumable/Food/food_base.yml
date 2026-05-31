@@ -2,7 +2,7 @@
 # Base component for edible food-like items
 #
 - type: entity
-  parent: BaseItem
+  parent: BaseItemHarmless
   id: EdibleBase
   abstract: true
   components:

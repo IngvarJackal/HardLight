@@ -30,3 +30,14 @@
   cost: 15000 # Light armor of both shields and regular
   category: cargoproduct-category-name-security
   group: market
+
+- type: cargoProduct
+  id: NullspaceDeterrenceKitCrate
+  # abstract: true # Frontier
+  icon:
+    sprite: Objects/Storage/boxes.rsi
+    state: box_security
+  product: CrateNullspaceDeterrenceKit
+  cost: 5000
+  category: cargoproduct-category-name-security
+  group: market

@@ -1,33 +1,33 @@
 ## Component example
-- type: spawnCharacterOverrideRule
-  id: LivyathanComponentOnSpawn
-  match: Livyathan
-  checkProfileName: true
-  checkEntityName: true
-  logins:
-  - Livyathan
-  components:
-  - type: HLLivyathan
+# - type: spawnCharacterOverrideRule # Livyathan: Necessary prototypes removed; commenting out instead of removing so it can still be used as an example.
+#   id: LivyathanComponentOnSpawn
+#   match: Livyathan
+#   checkProfileName: true
+#   checkEntityName: true
+#   logins:
+#   - Livyathan
+#   components:
+#   - type: HLLivyathan
 
 ## Entity example
-- type: spawnCharacterOverrideRule
-  id: MobDragonLivyathanOnSpawn
-  match: LivyathanDragon
-  checkProfileName: true
-  checkEntityName: true
-  logins:
-  - Livyathan
-  entity: MobDragonLivyathan
-  
+# - type: spawnCharacterOverrideRule # Livyathan: Necessary prototypes removed; commenting out instead of removing so it can still be used as an example.
+#   id: MobDragonLivyathanOnSpawn
+#   match: LivyathanDragon
+#   checkProfileName: true
+#   checkEntityName: true
+#   logins:
+#   - Livyathan
+#   entity: MobDragonLivyathan
+
 # - type: spawnCharacterOverrideRule
-  # id: Bananatalononspawn
-  # match: RaAmpwave
-  # checkProfileName: true
-  # checkEntityName: true
-  # logins:
-  # - RaAmpwave
-  # entity: BananaTalon
-  
+#   id: Bananatalononspawn
+#   match: RaAmpwave
+#   checkProfileName: true
+#   checkEntityName: true
+#   logins:
+#   - RaAmpwave
+#   entity: BananaTalon
+
 - type: spawnCharacterOverrideRule
   id: Featheredonspawn
   match: FeatheredMenace
@@ -45,16 +45,16 @@
   logins:
   - RUINtheDRAGON
   entity: PlayerBorgQuadGlitz
-  
+
 - type: spawnCharacterOverrideRule
   id: Dogborgonspawn
-  match: Rhealis 
+  match: Rhealis
   checkProfileName: true
   checkEntityName: true
   logins:
-  - MyNameIsRune 
+  - MyNameIsRune
   entity: PlayerBorgQuaddog
-  
+
 - type: spawnCharacterOverrideRule
   id: Petalborgonspawn
   match: Petalpool
@@ -63,7 +63,7 @@
   logins:
   - Petalpool
   entity: BorgChassisPetal
-  
+
 - type: spawnCharacterOverrideRule
   id: mossborgonspawn
   match: MystiCanine
@@ -100,7 +100,7 @@
   logins:
   - potato3s
   entity: PlayerBorgQuadengiserv
-  
+
 - type: spawnCharacterOverrideRule
   id: assaultspawn
   match: KillSwitch
@@ -109,7 +109,7 @@
   logins:
   - KillSwitch
   entity: PlayerBorgQuadkillswitch
-  
+
 - type: spawnCharacterOverrideRule
   id: chewsspawn
   match: Hammeredmantis
@@ -118,7 +118,7 @@
   logins:
   - Hammeredmantis
   entity: PlayerBorgQuadchews
-  
+
 - type: spawnCharacterOverrideRule
   id: wolfspawn
   match: xiv3n
@@ -127,7 +127,7 @@
   logins:
   - xiv3n
   entity: PlayerBorgQuadxiv3n
-  
+
 ## Component example
 - type: spawnCharacterOverrideRule
   id: abyssbloodverzi
@@ -149,11 +149,11 @@
 
 - type: spawnCharacterOverrideRule
   id: chocoblood
-  match: Coco 
+  match: Coco
   checkProfileName: true
   checkEntityName: true
   logins:
-  - Slatebreaker 
+  - Slatebreaker
   components:
   - type: Temperature
     heatDamageThreshold: 300
@@ -175,7 +175,7 @@
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 293
     thermalRegulationTemperatureThreshold: 2
-    
+
 - type: spawnCharacterOverrideRule
   id: Phlogbloodphoenix
   match: Kalista Phoenix

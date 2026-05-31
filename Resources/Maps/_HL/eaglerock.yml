@@ -4,8 +4,8 @@ meta:
   engineVersion: 274.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/13/2026 22:11:39
-  entityCount: 21784
+  time: 05/25/2026 15:17:15
+  entityCount: 21786
 maps:
 - 1
 grids:
@@ -10551,10 +10551,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 21689
@@ -10580,10 +10577,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 21691
@@ -10609,10 +10603,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 21693
@@ -10638,10 +10629,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 21695
@@ -10667,10 +10655,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 21697
@@ -10696,10 +10681,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 21699
@@ -10725,10 +10707,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 21701
@@ -10754,10 +10733,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 21703
@@ -10783,10 +10759,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 21705
@@ -14647,7 +14620,7 @@ entities:
       pos: -21.5,45.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -62548.152
+      secondsUntilStateChange: -62709.92
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15060,7 +15033,7 @@ entities:
       pos: 35.5,24.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -26036.596
+      secondsUntilStateChange: -26198.363
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15492,7 +15465,7 @@ entities:
       pos: -23.5,-12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -148862.58
+      secondsUntilStateChange: -149024.34
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15504,7 +15477,7 @@ entities:
       pos: -23.5,-13.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -149052.97
+      secondsUntilStateChange: -149214.73
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15537,7 +15510,7 @@ entities:
       pos: -23.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -140691.66
+      secondsUntilStateChange: -140853.42
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15628,7 +15601,7 @@ entities:
       pos: 21.5,-13.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -130082.125
+      secondsUntilStateChange: -130243.89
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15674,7 +15647,7 @@ entities:
       pos: 23.5,-5.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -100052.82
+      secondsUntilStateChange: -100214.586
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15888,7 +15861,7 @@ entities:
       pos: 20.5,17.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -99600.76
+      secondsUntilStateChange: -99762.52
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16664,7 +16637,7 @@ entities:
       pos: -23.5,39.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -57025.895
+      secondsUntilStateChange: -57187.664
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -68615,17 +68588,7 @@ entities:
       transformed: True
       currentReagent:
         metamorphicChangeColor: True
-        absorbent: False
-        reactiveEffects:
-          Flammable:
-            effects:
-            - !type:FlammableReaction
-              probability: 1
-              conditions: null
-              multiplierOnExisting: -1
-              multiplier: 0.05
-            methods:
-            - Touch
+        spoilsInto: null
         metabolisms:
           Drink:
             effects:
@@ -68644,7 +68607,35 @@ entities:
         friction: 0.4
         viscosity: 0
         fizziness: 0
+        preservedBySpoilageContainers: True
+        spoilTime: 0
+        absorbent: False
+        metamorphicFillBaseName: fill-
         evaporationSpeed: 0
+        slipData:
+          slipFriction: 0
+          superSlippery: False
+          requiredSlipSpeed: 3.5
+          launchForwardsMultiplier: 1.5
+          paralyzeTime: 1.5
+        flavorMinimum: 0.1
+        flavor: shittywine
+        recognizable: True
+        allowedJobs: []
+        allowedDepartments: []
+        reactiveEffects:
+          Flammable:
+            effects:
+            - !type:FlammableReaction
+              probability: 1
+              conditions: null
+              multiplierOnExisting: -1
+              multiplier: 0.05
+            methods:
+            - Touch
+        tileReactions:
+        - !type:FlammableTileReaction
+          temperatureMultiplier: 1.35
         plantMetabolism:
         - !type:PlantAdjustNutrition
           guidebookIsAttributePositive: True
@@ -68658,23 +68649,7 @@ entities:
           guidebookAttributeName: plant-attribute-water
           probability: 1
           conditions: null
-        slipData:
-          slipFriction: 0
-          superSlippery: False
-          requiredSlipSpeed: 3.5
-          launchForwardsMultiplier: 1.5
-          paralyzeTime: 1.5
-        flavorMinimum: 0.1
-        flavor: shittywine
-        recognizable: True
-        allowedJobs: []
-        allowedDepartments: []
-        tileReactions:
-        - !type:FlammableTileReaction
-          temperatureMultiplier: 1.35
         pricePerUnit: 0
-        metamorphicFillBaseName: fill-
-        physicalDesc: reagent-physical-desc-translucent
         metamorphicMaxFillLevels: 5
         metamorphicSprite:
           sprite: Objects/Consumable/Drinks/wineglass.rsi
@@ -68683,7 +68658,15 @@ entities:
         boilingPoint: null
         specificHeat: 1
         color: '#7E4043FF'
+        physicalDesc: reagent-physical-desc-translucent
         desc: reagent-desc-wine
+        abstract: False
+        parent:
+        - BaseAlcohol
+        group: Drinks
+        name: reagent-name-wine
+        id: Wine
+        isNourishing: False
         footstepSound: !type:SoundCollectionSpecifier
           params:
             variation: null
@@ -68695,13 +68678,6 @@ entities:
             pitch: 1
             volume: 6
           collection: FootstepWater
-        abstract: False
-        parent:
-        - BaseAlcohol
-        group: Drinks
-        name: reagent-name-wine
-        id: Wine
-        isNourishing: False
         contrabandSeverity: null
     - type: ContainerContainer
       containers:
@@ -68739,6 +68715,12 @@ entities:
     components:
     - type: Transform
       pos: 20.5,60.5
+      parent: 2
+    - type: AntiRottingContainer
+  - uid: 21785
+    components:
+    - type: Transform
+      pos: -30.5,51.5
       parent: 2
     - type: AntiRottingContainer
 - proto: ElectricGrillMachineCircuitboard
@@ -123041,6 +123023,11 @@ entities:
     - type: Transform
       pos: -38.5,5.5
       parent: 2
+  - uid: 21786
+    components:
+    - type: Transform
+      pos: -27.5,51.5
+      parent: 2
 - proto: KitchenAssemblerMachineCircuitboard
   entities:
   - uid: 15076
@@ -124658,6 +124645,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 9150
+    - type: StackSignature
+      signature: MaterialBananium|Honk=500;Nutriment=400;Vitamin=200;
   - uid: 15186
     components:
     - type: Transform
@@ -124671,6 +124660,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 9151
+    - type: StackSignature
+      signature: MaterialBananium|Honk=500;Nutriment=400;Vitamin=200;
   - uid: 15187
     components:
     - type: Transform
@@ -124684,6 +124675,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 9152
+    - type: StackSignature
+      signature: MaterialBananium|Honk=500;Nutriment=400;Vitamin=200;
   - uid: 15188
     components:
     - type: Transform
@@ -124697,6 +124690,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 9153
+    - type: StackSignature
+      signature: MaterialBananium|Honk=500;Nutriment=400;Vitamin=200;
 - proto: MaterialBones1
   entities:
   - uid: 15189
@@ -124722,6 +124717,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 9154
+    - type: StackSignature
+      signature: MaterialCloth|Fiber=500;
   - uid: 15191
     components:
     - type: Transform
@@ -124735,6 +124732,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 9155
+    - type: StackSignature
+      signature: MaterialCloth|Fiber=500;
   - uid: 15192
     components:
     - type: Transform
@@ -124748,6 +124747,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 9156
+    - type: StackSignature
+      signature: MaterialCloth|Fiber=500;
 - proto: MaterialDurathread
   entities:
   - uid: 15193
@@ -124763,6 +124764,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 9157
+    - type: StackSignature
+      signature: MaterialDurathread|Fiber=500;
 - proto: MaterialReclaimerMachineCircuitboard
   entities:
   - uid: 15194

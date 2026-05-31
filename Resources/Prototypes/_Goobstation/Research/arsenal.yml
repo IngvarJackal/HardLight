@@ -1,5 +1,3 @@
-# Tier 1
-
 - type: technology
   id: Gygax
   name: research-technology-gygax
@@ -8,6 +6,7 @@
     state: gygax
   discipline: Arsenal
   tier: 1
+  position: 2, 10
   cost: 5000
   recipeUnlocks:
   - GygaxHarness
@@ -23,9 +22,6 @@
   - WeaponMechCombatUltraRifle
   technologyPrerequisites:
   - Ripley2
-
-# Tier 2
-
 - type: technology
   id: ExplosiveMechAmmunition
   name: research-technology-explosive-mech-ammunition
@@ -34,12 +30,12 @@
     state: mecha_missilerack
   discipline: Arsenal
   tier: 2
+  position: 3, 10
   cost: 12000
   recipeUnlocks:
   - WeaponMechCombatMissileRack8
   technologyPrerequisites:
   - ExplosiveTechnology
-
 - type: technology
   id: Durand
   name: research-technology-durand
@@ -48,6 +44,7 @@
     state: durand
   discipline: Arsenal
   tier: 2
+  position: 2, 11
   cost: 13000
   recipeUnlocks:
   - DurandHarness
@@ -64,3 +61,19 @@
   - WeaponMechCombatShotgunIncendiary
   technologyPrerequisites:
   - Gygax
+- type: technology
+  id: SmartWeaponry
+  name: research-technology-smart-weaponry
+  icon:
+    sprite: _Goobstation/Objects/Weapons/Guns/SMGs/smartgun.rsi
+    state: icon
+  entityIcon: WeaponSubMachineSmart
+  discipline: Arsenal
+  tier: 3
+  cost: 25000
+  recipeUnlocks:
+  - WeaponSubMachineSmart
+  - MagazineSmart
+  technologyPrerequisites:
+  - BasicParts
+  position: 2, 4

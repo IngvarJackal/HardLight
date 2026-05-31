@@ -5,6 +5,17 @@
   id: MobHarpyBase
   abstract: true
   components:
+  # HardLight start
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Chicken
+    - Duck
+    understands:
+    - GalacticCommon
+    - Chicken
+    - Duck
+  # HardLight end
   - type: HarpySinger
   - type: Instrument
     allowPercussion: false
@@ -142,6 +153,7 @@
     - Belch # Frontier
     - Squish # Frontier
     - Gnash # Flooftier
+    - Trill # Hardlight
   - type: Vocal
     sounds:
       Male: SoundsHarpy

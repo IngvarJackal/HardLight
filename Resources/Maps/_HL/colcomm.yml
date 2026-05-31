@@ -55976,6 +55976,15 @@ entities:
       rot: 3.141592653589793 rad
       pos: 9.5,54.5
       parent: 2
+# VRS: HL#1434 - medical cloning wing was missing a body scanner
+- proto: computerBodyScanner
+  entities:
+  - uid: 22998
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 11.5,56.5
+      parent: 2
 - proto: ComputerCrewMonitoringDesktop
   entities:
   - uid: 8886
@@ -66529,6 +66538,27 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 5
+# VRS: HL#1305 - firelocks behind evac docking arm airlocks to prevent decompression when shuttle despawns
+  - uid: 22994
+    components:
+    - type: Transform
+      pos: 18.5,-29.5
+      parent: 2
+  - uid: 22995
+    components:
+    - type: Transform
+      pos: 20.5,-29.5
+      parent: 2
+  - uid: 22996
+    components:
+    - type: Transform
+      pos: 26.5,-29.5
+      parent: 2
+  - uid: 22997
+    components:
+    - type: Transform
+      pos: 28.5,-29.5
+      parent: 2
 - proto: FirelockEdge
   entities:
   - uid: 10537

@@ -45,18 +45,18 @@
   components:
     - type: Paper
       content: >+
-        [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Traffic Department Department[/bold][/color]
+        [color=#4f6e40]◥[bold]ColComm[/bold]◣ [bold]Colonial Command Traffic Department[/bold][/color]
 
         [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
 
         [head=2]Parking Citation[/head]
 
 
-        [head=2]Vessel Name:[/head]
+        [head=2]Vessel Name:[/head][form]
 
-        [head=2]Vessel Callsign:[/head]
+        [head=2]Vessel Callsign:[/head][form]
 
-        [head=2]Owner (if known):[/head]
+        [head=2]Owner (if known):[/head][form]
 
         [head=2]Infraction:[/head] Dock Loitering
 
@@ -70,9 +70,9 @@
 
         [head=2]Issuing Agent[/head]
 
-        [bold]Authorizing Officer:[/bold]
+        [bold]Authorizing Officer:[/bold][form]
 
-        [bold]Time of Authorization:[/bold]
+        [bold]Time of Authorization:[/bold][form]
 
 
         [color=#AAAAAA]This citation is only valid when approved and signed by an agent representing the traffic control division of the corporation or by the authorized station representative. Additional fines may be issued for each 10 minutes over the maximum.  This citation is a result of a violation of Space Law Section Nine, Article Five, governing the docking rules in and around Frontier Station and the Trade Outpost.
@@ -88,18 +88,18 @@
   components:
     - type: Paper
       content: >+
-        [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Traffic Department Department[/bold][/color]
+        [color=#4f6e40]◥[bold]ColComm[/bold]◣ [bold]Colonial Command Traffic Department[/bold][/color]
 
         [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
 
         [head=2]Traffic Citation[/head]
 
 
-        [head=2]Time of Offense:[/head]
+        [head=2]Time of Offense:[/head][form]
 
-        [head=2]Vessel Name:[/head]
+        [head=2]Vessel Name:[/head][form]
 
-        [head=2]Vessel Callsign:[/head]
+        [head=2]Vessel Callsign:[/head][form]
 
         [head=2]Infraction:[/head] Reckless Operation
 
@@ -113,7 +113,7 @@
 
         [head=2]Issuing Agent[/head]
 
-        [bold]Authorizing Officer:[/bold]
+        [bold]Authorizing Officer:[/bold][form]
 
 
         [color=#AAAAAA]This citation is only valid when approved and signed by an agent representing the traffic control division of the corporation or by the authorized station representative. This citation is a result of a violation of Space Law Section Nine, Article Five, governing the docking rules in and around Frontier Station and the Trade Outpost.
@@ -129,7 +129,7 @@
   components:
     - type: Paper
       content: >-
-        [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Traffic Department Department[/bold][/color]
+        [color=#4f6e40]◥[bold]CC[/bold]◣ [bold]Colonial Command Traffic Department[/bold][/color]
 
         [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
 
@@ -139,15 +139,15 @@
         The below named vessel has been issued citations which have gone unpaid or have not received a response in a timely fashion.
 
 
-        [head=2]Vessel Name:[/head]
+        [head=2]Vessel Name:[/head][form]
 
-        [head=2]Vessel Callsign:[/head]
+        [head=2]Vessel Callsign:[/head][form]
 
-        [head=2]Captain Name: [/head]
+        [head=2]Captain Name: [/head][form]
 
-        [head=2]Infraction(s):[/head]
+        [head=2]Infraction(s):[/head][form]
 
-        [head=2]Amount of Fine(s):[/head]
+        [head=2]Amount of Fine(s):[/head][form]
 
 
         [color=#AAAAAA]This citation is only valid when approved and signed by an agent representing the traffic control division of the corporation or by the authorized station representative. This request is a result of a violation of Space Law Section Nine, Article Five, governing the docking rules in and around Frontier Station and the Trade Outpost.[/color]
@@ -181,7 +181,7 @@
   components:
     - type: Paper
       content: >+
-        [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+        [color=#2e9935ff]◥[bold]CC[/bold]◣ [bold]ColComm Outpost Command[/bold][/color]
 
         [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
 
@@ -189,9 +189,9 @@
 
 
 
-        [bold]Vessel IFF:[/bold] [color=#2200BD]WRITE HERE[/color]
+        [bold]Vessel IFF:[/bold] [color=#2200BD][form][/color]
 
-        [bold]Shift Time:[/bold] [color=#2200BD]WRITE HERE[/color]
+        [bold]Shift Time:[/bold] [color=#2200BD][form][/color]
 
 
 
@@ -203,4 +203,4 @@
 
 
 
-        [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative)[/color]
+        [color=#AAAAAA]This Form is void without the signature and stamp of Station Command (Harbor Master or Station Representative)[/color]

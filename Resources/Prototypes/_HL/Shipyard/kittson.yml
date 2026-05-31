@@ -1,0 +1,46 @@
+# Original Author Info
+# GitHub: SmolGreenBuggo (https://github.com/SmolGreenBuggo)
+# Discord: kazako
+
+# Author Info
+# GitHub: AutumnalModding
+# Discord: LilyflowerFDL
+
+# Maintainer Info
+# GitHub: AutumnalModding
+# Discord: LilyflowerFDL
+
+# Shuttle Notes:
+# Turbine go wrrrrrr spinny :3
+- type: vessel
+  id: Kittson
+  name: LRSI Kittson
+  description: An old navy cruiser retrofitted by Lumi-Raina Shipbuilding Incorporated to run on a nuclear reactor.
+  price: 460120 # Original price was 610000. I picked a random Steam game's app ID from my collection for this lmao
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/_HL/Shuttles/kittson.yml
+  class:
+  - Expedition
+  - Salvage
+  - Kitchen
+  engine:
+  - Uranium
+  - Nuclear
+
+- type: gameMap
+  id: Kittson
+  mapName: 'LRSI Kittson'
+  mapPath: /Maps/_HL/Shuttles/kittson.yml
+  minPlayers: 0
+  stations:
+    Kittson:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Kittson {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

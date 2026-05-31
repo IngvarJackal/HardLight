@@ -80,6 +80,7 @@
     containers:
       key_slots:
       - EncryptionKeyCommon
+      - EncryptionKeyFaction
       - EncryptionKeyCargo
       - EncryptionKeyEngineering
       - EncryptionKeyMedical
@@ -100,6 +101,7 @@
       key_slots:
       - EncryptionKeyCommon
       - EncryptionKeyFreelance
+      - EncryptionKeyFaction
 
 - type: entity
   parent: TelecomServer

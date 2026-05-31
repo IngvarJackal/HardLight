@@ -21,3 +21,17 @@ public enum RcdUiKey : byte
 {
     Key
 }
+
+// Starlight: RPLD
+[Serializable, NetSerializable]
+public sealed class RPDSelectedLayerEvent : EntityEventArgs
+{
+    public readonly NetEntity NetEntity;
+    public readonly byte Layer;
+
+    public RPDSelectedLayerEvent(NetEntity netEntity, byte layer)
+    {
+        NetEntity = netEntity;
+        Layer = layer;
+    }
+}

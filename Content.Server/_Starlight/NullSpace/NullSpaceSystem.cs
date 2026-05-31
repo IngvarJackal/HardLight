@@ -19,6 +19,8 @@ using Content.Server.Hands.Systems;
 using Content.Shared.Stunnable;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Maps;
+using Content.Shared.Physics;
 using Robust.Shared.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -26,6 +28,9 @@ using Content.Shared._Starlight;
 using Content.Shared.Actions;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Random;
 using Content.Shared.Clothing.Components;
 
 namespace Content.Server._Starlight.NullSpace;
@@ -64,6 +69,10 @@ public sealed class EtherealSystem : SharedEtherealSystem
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly CarryingSystem _carrying = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private const string HiddenEquipmentContainerId = "nullspace-hidden-equipment";
     private readonly Dictionary<EntityUid, HiddenEquipmentState> _hiddenEquipment = new();
@@ -139,7 +148,14 @@ public sealed class EtherealSystem : SharedEtherealSystem
             if (phaseComp.VoluntaryExit)
                 phaseComp.VoluntaryExit = false;
             else
+            {
                 _actionsSystem.SetIfBiggerCooldown(phaseComp.PhaseAction, TimeSpan.FromSeconds(phaseComp.ForcedEjectionPenalty));
+                TrySlideToFreeTile(uid);
+            }
+        }
+        else
+        {
+            TrySlideToFreeTile(uid);
         }
 
         base.OnShutdown(uid, component, args);
@@ -187,6 +203,64 @@ public sealed class EtherealSystem : SharedEtherealSystem
             RemComp<NullCarryPressureImmunityComponent>(carrying.Carried);
             RemComp<PressureImmunityComponent>(carrying.Carried);
         }
+    }
+
+    private static readonly Vector2i[] AdjacentOffsets =
+    [
+        new(0, 1), new(0, -1), new(1, 0), new(-1, 0),
+        new(1, 1), new(-1, 1), new(1, -1), new(-1, -1),
+    ];
+
+    private void TrySlideToFreeTile(EntityUid uid)
+    {
+        var currentTile = _turf.GetTileRef(Transform(uid).Coordinates);
+        if (currentTile == null)
+            return;
+
+        // MobMask covers everything a normal mob cannot walk through: walls (Impassable),
+        // but also windows, shutters, glass airlocks, half-walls, etc.
+        if (!_turf.IsTileBlocked(currentTile.Value, CollisionGroup.MobMask))
+            return;
+
+        if (!TryComp<MapGridComponent>(currentTile.Value.GridUid, out var grid))
+            return;
+
+        Span<int> indices = stackalloc int[AdjacentOffsets.Length];
+        foreach (var i in ShuffledRange(indices))
+        {
+            var tileIndices = currentTile.Value.GridIndices + AdjacentOffsets[i];
+            if (!_mapSystem.TryGetTileRef(currentTile.Value.GridUid, grid, tileIndices, out var candidate))
+                continue;
+
+            if (!_turf.IsTileBlocked(candidate, CollisionGroup.MobMask))
+            {
+                _transform.SetCoordinates(uid, _turf.GetTileCenter(candidate));
+                return;
+            }
+        }
+
+        // Second pass: all neighbours were MobMask-blocked (e.g. surrounded by windows/shutters).
+        // Settle for any tile free of solid walls so the entity is at least not geometry-clipping.
+        foreach (var i in indices)
+        {
+            var tileIndices = currentTile.Value.GridIndices + AdjacentOffsets[i];
+            if (!_mapSystem.TryGetTileRef(currentTile.Value.GridUid, grid, tileIndices, out var candidate))
+                continue;
+
+            if (!_turf.IsTileBlocked(candidate, CollisionGroup.Impassable))
+            {
+                _transform.SetCoordinates(uid, _turf.GetTileCenter(candidate));
+                return;
+            }
+        }
+    }
+
+    private Span<int> ShuffledRange(Span<int> buffer)
+    {
+        for (var i = 0; i < buffer.Length; i++)
+            buffer[i] = i;
+        _random.Shuffle(buffer);
+        return buffer;
     }
 
     public void SuppressFactions(EntityUid uid, NullSpaceComponent component, bool set)

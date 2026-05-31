@@ -594,7 +594,7 @@
   - type: UserInterface
     interfaces:
       enum.ResearchConsoleUiKey.Key:
-        type: ResearchConsoleBoundUserInterface # R&D Console rework
+        type: FancyResearchConsoleBoundUserInterface # Goobstation R&D Console rework (ported via Triad #1903)
       enum.ResearchClientUiKey.Key:
         type: ResearchClientBoundUserInterface
       enum.WiresUiKey.Key:

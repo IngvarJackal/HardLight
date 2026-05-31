@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: archee1 (https://github.com/archee1)
+# Discord: Archee
+
+# Maintainer Info
+# Github: AutumnalModding
+# Discord: LilyflowerFDL
+
+- type: vessel
+  id: Jabber
+  name: LRSI Jabber
+  description: A cargo shuttle focusing on speed and comfort.
+  price: 21750
+  category: Small
+  group: Shipyard
+
+  shuttlePath: /Maps/_CS/Shuttles/jabber.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Jabber
+  mapName: 'LRSI Jabber'
+  mapPath: /Maps/_CS/Shuttles/jabber.yml
+  minPlayers: 0
+  stations:
+    Jabber:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Jabber {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

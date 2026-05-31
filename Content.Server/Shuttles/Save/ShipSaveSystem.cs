@@ -4,6 +4,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Content.Server.Administration.Managers;
+using Content.Shared.Administration;
 using Content.Shared.Shuttles.Save;
 using Content.Shared._NF.Shipyard.Components;
 using System;
@@ -19,6 +21,7 @@ namespace Content.Server.Shuttles.Save
     {
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+        [Dependency] private readonly IAdminManager _adminManager = default!;
 
         // Static caches for admin ship save interactions
         private static readonly Dictionary<string, Action<string>> PendingAdminRequests = new();
@@ -46,6 +49,18 @@ namespace Content.Server.Shuttles.Save
                 !_entityManager.TryGetEntity(deed.ShuttleUid.Value, out var shuttleNetUid))
             {
                 Logger.Warning($"Player {playerSession.Name} attempted ship save without a valid shuttle deed / shuttle reference on ID {deedUid}");
+                return;
+            }
+
+            // VRS: validate the requester actually possesses the deed entity (or is admin).
+            // The shipyard console flow goes through ShipyardConsoleSaveMessage and is authenticated by the
+            // ID slot + access reader; this bare network handler is reachable from any client and previously
+            // accepted any EntityUid, which would let a malicious client save (and post-save destroy) any
+            // ship by guessing/learning its deed EntityUid. Possession-by-parent-chain mirrors the intended
+            // trust model (whoever holds the ID can save the ship).
+            if (!IsAuthorizedForDeed(playerSession, deedUid))
+            {
+                Logger.Warning($"Player {playerSession.Name} attempted ship save on deed {deedUid} they do not possess (and are not admin); rejecting.");
                 return;
             }
 
@@ -185,6 +200,40 @@ namespace Content.Server.Shuttles.Save
         public void SendAdminRequestShipData(string filename, string adminName, ICommonSession targetSession)
         {
             RaiseNetworkEvent(new AdminRequestShipDataMessage(filename, adminName), targetSession);
+        }
+
+        /// <summary>
+        /// VRS: returns true if <paramref name="session"/> is allowed to save the ship referenced by
+        /// <paramref name="deedUid"/>. Admins are always allowed (preserves admin saveship tooling and
+        /// the ability to force a save even when the admin is nowhere near the deed). Otherwise the
+        /// session's attached entity must be an ancestor (in the transform/container chain) of the deed
+        /// entity — i.e. the player physically carries the ID with the deed on it.
+        /// </summary>
+        private bool IsAuthorizedForDeed(ICommonSession session, EntityUid deedUid)
+        {
+            if (_adminManager.HasAdminFlag(session, AdminFlags.Admin))
+                return true;
+
+            if (session.AttachedEntity is not { } player || !_entityManager.EntityExists(player))
+                return false;
+
+            // Walk up the parent chain from the deed entity. If we reach the player's attached
+            // entity, the deed (or its container, e.g. an ID card in a PDA in their belt) is on them.
+            var current = deedUid;
+            var safety = 0;
+            while (safety++ < 32 && _entityManager.TryGetComponent<TransformComponent>(current, out var xform))
+            {
+                if (current == player)
+                    return true;
+
+                var parent = xform.ParentUid;
+                if (!parent.IsValid() || parent == current)
+                    return false;
+
+                current = parent;
+            }
+
+            return false;
         }
     }
 }

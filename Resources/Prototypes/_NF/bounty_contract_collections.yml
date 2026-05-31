@@ -4,17 +4,9 @@
   notificationType: Radio
   name: bounty-contract-collection-name-command
   writeAccess:
-  - Command # HardLight
-  # HardLight start: Why were command bounties restricted to specific command members?
-  # - HeadOfPersonnel
-  # - HeadOfSecurity
-  # HardLight end
+  - Command # VRS: Triad #16 — broadened from HoP/HoS to any command access
   deleteAccess:
-  - Command # HardLight
-  # HardLight start: Why were command bounties restricted to specific command members?
-  # - HeadOfPersonnel
-  # - HeadOfSecurity
-  # HardLight end
+  - Command # VRS: Triad #16 — broadened from HoP/HoS to any command access
   categories:
   - Criminal
   - Vacancy

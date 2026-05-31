@@ -1,0 +1,161 @@
+- type: entity
+  parent: BaseItem
+  id: Bezoar
+  name: Xeno Bezoar
+  description: oh god- I think it ate someone. 
+  # abstract: true
+  # categories: [ HideSpawnMenu ]
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: _HL/Objects/Storage/bezoar1.rsi
+    scale: 0.3, 0.3
+    state: bezoar
+  - type: Item
+    size: Normal
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash10
+      - id: SpawnDungeonLootSeed
+      - id: SpawnDungeonLootMaterialsBasicFull
+        prob: 0.7
+      - id: SpawnDungeonLootMaterialsValuableFull
+        prob: 0.7
+      - id: RMCLoot
+      - id: RMCLoot
+      - id: RMCLoot   
+    sound:
+      path: /Audio/Effects/desecration-01.ogg
+
+- type: entity
+  parent: BaseItem
+  id: RMCLoot
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Objects/Weapons/Melee/shiv.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 1
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponShotgunM42A2
+    - WeaponShotgunM890
+    - RMCWeaponShotgunM890Riot
+    - WeaponShotgunM357
+    - WeaponShotgunM357Sawn
+    - WeaponShotgunCustomBuilt
+    - RMCWeaponShotgunXM51
+    - RMCGrenadeFlashBang
+    - CMGrenadeHighExplosive
+    - CMGrenadeSmoke
+    - CMGrenadeFrag
+    - CMM96SSniperRifle
+    - CMMagazineSniperM96S
+    - CMMagazineSniperM96SIncendiary
+    - CMMagazineSniperM96SFlak
+    - CMMagazineSniperM96SAntiMateriel
+    - RMCMagazineSMGNailgun
+    - CMMagazineSMGMP5
+    - CMMagazineRifleM54C
+    - CMMagazineRifleM54CAP
+    - CMMagazineRifleM54CExt
+    - CMMagazineRifleM54CE2
+    - CMMagazineSMGM63
+    - RMCMagazineSmartGun
+    - RMCBoxShotgunBuckshot
+    - RMCBoxShotgunSlugs
+    - RMCBoxShotgunIncendiary
+    - RMCBoxShotgunBeanbag
+    - RMCBoxShotgunFlechette
+    - RMCBoxShotgunIncendiaryBuckshot
+    - RMCBoxShotgunBreaching
+    - RMCMagazineRifleAR10
+    - CMMagazineRifleM4SPR
+    - CMMagazineRifleM4SPRAP
+    - CMMagazineRifleM4SPRExt
+    - RMCMagazineRifleM4SPRA19
+    - RMCMagazineRifleM4SPRA19Impact
+    - RMCMagazineRifleM4SPRA19Incendiary
+    - RMCMagazineRifleM16
+    - RMCBox458SOCOM
+    - RMCSpeedLoaderRsh9
+    - RMCMagazinePistolSU6
+    - CMMagazinePistolMK80
+    - CMMagazinePistolM1984
+    - CMMagazinePistolM77AP
+    - RMCMagazinePistolB92FS
+    - RMCMagazineLMGM60
+    - RMCRocket84mm
+    - RMCRocket84mmAntiArmor
+    - RMCMagazinePistolD18
+    - RMCExplosiveBreachingCharge
+    - CMStunbaton
+    - RMCFireAxe
+    - CMFlash
+    - RMCM5Bayonet
+    - CMM11Knife
+    - CMM2132Machete
+    - RMCPickaxe
+    - RMCWeaponLauncherM81
+    - RMCWeaponLauncherM5ATL
+    - CMWeaponLauncherM79
+    - WeaponLauncherM83
+    - RMCWeaponLMGM60
+    - RMCMagazineLMGM60
+    - RMCWeaponPistolSU6
+    - RMCWeaponPistolB92FS
+    - RMCWeaponPistolHoldout
+    - RMCWeaponPistolD18
+    - CMWeaponPistolM77
+    - CMWeaponPistolM1984
+    - RMCWeaponPistolMK45
+    - CMWeaponPistolMK80
+    - RMCWeaponRevolverRSh9
+    - RMCWeaponRevolverM44
+    - RMCWeaponRevolverMateba
+    - WeaponRifleXM88
+    - WeaponRifleM59A
+    - WeaponRifleM54C
+    - WeaponRifleM54CE2
+    - WeaponRifleM16
+    - WeaponRifleM4SPRCustom
+    - WeaponRifleM4SPR
+    - WeaponRifleAR10
+    - RMCSmartGun
+    - WeaponSMGMP5
+    - WeaponSMGM63
+    - WeaponNailgun
+    - CMBeltKnifeFilled
+    - ArmorHelmetM10
+    - CMArmorHelmetM10MP
+    - CMArmorHelmetM10ChiefMP
+    - RMCArmorHelmetM10SO
+    - CMArmorHelmetM10Medic
+    - RMCArmorHelmetM10Welding
+    - CMArmorHelmetM11
+    - CMArmorHelmetM11CCO
+    - CMArmorHelmetM11CGeneral
+    - CMArmorHelmetM12
+    - CMArmorHelmetM30
+    - CMArmorHelmetPress
+    - RMCArmorHelmetM3Scout
+    - RMCArmorHelmetM3G4
+    - CMArmorHelmetM35
+    - CMArmorHelmetM45
+    - RMCArmorHelmetM3TDemo
+    - RMCArmorHelmetM12Intel
+    - CMArmorM3Medium
+    - CMArmorM3Heavy
+    - RMCArmorM3G4
+    - CMArmorM3Light
+    - RMCArmorM3Scout
+    - CMArmorM3VLSynth
+    - CMArmorM2MP
+    - RMCArmorProvostAgent
+    - RMCCoatPilot
+    - RMCArmorVest
+    - RMCArmorVestFlak
+    chance: 1.0
+    offset: 0.0

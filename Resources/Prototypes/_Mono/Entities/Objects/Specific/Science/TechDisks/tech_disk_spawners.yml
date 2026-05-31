@@ -1,0 +1,31 @@
+# Mono port: trimmed for VRS — only SpawnLootTechDisksT3Fracture (used by the
+# wyvern event map). All other tech-disk spawners removed because they
+# reference dozens of TechDisk* entity prototypes (faction-specific weapons,
+# mech disks, advanced tools) that are not yet ported in VRS.
+
+- type: entity
+  name: T3 random fracture tech disks
+  id: SpawnLootTechDisksT3Fracture
+  parent: MarkerBasePlaceFree
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: SpawnLootTechDisksT3FractureTrunk
+      prob: 1.0
+
+- type: entityTable
+  id: SpawnLootTechDisksT3FractureTrunk
+  # VRS: original Mono trunk referenced TechDiskSpeedBoots, TechDiskBluespaceBags,
+  # TechDiskShields, TechDiskFtl — none yet ported. Stub trunk yields a generic
+  # research disk so the spawner placeholder stays valid.
+  table: !type:GroupSelector
+    children:
+    - id: ResearchDisk

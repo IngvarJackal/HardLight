@@ -18,6 +18,7 @@ public sealed class ScaleCommand : ToolshedCommand
 {
     private SharedScaleVisualsSystem? _scaleVisuals;
     private SharedPhysicsSystem? _physics;
+    private SharedAppearanceSystem? _appearance;
 
     [CommandImplementation("set")]
     public IEnumerable<EntityUid> Set([PipedArgument] IEnumerable<EntityUid> input, Vector2 scale)
@@ -85,6 +86,12 @@ public sealed class ScaleCommand : ToolshedCommand
             // mark the component as dirty so the new values are networked to clients immediately
             entManager.Dirty(ent, humanoid);
 
+            // Also set humanoid-specific appearance scale so clients that prefer
+            // HumanoidVisuals.Scale will use the updated values (player-controlled mobs).
+            _appearance ??= GetSys<SharedAppearanceSystem>();
+            var appearance = entManager.EnsureComponent<AppearanceComponent>(ent);
+            _appearance.SetData(ent, HumanoidVisuals.Scale, new Vector2(humanoid.Width, humanoid.Height), appearance);
+
             yield return ent;
         }
     }
@@ -104,6 +111,10 @@ public sealed class ScaleCommand : ToolshedCommand
 
             // mark the component as dirty so the new values are networked to clients immediately
             entManager.Dirty(ent, humanoid);
+
+            _appearance ??= GetSys<SharedAppearanceSystem>();
+            var appearance = entManager.EnsureComponent<AppearanceComponent>(ent);
+            _appearance.SetData(ent, HumanoidVisuals.Scale, new Vector2(humanoid.Width, humanoid.Height), appearance);
 
             yield return ent;
         }
@@ -126,6 +137,10 @@ public sealed class ScaleCommand : ToolshedCommand
 
             // mark the component as dirty so the new values are networked to clients immediately
             entManager.Dirty(ent, humanoid);
+
+            _appearance ??= GetSys<SharedAppearanceSystem>();
+            var appearance = entManager.EnsureComponent<AppearanceComponent>(ent);
+            _appearance.SetData(ent, HumanoidVisuals.Scale, new Vector2(humanoid.Width, humanoid.Height), appearance);
 
             yield return ent;
         }

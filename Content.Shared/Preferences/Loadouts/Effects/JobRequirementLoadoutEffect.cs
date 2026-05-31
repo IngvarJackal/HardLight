@@ -24,7 +24,14 @@ public sealed partial class JobRequirementLoadoutEffect : LoadoutEffect
         }
 
         var manager = collection.Resolve<ISharedPlaytimeManager>();
-        var playtimes = manager.GetPlayTimes(session);
+        if (!manager.TryGetPlayTimes(session, out var playtimes))
+        {
+            // Preference refresh can run before playtime data is available.
+            // Defer this check so we do not strip gated loadouts during initialization.
+            reason = FormattedMessage.Empty;
+            return true;
+        }
+
         return Requirement.Check(collection.Resolve<IEntityManager>(),
             collection.Resolve<IPrototypeManager>(),
             profile,

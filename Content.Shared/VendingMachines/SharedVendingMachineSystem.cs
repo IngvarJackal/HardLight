@@ -317,9 +317,13 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         if (!PrototypeManager.TryIndex(component.PackPrototypeId, out VendingMachineInventoryPrototype? packPrototype))
             return;
 
-        AddInventoryFromPrototype(uid, packPrototype.StartingInventory, InventoryType.Regular, component, restockQuality);
-        AddInventoryFromPrototype(uid, packPrototype.EmaggedInventory, InventoryType.Emagged, component, restockQuality);
-        AddInventoryFromPrototype(uid, packPrototype.ContrabandInventory, InventoryType.Contraband, component, restockQuality);
+        var startingInventory = VendingMachineInventoryResolver.ResolveRegular(PrototypeManager, packPrototype);
+        var emaggedInventory = VendingMachineInventoryResolver.ResolveEmagged(PrototypeManager, packPrototype);
+        var contrabandInventory = VendingMachineInventoryResolver.ResolveContraband(PrototypeManager, packPrototype);
+
+        AddInventoryFromPrototype(uid, startingInventory, InventoryType.Regular, component, restockQuality);
+        AddInventoryFromPrototype(uid, emaggedInventory, InventoryType.Emagged, component, restockQuality);
+        AddInventoryFromPrototype(uid, contrabandInventory, InventoryType.Contraband, component, restockQuality);
         Dirty(uid, component);
     }
 

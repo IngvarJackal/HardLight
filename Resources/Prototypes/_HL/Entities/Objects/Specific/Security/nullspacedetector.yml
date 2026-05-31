@@ -1,0 +1,104 @@
+- type: entity
+  id: NullspaceLocatorUnpowered
+  parent: BaseItem
+  name: nullspace locator
+  description: A device designed to aid in the locating of nullspace travelers.
+  suffix: Unpowered
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Research/anomalylocator.rsi
+    layers:
+    - state: icon
+      color: "#5E7CFF"
+    - state: screen
+      shader: unshaded
+      visible: false
+      map: ["enum.ToggleVisuals.Layer"]
+      color: "#5E7CFF"
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ItemToggle
+  - type: ProximityBeeper
+  - type: ProximityDetector
+    range: 10
+    criteria:
+      components:
+      - NullPhase
+  - type: Beeper
+    isMuted: true
+    minBeepInterval: 0.15
+    maxBeepInterval: 1.00
+    beepSound:
+      path: "/Audio/Items/locator_beep.ogg"
+      params:
+        maxDistance: 1
+        volume: -8
+
+- type: entity
+  id: NullspaceLocator
+  parent: [ NullspaceLocatorUnpowered, PowerCellSlotSmallItem ]
+  suffix: Powered
+  components:
+  - type: PowerCellDraw
+    drawRate: 1
+    useRate: 0
+  - type: ToggleCellDraw
+
+- type: entity
+  name: bluespace flash
+  parent: [BaseItem, BaseC1Contraband] # Frontier: BaseSecurityScienceCommandContraband<BaseC1Contraband
+  id: BluespaceFlash
+  description: An nullspace flashbulb with a trigger, which causes the victim to be dazed and leave nullspace for a moment.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/flash.rsi
+    layers:
+    - state: flash
+      map: [ "enum.FlashVisuals.BaseLayer" ]
+      color: "#5E7CFF"
+    - state: flashing
+      map: [ "enum.FlashVisuals.LightLayer" ]
+      visible: false
+      shader: unshaded
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    damage:
+      types:
+        Blunt: 0 # melee weapon to allow flashing individual targets
+    angle: 10
+  - type: Item
+    size: Small
+    sprite: Objects/Weapons/Melee/flash.rsi
+  - type: StaticPrice
+    price: 40
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.FlashVisuals.Burnt:
+        enum.FlashVisuals.BaseLayer:
+          True: {state: burnt}
+      enum.FlashVisuals.Flashing:
+        enum.FlashVisuals.LightLayer:
+          True: {visible: true}
+          False: {visible: false}
+  - type: GuideHelp
+    guides:
+    - Security
+  - type: TriggerOnUse
+  - type: TriggerOnActivate
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Effects/Lightning/lightningbolt.ogg
+  - type: SpawnOnTrigger
+    proto: EffectFlashBluespace
+    mapCoords: true
+  - type: BluespacePulseOnTrigger
+    radius: 5
+    stunSeconds: 6
+  - type: UseDelay
+    delay: 30

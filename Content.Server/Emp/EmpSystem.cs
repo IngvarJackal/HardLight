@@ -5,6 +5,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Radio;
 using Content.Server.Station.Components;
 using Content.Server.SurveillanceCamera;
+using Content.Server._Mono.Emp; // Mono
 using Content.Shared.Emp;
 using Content.Shared.Examine;
 using Content.Shared.Tiles; // Frontier
@@ -117,6 +118,10 @@ public sealed class EmpSystem : SharedEmpSystem
     /// <param name="duration">The duration of the EMP effects.</param>
     public void DoEmpEffects(EntityUid uid, float energyConsumption, float duration)
     {
+        // Mono: scale incoming EMP energy by per-entity resistance coefficient.
+        if (TryComp<EmpResistanceComponent>(uid, out var res))
+            energyConsumption *= res.Coefficient;
+
         var ev = new EmpPulseEvent(energyConsumption, false, false, TimeSpan.FromSeconds(duration));
         RaiseLocalEvent(uid, ref ev);
         if (ev.Affected)

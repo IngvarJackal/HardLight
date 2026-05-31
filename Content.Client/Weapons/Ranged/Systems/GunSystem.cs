@@ -18,6 +18,7 @@ using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
@@ -96,6 +97,7 @@ public sealed partial class GunSystem : SharedGunSystem
         SubscribeLocalEvent<AmmoCounterComponent, ItemStatusCollectMessage>(OnAmmoCounterCollect);
         SubscribeLocalEvent<AmmoCounterComponent, UpdateClientAmmoEvent>(OnUpdateClientAmmo);
         SubscribeAllEvent<MuzzleFlashEvent>(OnMuzzleFlash);
+        SubscribeAllEvent<StopMuzzleFlashEvent>(OnStopMuzzleFlash);
 
         // Plays animated effects on the client.
         SubscribeNetworkEvent<HitscanEvent>(OnHitscan);
@@ -476,6 +478,22 @@ public sealed partial class GunSystem : SharedGunSystem
 
         _animPlayer.Stop(gunUid, uidPlayer, "muzzle-flash-light");
         _animPlayer.Play((gunUid, uidPlayer), animTwo, "muzzle-flash-light");
+    }
+
+    private void OnStopMuzzleFlash(StopMuzzleFlashEvent ev)
+    {
+        var gunUid = GetEntity(ev.Uid);
+
+        // Stop the light animation and ensure the light is disabled
+        if (TryComp<AnimationPlayerComponent>(gunUid, out var uidPlayer))
+        {
+            _animPlayer.Stop(gunUid, uidPlayer, "muzzle-flash-light");
+        }
+
+        if (TryComp<PointLightComponent>(gunUid, out var light))
+        {
+            Lights.SetEnabled(gunUid, false, light);
+        }
     }
 
     // TODO: Move RangedDamageSoundComponent to shared so this can be predicted.

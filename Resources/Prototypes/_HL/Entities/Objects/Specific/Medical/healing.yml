@@ -1,0 +1,27 @@
+- type: entity
+  name: painkiller pill
+  parent: Pill
+  id: PillPainkillers
+  components:
+  - type: Pill
+    pillType: 9
+  - type: Sprite
+    state: pill10
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Painkillers
+          Quantity: 20
+
+- type: entity
+  name: over-the-counter painkillers
+  description: Contains ten painkillers. Do not take with alcohol. © LRSI Medical 2526.
+  parent: PillCanister
+  id: PillCanisterPainkillers
+  components:
+  - type: StorageFill
+    contents:
+    - id: PillPainkillers
+      amount: 10

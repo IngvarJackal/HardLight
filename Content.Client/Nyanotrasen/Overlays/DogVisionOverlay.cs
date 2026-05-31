@@ -29,7 +29,9 @@ public sealed partial class DogVisionOverlay : Overlay
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         if (_playerManager.LocalEntity is not { Valid: true } player
-            || !_entityManager.HasComponent<DogVisionComponent>(player))
+            || (!
+                _entityManager.HasComponent<DogVisionComponent>(player)
+                && !_entityManager.HasComponent<DogVisionNoBypassComponent>(player)))
         {
             return false;
         }

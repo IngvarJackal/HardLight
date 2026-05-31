@@ -13,6 +13,7 @@
   - DrinkKegSteel
   - DrinkKegPlastic
   - DrinkKegWood
+  - NFCookingBag
 
 - type: latheRecipePack
   id: NFServiceStatic
@@ -27,6 +28,7 @@
   - PlantAnalyzer # Frontier
   - JanicartFlatpack # Frontier
   - PlantBagOfHolding # Delta-V
+  - NFCookingBag
 
 - type: latheRecipePack
   id: NFServiceBoardsStatic

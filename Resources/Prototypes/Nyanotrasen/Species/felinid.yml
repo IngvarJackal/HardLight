@@ -6,7 +6,7 @@
   sprites: MobHumanSprites
   markingLimits: MobFelinidMarkingLimits
   dollPrototype: MobFelinidDummy
-  skinColoration: HumanToned
+  skinColoration: AnyColour # Hardlight
 
 - type: markingPoints
   id: MobFelinidMarkingLimits

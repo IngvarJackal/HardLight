@@ -1,0 +1,11 @@
+- type: entity
+  id: ClothingBeltKatanaSheathFilled
+  parent: ClothingBeltKatanaSheath
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      katanaslot:
+        - Katana
+      wakizashislot:
+        - Wakizashi

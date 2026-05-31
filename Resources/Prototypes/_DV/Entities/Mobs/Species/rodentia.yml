@@ -5,6 +5,15 @@
   id: BaseMobRodentia
   abstract: true
   components:
+  # HardLight start
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Mouse
+    understands:
+    - GalacticCommon
+    - Mouse
+  # HardLight end
   - type: HumanoidAppearance
     species: Rodentia
   - type: Thirst

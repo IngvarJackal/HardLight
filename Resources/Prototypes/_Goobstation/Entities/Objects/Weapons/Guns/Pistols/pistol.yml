@@ -60,10 +60,10 @@
       - WeaponPistolDualetta
 
 - type: entity
-  parent: [ NFBaseWeaponRevolverChamber45, BaseItem, BaseC3PirateContraband ]
+  parent: [ BaseItem, BaseC3PirateContraband ]
   id: WeaponPistolAnaconda
   name: Anaconda
-  description: A heavy pistol.
+  description: A heavy pistol capable of supplying itself with the ammo on the way using a built-in fabricator.
   components:
   - type: Item
     size: Small
@@ -91,13 +91,15 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletAnaconda
+    capacity: 7
+    count: 7
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 4
+    rechargeSound:
+      path: /Audio/Weapons/Guns/Cock/shotgun_close.ogg
+  - type: AmmoCounter
   - type: ContainerContainer
     containers:
-      revolver-ammo: !type:Container
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-        - Cartridge45_magnumFMJ
-        - SpeedLoader45_magnumFMJ
-    proto: Cartridge45_ACPFMJ
-  - type: AmmoCounter
+      ballistic-ammo: !type:Container

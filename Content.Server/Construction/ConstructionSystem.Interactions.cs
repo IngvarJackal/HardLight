@@ -52,6 +52,10 @@ namespace Content.Server.Construction
         /// <returns>The result of this interaction with the entity.</returns>
         private HandleResult HandleEvent(EntityUid uid, object ev, bool validation, ConstructionComponent? construction = null)
         {
+            // VRS: NoDeconstructComponent prevents deconstruction on protected POI infrastructure.
+            if (HasComp<Content.Shared._Mono.NoDeconstruct.NoDeconstructComponent>(uid))
+                return HandleResult.False;
+
             if (!Resolve(uid, ref construction))
                 return HandleResult.False;
 

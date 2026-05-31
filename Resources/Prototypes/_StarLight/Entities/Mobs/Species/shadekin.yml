@@ -5,6 +5,13 @@
   id: BaseMobShadekin
   abstract: true
   components:
+    - type: LanguageKnowledge
+      speaks:
+      - GalacticCommon
+      - Marish
+      understands:
+      - GalacticCommon
+      - Marish
     - type: Carriable
     - type: Hunger
     - type: Thirst
@@ -35,7 +42,7 @@
       damage:
         types:
           Slash: 5
-    #- type: FlashImmunity
+    # - type: FlashImmunity
     - type: Damageable
       damageContainer: Biological
       damageModifierSet: Shadekin

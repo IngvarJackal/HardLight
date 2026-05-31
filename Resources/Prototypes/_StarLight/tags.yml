@@ -47,6 +47,9 @@
   id: Felionoid
 
 - type: Tag
+  id: GunCanAimShooter
+
+- type: Tag
   id: HiltPlasteel
 
 - type: Tag
@@ -111,6 +114,9 @@
 
 - type: Tag
   id: PatchPack
+
+- type: Tag
+  id: PlumbingDuct
 
 - type: Tag
   id: PowerCellTiny

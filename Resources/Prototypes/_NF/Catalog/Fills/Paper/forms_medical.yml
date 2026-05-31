@@ -39,55 +39,55 @@
   components:
   - type: Paper
     content: |2
-      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
-      [color=#2EA5E6]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#40516e]◥[bold]ColComm[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#40516e]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Medical Patient Record[/head]
 
       [head=3]Patient Information[/head]
-          [bold]Name:[/bold]
-          [bold]Species:[/bold]
-          [bold]Occupation:[/bold]
+          [bold]Name:[/bold][form]
+          [bold]Species:[/bold][form]
+          [bold]Occupation:[/bold][form]
 
       [head=3]Responder Information[/head]
-          [bold]Name:[/bold]
-          [bold]Vessel IFF:[/bold]
-          [bold]Shift Time (upon arrival):[/bold]
+          [bold]Name:[/bold][form]
+          [bold]Vessel IFF:[/bold][form]
+          [bold]Shift Time (upon arrival):[/bold][form]
 
       [head=3]Sustained Injuries[/head]
           [bold]Brute Injuries:[/bold]
-          Blunt: 0
-          Slash: 0
-          Piercing: 0
+          Blunt: [form=4]
+          Slash: [form=4]
+          Piercing: [form=4]
 
           [bold]Burn Injuries:[/bold]
-          Heat: 0
-          Shock: 0
-          Cold: 0
-          Caustic: 0
+          Heat: [form=4]
+          Shock: [form=4]
+          Cold: [form=4]
+          Caustic: [form=4]
 
           [bold]Toxin Injuries:[/bold]
-          Poison: 0
-          Radiation: 0
+          Poison: [form=4]
+          Radiation: [form=4]
 
           [bold]Genetic Injuries:[/bold]
-          Cellular: 0
+          Cellular: [form=4]
 
           [bold]Asphyxiation Injuries:[/bold]
-          Bloodloss: 0
-          Airloss: 0
+          Bloodloss: [form=4]
+          Airloss: [form=4]
 
       [head=3]Administered Treatment[/head]
           [bold]Applied Topicals:[/bold]
-          Bruise packs: 0
-          Ointment tubes: 0
-          Gauze: 0
-          Blood packs: 0
-          Sutures: 0
-          Regenerative mesh: 0
+          Bruise packs: [form=2]
+          Ointment tubes: [form=2]
+          Gauze: [form=2]
+          Blood packs: [form=2]
+          Sutures: [form=2]
+          Regenerative mesh: [form=2]
 
           [bold]Injected Chemicals:[/bold]
-          [bullet/] Chemical, dosage: XX u
-          [bullet/] Chemical, dosage: XX u
+          [bullet/] Chemical, dosage: [form=3] u
+          [bullet/] Chemical, dosage: [form=3] u
 
 
 
@@ -101,19 +101,19 @@
   components:
   - type: Paper
     content: |2
-      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#52B4E9]◥[bold]ColComm[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
       [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Medical Prescription[/head]
 
       [head=3]Patient Information[/head]
-          [bold]Name:[/bold]
-          [bold]Species:[/bold]
-          [bold]Occupation:[/bold]
-          [bold]Vessel IFF:[/bold]
+          [bold]Name:[/bold][form]
+          [bold]Species:[/bold][form]
+          [bold]Occupation:[/bold][form]
+          [bold]Vessel IFF:[/bold][form]
 
       [head=3]Prescription[/head]
-          [bullet/] CHEMICAL, dosage: XX u
-          [bullet/] CHEMICAL, dosage: XX u
+          [bullet/] CHEMICAL, dosage: [form=3] u
+          [bullet/] CHEMICAL, dosage: [form=3] u
 
           [bold]WRITE ANY INSTRUCTIONS HERE.[/bold]
 
@@ -129,15 +129,15 @@
   components:
   - type: Paper
     content: |2
-      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#2EA5E6]◥[bold]ColComm[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
       [color=#2EA5E6]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Health Insurance Contract[/head]
 
       [head=3]Policy Holder Information[/head]
-          [bold]Name:[/bold]
-          [bold]Species:[/bold]
-          [bold]Occupation:[/bold]
-          [bold]Vessel IFF:[/bold]
+          [bold]Name:[/bold][form]
+          [bold]Species:[/bold][form]
+          [bold]Occupation:[/bold][form]
+          [bold]Vessel IFF:[/bold][form]
 
       [head=3]Plan Coverage[/head]
           [bold]Medical Coverage:[/bold]
@@ -163,31 +163,31 @@
   components:
   - type: Paper
     content: |2
-      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#2EA5E6]◥[bold]ColComm[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
       [color=#2EA5E6]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Medical Service Invoice[/head]
 
       [head=3]Patient Information[/head]
-            [bold]Name:[/bold]
-            [bold]Species:[/bold]
-            [bold]Occupation:[/bold]
+            [bold]Name:[/bold][form]
+            [bold]Species:[/bold][form]
+            [bold]Occupation:[/bold][form]
 
       [head=3]Responder Information[/head]
-            [bold]Name:[/bold]
-            [bold]Vessel IFF:[/bold]
-            [bold]Shift Time:[/bold]
+            [bold]Name:[/bold][form]
+            [bold]Vessel IFF:[/bold][form]
+            [bold]Shift Time:[/bold][form]
 
       [head=3]Invoice[/head]
-        $XX,XXX - Treatment
-        $XX,XXX - Revival
-        $XX,XXX - Cloning
-        $XX,XXX - Towing
-      - $XX,XXX - Treatment Plan Coverage
-      - $XX,XXX - Revival Plan Coverage
-      - $XX,XXX - Cloning Plan Coverage
-      - $XX,XXX - Towing Plan Coverage
+        $[form=5] - Treatment
+        $[form=5] - Revival
+        $[form=5] - Cloning
+        $[form=5] - Towing
+      - $[form=5] - Treatment Plan Coverage
+      - $[form=5] - Revival Plan Coverage
+      - $[form=5] - Cloning Plan Coverage
+      - $[form=5] - Towing Plan Coverage
       ____________
-      $XXX,XXX - Grand Total
+      $[form=6] - Grand Total
 
 
 
@@ -201,24 +201,24 @@
   components:
   - type: Paper
     content: |2
-      [color=#33ccff]◥[bold]N[/bold]◣ [bold]Director of Care Payroll[/bold][/color]
+      [color=#33ccff]◥[bold]ColComm[/bold]◣ [bold]Director of Care Payroll[/bold][/color]
       [color=#33ccff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Medical Dispatch Payment[/head]
 
       [head=3]Contractor Information[/head]
-            [bold]Name:[/bold]
-            [bold]Species:[/bold]
-            [bold]Occupation:[/bold]
+            [bold]Name:[/bold][form]
+            [bold]Species:[/bold][form]
+            [bold]Occupation:[/bold][form]
 
       [head=3]Description of Services Provided[/head]
 
       [head=3]Service Value[/head]
-          Medical Bounty Delivery: $0
-          Material Delivery: $0
-          Medical Services: $0
-          Other: $0
+          Medical Bounty Delivery: $[form=5]
+          Material Delivery: $[form=5]
+          Medical Services: $[form=5]
+          Other: $[form=5]
 
-      [bold]Total Value: $XXX,XXX[/bold]
+      [bold]Total Value: $[form=6][/bold]
 
       [color=#AAAAAA]This Form is void without the signature and stamp of the Director of Care. This form does not constitute a contract. Compensation for services provided is at the discretion of the Director of Care.[/color]
 
@@ -230,19 +230,19 @@
   components:
   - type: Paper
     content: |2
-      [color=#33ccff]◥[bold]N[/bold]◣ [bold]Director of Care Payroll[/bold][/color]
+      [color=#33ccff]◥[bold]ColComm[/bold]◣ [bold]Director of Care Payroll[/bold][/color]
       [color=#33ccff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Medical Release Form[/head]
 
       [head=3]Patient Information[/head]
-            [bold]Name:[/bold]
-            [bold]Species:[/bold]
-            [bold]Occupation:[/bold]
+            [bold]Name:[/bold][form]
+            [bold]Species:[/bold][form]
+            [bold]Occupation:[/bold][form]
 
       [head=3]Responder Information[/head]
-            [bold]Name:[/bold]
-            [bold]Vessel IFF:[/bold]
-            [bold]Shift Time:[/bold]
+            [bold]Name:[/bold][form]
+            [bold]Vessel IFF:[/bold][form]
+            [bold]Shift Time:[/bold][form]
 
       [head=3]Services Provided[/head]
 

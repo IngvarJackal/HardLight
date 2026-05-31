@@ -127,3 +127,7 @@
 - type: latheCategory # HL
   id: Pillows
   name: lathe-category-pillows
+
+- type: latheCategory
+  id: MiscAmmo
+  name: lathe-category-ammo

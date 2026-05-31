@@ -173,8 +173,8 @@ public sealed partial class EmergencyShuttleSystem
 
                 if (!Deleted(Colcomm.Entity))
                 {
-                    _shuttle.FTLToDock(comp.EmergencyShuttle.Value, shuttle,
-                        Colcomm.Entity.Value, _consoleAccumulator, TransitTime);
+                    QueueEmergencyFTLToDock(comp.EmergencyShuttle.Value, shuttle, // HardLight: _shuttle.FTLToDock<QueueEmergencyFTLToDock
+                        Colcomm.Entity.Value, _consoleAccumulator, TransitTime, DockTag); // HardLight: Added DockTag
                     continue;
                 }
 
@@ -211,7 +211,7 @@ public sealed partial class EmergencyShuttleSystem
             }
 
             // Don't dock them. If you do end up doing this then stagger launch.
-            _shuttle.FTLToDock(uid, shuttle, Colcomm.Entity.Value, hyperspaceTime: TransitTime);
+            QueueEmergencyFTLToDock(uid, shuttle, Colcomm.Entity.Value, hyperspaceTime: TransitTime, priorityTag: DockTag); // HardLight: _shuttle.FTLToDock<QueueEmergencyFTLToDock; Added priorityTag: DockTag
             RemCompDeferred<EscapePodComponent>(uid);
         }
 

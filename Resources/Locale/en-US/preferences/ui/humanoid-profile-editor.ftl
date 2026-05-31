@@ -80,3 +80,6 @@ trait-category-speech = Accents
 trait-category-quirks = Quirks
 # Mono
 trait-category-physical = Physical
+
+# Hardlight
+trait-category-lewd = Lewd

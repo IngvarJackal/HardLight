@@ -43,6 +43,9 @@ public sealed class WieldableSystem : SharedWieldableSystem
         if (!wieldableComp.Wielded)
             return;
 
+        if (TryComp(entity.Owner, out EyeCursorOffsetComponent? eyeOffsetComp) && !eyeOffsetComp.Enabled)
+            return;
+
         var offset = _eyeOffset.OffsetAfterMouse(entity.Owner, null);
         if (offset == null)
             return;

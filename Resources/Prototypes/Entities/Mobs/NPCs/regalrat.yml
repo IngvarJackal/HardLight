@@ -4,6 +4,15 @@
   parent: [ SimpleMobBase, MobCombat ]
   description: He's da rat. He make da roolz.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Mouse
+    understands:
+    - GalacticCommon
+    - Mouse
+  # Starlight-end
   - type: ThermalVision # Starlight
   - type: CombatMode
   - type: MovementSpeedModifier
@@ -180,7 +189,15 @@
   description: He's da mini rat. He don't make da roolz.
 #  categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
-  - type: Carriable #DeltaV
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - GalacticCommon
+    - Mouse
+  # Starlight-end
+  - type: Carriable # DeltaV
     freeHandsRequired: 1
   - type: CombatMode
   - type: MovementSpeedModifier

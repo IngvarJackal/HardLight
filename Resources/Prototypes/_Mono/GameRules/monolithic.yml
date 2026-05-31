@@ -1,0 +1,56 @@
+# VRS: Ported from Triad_Sector — MonolithicEventsScheduler and MonolithFragmentSmallAppearance event.
+# Spawns small Monolith fragment asteroid grids 2000–4000u from station every 7–20 min, starting at 10 min.
+
+- type: entity
+  id: MonoMonolithicEventsScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: MonoMonolithicEventsTable
+    minimumTimeUntilFirstEvent: 600 # 10 minutes
+    minMaxEventTiming:
+      min: 420 # 7 minutes between events
+      max: 1200 # 20 minutes between events
+
+- type: entity
+  id: MonolithFragmentSmallAppearance
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: mono-monolithic-event-fragment-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    warningAnnouncement: mono-monolithic-event-fragment-warning-announcement
+    endAnnouncement: mono-monolithic-event-fragment-end-announcement
+    earliestStart: 10
+    weight: 5
+    duration: 1350
+    maxDuration: 1560
+    reoccurrenceDelay: 15
+  - type: BluespaceErrorRule
+    groups:
+      grid: !type:GridSpawnGroup
+        nameLoc:
+        - mono-monolithic-event-name-MonolithicFragment
+        minCount: 1
+        maxCount: 1
+        minimumDistance: 2000
+        maximumDistance: 4000
+        addComponents:
+        - type: Gravity
+          enabled: true
+          inherent: true
+        - type: IFF
+          color: "#a20fe1"
+        - type: Shuttle
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor
+        - type: ClaimableGrid
+        paths:
+        - /Maps/_Mono/Monolithic/monolithicasteroidsmallarena.yml
+        - /Maps/_Mono/Monolithic/monolithicasteroidsmallspindle.yml
+        - /Maps/_Mono/Monolithic/monolithicasteroidsmallship.yml

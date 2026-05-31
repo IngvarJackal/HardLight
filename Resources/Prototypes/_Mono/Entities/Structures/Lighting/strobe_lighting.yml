@@ -1,0 +1,11 @@
+# Mono port: pre-enabled strobe variants used by hostile shuttle event POIs.
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeRedEnabled
+  suffix: Red, Enabled
+  components:
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalRed
+    on: true

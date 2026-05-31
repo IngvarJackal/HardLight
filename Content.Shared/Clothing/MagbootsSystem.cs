@@ -62,6 +62,10 @@ public sealed class SharedMagbootsSystem : EntitySystem
             _alerts.ShowAlert(user, ent.Comp.MagbootsAlert);
         else
             _alerts.ClearAlert(user, ent.Comp.MagbootsAlert);
+
+        // VRS: notify jetpack system so it can auto-disable (Triad #3781)
+        var ev = new MagbootsToggledEvent(ent.Owner, state);
+        RaiseLocalEvent(user, ref ev);
     }
 
     private void OnIsWeightless(Entity<MagbootsComponent> ent, ref IsWeightlessEvent args)
@@ -82,3 +86,6 @@ public sealed class SharedMagbootsSystem : EntitySystem
         OnIsWeightless(ent, ref args.Args);
     }
 }
+
+[ByRefEvent]
+public record struct MagbootsToggledEvent(EntityUid Magboots, bool State); // VRS (Triad #3781)

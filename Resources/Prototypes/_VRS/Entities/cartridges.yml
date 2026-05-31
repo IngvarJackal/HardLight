@@ -1,0 +1,18 @@
+- type: entity
+  parent: NFBasePDACartridge
+  id: LandgrabCartridge
+  name: Landgrab cartridge
+  description: A program for surveying open land on a planet, claiming plots, and saving outpost layouts for redeployment.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-s
+  - type: Icon
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-s
+  - type: UIFragment
+    ui: !type:LandgrabUi
+  - type: Cartridge
+    programName: landgrab-program-name
+    icon: Interface/Actions/shop.png
+  - type: LandgrabCartridge

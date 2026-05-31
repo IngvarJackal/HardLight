@@ -1,0 +1,11 @@
+# VRS: Ported from Triad_Sector — extra station prototypes needed for Mono POIs.
+
+- type: entity
+  id: RecordsFrontierOutpostCargo
+  parent:
+  - StandardFrontierOutpost
+  - BaseStationRecords
+  - BaseStationCargo
+  - NFBaseStationCargo
+  # BaseStationCargoMarket is bugged — omitted intentionally (matches VRS HL pattern)
+  categories: [ HideSpawnMenu ]

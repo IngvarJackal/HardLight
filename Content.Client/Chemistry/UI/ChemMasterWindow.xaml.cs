@@ -29,6 +29,7 @@ namespace Content.Client.Chemistry.UI
         private readonly SpriteSystem _sprite;
 
         public event Action<BaseButton.ButtonEventArgs, ReagentButton>? OnReagentButtonPressed;
+        public event Action? OnToggleValveButtonPressed; // Starlight-edit: Plumbing valve
         public readonly Button[] PillTypeButtons;
 
         private const string PillsRsiPath = "/Textures/Objects/Specific/Chemistry/pills.rsi";
@@ -93,6 +94,10 @@ namespace Content.Client.Chemistry.UI
 
             Tabs.SetTabTitle(0, Loc.GetString("chem-master-window-input-tab"));
             Tabs.SetTabTitle(1, Loc.GetString("chem-master-window-output-tab"));
+
+            // Starlight-start: Plumbing valve
+            ValveButton.OnPressed += _ => OnToggleValveButtonPressed?.Invoke();
+            // Starlight-end
         }
 
         private ReagentButton MakeReagentButton(string text, ChemMasterReagentAmount amount, ReagentId id, bool isBuffer, string styleClass)
@@ -116,9 +121,12 @@ namespace Content.Client.Chemistry.UI
                 ("1", ChemMasterReagentAmount.U1, StyleBase.ButtonOpenBoth),
                 ("5", ChemMasterReagentAmount.U5, StyleBase.ButtonOpenBoth),
                 ("10", ChemMasterReagentAmount.U10, StyleBase.ButtonOpenBoth),
-                ("25", ChemMasterReagentAmount.U25, StyleBase.ButtonOpenBoth),
-                ("50", ChemMasterReagentAmount.U50, StyleBase.ButtonOpenBoth),
-                ("100", ChemMasterReagentAmount.U100, StyleBase.ButtonOpenBoth),
+                ("15", ChemMasterReagentAmount.U15, StyleBase.ButtonOpenBoth),
+                ("20", ChemMasterReagentAmount.U20, StyleBase.ButtonOpenBoth),
+                ("30", ChemMasterReagentAmount.U30, StyleBase.ButtonOpenBoth),
+                ("40", ChemMasterReagentAmount.U40, StyleBase.ButtonOpenBoth),
+                ("60", ChemMasterReagentAmount.U60, StyleBase.ButtonOpenBoth),
+                ("120", ChemMasterReagentAmount.U120, StyleBase.ButtonOpenBoth),
                 (Loc.GetString("chem-master-window-buffer-all-amount"), ChemMasterReagentAmount.All, StyleBase.ButtonOpenLeft),
             };
 
@@ -153,6 +161,12 @@ namespace Content.Client.Chemistry.UI
             OutputEjectButton.Disabled = castState.OutputContainerInfo is null;
             CreateBottleButton.Disabled = castState.OutputContainerInfo?.Reagents == null;
             CreatePillButton.Disabled = castState.OutputContainerInfo?.Entities == null;
+
+            // Starlight-start: Plumbing valve
+            ValveButton.Text = Loc.GetString(castState.ValveOpen
+                ? "chem-master-window-valve-open"
+                : "chem-master-window-valve-closed");
+            // Starlight-end
 
             UpdateDosageFields(castState);
         }

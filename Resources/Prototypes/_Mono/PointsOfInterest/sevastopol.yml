@@ -1,0 +1,28 @@
+# VRS: Ported from Triad_Sector — Sevastopol Data Storage Center POI.
+
+- type: pointOfInterest
+  id: Sevastopol
+  parent: BasePOI
+  name: 'Sevastopol Data Storage Center'
+  minimumDistance: 3500
+  maximumDistance: 7500
+  spawnGamePreset: [ NFAdventure, NFPirate ]
+  spawnGroup: Required
+  gridPath: /Maps/_Mono/POI/sevastopol.yml
+  addComponents:
+  - type: IFF
+    color: "#009dff"
+
+- type: gameMap
+  id: Sevastopol
+  mapName: 'Sevastopol Data Storage Center'
+  mapPath: /Maps/_Mono/POI/sevastopol.yml
+  minPlayers: 0
+  stations:
+    Sevastopol:
+      stationProto: RecordsFrontierOutpostCargo
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Sevastopol Data Storage Center'
+        - type: StationDeadDrop
+          maxDeadDrops: 6

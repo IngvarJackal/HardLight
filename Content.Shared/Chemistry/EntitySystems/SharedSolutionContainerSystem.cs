@@ -548,6 +548,24 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         return true;
     }
 
+    public FixedPoint2 RemoveReagentAndReturn(Entity<SolutionComponent> soln, ReagentQuantity reagentQuantity) // Hardlight: This is technically the "newer" version of the API but updating the old one would break Fucking Everything so we just add this lmao
+    {
+        var (uid, comp) = soln;
+        var solution = comp.Solution;
+
+        var quant = solution.RemoveReagent(reagentQuantity);
+        if (quant <= FixedPoint2.Zero)
+            return FixedPoint2.Zero;
+
+        UpdateChemicals(soln);
+        return quant;
+    }
+
+    public FixedPoint2 RemoveReagentAndReturn(Entity<SolutionComponent> soln, ReagentId reagentId, FixedPoint2 quantity)
+    {
+        return RemoveReagentAndReturn(soln, new ReagentQuantity(reagentId, quantity)); // HL: As above
+    }
+
     /// <summary>
     ///     Removes reagent from a container.
     /// </summary>

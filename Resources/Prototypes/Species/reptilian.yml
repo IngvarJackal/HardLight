@@ -7,7 +7,7 @@
   defaultSkinTone: "#34a223"
   markingLimits: MobReptilianMarkingLimits
   dollPrototype: MobReptilianDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst

@@ -1,0 +1,22 @@
+ussp-bounty-name-bread = Bread
+ussp-bounty-name-artifact = Alien Artifact
+ussp-bounty-name-soup = Soup
+ussp-bounty-name-pizza = Pizza
+ussp-bounty-name-lasergun = Laser Weaponry
+ussp-bounty-name-potato = Potato
+ussp-bounty-name-vodka = Vodka
+ussp-bounty-name-biomass = Biomass
+ussp-bounty-name-civilian-mech = Civilian Mech
+ussp-bounty-name-military-mech = Military Mech
+
+ussp-bounty-desc-generic = USSP needs this for the fight!
+ussp-bounty-desc-nova = Nova Cygni command needs this!
+ussp-bounty-desc-artifact = Sell in an artifact container.
+ussp-bounty-desc-bread = Cannot be sliced!
+ussp-bounty-desc-food-warm = Soldiers are hungry for warm food.
+ussp-bounty-desc-lasergun = Anything that shoots a projectile with no travel time, and feeds from a battery.
+ussp-bounty-desc-potato = Food for the motherland.
+ussp-bounty-desc-vodka = Vodka, in full glass or bottle form.
+ussp-bounty-desc-biomass = 50 pieces of biomass.
+ussp-bounty-desc-civilian-mech = Any non-combat mech, except the small pet mechs.
+ussp-bounty-desc-military-mech = A mech worthy of Nova Cygni.

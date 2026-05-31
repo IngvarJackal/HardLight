@@ -6,7 +6,7 @@
   sprites: MobIPCSprites
   markingLimits: MobIPCMarkingLimits
   dollPrototype: MobIPCDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   minAge: 1
   maxAge: 240
   oldAge: 50

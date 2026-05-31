@@ -424,8 +424,11 @@ namespace Content.Server.Atmos.EntitySystems
         public override void Update(float frameTime)
         {
             // process all fire events
-            var fireEvents = new List<KeyValuePair<Entity<FlammableComponent>, float>>(_fireEvents);
-            foreach (var (flammable, deltaTemp) in fireEvents)
+            // VRS: iterate the pending event dictionary directly. Nothing inside the loop
+            // (AdjustFireStacks / Ignite) raises TileFireEvent, which is the only writer
+            // of _fireEvents, so no re-entrancy. Avoids a per-tick list allocation that
+            // scaled with the number of burning tiles.
+            foreach (var (flammable, deltaTemp) in _fireEvents)
             {
                 // 100 -> 1, 200 -> 2, 400 -> 3...
                 var fireStackMod = Math.Max(MathF.Log2(deltaTemp / 100) + 1, 0);

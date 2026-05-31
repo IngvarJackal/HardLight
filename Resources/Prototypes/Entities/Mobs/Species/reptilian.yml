@@ -5,6 +5,15 @@
   id: BaseMobReptilian
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Draconic
+    understands:
+    - GalacticCommon
+    - Draconic
+  # Starlight-end
   - type: HumanoidAppearance
     species: Reptilian
     hideLayersOnEquip:
@@ -12,11 +21,11 @@
     - HeadTop
     - HeadSide
     - Hair
-    # HL start: Hide genital markings on equip
+    # HardLight start: Hide genital markings on equip
     - Genital
     - Penis
     - Breasts
-    # HL end
+    # HardLight end
     undergarmentBottom: UndergarmentBottomBoxersReptilian
   - type: Hunger
   - type: Puller

@@ -24,7 +24,7 @@
   parent: [ClothingNeckBase, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
   id: ClothingNeckCloakHos
   name: head of security's cloak
-  description: An exquisite dark and red cloak fitting for those who can assert dominance over wrongdoers. Take a stab at being civil in prosecution!
+  description: An exquisite dark and cyan cloak fitting for those who can assert dominance over wrongdoers. Take a stab at being civil in prosecution!
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/hos.rsi
@@ -98,8 +98,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakNanotrasen
-  name: nanotrasen cloak
-  description: A stately blue cloak to represent the NT.
+  name: colonial command cloak
+  description: A stately green cloak to represent CC.
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/nanotrasen.rsi

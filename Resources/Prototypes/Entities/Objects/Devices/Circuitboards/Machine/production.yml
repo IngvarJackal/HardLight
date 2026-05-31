@@ -1455,7 +1455,26 @@
       state: medical
     - type: MachineBoard
       prototype: MedicalBiofabricator
-      stackRequirements:
+      requirements:
         MatterBin: 2
         Manipulator: 2
 # Shitmed Change End
+
+# Mono - #3899 organ harvesting
+- type: entity
+  id: OrganHarvesterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: organ harvester machine board
+  description: A machine printed circuit board for an organ harvester.
+  components:
+  - type: Sprite
+    state: security # the red icon implies its dangerous or something
+  - type: MachineBoard
+    prototype: MachineOrganHarvester
+    componentRequirements:
+      BoneSaw:
+        amount: 1
+        defaultPrototype: SawElectric
+    stackRequirements:
+      Glass: 1
+      Steel: 3

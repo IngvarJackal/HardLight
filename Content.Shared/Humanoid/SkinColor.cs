@@ -299,6 +299,7 @@ public static class SkinColor
             HumanoidSkinColor.VoxFeathers => VerifyVoxFeathers(color),
             HumanoidSkinColor.ShelegToned => VerifyShelegSkinTone(color), // Frontier: Sheleg
             HumanoidSkinColor.AnimalFur => VerifyAnimalFur(color), // Einsetin Engines - Tajaran
+            HumanoidSkinColor.AnyColour => true, // Hardlight
             _ => false,
         };
     }
@@ -313,6 +314,7 @@ public static class SkinColor
             HumanoidSkinColor.VoxFeathers => ClosestVoxColor(color),
             HumanoidSkinColor.ShelegToned => ValidShelegSkinTone, // Frontier: Sheleg
             HumanoidSkinColor.AnimalFur => ClosestAnimalFurColor(color), // Einsetin Engines - Tajaran
+            HumanoidSkinColor.AnyColour => color, // Hardlight
             _ => color
         };
     }
@@ -407,4 +409,5 @@ public enum HumanoidSkinColor : byte
     TintedHues, //This gives a color tint to a humanoid's skin (10% saturation with full hue range).
     ShelegToned, // Frontier: Like human toned, but with a different color range for blue
     AnimalFur, // Einstein Engines - limits coloration to more or less what earthen animals might have
+    AnyColour, // Hardlight
 }

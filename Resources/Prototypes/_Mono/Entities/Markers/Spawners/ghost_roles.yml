@@ -1,0 +1,47 @@
+# Mono port: trimmed for VRS — only the spawners referenced by event maps:
+#   - SpawnRedactedBorg / SpawnRedactedBorgPlaytime (wyvern)
+#   - SpawnChimeraGhostrole (chimera maps)
+# Removed: SpawnAsakimWarrior (references MobAsakimGhostrole, not ported)
+
+- type: entity
+  name: ADS tender spawner
+  id: SpawnRedactedBorg
+  parent: MarkerBase
+  components:
+  # VRS: PlayerBorgRedactedGhostRole entity (Mono full borg roster) not yet
+  # ported. ConditionalSpawner stubbed empty — map slot stays valid but no
+  # ghost-role borg spawns until the borg roster is ported.
+  - type: ConditionalSpawner
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: derelict_icon
+
+- type: entity
+  name: ADS playtime-locked tender spawner
+  id: SpawnRedactedBorgPlaytime
+  parent: MarkerBase
+  components:
+  # VRS: see SpawnRedactedBorg note.
+  - type: ConditionalSpawner
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: derelict_icon
+
+- type: entity
+  name: chimera ghostrole spawner
+  id: SpawnChimeraGhostrole
+  parent: MarkerBase
+  components:
+  # VRS: MobLetoferolHorrorGhostrole entity (Mono chimera roster) not yet
+  # ported. ConditionalSpawner stubbed empty.
+  - type: ConditionalSpawner
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green

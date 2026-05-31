@@ -59,3 +59,33 @@
         amount: 1
       - id: ClothingOuterCoatJensen
       - id: ClothingHandsGlovesColorBlack
+
+- type: entity
+  id: BriefcaseBrownFilledContractEasy
+  parent: BriefcaseBrown
+  suffix: Filled, Contract Easy
+  components:
+  - type: StorageFill
+    contents:
+      - id: SpaceCash5000
+        amount: 1
+
+- type: entity
+  id: BriefcaseBrownFilledContractModerate
+  parent: BriefcaseBrown
+  suffix: Filled, Contract Moderate
+  components:
+  - type: StorageFill
+    contents:
+      - id: SpaceCash10000
+        amount: 1
+
+- type: entity
+  id: BriefcaseBrownFilledContractHard
+  parent: BriefcaseBrown
+  suffix: Filled, Contract Hard
+  components:
+  - type: StorageFill
+    contents:
+      - id: SpaceCash20000
+        amount: 1

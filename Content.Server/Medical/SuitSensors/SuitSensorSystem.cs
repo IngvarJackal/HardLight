@@ -51,9 +51,14 @@ public sealed class SuitSensorSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
 
+    // VRS: cache transform query so the per-tick suit sensor loop does not allocate a fresh
+    // EntityQuery<TransformComponent> on every active sensor in SensorCords mode.
+    private EntityQuery<TransformComponent> _xformQuery;
+
     public override void Initialize()
     {
         base.Initialize();
+        _xformQuery = GetEntityQuery<TransformComponent>(); // VRS
         //SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn); // Frontier modification
         SubscribeLocalEvent<SuitSensorComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SuitSensorComponent, ClothingGotEquippedEvent>(OnEquipped);
@@ -100,7 +105,9 @@ public sealed class SuitSensorSystem : EntitySystem
                 sensor.NextUpdate = curTime + sensor.UpdateRate;
 
             // get sensor status
-            var status = GetSensorState(uid, sensor);
+            // VRS: forward the already-enumerated transform so GetSensorState does not
+            // re-resolve TransformComponent for every sensor every tick.
+            var status = GetSensorState(uid, sensor, xform);
             if (status == null)
                 continue;
 
@@ -464,7 +471,7 @@ public sealed class SuitSensorSystem : EntitySystem
                 status.TotalDamage = totalDamage;
                 status.TotalDamageThreshold = totalDamageThreshold;
                 EntityCoordinates coordinates;
-                var xformQuery = GetEntityQuery<TransformComponent>();
+                var xformQuery = _xformQuery; // VRS: reuse cached query
                 var locationName = "";
 
                 if (transform.GridUid != null)

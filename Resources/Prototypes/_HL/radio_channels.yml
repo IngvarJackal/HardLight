@@ -1,70 +1,70 @@
-- type: radioChannel
-  id: Cartel
-  name: chat-radio-cartel
-  keycode: 'r'
-  frequency: 1361
-  color: "#7c00ee"
-  longRange: true
+# - type: radioChannel
+  # id: Cartel
+  # name: chat-radio-cartel
+  # keycode: 'r'
+  # frequency: 1361
+  # color: "#7c00ee"
+  # longRange: true
 
-- type: radioChannel
-  id: Arcadia
-  name: chat-radio-arcadia
-  keycode: 'a'
-  frequency: 1363
-  color: "#9f2a2e"
-  longRange: true
+# - type: radioChannel
+  # id: Arcadia
+  # name: chat-radio-arcadia
+  # keycode: 'a'
+  # frequency: 1363
+  # color: "#9f2a2e"
+  # longRange: true
 
 - type: radioChannel
   id: Nanotrasen
   name: chat-radio-nanotrasen
-  keycode: 'o'
+  keycode: '$'
   frequency: 1365
   color: "#2d78c8"
   longRange: true
 
-- type: radioChannel
-  id: Wideband-A
-  name: chat-radio-event1
-  keycode: '1'
-  frequency: 1367
-  color: "#339999"
+# - type: radioChannel
+  # id: Wideband-A
+  # name: chat-radio-event1
+  # keycode: '1'
+  # frequency: 1367
+  # color: "#339999"
 
-- type: radioChannel
-  id: Wideband-B
-  name: chat-radio-event2
-  keycode: '2'
-  frequency: 1369
-  color: "#33cc99"
+# - type: radioChannel
+  # id: Wideband-B
+  # name: chat-radio-event2
+  # keycode: '2'
+  # frequency: 1369
+  # color: "#33cc99"
 
-- type: radioChannel
-  id: Wideband-C
-  name: chat-radio-event3
-  keycode: '3'
-  frequency: 1371
-  color: "#33ff99"
+# - type: radioChannel
+  # id: Wideband-C
+  # name: chat-radio-event3
+  # keycode: '3'
+  # frequency: 1371
+  # color: "#33ff99"
 
-- type: radioChannel
-  id: Static
-  name: chat-radio-static
-  keycode: 'q'
-  frequency: 1373
-  color: "#03e8fc"
+# - type: radioChannel
+  # id: Static
+  # name: chat-radio-static
+  # keycode: 'q'
+  # frequency: 1373
+  # color: "#03e8fc"
 
-- type: radioChannel
-  id: ViperCell
-  name: chat-radio-viper
-  keycode: 'k'
-  frequency: 1373
-  color: "#a32984"
-  longRange: true
+# - type: radioChannel
+  # id: ViperCell
+  # name: chat-radio-viper
+  # keycode: 'k'
+  # frequency: 1373
+  # color: "#a32984"
+  # longRange: true
 
-- type: radioChannel
-  id: InterdynePharma
-  name: chat-radio-interdyne
-  keycode: '7'
-  frequency: 1373
-  color: "#EA7FC7"
-  longRange: true
+# - type: radioChannel
+  # id: InterdynePharma
+  # name: chat-radio-interdyne
+  # keycode: '7'
+  # frequency: 1373
+  # color: "#EA7FC7"
+  # longRange: true
 
 - type: radioChannel
   id: Pirate
@@ -74,22 +74,22 @@
   color: "#AE1A14"
   longRange: true
 
-- type: radioChannel
-  id: ADFTalon
-  name: chat-radio-talon
-  keycode: "`"
-  frequency: 2004
-  color: "#FFA500"
-  # Long range because Avali Nexus tech
-  longRange: true
+# - type: radioChannel
+  # id: ADFTalon
+  # name: chat-radio-talon
+  # keycode: "`"
+  # frequency: 2004
+  # color: "#FFA500"
+  # # Long range because Avali Nexus tech
+  # longRange: true
 
-- type: radioChannel
-  id: Starbound
-  name: chat-radio-starbound
-  keycode: 'j'
-  frequency: 1249
-  color: "#005dbf"
-  longRange: true
+# - type: radioChannel
+  # id: Starbound
+  # name: chat-radio-starbound
+  # keycode: 'j'
+  # frequency: 1249
+  # color: "#005dbf"
+  # longRange: true
 
 - type: radioChannel
   id: DuskEnclave
@@ -98,4 +98,3 @@
   frequency: 1375
   color: "#00ff95"
   longRange: true
-

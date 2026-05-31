@@ -7,10 +7,12 @@
   # HardLight start: Replaced starting encryption keys with intrinsic radio channels.
   - type: ActiveRadio
     intrinsicChannels:
-    - Cartel
+    #- Cartel
+    - Common
   - type: EncryptionKeyHolder
     intrinsicChannels:
-    - Cartel
+    #- Cartel
+    - Common
   # HardLight end
   - type: Sprite
     sprite: _HL/Clothing/Ears/Headsets/cartel.rsi
@@ -26,7 +28,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyArcadia
+      #- EncryptionKeyArcadia
       - EncryptionKeyCommon
   - type: Sprite
     sprite: _HL/Clothing/Ears/Headsets/arcadia.rsi
@@ -58,7 +60,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyCartel
+      #- EncryptionKeyCartel
       - EncryptionKeyCommon
   - type: Sprite
     sprite: _HL/Clothing/Ears/Headsets/cartel.rsi
@@ -74,7 +76,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyArcadia
+      #- EncryptionKeyArcadia
       - EncryptionKeyCommon
   - type: Sprite
     sprite: _HL/Clothing/Ears/Headsets/arcadia.rsi
@@ -109,10 +111,10 @@
   - type: ActiveRadio
     intrinsicChannels:
     - Common
-    - InterdynePharma
+    #- InterdynePharma
     - Medical
   - type: EncryptionKeyHolder
     intrinsicChannels:
     - Common
-    - InterdynePharma
+    #- InterdynePharma
     - Medical

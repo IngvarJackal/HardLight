@@ -285,8 +285,13 @@ namespace Content.Server.Power.EntitySystems
             RaiseLocalEvent(new NetworkBatteryPostSync());
 
             // Send events where necessary.
-            // TODO: Instead of querying ALL power components every tick, and then checking if an event needs to be
-            // raised, should probably assemble a list of entity Uids during the actual solver steps.
+            // TODO PERF: Originally proposed assembling a list of entity Uids during solver steps to avoid querying
+            // all power components every tick. A 2026-05 trace shows these three loops total ~3.3% of frame time
+            // (UpdateApcPowerReceiver 1.64%, UpdatePowerConsumer 1.59%, UpdateNetworkBattery 0.08%), so the realistic
+            // win is small. A dirty-set rewrite would also require adding EntityUid back-references to
+            // PowerState.Load/Supply/Battery (changing save serialization shape) and carries silent-bug risk if a
+            // dirty-flag set is missed. Higher-ROI target is BatteryRampPegSolver.UpdateNetwork at ~5.84%
+            // (see "TODO Look at SIMD" in BatteryRampPegSolver.cs).
             UpdateApcPowerReceiver(frameTime);
             UpdatePowerConsumer();
             UpdateNetworkBattery();

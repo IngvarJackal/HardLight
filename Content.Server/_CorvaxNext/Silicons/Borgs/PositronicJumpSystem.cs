@@ -5,6 +5,8 @@ using Content.Server.Silicons.Laws;
 using Content.Server.SurveillanceCamera;
 using Content.Server._CorvaxNext.Silicons.Borgs.Components;
 using Content.Server._Mono.SpaceArtillery.Components;
+using Content.Server._NF.Roles.Systems; // VRS: move JobTrackingComponent across shunt (HL #1354)
+using Content.Shared._NF.Roles.Components; // VRS: move JobTrackingComponent across shunt (HL #1354)
 using Content.Shared.Mech.Components;
 using Content.Shared.Actions;
 using Content.Shared.Mind;
@@ -30,6 +32,7 @@ public sealed class PositronicJumpSystem : EntitySystem
     [Dependency] private readonly SiliconLawSystem _lawSystem = default!;
     [Dependency] private readonly MechSystem _mech = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly JobTrackingSystem _jobTracking = default!; // VRS: HL #1354
 
     private const string ReturnToAiAction = "ActionBackToAi";
 
@@ -330,6 +333,11 @@ public sealed class PositronicJumpSystem : EntitySystem
             TransferReturnState(mind.OwnedEntity.Value, target);
 
         _lawSystem.CopyLawsProvider(user, target);
+        // VRS: Move job tracking with the mind so the source's MindRemovedMessage doesn't release
+        // the AI job slot to new joiners while the player is still occupying the role on a borg.
+        // (HardLight issue #1354.) The destination's subsequent MindAddedMessage will run
+        // CloseJob -> IsPlayerJobTracked check -> no-op, leaving the slot at its current value.
+        TransferJobTracking(user, target);
         _mind.TransferTo(mindId, target, ghostCheckOverride: true, mind: mind);
         return true;
     }
@@ -358,9 +366,25 @@ public sealed class PositronicJumpSystem : EntitySystem
 
         RemoveReturnAction(returnComp);
 
+        // VRS: Mirror the outbound shunt so the slot stays held when control returns to the AI core
+        // (HardLight issue #1354).
+        TransferJobTracking(target, returnTarget);
         _mind.TransferTo(mindId, returnTarget, ghostCheckOverride: true, mind: mind);
         RemComp<PositronicReturnComponent>(target);
         return true;
+    }
+
+    /// <summary>
+    /// VRS: Move <see cref="JobTrackingComponent"/> from <paramref name="from"/> to
+    /// <paramref name="to"/> so the upcoming mind transfer does not release the source's job slot.
+    /// Used by the AI / borg shunt path (HardLight issue #1354).
+    /// </summary>
+    private void TransferJobTracking(EntityUid from, EntityUid to)
+    {
+        if (!HasComp<JobTrackingComponent>(from))
+            return;
+
+        _jobTracking.MoveTrackingFromTo(from, to);
     }
 
     private bool TryTakeMechControl(EntityUid user, EntityUid mech, MechComponent mechComponent)

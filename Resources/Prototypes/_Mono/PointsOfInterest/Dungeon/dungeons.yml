@@ -1,0 +1,93 @@
+# VRS: Ported from Triad_Sector — Dungeon POI prototypes.
+# These are harder-content dungeon locations with hidden IFF labels.
+
+- type: pointOfInterest
+  id: Lancelot
+  parent: BasePOI
+  name: 'Lancelot Mining Outpost'
+  minimumDistance: 10000
+  maximumDistance: 15000
+  spawnGamePreset: [ NFAdventure, NFPirate ]
+  spawnGroup: Optional
+  gridPath: /Maps/_Mono/POI/Dungeons/lancelot.yml
+  addComponents:
+  - type: IFF
+    color: "#ccaa55"
+    flags: [HideLabel]
+    readOnly: true
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
+
+- type: gameMap
+  id: Lancelot
+  mapName: 'Lancelot Mining Outpost'
+  mapPath: /Maps/_Mono/POI/Dungeons/lancelot.yml
+  minPlayers: 0
+  stations:
+    Lancelot:
+      stationProto: RecordsFrontierOutpostCargo
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Lancelot Mining Outpost'
+        - type: StationDeadDropHintExempt
+
+- type: pointOfInterest
+  id: Polaris
+  parent: BasePOI
+  name: 'Polaris Bioresearch Center'
+  minimumDistance: 10000
+  maximumDistance: 15000
+  spawnGamePreset: [ NFAdventure, NFPirate ]
+  spawnGroup: Optional
+  gridPath: /Maps/_Mono/POI/Dungeons/polaris.yml
+  addComponents:
+  - type: IFF
+    color: "#C83737"
+    flags: [HideLabel]
+    readOnly: true
+
+- type: gameMap
+  id: Polaris
+  mapName: 'Polaris Bioresearch Center'
+  mapPath: /Maps/_Mono/POI/Dungeons/polaris.yml
+  minPlayers: 0
+  stations:
+    Polaris:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Polaris Bioresearch Center'
+        - type: StationJobs
+          availableJobs: {}
+        - type: StationDeadDropHintExempt
+
+- type: pointOfInterest
+  id: AutomatedTanker
+  parent: BaseMobilePOI
+  name: 'Automated Inter Sector Tanker'
+  minimumDistance: 10000
+  maximumDistance: 15000
+  spawnGamePreset: [ NFAdventure, NFPirate ]
+  spawnGroup: Optional
+  gridPath: /Maps/_Mono/POI/Dungeons/ruin_tanker.yml
+  addComponents:
+  - type: IFF
+    color: "#44bfe3"
+    flags: [HideLabel]
+    readOnly: true
+
+- type: gameMap
+  id: AutomatedTanker
+  mapName: 'Automated Inter Sector Tanker'
+  mapPath: /Maps/_Mono/POI/Dungeons/ruin_tanker.yml
+  minPlayers: 0
+  stations:
+    AutomatedTanker:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Automated Inter Sector Tanker'
+        - type: StationJobs
+          availableJobs: {}
+        - type: StationDeadDropHintExempt

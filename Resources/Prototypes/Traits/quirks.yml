@@ -13,8 +13,8 @@
   id: Horny
   name: hl-trait-horny-name
   description: hl-trait-horny-desc
-  category: Physical
-  cost: -1
+  category: Lewd
+  cost: 0
   speciesBlacklist: [Vox, Avali, Resomi, Chitinid, Protogen, Dwarf, Diona, Human, SlimePerson, Felinid, Oni, Harpy, Reptilian, Vulpkanin, Rodentia, Goblin, Sheleg, IPC, Feroxi, Moth, Arachnid, Kitsune, Synth] # HardLight
   components:
   - type: HornyMoodsTarget

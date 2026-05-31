@@ -85,3 +85,4 @@
   cost: -1
   components:
   - type: PainNumbness
+    permanent: true # HL

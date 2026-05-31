@@ -2,7 +2,6 @@ using Content.Server._NF.CryoSleep; // Frontier
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
-using Content.Server.Mind.Commands;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
@@ -187,8 +186,8 @@ public sealed class MindSystem : SharedMindSystem
         {
             component = EnsureComp<MindContainerComponent>(entity.Value);
 
-            if (component.HasMind)
-                _ghosts.OnGhostAttempt(component.Mind.Value, false);
+            if (TryGetMind(entity.Value, out var entityMindId, out _) && entityMindId != mindId) // VRS: upstream fix #43177 - correctly checks entity's current mind
+                _ghosts.OnGhostAttempt(entityMindId, false);
 
             if (TryComp<ActorComponent>(entity.Value, out var actor))
             {
@@ -352,7 +351,7 @@ public sealed class MindSystem : SharedMindSystem
             return;
         }
 
-        MakeSentientCommand.MakeSentient(target, EntityManager);
+        MakeSentient(target);
         TransferTo(mindId, target, ghostCheckOverride: true, mind: mind);
     }
 }

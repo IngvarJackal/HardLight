@@ -608,6 +608,10 @@ public sealed class WiresSystem : SharedWiresSystem
 
     private void TryDoWireAction(EntityUid target, EntityUid user, EntityUid toolEntity, int id, WiresAction action, WiresComponent? wires = null, ToolComponent? tool = null)
     {
+        // VRS: NoHackComponent prevents wire interactions on protected POI infrastructure.
+        if (HasComp<Content.Shared._Mono.NoHack.NoHackComponent>(target))
+            return;
+
         if (!Resolve(target, ref wires)
             || !Resolve(toolEntity, ref tool))
             return;

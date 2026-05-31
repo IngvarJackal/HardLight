@@ -28,7 +28,7 @@ public sealed partial class LamiaSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
 
     private Queue<(SegmentedEntitySegmentComponent segment, EntityUid lamia)> _segments = new();
-    
+
     private ProtoId<TagPrototype> _lamiaHardsuitTag = "AllowLamiaHardsuit";
 
     public override void Initialize()
@@ -37,8 +37,9 @@ public sealed partial class LamiaSystem : EntitySystem
         //Parent subscriptions
         // Hitscan filtering is disabled in this codebase.
         SubscribeLocalEvent<SegmentedEntityComponent, InsertIntoEntityStorageAttemptEvent>(OnLamiaStorageInsertAttempt);
-        SubscribeLocalEvent<SegmentedEntityComponent, EntInsertedIntoContainerMessage>(OnInsertedIntoContainer);
-        SubscribeLocalEvent<SegmentedEntityComponent, EntRemovedFromContainerMessage>(OnRemovedFromContainer);
+        //SubscribeLocalEvent<SegmentedEntityComponent, EntGotInsertedIntoContainerMessage>(OnGotInsertedIntoContainer); //Added due to EntInsertedIntoContainerMessage failing to fire for disposals
+        //SubscribeLocalEvent<SegmentedEntityComponent, EntInsertedIntoContainerMessage>(OnInsertedIntoContainer);
+        //SubscribeLocalEvent<SegmentedEntityComponent, EntRemovedFromContainerMessage>(OnRemovedFromContainer);
         SubscribeLocalEvent<SegmentedEntityComponent, DidEquipEvent>(OnDidEquipEvent);
         SubscribeLocalEvent<SegmentedEntityComponent, DidUnequipEvent>(OnDidUnequipEvent);
         SubscribeLocalEvent<SegmentedEntityComponent, ComponentInit>(OnInit);
@@ -261,46 +262,75 @@ public sealed partial class LamiaSystem : EntitySystem
         args.Cancelled = true;
     }
 
-    private void OnInsertedIntoContainer(EntityUid uid, SegmentedEntityComponent component, EntInsertedIntoContainerMessage args)
-    {
-        // Only delete segments when entering actual entity storage (lockers, crates, disposals, etc.)
-        // Skip map/grid containers and other non-storage containers
-        if (_net.IsClient)
-            return;
 
-        // The entity being inserted must be the segmented entity itself, not something else
-        if (args.Entity != uid)
-            return;
+    //Commented out all storage entry/removal events. These changes are handled in the parenting event instead.
+    /// <summary>
+    /// Checks if the segmented entity has been inserted into a container and deletes their segments if true. This prevents further issues with segment logic.
+    /// <see cref="OnInsertedIntoContainer"/> failed to execute, so its code was copied to this event handler instead.
+    /// </summary>
+    /// <param name="ent"></param>
+    /// <param name="args"></param>
+    //private void OnGotInsertedIntoContainer(Entity<SegmentedEntityComponent> ent, ref EntGotInsertedIntoContainerMessage args)
+    //{
+    //    ent.Deconstruct(out var entityUid, out var component);
 
-        // Check if container and owner exist and is an entity storage container (locker, crate, disposal, etc.)
-        var containerOwner = args.Container?.Owner ?? EntityUid.Invalid;
-        if (!containerOwner.IsValid() || !Exists(containerOwner) || !HasComp<SharedEntityStorageComponent>(containerOwner))
-            return;
-            
-        DeleteSegments(component);
-    }
+    //    // Only delete segments when entering actual entity storage (lockers, crates, disposals, etc.)
+    //    // Skip map/grid containers and other non-storage containers
+    //    if (_net.IsClient)
+    //        return;
 
-    private void OnRemovedFromContainer(EntityUid uid, SegmentedEntityComponent component, EntRemovedFromContainerMessage args)
-    {
-        // Respawn segments when exiting entity storage containers
-        // Only respawn if we're not still inside another container (nested containers)
-        if (_net.IsClient)
-            return;
+    //    // The entity being inserted must be the segmented entity itself, not something else
+    //    if (args.Entity != entityUid)
+    //        return;
 
-        // The entity being removed must be the segmented entity itself, not something else
-        if (args.Entity != uid)
-            return;
+    //    // Check if container and owner exist and is an entity storage container (locker, crate, disposal, etc.)
+    //    var containerOwner = args.Container?.Owner ?? EntityUid.Invalid;
+    //    if (!containerOwner.IsValid() || !Exists(containerOwner))
+    //        return;
 
-        // Only respawn if we were in an entity storage container
-        var containerOwner = args.Container?.Owner ?? EntityUid.Invalid;
-        if (!containerOwner.IsValid() || !Exists(containerOwner) || !HasComp<SharedEntityStorageComponent>(containerOwner))
-            return;
-            
-        if (component.Segments.Count == 0 && !_containerSystem.IsEntityInContainer(uid))
-        {
-            SpawnSegments(uid, component);
-        }
-    }
+    //    DeleteSegments(component);
+    //}
+
+    //private void OnInsertedIntoContainer(EntityUid uid, SegmentedEntityComponent component, EntInsertedIntoContainerMessage args)
+    //{
+    //    // Only delete segments when entering actual entity storage (lockers, crates, disposals, etc.)
+    //    // Skip map/grid containers and other non-storage containers
+    //    if (_net.IsClient)
+    //        return;
+
+    //    // The entity being inserted must be the segmented entity itself, not something else
+    //    if (args.Entity != uid)
+    //        return;
+
+    //    // Check if container and owner exist and is an entity storage container (locker, crate, disposal, etc.)
+    //    var containerOwner = args.Container?.Owner ?? EntityUid.Invalid;
+    //    if (!containerOwner.IsValid() || !Exists(containerOwner) || !HasComp<SharedEntityStorageComponent>(containerOwner))
+    //        return;
+
+    //    DeleteSegments(component);
+    //}
+
+    //private void OnRemovedFromContainer(EntityUid uid, SegmentedEntityComponent component, EntRemovedFromContainerMessage args)
+    //{
+    //    // Respawn segments when exiting entity storage containers
+    //    // Only respawn if we're not still inside another container (nested containers)
+    //    if (_net.IsClient)
+    //        return;
+
+    //    // The entity being removed must be the segmented entity itself, not something else
+    //    if (args.Entity != uid)
+    //        return;
+
+    //    // Only respawn if we were in an entity storage container
+    //    var containerOwner = args.Container?.Owner ?? EntityUid.Invalid;
+    //    if (!containerOwner.IsValid() || !Exists(containerOwner) || !HasComp<SharedEntityStorageComponent>(containerOwner))
+    //        return;
+
+    //    if (component.Segments.Count == 0 && !_containerSystem.IsEntityInContainer(uid))
+    //    {
+    //        SpawnSegments(uid, component);
+    //    }
+    //}
 
     private void OnDidEquipEvent(EntityUid equipee, SegmentedEntityComponent component, DidEquipEvent args)
     {
@@ -343,8 +373,28 @@ public sealed partial class LamiaSystem : EntitySystem
 
     private void OnParentChanged(EntityUid uid, SegmentedEntityComponent component, ref EntParentChangedMessage args)
     {
-        //If the change was NOT to a different map
-        if (args.OldMapId == args.Transform.MapUid)
+        //Added to prevent unecessary client side calls.
+        if (_net.IsClient)
+            return;
+
+        //If the entity is inside a container and the segments haven't been deleted, delete them.
+        if (_containerSystem.IsEntityInContainer(uid) && component.Segments.Count > 0)
+        {
+            DeleteSegments(component);
+            return;
+        }
+
+        //Don't do anything with segments on a map change. This is to prevent cross-grid errors.
+        if (args.OldMapId != args.Transform.MapUid)
+        {
+            return;
+        }
+
+        //Added conditional to ensure entity is not inside a container to avoid trying to spawn segments after they had been deleted by OnGotInsertedIntoContainer event handler
+        if (component.Segments.Count == 0 && !_containerSystem.IsEntityInContainer(uid))
+        {
             RespawnSegments(uid, component);
+            return;
+        }
     }
 }

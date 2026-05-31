@@ -1,7 +1,7 @@
 - type: entity
-  parent: [ClothingNeckBase, BaseCentcommContraband]
+  parent: [ClothingNeckBase, BaseColcommContraband] # HardLight Change to Colcomm from Centcom contra
   id: ClothingNeckCloakCCponcho
-  name: Colonial Command poncho
+  name: Colonial Command poncho # HardLight rename
   description: a stylish poncho for a CC offical that prefers field-work to pushing papers.
   components:
   - type: Sprite

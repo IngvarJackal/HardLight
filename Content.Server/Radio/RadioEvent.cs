@@ -1,10 +1,26 @@
 using Content.Shared.Chat;
 using Content.Shared.Radio;
+using Content.Shared._Starlight.Language; // Starlight
 
 namespace Content.Server.Radio;
 
+/// <summary>
+/// <param name="OriginalChatMsg">The message to display when the speaker can understand "language"</param>
+/// <param name="LanguageObfuscatedChatMsg">The message to display when the Speaker cannot understand "language"</param>
+/// </summary>
 [ByRefEvent]
-public readonly record struct RadioReceiveEvent(string Message, string? OriginalMessage, EntityUid MessageSource, RadioChannelPrototype Channel, EntityUid RadioSource, MsgChatMessage ChatMsg, MsgChatMessage? OriginalChatMsg);
+public readonly record struct RadioReceiveEvent(
+    EntityUid MessageSource,
+    RadioChannelPrototype Channel,
+    ChatMessage OriginalChatMsg,
+    ChatMessage LanguageObfuscatedChatMsg,
+    LanguagePrototype Language,
+    EntityUid RadioSource,
+    List<EntityUid> Receivers
+    ); // Starlight
+
+[ByRefEvent]
+public readonly record struct HeadsetRadioReceiveRelayEvent(RadioReceiveEvent RelayedEvent);
 
 /// <summary>
 /// Use this event to cancel sending message per receiver

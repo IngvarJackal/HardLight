@@ -1,0 +1,4 @@
+- type: traitCategory
+  id: Lewd
+  name: trait-category-lewd
+  maxTraitPoints: 0

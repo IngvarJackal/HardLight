@@ -231,6 +231,13 @@
     back:
     - Wristwatch
 
+- type: loadout
+  id: ContractorUrnMortuary
+  price: 500
+  storage:
+    back:
+    - UrnMortuary
+
 #T1
 - type: loadout
   id: ContractorBasketball
@@ -569,3 +576,18 @@
   storage:
     back:
     - Clicker
+
+#posters
+- type: loadout
+  id: ContractorNFPosterCorporate
+  price: 5000
+  storage:
+    back:
+    - NFPosterCorporate
+
+- type: loadout
+  id: ContractorNFPosterContraband
+  price: 7500
+  storage:
+    back:
+    - NFPosterContraband

@@ -8,12 +8,15 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.CriminalRecords.Systems;
 using Content.Server.PsionicsRecords.Systems;
+using Content.Server.Station.Systems; // VRS: station deletion on ship save (Triad PR #42)
 using Content.Server.StationRecords.Systems;
 using Content.Server.Store.Components; // HardLight
+using Content.Server._NF.ShuttleRecords; // VRS: refresh records on ship save (Triad PR #42)
 using Content.Server._HL.Shipyard; // HardLight
 using Content.Shared._Common.Consent; // HardLight
 using Content.Shared._HL.Shipyard; // HardLight
 using Content.Shared._NF.Shipyard.Components;
+using Content.Shared._Triad.Shipyard; // VRS: Triad SavingContraband port
 using Content.Shared._NF.Shipyard.Events;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -88,6 +91,8 @@ public sealed class ShipyardGridSaveSystem : EntitySystem
     [Dependency] private readonly CriminalRecordsConsoleSystem _criminalRecordsConsoles = default!;
     [Dependency] private readonly GeneralStationRecordConsoleSystem _generalStationRecordConsoles = default!;
     [Dependency] private readonly PsionicsRecordsConsoleSystem _psionicsRecordsConsoles = default!;
+    [Dependency] private readonly StationSystem _station = default!; // VRS: station deletion on ship save (Triad PR #42)
+    [Dependency] private readonly ShuttleRecordsSystem _shuttleRecords = default!; // VRS: refresh records on ship save (Triad PR #42)
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!;
@@ -95,6 +100,7 @@ public sealed class ShipyardGridSaveSystem : EntitySystem
     [Dependency] private readonly SharedDeviceLinkSystem _deviceLink = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // HardLight
     [Dependency] private readonly AppearanceSystem _appearance = default!; // HardLight
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // VRS: eject players before ship save (HL #1694)
 
     private ISawmill _sawmill = default!;
     private MapLoaderSystem _mapLoader = default!;
@@ -285,7 +291,19 @@ public sealed class ShipyardGridSaveSystem : EntitySystem
         RemoveAllShuttleDeeds(pending.ShuttleUid);
 
         if (_entityManager.EntityExists(pending.ShuttleUid))
+        {
+            // VRS: delete the owning station before queueing the grid so late joiners don't end up with a dangling
+            // station entity (which manifested as a black screen on join). Mirrors the sell-ship flow in ShipyardSystem.
+            // Ported from Triad PR #42.
+            var owningStation = _station.GetOwningStation(pending.ShuttleUid);
+            if (owningStation is { } stationUid && _entityManager.EntityExists(stationUid))
+                _station.DeleteStation(stationUid);
+
             QueueDel(pending.ShuttleUid);
+
+            // VRS: refresh shuttle records UI so consoles drop the now-saved ship.
+            _shuttleRecords.RefreshStateForAll(true);
+        }
 
         var gridSavedEvent = new ShipSavedEvent
         {
@@ -335,6 +353,12 @@ public sealed class ShipyardGridSaveSystem : EntitySystem
 
         if (!TryBuildShipSaveYaml(gridUid, shipName, out var yaml))
             return TrackedShipSaveResult.Failed;
+
+        // VRS: write a server-side backup copy before handing the YAML off to the client. The pre-serialization
+        // purge (PurgeTransientEntities, MindContainer/Consent removal, contraband deletion, etc.) has already
+        // mutated the live grid; if the client write later fails, the player still has the (now stripped) ship
+        // entity but no on-disk copy of the YAML. The backup gives admins a recovery path in that case.
+        TryWriteServerSideBackup(shipName, playerSession.UserId, yaml);
 
         var requestId = Guid.NewGuid();
         _pendingTrackedSaves[requestId] = new PendingShipSave
@@ -406,8 +430,22 @@ public sealed class ShipyardGridSaveSystem : EntitySystem
             // which aborts the entire ship save (observed: Phantom, Kestrel).
             CleanupBrokenDeviceLinks(gridUid);
 
+            // VRS: Eject any entities currently controlled by a player from the grid BEFORE the
+            // serialization-blocker purge runs. The purge strips MindContainerComponent in-place, which
+            // turns active players into soulless husks; combined with the post-save QueueDel(gridUid) below,
+            // this would silently delete any crew aboard when a ship is saved (HardLight issue #1694).
+            // We re-parent them to the grid's parent map at their current world coordinates, leaving them
+            // floating in space exactly where the ship used to be — alive, mind intact, and able to ghost
+            // out or be rescued. The mind-strip step that follows then no-ops for these entities because
+            // their xform.GridUid no longer matches.
+            EvictPlayersFromGrid(gridUid);
+
             // HardLight: Remove components that fail serialization (e.g., player state) from entities on the grid.
             RemoveSerializationBlockingComponentsOnGrid(gridUid);
+
+            // VRS: Remove all entities marked SavingContraband (illegal-to-own or
+            // save-breaking machinery such as Mono datafarm chassis). Ported from Triad.
+            RemoveSavingContrabandEntitiesOnGrid(gridUid);
 
             // HardLight: Preserve spray-painted visual prototype by copying runtime appearance data into a serialized component field.
             StampSprayPaintedPrototypesOnGrid(gridUid);
@@ -451,6 +489,51 @@ public sealed class ShipyardGridSaveSystem : EntitySystem
     }
 
     /// <summary>
+    /// VRS: Move any entity currently bound to a player mind off the grid before the save pipeline
+    /// strips mind components and queues the grid for deletion. Without this, players standing on a
+    /// ship that another player saves get their <see cref="MindContainerComponent"/> stripped and are
+    /// then deleted alongside the grid (HardLight issue #1694).
+    /// </summary>
+    private void EvictPlayersFromGrid(EntityUid gridUid)
+    {
+        // Snapshot first; we mutate transforms inside the loop and don't want enumerator invalidation.
+        var toEvict = new List<EntityUid>();
+        var query = _entityManager.EntityQueryEnumerator<MindContainerComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var mindContainer, out var xform))
+        {
+            if (xform.GridUid != gridUid)
+                continue;
+
+            // Only protect entities that actually hold a mind. Mob entities without a mind (NPCs,
+            // unconscious dummies, decorative props that happen to carry the component) keep their
+            // existing serialization behaviour and are stripped/serialized as before.
+            if (!mindContainer.HasMind)
+                continue;
+
+            toEvict.Add(uid);
+        }
+
+        foreach (var uid in toEvict)
+        {
+            // AttachToGridOrMap re-parents to whatever grid the world position falls on, or to the
+            // map if there is none. For a ship docked to a station this drops the player onto the
+            // station; for a ship in open space this drops them into space at the ship's last
+            // position (where they can ghost or be retrieved).
+            try
+            {
+                _transform.AttachToGridOrMap(uid);
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Error($"Failed to evict player entity {uid} from saved grid {gridUid}: {ex}");
+            }
+        }
+
+        if (toEvict.Count > 0)
+            _sawmill.Info($"Evicted {toEvict.Count} player-controlled entities from grid {gridUid} prior to ship save.");
+    }
+
+    /// <summary>
     /// HardLight start: Utility method to write a MappingDataNode to a YAML string using YamlDotNet, without touching disk.
     /// </summary>
     private void RemoveSerializationBlockingComponentsOnGrid(EntityUid gridUid)
@@ -477,6 +560,30 @@ public sealed class ShipyardGridSaveSystem : EntitySystem
         {
             _entityManager.RemoveComponent<MindContainerComponent>(uid);
             _entityManager.RemoveComponent<ConsentComponent>(uid);
+        }
+    }
+
+    /// <summary>
+    /// VRS: Triad-port. Deletes any entity carrying <see cref="SavingContrabandComponent"/>
+    /// from the target grid before serialization. These entities are flagged as
+    /// either illegal-to-own or save-breaking (e.g. faction servers, datafarm cores)
+    /// and are removed instead of written into the blueprint.
+    /// </summary>
+    private void RemoveSavingContrabandEntitiesOnGrid(EntityUid gridUid)
+    {
+        var toRemove = new HashSet<EntityUid>();
+
+        var savingContraband = _entityManager.EntityQueryEnumerator<SavingContrabandComponent, TransformComponent>();
+        while (savingContraband.MoveNext(out var uid, out var _, out var xform))
+        {
+            if (xform.GridUid != gridUid)
+                continue;
+            toRemove.Add(uid);
+        }
+
+        foreach (var uid in toRemove)
+        {
+            Del(uid);
         }
     }
 
@@ -1088,5 +1195,55 @@ public sealed class ShipyardGridSaveSystem : EntitySystem
             //_sawmill.Error($"Failed to write temporary YAML file {fileName}: {ex}");
             return false;
         }
+    }
+
+    /// <summary>
+    /// VRS: writes a server-side backup of the just-built ship YAML so player saves can be recovered if the
+    /// client-side write fails. Best-effort — never throws to the caller, never blocks the save flow.
+    /// Files land in <c>UserData/Exports/server_backup/</c>.
+    /// </summary>
+    private void TryWriteServerSideBackup(string shipName, NetUserId playerUserId, string yaml)
+    {
+        try
+        {
+            var userData = _resourceManager.UserData;
+            var backupDir = new ResPath("/Exports/server_backup");
+            try { userData.CreateDir(backupDir); } catch { /* already exists */ }
+
+            var safeShipName = SanitizeFileNameComponent(shipName);
+            var safePlayer = SanitizeFileNameComponent(playerUserId.ToString());
+            var fileName = $"/Exports/server_backup/{safePlayer}_{safeShipName}_{DateTime.UtcNow:yyyyMMdd_HHmmss}.yml";
+            var resPath = new ResPath(fileName);
+
+            using var stream = userData.OpenWrite(resPath);
+            using var writer = new StreamWriter(stream);
+            writer.Write(yaml);
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Warning($"Server-side ship save backup for '{shipName}' (user {playerUserId}) failed: {ex.Message}");
+        }
+    }
+
+    private static string SanitizeFileNameComponent(string raw)
+    {
+        if (string.IsNullOrWhiteSpace(raw))
+            return "unnamed";
+
+        var invalid = Path.GetInvalidFileNameChars();
+        var chars = raw.ToCharArray();
+        for (var i = 0; i < chars.Length; i++)
+        {
+            var c = chars[i];
+            if (Array.IndexOf(invalid, c) >= 0 || c == '/' || c == '\\' || char.IsControl(c))
+                chars[i] = '_';
+        }
+
+        var sanitized = new string(chars).Trim();
+        if (sanitized.Length == 0)
+            sanitized = "unnamed";
+        if (sanitized.Length > 64)
+            sanitized = sanitized.Substring(0, 64);
+        return sanitized;
     }
 }

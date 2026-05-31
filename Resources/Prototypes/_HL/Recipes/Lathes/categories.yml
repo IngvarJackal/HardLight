@@ -1,0 +1,11 @@
+- type: latheCategory
+  id: ColSec
+  name: lathe-category-security
+
+- type: latheCategory
+  id: HarborMaster
+  name: lathe-category-harbormaster
+
+- type: latheCategory
+  id: Misc
+  name: lathe-category-misc

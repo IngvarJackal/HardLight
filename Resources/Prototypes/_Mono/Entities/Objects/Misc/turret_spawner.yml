@@ -1,0 +1,21 @@
+# Mono port: trimmed for VRS — only SpawnMobWeaponTurretLaserSilicon (referenced
+# by event maps). All other faction-flavour spawners (TSFMC/USSP/PDV) removed
+# because their underlying turret entities (WeaponTurretLaserTSFMC,
+# WeaponTurretTSFMC, WeaponTurretUSSP, WeaponTurretPDV) are not yet ported in
+# VRS.
+
+- type: entity
+  id: SpawnMobWeaponTurretLaserSilicon
+  parent: MarkerBase
+  name: silicon laser turret spawner
+  suffix: Silicon, Frontier
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
+      state: base
+  - type: ConditionalSpawner
+    prototypes:
+    - WeaponTurretLaserSilicon
+

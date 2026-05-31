@@ -8,6 +8,7 @@
   speciesBlacklist:
   - IPC
   - Synth
+  - Vox #Vox Froguli - now innate to Vox
   blacklist:
     components:
     - BorgChassis

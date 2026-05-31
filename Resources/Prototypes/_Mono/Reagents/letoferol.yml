@@ -1,0 +1,25 @@
+# VRS port: minimal stub of Mono's letoferol reagents. Only NaturalLetoferol is
+# referenced by ported Mono content (chimera biomass spawner). Full letoferol
+# definitions from Triad_Sector are not ported because they depend on the
+# Chimera organ type, ChimeraFleshKudzu entity, LetoferolMutation/Natural/Beast
+# polymorph prototypes and the Chimera tag — none of which are present in VRS.
+# The reagent is reduced to a passive non-effect cellular poison so the spawner
+# stays valid.
+
+- type: reagent
+  id: NaturalLetoferol
+  name: reagent-name-nat-letoferol
+  group: Special
+  desc: reagent-desc-nat-letoferol
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: acid
+  color: "#ebba34"
+  worksOnTheDead: true
+  metabolisms:
+    Poison:
+      metabolismRate: 0.2
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 0.5

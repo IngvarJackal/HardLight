@@ -17,6 +17,17 @@ public sealed partial class DockingSystem
      */
 
     private const int DockRoundingDigits = 2;
+    private const float DockingAngleKeyPrecision = 10000f; // HardLight
+
+    // HardLight: Many dock pairs on multi-port strips collapse to the exact same final shuttle placement.
+    // Cache those placements during a search so we don't recompute the same collision /
+    // aggregation work over and over.
+    private readonly record struct DockingPlacementKey(
+        float Left,
+        float Right,
+        float Top,
+        float Bottom,
+        int AngleKey);
 
     public Angle GetAngle(EntityUid uid, TransformComponent xform, EntityUid targetUid, TransformComponent targetXform)
     {
@@ -351,6 +362,7 @@ public sealed partial class DockingSystem
         var isMap = HasComp<MapComponent>(targetGrid);
 
         var grids = new List<Entity<MapGridComponent>>();
+        var seenPlacements = new HashSet<DockingPlacementKey>(); // HardLight
         if (shuttleDocks.Count > 0)
         {
             // We'll try all combinations of shuttle docks and see which one is most suitable
@@ -387,6 +399,19 @@ public sealed partial class DockingSystem
                         continue;
                     }
 
+                    // HardLight start
+                    dockedAABB = dockedAABB.Rounded(DockRoundingDigits);
+                    var placementKey = new DockingPlacementKey(
+                        dockedAABB.Left,
+                        dockedAABB.Right,
+                        dockedAABB.Top,
+                        dockedAABB.Bottom,
+                        (int) Math.Round(targetAngle.Reduced().Theta * DockingAngleKeyPrecision));
+
+                    if (!seenPlacements.Add(placementKey))
+                        continue;
+                    // HardLight end
+
                     // Can't just use the AABB as we want to get bounds as tight as possible.
                     var gridPosition = new EntityCoordinates(targetGrid, Vector2.Transform(Vector2.Zero, matty));
                     var spawnPosition = new EntityCoordinates(targetGridXform.MapUid!.Value, _transform.ToMapCoordinates(gridPosition).Position);
@@ -410,8 +435,6 @@ public sealed partial class DockingSystem
                    {
                        (dockUid, gridDockUid, shuttleDock, gridDock),
                    };
-
-                    dockedAABB = dockedAABB.Rounded(DockRoundingDigits);
 
                     foreach (var (otherUid, other) in shuttleDocks)
                     {

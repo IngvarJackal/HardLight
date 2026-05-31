@@ -1,0 +1,52 @@
+<cartridges:LandgrabUiFragment xmlns:cartridges="clr-namespace:Content.Client._VRS.CartridgeLoader.Cartridges"
+                               xmlns="https://spacestation14.io" Margin="1 0 2 0">
+    <PanelContainer StyleClasses="BackgroundDark"></PanelContainer>
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="6">
+
+        <!-- Header: planet name + balance -->
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 6">
+            <Label Name="PlanetLabel" Text="" HorizontalExpand="True" StyleClasses="LabelKeyText"/>
+            <Label Name="BalanceLabel" Text=""/>
+        </BoxContainer>
+
+        <!-- Location info & purchase -->
+        <PanelContainer StyleClasses="BackgroundPanel" Margin="0 0 0 6">
+            <BoxContainer Orientation="Vertical" Margin="6">
+                <Label Text="{Loc 'landgrab-current-location'}" StyleClasses="LabelSubText"/>
+                <Label Name="LocationLabel" Text=""/>
+                <Label Name="PlotSizeLabel" Text="" StyleClasses="LabelSubText" Margin="0 2 0 0"/>
+                <Label Name="StatusLabel" Text="" Margin="0 4 0 4"/>
+                <Button Name="PurchaseButton" Text="{Loc 'landgrab-purchase'}"
+                        StyleClasses="ButtonColorGreen" Disabled="True"/>
+
+                <!-- Engrave disk for FTL targeting -->
+                <Label Text="{Loc 'landgrab-engrave-header'}" StyleClasses="LabelSubText" Margin="0 8 0 2"/>
+                <BoxContainer Orientation="Horizontal">
+                    <LineEdit Name="DiskLabelEdit" PlaceHolder="{Loc 'landgrab-disk-label-placeholder'}" HorizontalExpand="True"/>
+                    <Button Name="EngraveDiskButton" Text="{Loc 'landgrab-engrave'}" Disabled="True" Margin="4 0 0 0"/>
+                </BoxContainer>
+                <Label Name="DiskHintLabel" Text="" StyleClasses="LabelSubText" Margin="0 2 0 0"/>
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- Saved plots list -->
+        <Label Text="{Loc 'landgrab-saved-plots'}" StyleClasses="LabelKeyText" Margin="0 4 0 4"/>
+
+        <ScrollContainer Name="ScrollContainer" HorizontalExpand="True" VerticalExpand="True">
+            <BoxContainer Name="SavedPlotsContainer" Orientation="Vertical"
+                          HorizontalExpand="True" VerticalAlignment="Top"/>
+        </ScrollContainer>
+
+        <!-- Save current outpost section -->
+        <BoxContainer Orientation="Vertical" Margin="0 6 0 0">
+            <Label Text="{Loc 'landgrab-save-current'}" StyleClasses="LabelSubText"/>
+            <BoxContainer Orientation="Horizontal" Margin="0 2 0 0">
+                <LineEdit Name="SaveSlotEdit" PlaceHolder="{Loc 'landgrab-slot-placeholder'}" HorizontalExpand="True"/>
+                <Button Name="SaveButton" Text="{Loc 'landgrab-save'}" Disabled="True" Margin="4 0 0 0"/>
+            </BoxContainer>
+            <Button Name="AbandonButton" Text="{Loc 'landgrab-abandon'}" Disabled="True"
+                    StyleClasses="ButtonCaution" Margin="0 6 0 0"/>
+        </BoxContainer>
+
+    </BoxContainer>
+</cartridges:LandgrabUiFragment>

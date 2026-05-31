@@ -15,3 +15,38 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsUSSP ]
+
+# Mono port: capital-class syndicate docking airlocks (~plastitanium-tier HP).
+- type: entity
+  id: AirlockShuttleSyndicateCapital
+  parent: AirlockShuttleSyndicate
+  suffix: CAPITAL ONLY, Syndicate, Docking
+  components:
+  - type: Destructible # Mono - buff docking port health
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 7000 # Almost equal to plastitanium.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+
+- type: entity
+  id: AirlockGlassShuttleSyndicateCapital
+  parent: AirlockGlassShuttleSyndicate
+  suffix: CAPITAL ONLY, Syndicate, Glass, Docking
+  components:
+  - type: Destructible # Mono - buff docking port health
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 7000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam

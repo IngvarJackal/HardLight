@@ -21,6 +21,7 @@ public sealed class TapeRecorderBoundUserInterface(EntityUid owner, Enum uiKey) 
         _window.Owner = Owner;
         _window.OnModeChanged += mode => SendMessage(new ChangeModeTapeRecorderMessage(mode));
         _window.OnPrintTranscript += PrintTranscript;
+        _window.OnErase += () => SendMessage(new EraseTapeRecorderMessage());
     }
 
     private void PrintTranscript()

@@ -7,7 +7,7 @@
   defaultSkinTone: "#8DB9D6"
   markingLimits: MobFeroxiMarkingLimits
   dollPrototype: MobFeroxiDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
 #  maleFirstNames: names_first_male
 #  femaleFirstNames: names_first_female
 #  lastNames: names_last

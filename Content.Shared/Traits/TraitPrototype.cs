@@ -63,19 +63,7 @@ public sealed partial class TraitPrototype : IPrototype, IComparable<TraitProtot
     [DataField]
     public ProtoId<TraitCategoryPrototype>? Category;
 
-        /// <summary>
-        ///     List of traits that ca't be taken together with this one.
-        /// </summary>
-        [DataField]
-        public HashSet<ProtoId<TraitPrototype>> MutuallyExclusiveTraits { get; private set; } = new();
-
-        /// <summary>
-        ///     List of species that can't have this trait.
-        /// </summary>
-        [DataField]
-        public HashSet<ProtoId<SpeciesPrototype>> SpeciesBlacklist { get; private set; } = new();
-
-    // Einstein Engines - Language begin (remove this if trait system refactor)
+    // Starlight start
     /// <summary>
     ///     The list of all Spoken Languages that this trait adds.
     /// </summary>
@@ -99,7 +87,19 @@ public sealed partial class TraitPrototype : IPrototype, IComparable<TraitProtot
     /// </summary>
     [DataField]
     public List<string>? RemoveLanguagesUnderstood { get; private set; } = default!;
-    // Einstein Engines - Language end
+    // Starlight end
+
+    /// <summary>
+    ///     List of traits that ca't be taken together with this one.
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<TraitPrototype>> MutuallyExclusiveTraits { get; private set; } = new();
+
+    /// <summary>
+    ///     List of species that can't have this trait.
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<SpeciesPrototype>> SpeciesBlacklist { get; private set; } = new();
 
     /// <summary>
     ///     Requirements for this trait to be selectable.

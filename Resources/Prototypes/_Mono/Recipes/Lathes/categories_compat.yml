@@ -1,0 +1,19 @@
+- type: latheCategory
+  id: Ballistic
+  name: lathe-category-weapons
+
+- type: latheCategory
+  id: Rifles
+  name: lathe-category-weapons
+
+- type: latheCategory
+  id: Shotguns
+  name: lathe-category-weapons
+
+- type: latheCategory
+  id: MGs
+  name: lathe-category-weapons
+
+- type: latheCategory
+  id: SMGs
+  name: lathe-category-weapons

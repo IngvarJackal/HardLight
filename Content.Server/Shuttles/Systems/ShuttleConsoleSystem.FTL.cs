@@ -1,14 +1,18 @@
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
+using Content.Server._VRS.Planet;
+using Content.Shared.Popups;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Shuttles.UI.MapObjects;
+using Content.Shared._VRS.Planet;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Content.Server.Station.Components;
 using System.Linq;
+using System.Numerics;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -199,6 +203,33 @@ public sealed partial class ShuttleConsoleSystem
             return;
         }
 
+        // VRS: block FTL within 100m of any procedurally-spawned dungeon on the
+        // target map. Dungeon positions are stored in grid-local tile coords on
+        // the planet's primary grid; planet grids sit at the map origin so they
+        // align with the map-world coordinates used by FTL targeting. Hostile
+        // mobs do NOT block landing — any mobs caught under the shuttle on
+        // arrival are squashed by PlanetSpawnerSystem's FTL-completed handler.
+        if (IsInsideContractNoLandingRadius(targetMap, targetCoordinates.Position))
+        {
+            _popup.PopupEntity(Loc.GetString("shuttle-console-ftl-contract-too-close"), ent.Owner, PopupType.MediumCaution);
+            return;
+        }
+
+        if (TryComp<PlanetDungeonRegistryComponent>(_mapSystem.GetMap(targetMap), out var dungeonRegistry))
+        {
+            const float dungeonExclusionRange = 100f;
+            var rangeSq = dungeonExclusionRange * dungeonExclusionRange;
+            var targetPos = targetCoordinates.Position;
+            foreach (var dungeon in dungeonRegistry.Dungeons)
+            {
+                if (Vector2.DistanceSquared(targetPos, dungeon.Position) <= rangeSq)
+                {
+                    _popup.PopupEntity(Loc.GetString("shuttle-console-ftl-dungeon-too-close"), ent.Owner, PopupType.MediumCaution);
+                    return;
+                }
+            }
+        }
+
         if (!TryComp(shuttleUid.Value, out PhysicsComponent? shuttlePhysics))
         {
             return;
@@ -214,5 +245,22 @@ public sealed partial class ShuttleConsoleSystem
         RaiseLocalEvent(ref ev);
 
         _shuttle.FTLToCoordinates(shuttleUid.Value, shuttleComp, adjustedCoordinates, targetAngle);
+    }
+
+    private bool IsInsideContractNoLandingRadius(MapId mapId, Vector2 targetPosition)
+    {
+        var query = EntityQueryEnumerator<PlanetEventFTLOverrideComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var overrideComp, out var xform))
+        {
+            if (xform.MapID != mapId)
+                continue;
+
+            var center = _transform.GetWorldPosition(xform); // Fix: Use world position instead of parent-local
+            var rangeSq = overrideComp.NoLandingRadius * overrideComp.NoLandingRadius;
+            if (Vector2.DistanceSquared(targetPosition, center) <= rangeSq)
+                return true;
+        }
+
+        return false;
     }
 }

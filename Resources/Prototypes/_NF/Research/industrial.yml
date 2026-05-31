@@ -8,10 +8,14 @@
     state: icon
   discipline: Industrial
   tier: 1
-  cost: 5000
+  cost: 12500
+
   recipeUnlocks:
   - ConstructionBagOfHolding
   - NFBlueprintConstructionBagOfHolding
+  technologyPrerequisites:
+  - AdvancedToolsTechnology
+  position: -2, 18
 
 - type: technology
   id: HardsuitsBasic
@@ -21,6 +25,7 @@
     state: icon
   discipline: Industrial
   tier: 1
+  position: 0, 8
   cost: 5000
   recipeUnlocks:
   - ClothingOuterHardsuitBasic
@@ -33,7 +38,8 @@
     state: icon
   discipline: Industrial
   tier: 1
-  cost: 10000
+  cost: 17500
+
   recipeUnlocks:
   - ClothingOuterHardsuitAtmos
   - ClothingOuterHardsuitEngineering
@@ -44,6 +50,8 @@
   - ClothingOuterHardsuitPilot
   technologyPrerequisites:
   - HardsuitsBasic
+  - AdvancedParts
+  position: 1, 8
 
 - type: technology
   id: AtmosphericDrilling
@@ -53,6 +61,7 @@
     state: icon
   discipline: Industrial
   tier: 1
+  position: 0, 1
   cost: 10000
   recipeUnlocks:
   - GasMiningDrillMachineCircuitboard
@@ -68,7 +77,8 @@
     state: icon
   discipline: Industrial
   tier: 2
-  cost: 10000
+  cost: 25000
+
   recipeUnlocks:
   - ClothingOuterHardsuitCap
   - ClothingOuterHardsuitEngineeringWhite
@@ -76,6 +86,7 @@
   - ClothingOuterHardsuitLuxury
   technologyPrerequisites:
   - HardsuitsSpecialized
+  position: 1, 7
 
 # Tier 3
 
@@ -95,3 +106,4 @@
     - NFBlueprintClothingOuterHardsuitMaximPrototype
   technologyPrerequisites:
   - HardsuitsAdvanced
+  position: 3, 7

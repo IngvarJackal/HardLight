@@ -1,0 +1,45 @@
+- type: latheRecipePack
+  id: HardLightDocsSecurity
+  recipes:
+    # Security
+    - PaperWrittenNfsdWarrantRecipe
+    - PaperWrittenNfsdWarrantShipRecipe
+    - PaperWrittenNfsdWarrantDepartmentRecipe
+    - PaperWrittenNfsdReportRecipe
+    - PaperWrittenNfsdArrestWarrantRecipe
+    - PaperWrittenNfsdArrestReportRecipe
+    - PaperWrittenNfsdDutyLogRecipe
+    #- PaperWrittenNfsdAuthorizationRecipe
+    #- PaperWrittenNfsdContrabandAmnestyRecipe
+    - PaperWrittenNfsdContrabandTurnoverRecipe
+    - PaperWrittenNfsdContrabandPermitRecipe
+
+- type: latheRecipePack
+  id: HardLightDocsMedical
+  recipes:
+    - PaperWrittenMedicalFormPatientInfoRecipe
+    - PaperWrittenMedicalFormPrescriptionRecipe
+    - PaperWrittenMedicalFormHealthInsuranceRecipe
+    - PaperWrittenMedicalFormServiceInvoiceRecipe
+    - PaperWrittenMedicalFormReceiptInvoiceRecipe
+    - PaperWrittenMedicalFormReleaseRecipe
+
+- type: latheRecipePack
+  id: HardLightDocsHM
+  recipes:
+    - PaperWrittenStcFormCitationParkingRecipe
+    - PaperWrittenStcFormCitationTrafficRecipe
+    - PaperWrittenStcFormProsecutionRequestRecipe
+    - PaperWrittenStcFormTrafficLogRecipe
+    - PaperWrittenStcFormWellnessCheckRecipe
+
+- type: latheRecipePack
+  id: HardLightDocsOther
+  recipes:
+    - PaperWrittenFrontierEmploymentRecipe
+    - PaperWrittenFrontierEmployeePayHistoryRecipe
+    - PaperWrittenFrontierFundRequisitionRecipe
+    - PaperWrittenFrontierShuttleTitleChangeRecipe
+    #- PaperWrittenFrontierAuthorizationRecipe
+    - PaperWrittenFrontierShuttleDerelictRecipe
+    - PaperWrittenNfsdContrabandPermitRecipe

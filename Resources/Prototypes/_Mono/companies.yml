@@ -84,6 +84,12 @@
   color: "#FFEA00"
 
 - type: company
+  id: VSR
+  form: Protagonist
+  name: Korpus Novy Mir — "New World Corps"
+  color: "#595959"
+
+- type: company
   id: SBS
   form: Protagonist
   name: Starbound Blue Shield Services
@@ -218,6 +224,29 @@
   color: "#89CFF0" # Light Blue
 
 - type: company
+  id: CERUL
+  form: Protagonist
+  name: Cerulean Collective
+  color: "#0009ff" # deep blue
+  disabled: true
+  logins: # based on https://docs.google.com/spreadsheets/d/1PtsJXzuLuylBiLF4VJAmTIxuBhr3YwDnMBGYAN9hsMo/edit?usp=sharing
+  - MsEpic
+  - orhu
+  - Usuala
+  - Paintminer
+  - Sempervali
+  - TECK
+  - Lyruun
+  - ShadesMars
+  - MallowSune
+  - LadyXahte
+  - Henryboiye
+  - Kabuki
+  - Hammeredmantis
+  - FrogVoid
+  - vex_silverscales
+
+- type: company
   id: AED
   form: Protagonist
   name: Andromeda Engineering & Development # See https://discord.com/channels/1380477227912925194/1482867383592030462
@@ -225,7 +254,6 @@
   disabled: true # Open to devs, technical oriented mappers, and architecture oriented engineers.
   logins:
   - Notarin
-
 
 # ====Rogue / Antag. Companies====
 - type: company

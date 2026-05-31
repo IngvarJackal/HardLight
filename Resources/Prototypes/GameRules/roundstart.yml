@@ -301,6 +301,7 @@
       # startingGear: WizardBlueGear
       # # TODO: WizardComp as needed
       # components:
+      # - type: UniversalLanguageSpeaker # Starlight-edit: Languages
       # - type: NpcFactionMember
         # factions:
         # - Wizard

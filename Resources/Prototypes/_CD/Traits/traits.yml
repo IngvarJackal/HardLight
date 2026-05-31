@@ -3,7 +3,7 @@
   name: trait-synthetic-name
   description: trait-synthetic-desc
   category: Physical
-  cost: 0 # HardLight: 4<0; Why did this cost 4?
+  cost: 3 # HardLight: It does actual stuff now
   speciesBlacklist: # HardLight
   - IPC
   - Synth
@@ -12,7 +12,8 @@
       - BorgChassis
   components:
     - type: Synthetic
-    # Hardlight start: Gives Trinary
+    # Hardlight start: Gives Trinary and EAL
+    - type: LanguageSpeaker
     - type: IntrinsicRadioReceiver
     - type: IntrinsicRadioTransmitter
       intrinsicChannels:
@@ -26,4 +27,7 @@
       preserveExistingChannels: true
       intrinsicChannels:
       - Trinary
-    # Hardlight end
+  languagesSpoken:
+    - Machine
+  languagesUnderstood:
+    - Machine # Hardlight end

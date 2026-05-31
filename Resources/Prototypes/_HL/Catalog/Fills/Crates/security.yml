@@ -36,3 +36,18 @@
         amount: 1
       - id: SyntheticBorgArmorLightShield
         amount: 1
+
+- type: entity
+  id: CrateNullspaceDeterrenceKit
+  parent: CrateSecgear
+  name: nullspace deterrence kit crate
+  description: Contains personal protective equipment to deal with nullspace threats.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingEyesGlassesNullSpace
+      amount: 2
+    - id: NullspaceLocator
+      amount: 1
+    - id: BluespaceFlash
+      amount: 1

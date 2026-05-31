@@ -69,4 +69,10 @@ public sealed partial class NPCRangedCombatComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public float MissChance = 0.25f;
     // End Frontier
+
+    // VRS (Triad #3732)
+    /// <summary>
+    /// Number of shots required to destroy an obstacle before the NPC will consider shooting through it.
+    /// </summary>
+    public float ShotsThreshold = 2;
 }

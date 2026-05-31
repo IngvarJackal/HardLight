@@ -24,7 +24,7 @@
         - CrateServiceJanitorialSupplies
         - CrateHydroponicsSeedsMedicinal
         - CrateEmergencyInternals
-        - CrateFoodMRE
+#        - CrateFoodMRE # HardLight remove from pool
         - CrateMaterialTextiles
         - CrateMedicalSupplies
         - CrateEngineeringCableBulk

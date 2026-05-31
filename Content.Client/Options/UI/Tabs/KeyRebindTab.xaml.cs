@@ -213,6 +213,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.SmartEquipBackpack);
             AddButton(ContentKeyFunctions.SmartEquipBelt);
             AddButton(ContentKeyFunctions.SmartEquipWallet); // Frontier
+            AddButton(ContentKeyFunctions.SmartEquipSuitStorage); // Hardlight
             AddButton(ContentKeyFunctions.OpenBackpack);
             AddButton(ContentKeyFunctions.OpenBelt);
             AddButton(ContentKeyFunctions.OpenWallet); // Frontier
@@ -242,6 +243,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.OpenCraftingMenu);
             AddButton(ContentKeyFunctions.OpenGuidebook);
             AddButton(ContentKeyFunctions.OpenInventoryMenu);
+            AddButton(ContentKeyFunctions.OpenLanguageMenu); // Starlight
             AddButton(ContentKeyFunctions.OpenAHelp);
             AddButton(ContentKeyFunctions.OpenActionsMenu);
             AddButton(ContentKeyFunctions.OpenEmotesMenu);

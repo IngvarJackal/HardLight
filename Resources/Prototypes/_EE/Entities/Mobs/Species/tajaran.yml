@@ -4,6 +4,15 @@
   id: MobTajaranBase
   abstract: true
   components:
+  # HardLight start
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Cat
+    understands:
+    - GalacticCommon
+    - Cat
+  # HardLight end
   - type: Hunger
     baseDecayRate: 0.02083333332 # 25% more than default
   - type: Thirst

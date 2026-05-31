@@ -77,6 +77,10 @@
   - type: LightningTarget
     priority: 1
   - type: ThermalSignature # at least most have a thermal signature when firing
+  - type: Climbable # VRS (Triad #3387)
+  - type: ExaminableDamage # VRS (Triad #3387)
+    messages: WindowMessages
+  - type: Repairable # VRS (Triad #3387)
 
 - type: entity
   id: BallisticArtilleryUnanchorable
@@ -173,6 +177,10 @@
     capacity: 2
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Climbable # VRS (Triad #3387)
+  - type: ExaminableDamage # VRS (Triad #3387)
+    messages: WindowMessages
+  - type: Repairable # VRS (Triad #3387)
 
 - type: entity
   id: BallisticArtilleryCartridge
@@ -276,7 +284,10 @@
           params:
             pitch: 2
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-
+  - type: Climbable # VRS (Triad #3387)
+  - type: ExaminableDamage # VRS (Triad #3387)
+    messages: WindowMessages
+  - type: Repairable # VRS (Triad #3387)
 
 - type: entity
   id: BallisticArtilleryMagazine

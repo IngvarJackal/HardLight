@@ -28,6 +28,9 @@ public sealed partial class BallisticAmmoProviderComponent : Component
     public int UnspawnedCount;
 
     [ViewVariables(VVAccess.ReadWrite), DataField]
+    public bool FillFromPrototype = true;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public EntityWhitelist? Whitelist;
 
     public Container Container = default!;

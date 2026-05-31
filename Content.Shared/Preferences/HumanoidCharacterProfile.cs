@@ -552,7 +552,7 @@ namespace Content.Shared.Preferences
             return true;
         }
 
-        public void EnsureValid(ICommonSession session, IDependencyCollection collection)
+        public void EnsureValid(ICommonSession? session, IDependencyCollection collection)
         {
             var configManager = collection.Resolve<IConfigurationManager>();
             var prototypeManager = collection.Resolve<IPrototypeManager>();
@@ -766,7 +766,7 @@ namespace Content.Shared.Preferences
             return result;
         }
 
-        public ICharacterProfile Validated(ICommonSession session, IDependencyCollection collection)
+        public ICharacterProfile Validated(ICommonSession? session, IDependencyCollection collection)
         {
             var profile = new HumanoidCharacterProfile(this);
             profile.EnsureValid(session, collection);

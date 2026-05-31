@@ -10,6 +10,12 @@
     noRot: true
   - type: Clickable
   - type: InteractionOutline
+  - type: Appearance
+  # Starlight-start: Plumbing connector visuals
+  - type: PlumbingConnectorAppearance
+    offset: 0.09375
+  - type: AtmosPipeColor
+  # Starlight-end
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -73,3 +79,33 @@
   - type: StaticPrice
     price: 1000
   - type: WiresPanel
+    # Starlight-start: Plumbing outlet
+  - type: NodeContainer
+    nodes:
+      outletNorth:  # Provides reagents TO the network (all directions)
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: North
+      outletEast:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: East
+      outletSouth:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: South
+      outletWest:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: West
+  - type: PlumbingOutlet
+    solutionName: beaker
+    connectedOutlets: true
+    outletNames:
+    - outletNorth
+    - outletEast
+    - outletSouth
+    - outletWest
+    containerSlotId: beakerSlot
+    enabled: false
+  # Starlight-end

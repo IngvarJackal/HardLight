@@ -22,8 +22,8 @@ public sealed partial class HoloCigarComponent : Component
 
     [ViewVariables]
     public SoundSpecifier Music = new SoundPathSpecifier(
-        "/Audio/_Goobstation/Items/TheManWhoSoldTheWorld/invisible.ogg",
-        new AudioParams().WithLoop(true).WithVolume(3f));
+        "/Audio/_Goobstation/Items/TheManWhoSoldTheWorld/invisibingle.ogg",
+        AudioParams.Default.WithLoop(true).WithVolume(-13f));
 
     [ViewVariables]
     public EntityUid? MusicEntity;

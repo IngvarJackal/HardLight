@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMob, StripableInventoryBase]
+  parent: [ BaseMob, StripableInventoryBase, BaseSiliconLanguages ] # Starlight: Languages
   id: BaseBorgChassisNotIonStormable
   name: cyborg
   description: A synthetic that assists in station activity. They love being asked to state their laws over and over. #HL Edit. We have positronics, BORIS modules, and straight up AI's here. These aren't MMI-exclusive.
@@ -269,9 +269,9 @@
     damageProtection:
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
-  #region Starlight
+  # region Starlight
   # - type: CyborgSparkEffect # Hardlight we don't have these yet...
-  # - type: StationAIShunt #Starlight allow shunting into all borgs # Hardlight TOO SOON
+  # - type: StationAIShunt # Starlight allow shunting into all borgs # Hardlight TOO SOON
   # - type: Crawler # Hardlight TOO SOON
   # end region starlight
   - type: BorgSwitchableSubtype # CD change
@@ -298,6 +298,7 @@
   id: BaseBorgChassis
   components:
   - type: IonStormTarget
+  - type: RetroMonitorView # Mono - #3902
 
 - type: entity
   abstract: true

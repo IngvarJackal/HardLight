@@ -22,4 +22,3 @@ public sealed partial class StationPayPrototype : IPrototype
     [DataField("job", required: true, serverOnly: true)]
     public ProtoId<JobPrototype> JobProto;
 }
-

@@ -25,6 +25,7 @@
       - Ingot
       - RawMaterial
       - Ore # Frontier
+      - Paper
   - type: AutomationSlots # Goobstation
     slots:
     - !type:AutomatedMaterialStorage

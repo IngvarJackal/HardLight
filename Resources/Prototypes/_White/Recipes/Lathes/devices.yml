@@ -1,0 +1,18 @@
+- type: latheRecipe
+  id: ClothingEyesNightVisionGoggles
+  result: ClothingEyesNightVisionGoggles
+  categories:
+  - Clothing
+  materials:
+    Steel: 200
+    Glass: 400
+
+- type: latheRecipe
+  id: ClothingEyesThermalVisionGoggles
+  result: ClothingEyesThermalVisionGoggles
+  categories:
+  - Clothing
+  materials:
+    Steel: 300
+    Glass: 500
+    Plasma: 200

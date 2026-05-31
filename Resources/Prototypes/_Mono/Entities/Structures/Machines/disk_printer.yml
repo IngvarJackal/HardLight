@@ -1,0 +1,190 @@
+# VRS port: Mono — TechDiskPrinter machine + spawner aliases.
+#
+# The TechDiskPrinter is a HV-powered machine that periodically mines a tech
+# disk via ItemMiner (Goobstation framework, ported in #34). The spawner
+# entities (SpawnLootTechDiskPrinter, SpawnLootTechDisksPrinterT1..T4) are
+# kept as a structural stub: each currently rolls a generic ResearchDisk
+# instead of the dozens of Mono-specific TechDisk* entities (TechDiskRCD,
+# TechDiskMechCiv, TechDiskBulldog, …) that are not yet ported in VRS.
+# A future PR can replace each stubbed entry with the real Mono TechDisk
+# entity once those land.
+
+- type: entity
+  id: TechDiskPrinter
+  name: tech disk printer
+  parent: [BaseStructureDisableToolUse, BaseMachine]
+  description: A machine that automatically prints tech disks every 7.5 minutes from automatically scavenged pre-Fracture data. Needs 120kW of HV power to function.
+  components:
+  - type: PowerConsumer
+    voltage: High
+    drawRate: 120000
+  - type: ItemMiner
+    proto: SpawnLootTechDiskPrinter
+    interval: 1200
+    minedSound: /Audio/Machines/circuitprinter.ogg
+    needApcPower: false
+  - type: PowerConsumerMiner
+  - type: Sprite
+    sprite: _Mono/Structures/Machines/diskprinter.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: icon
+    - map: ["computerLayerScreen"]
+      state: unlit
+      shader: unshaded
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: Transform
+    anchored: true
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "1.5,1.5,-1.5,0.25"
+        density: 1500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "1.5,0.25,0.6,-1.5"
+        density: 1500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+      fix3:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,0.25,-0.6,-1.5"
+        density: 1500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: PointLight
+    radius: 0.8
+    energy: 0.5
+    color: "#00AACC"
+
+- type: entity
+  name: tech disk printer spawnable disks
+  id: SpawnLootTechDiskPrinter
+  parent: MarkerBasePlaceFree
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: ConditionalSpawner
+    prototypes:
+    - SpawnLootTechDisksPrinterT1
+    - SpawnLootTechDisksPrinterT2
+
+- type: entity
+  name: tech disk printer disks
+  id: SpawnLootTechDisksPrinterT1
+  parent: MarkerBasePlaceFree
+  suffix: "Tech Disk Printer T1"
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  # VRS: Mono TechDisk* entries deferred — stubbed to a generic ResearchDisk.
+  - type: RandomSpawner
+    prototypes:
+    - ResearchDisk
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - SpawnLootTechDisksPrinterT2
+    rareChance: 0.15
+
+- type: entity
+  name: tech disk printer disks
+  id: SpawnLootTechDisksPrinterT2
+  parent: MarkerBasePlaceFree
+  suffix: "Tech Disk Printer T2"
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - ResearchDisk
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - SpawnLootTechDisksPrinterT3
+    rareChance: 0.15
+
+- type: entity
+  name: tech disk printer disks
+  id: SpawnLootTechDisksPrinterT3
+  parent: MarkerBasePlaceFree
+  suffix: "Tech Disk Printer T3"
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - ResearchDisk
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - SpawnLootTechDisksPrinterT4
+    rareChance: 0.15
+
+- type: entity
+  name: tech disk printer disks
+  id: SpawnLootTechDisksPrinterT4
+  parent: MarkerBasePlaceFree
+  suffix: "Tech Disk Printer T4"
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - ResearchDisk
+    chance: 0.95
+    offset: 0.0

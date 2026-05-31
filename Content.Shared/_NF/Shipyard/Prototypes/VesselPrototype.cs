@@ -151,4 +151,5 @@ public enum VesselEngine : byte
     Plasma,
     Uranium,
     Bananium,
+    Nuclear, // Hardlight: Turbine go spin :3
 }

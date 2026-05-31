@@ -1,4 +1,5 @@
-﻿using Robust.Shared.Prototypes;
+﻿using System.Numerics;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Research.Prototypes;
@@ -25,6 +26,13 @@ public sealed partial class TechnologyPrototype : IPrototype
     /// </summary>
     [DataField(required: true)]
     public SpriteSpecifier Icon = default!;
+
+    /// <summary>
+    /// Goobstation R&amp;D console rework: an entity prototype whose sprite may be used as the technology icon.
+    /// Optional; falls back to <see cref="Icon"/> when not provided.
+    /// </summary>
+    [DataField]
+    public EntProtoId? EntityIcon = null;
 
     /// <summary>
     /// What research discipline this technology belongs to.
@@ -69,6 +77,68 @@ public sealed partial class TechnologyPrototype : IPrototype
     /// </summary>
     [DataField]
     public IReadOnlyList<GenericUnlock> GenericUnlocks = new List<GenericUnlock>();
+
+    // Goobstation R&D console rework (ported via Triad #1903) ----------------
+
+    /// <summary>
+    /// Goobstation R&amp;D console rework: position of this tech in the Fancy console menu.
+    /// Defaults to <c>(0, 0)</c> for techs that have not been laid out; such techs will overlap at the origin.
+    /// </summary>
+    [DataField]
+    public Vector2i Position { get; private set; }
+
+    /// <summary>
+    /// Defines the visual style of prerequisite connection lines leading TO this technology.
+    /// This controls how the lines from prerequisite techs to this tech are drawn.
+    /// </summary>
+    [DataField]
+    public PrerequisiteLineType PrerequisiteLineType { get; private set; } = PrerequisiteLineType.LShape;
+
+    /// <summary>
+    /// Additional disciplines this technology belongs to.
+    /// When specified, the technology will show a split color display.
+    /// Limited to one additional discipline (total of 2 disciplines).
+    /// </summary>
+    [DataField]
+    public ProtoId<TechDisciplinePrototype>? SecondaryDiscipline = null;
+
+    /// <summary>
+    /// Get all disciplines this technology belongs to.
+    /// Returns primary discipline and secondary discipline if present.
+    /// </summary>
+    public List<ProtoId<TechDisciplinePrototype>> GetAllDisciplines()
+    {
+        var disciplines = new List<ProtoId<TechDisciplinePrototype>> { Discipline };
+        if (SecondaryDiscipline.HasValue)
+            disciplines.Add(SecondaryDiscipline.Value);
+        return disciplines;
+    }
+
+    /// <summary>
+    /// Check if this technology belongs to a specific discipline.
+    /// </summary>
+    public bool HasDiscipline(ProtoId<TechDisciplinePrototype> disciplineId)
+    {
+        return Discipline == disciplineId || (SecondaryDiscipline.HasValue && SecondaryDiscipline.Value == disciplineId);
+    }
+}
+
+/// <summary>
+/// Goobstation R&amp;D console rework: defines the visual style of prerequisite connection lines.
+/// </summary>
+public enum PrerequisiteLineType : byte
+{
+    /// <summary>Clean L-shaped connections (default).</summary>
+    LShape = 0,
+
+    /// <summary>Direct diagonal lines.</summary>
+    Diagonal = 1,
+
+    /// <summary>Tree-like branching connections with structured hierarchy.</summary>
+    Tree = 2,
+
+    /// <summary>Spread connections that fan out to multiple prerequisites.</summary>
+    Spread = 3,
 }
 
 [DataDefinition]

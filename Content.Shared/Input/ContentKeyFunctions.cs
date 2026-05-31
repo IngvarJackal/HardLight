@@ -33,11 +33,13 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction OpenCharacterMenu = "OpenCharacterMenu";
         public static readonly BoundKeyFunction OpenEmotesMenu = "OpenEmotesMenu";
         public static readonly BoundKeyFunction OpenCraftingMenu = "OpenCraftingMenu";
+        public static readonly BoundKeyFunction OpenLanguageMenu = "OpenLanguageMenu"; // Starlight
         public static readonly BoundKeyFunction OpenGuidebook = "OpenGuidebook";
         public static readonly BoundKeyFunction OpenInventoryMenu = "OpenInventoryMenu";
         public static readonly BoundKeyFunction SmartEquipBackpack = "SmartEquipBackpack";
         public static readonly BoundKeyFunction SmartEquipBelt = "SmartEquipBelt";
         public static readonly BoundKeyFunction SmartEquipWallet = "SmartEquipWallet"; // Frontier
+        public static readonly BoundKeyFunction SmartEquipSuitStorage = "SmartEquipSuitStorage"; // Hardlight
         public static readonly BoundKeyFunction OpenBackpack = "OpenBackpack";
         public static readonly BoundKeyFunction OpenBelt = "OpenBelt";
         public static readonly BoundKeyFunction OpenWallet = "OpenWallet"; // Frontier

@@ -245,6 +245,11 @@
   id: APECircuitboard
   result: APECircuitboard
 
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: AiCoreElectronics
+  result: AiCoreElectronics
+
 ## Service
 
 - type: latheRecipe
@@ -507,3 +512,9 @@
   parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
   id: HolopadMachineCircuitboard
   result: HolopadMachineCircuitboard
+
+# Mono - #3899 organ harvesting
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: OrganHarvesterMachineCircuitboard
+  result: OrganHarvesterMachineCircuitboard

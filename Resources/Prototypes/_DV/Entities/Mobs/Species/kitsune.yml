@@ -4,6 +4,18 @@
   name: Urist McKitsune
   abstract: true
   components:
+  # HardLight start
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - SolCommon
+    - Fox
+    understands:
+    - GalacticCommon
+    - SolCommon
+    - Fox
+    - Dog # "vaguely canidae"
+  # HardLight end
   - type: Physics
   - type: Fixtures
     fixtures:

@@ -17,5 +17,6 @@
     LightImplanter: 10 # Frontier
     BoxFolderMedicalDoctor: 4294967295 # Frontier - infinite
     MedTekCartridge: 3 # Frontier
+    PillCanisterPainkillers: 5 # Hardlight
   # contrabandInventory: # Frontier
   #   FoodApple: 1 # Frontier

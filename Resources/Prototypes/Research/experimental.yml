@@ -1,5 +1,13 @@
-# Tier 1
-
+- type: technology
+  id: BasicParts
+  name: research-technology-basic-parts
+  icon:
+    sprite: Objects/Misc/stock_parts.rsi
+    state: capacitor
+  discipline: Experimental
+  tier: 1
+  position: 0, 0
+  cost: 5000
 - type: technology
   id: BasicRobotics
   name: research-technology-basic-robotics
@@ -8,10 +16,10 @@
     state: fab-idle
   discipline: Experimental
   tier: 1
+  position: -3, -1
   cost: 5000
   recipeUnlocks:
   - ProximitySensor
-
 - type: technology
   id: BasicAnomalousResearch
   name: research-technology-basic-anomalous-research
@@ -20,6 +28,7 @@
     state: icon
   discipline: Experimental
   tier: 1
+  position: 0, -6
   cost: 5000
   recipeUnlocks:
   - AnomalyScanner
@@ -28,7 +37,6 @@
   - BorgModuleAnomaly
   - APECircuitboard
   - AnomalyVesselCircuitboard
-
 - type: technology
   id: BasicXenoArcheology
   name: research-technology-basic-xenoarcheology
@@ -37,40 +45,45 @@
     state: display
   discipline: Experimental
   tier: 1
+  position: -1, -6
   cost: 5000
   recipeUnlocks:
   - NodeScanner
   - BorgModuleArtifact
   - AnalysisComputerCircuitboard
   - ArtifactAnalyzerMachineCircuitboard
-  - ResearchComputerCircuitboard # Frontier: add research computer
-
+  - ResearchComputerCircuitboard
 - type: technology
   id: AlternativeResearch
+  technologyPrerequisites:
+  - BasicParts
   name: research-technology-alternative-research
   icon:
     sprite: Structures/Machines/tech_disk_printer.rsi
     state: display
   discipline: Experimental
   tier: 1
+  position: 1, -6
   cost: 5000
   recipeUnlocks:
   - TechDiskComputerCircuitboard
   - DocumentCaseShortMagnet
-
 - type: technology
   id: MagnetsTech
+  technologyPrerequisites:
+  - BasicParts
   name: research-technology-magnets-tech
   icon:
     sprite: Clothing/Shoes/Boots/magboots-science.rsi
     state: icon
   discipline: Experimental
   tier: 1
-  cost: 7500
+  position: -2, -1
+  cost: 10000
+
   recipeUnlocks:
   - ClothingShoesBootsMagSci
-  - NFClothingShoesBootsMoon # Frontier ClothingShoesBootsMoon<NFClothingShoesBootsMoon
-
+  - NFClothingShoesBootsMoon
 - type: technology
   id: AnomalyCoreHarnessing
   name: research-technology-anomaly-harnessing
@@ -79,26 +92,27 @@
     state: icon
   discipline: Experimental
   tier: 1
+  position: -1, -7
   cost: 10000
   recipeUnlocks:
   - WeaponGauntletGorilla
-
-# Tier 2
-
 - type: technology
   id: AdvancedParts
+  technologyPrerequisites:
+  - BasicParts
   name: research-technology-advanced-parts
   icon:
-    sprite: _NF/Objects/Misc/stock_parts.rsi # Frontier
+    sprite: _NF/Objects/Misc/stock_parts.rsi
     state: advanced_matter_bin
   discipline: Experimental
   tier: 2
-  cost: 10000
+  position: 0, 9
+  cost: 20000
+
   recipeUnlocks:
   - AdvancedCapacitorStockPart
   - AdvancedMatterBinStockPart
   - NanoManipulatorStockPart
-
 - type: technology
   id: AbnormalArtifactManipulation
   name: research-technology-abnormal-artifact-manipulation
@@ -107,10 +121,10 @@
     state: icon
   discipline: Experimental
   tier: 2
+  position: -3, 9
   cost: 5000
   recipeUnlocks:
   - ArtifactCrusherMachineCircuitboard
-
 - type: technology
   id: AdvancedAnomalyResearch
   name: research-technology-advanced-anomaly-research
@@ -119,58 +133,28 @@
     state: base
   discipline: Experimental
   tier: 2
+  position: -2, 9
   cost: 10000
   recipeUnlocks:
-  - NFWeaponPistolCHIMP # Frontier: add NF prefix
-  - AnomalySynchronizerCircuitboard # Frontier: doesn't make sense for Frontier
+  - AnomalySynchronizerCircuitboard
   - AnomalyVesselExperimentalCircuitboard
   technologyPrerequisites:
   - BasicAnomalousResearch
-
 - type: technology
   id: DeterrenceTechnologies
+  technologyPrerequisites:
+  - BasicParts
   name: research-technology-deterrence
   icon:
-    sprite: Objects/Devices/Holoprojectors/field.rsi # Frontier particle_decelerator.rsi<field.rsi
-    state: icon # Frontier base<icon
+    sprite: Objects/Devices/Holoprojectors/field.rsi
+    state: icon
   discipline: Experimental
   tier: 2
-  cost: 7500
+  position: 2, -1
+  cost: 10000
+
   recipeUnlocks:
-  # - WeaponParticleDecelerator # Frontier - Cancer gun that skip walls
   - HoloprojectorField
-
-# Frontier
-# - type: technology
-#   id: GravityManipulation
-#   name: research-technology-gravity-manipulation
-#   icon:
-#     sprite: Objects/Weapons/Guns/Launchers/tether_gun.rsi
-#     state: base
-#   discipline: Experimental
-#   tier: 2
-#   cost: 10000
-#   recipeUnlocks:
-#     - WeaponForceGun
-#     - WeaponTetherGun
-# End Frontier
-
-# Tier 3
-
-# Frontier
-# - type: technology
-#   id: QuantumLeaping
-#   name: research-technology-quantum-leaping
-#   icon:
-#     sprite: Objects/Devices/swapper.rsi
-#     state: icon
-#   discipline: Experimental
-#   tier: 3
-#   cost: 10000
-#   recipeUnlocks:
-#   - DeviceQuantumSpinInverter
-# End Frontier
-
 - type: technology
   id: BluespaceTimeManipulation
   name: research-technology-bluespace-time-manipulation
@@ -179,6 +163,22 @@
     state: icon
   discipline: Experimental
   tier: 3
+  position: -4, 19
   cost: 10000
   recipeUnlocks:
   - DeviceDesynchronizer
+- type: technology
+  id: AiTechnology
+  name: research-technology-ai
+  icon:
+    sprite: Objects/Specific/Research/anomalyscanner.rsi
+    state: icon
+  entityIcon: PlayerStationAiEmpty
+  discipline: Experimental
+  tier: 2
+  cost: 20000
+  recipeUnlocks:
+  - AiCoreElectronics
+  technologyPrerequisites:
+  - SuperParts
+  position: -4, 18

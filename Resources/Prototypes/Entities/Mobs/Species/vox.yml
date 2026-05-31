@@ -3,6 +3,15 @@
   id: BaseMobVox
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - VoxPidgin
+    understands:
+    - GalacticCommon
+    - VoxPidgin
+  # Starlight-end
   - type: Hunger
   - type: Thirst
   - type: Icon
@@ -65,6 +74,7 @@
       types:
         Heat: -0.07
         Poison: -0.2 # needs to be less than the PendingZombieComponent does or they never become zombies by the disease.
+        Radiation: -0.07 #Vox Froguli - allow vox to slowly heal rad damage
       groups:
         Brute: -0.07
   - type: DamageVisuals
@@ -84,6 +94,18 @@
     damage:
       types:
         Slash: 5 # Reduce?
+  #Vox Froguli - Requested changes
+  #VoxTalons - requested that vox have magboots effect to reflect their claws gripping surfaces. Requires them to have their grippers out, or be wearing only cloth wraps (or variants)
+  #Lizard-style pulling with tail. Vox are said to have prehensile tails. What it do?
+  #Uncloneable. Lore shit:tm: TODO: Make unborgable. Component doesn't like working when tied directly to the species
+  #Movement Speed - lets them move 10% faster in low-gravity
+  - type: VoxTalons
+  - type: Puller
+    needsHands: false
+  - type: Uncloneable
+  - type: MovementSpeedModifier
+    weightlessAcceleration: 1.1
+  #Vox Froguli - end
   - type: Sprite # Need to redefine the whole order to draw the tail over their gas tank
     layers:
     - map: [ "enum.HumanoidVisualLayers.TailBehind" ]

@@ -1,0 +1,15 @@
+# Mono port: alien-styled air alarm used by hostile shuttle event POIs.
+- type: entity
+  id: AirAlarmXeno
+  parent: AirAlarm
+  name: air alarm
+  description: An alien air alarm. Hopefully they didn't breathe poison.
+  components:
+  - type: Sprite
+    sprite: Structures/Wallmounts/air_monitors_xeno.rsi
+    layers:
+    - state: alarm0
+      map: ["airAlarmBase"]
+    - state: alarmx
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Construction

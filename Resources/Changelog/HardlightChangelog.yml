@@ -4080,3 +4080,369 @@ Entries:
         the target is located on an expedition map.
   id: 439
   time: '2026-05-18T18:41:50.0000000+00:00'
+- author: NotLivyathan
+  changes:
+    - type: Remove
+      message: >-
+        Freelancers can no longer be targeted for Syndicate Agent/Sleeper Agent
+        objectives.
+    - type: Remove
+      message: Freelancers can no longer be targeted for antagonist roles.
+  id: 440
+  time: '2026-05-18T18:48:07.0000000+00:00'
+- author: IngvarJackal
+  changes:
+    - type: Add
+      message: Advanced tape with 60 minutes of recording
+    - type: Tweak
+      message: >-
+        Tape recorder has limit on words and notifies when recording time/limit
+        is reached
+  id: 441
+  time: '2026-05-18T22:04:37.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Fix
+      message: Damaged RTGs no longer duplicate with the SRD
+  id: 442
+  time: '2026-05-18T22:05:52.0000000+00:00'
+- author: IngvarJackal
+  changes:
+    - type: Tweak
+      message: Nullspace dephasing is now safer
+  id: 443
+  time: '2026-05-20T08:34:34.0000000+00:00'
+- author: Illumos
+  changes:
+    - type: Add
+      message: Removed colour limits across all species.
+  id: 444
+  time: '2026-05-20T08:35:02.0000000+00:00'
+- author: NotLivyathan
+  changes:
+    - type: Add
+      message: Select species now have the ability to speak in their native tongue.
+  id: 445
+  time: '2026-05-20T08:35:53.0000000+00:00'
+- author: stickycheZ101
+  changes:
+    - type: Add
+      message: >-
+        added the nullspace detector, that detects nullspace users within a
+        short radius
+    - type: Add
+      message: >-
+        added the handheld bluespace flash, that stuns any nearby nullspace
+        users
+    - type: Add
+      message: >-
+        added the nullspace deterrence kit to the cargo market, that contains
+        basic nullspace detection and deterrence gear
+  id: 446
+  time: '2026-05-20T08:37:06.0000000+00:00'
+- author: Illumos
+  changes:
+    - type: Fix
+      message: Pettable trait is now a 100% chance to be pet :3
+  id: 447
+  time: '2026-05-20T18:51:48.0000000+00:00'
+- author: Fasuh
+  changes:
+    - type: Fix
+      message: Fixed Protogens not working at all.
+    - type: Fix
+      message: Fixed Cryogenics not working for Protogens
+  id: 448
+  time: '2026-05-21T08:15:47.0000000+00:00'
+- author: Illumos
+  changes:
+    - type: Add
+      message: Ported the Jabber from Coyote.
+  id: 449
+  time: '2026-05-21T10:40:00.0000000+00:00'
+- author: Illumos
+  changes:
+    - type: Add
+      message: Synthetic trait now gives you EAL
+  id: 450
+  time: '2026-05-21T10:40:37.0000000+00:00'
+- author: TrylobyteWasTaken
+  changes:
+    - type: Fix
+      message: (Admin) The h-series of scale commands now work as intended.
+  id: 451
+  time: '2026-05-21T10:42:30.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Fix
+      message: Fixed M90 GL not having a wielded sprite
+  id: 452
+  time: '2026-05-21T11:04:07.0000000+00:00'
+- author: SquishyEmmaaaa
+  changes:
+    - type: Add
+      message: >-
+        Tweaked the credits on security sprites making the color changing PR
+        findable.
+    - type: Fix
+      message: Fixed the definitely green colonial command cloak to reflect such.
+    - type: Fix
+      message: The HoS cloak definitely wasn't red.
+  id: 453
+  time: '2026-05-21T11:06:42.0000000+00:00'
+- author: fenndragon
+  changes:
+    - type: Add
+      message: Added RMC guns and armor
+    - type: Add
+      message: Added Bezoars to high tier Xenos
+    - type: Add
+      message: 'Added damage modifier system '
+  id: 454
+  time: '2026-05-21T19:32:39.0000000+00:00'
+- author: Illumos
+  changes:
+    - type: Add
+      message: Three new katanas! Buy 'em at a MercVend.
+    - type: Add
+      message: Wakizashi from Delta-V.
+    - type: Add
+      message: Melee category to MercVend.
+    - type: Add
+      message: Katana sheaths to MercVend.
+  id: 455
+  time: '2026-05-21T19:52:25.0000000+00:00'
+- author: SquishyEmmaaaa
+  changes:
+    - type: Add
+      message: New Colonial Officer's Sabre
+    - type: Add
+      message: New Ornate Sheath, with sprites!
+    - type: Tweak
+      message: Changed some CentCom contra tags to ColonialCommand ones.
+    - type: Tweak
+      message: Moves the medipen tag to the correct file location
+  id: 456
+  time: '2026-05-24T00:02:17.0000000+00:00'
+- author: NotLivyathan
+  changes:
+    - type: Remove
+      message: Livyathan was ejected. Livyathan was not The Imposter.
+  id: 457
+  time: '2026-05-24T00:03:33.0000000+00:00'
+- author: Typheus
+  changes: []
+  id: 458
+  time: '2026-05-24T00:03:59.0000000+00:00'
+- author: SquishyEmmaaaa
+  changes:
+    - type: Remove
+      message: MRE crates are no longer purchasable from cargo.
+    - type: Tweak
+      message: MRE crates are now findable on expeditions.
+  id: 459
+  time: '2026-05-24T00:08:27.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Tweak
+      message: Snake eaten
+  id: 460
+  time: '2026-05-24T00:09:44.0000000+00:00'
+- author: IngvarJackal
+  changes:
+    - type: Add
+      message: Add suitstorage shortcut
+  id: 461
+  time: '2026-05-24T00:12:43.0000000+00:00'
+- author: Illumos
+  changes:
+    - type: Add
+      message: Plumbing.
+  id: 462
+  time: '2026-05-27T02:45:55.0000000+00:00'
+- author: fenndragon
+  changes:
+    - type: Add
+      message: Added unified faction comms
+  id: 463
+  time: '2026-05-27T02:51:45.0000000+00:00'
+- author: fenndragon
+  changes:
+    - type: Add
+      message: >-
+        Added Landgrab planet-claiming/outpost systems, including PDA UI,
+        save/loadable player plots, coordinate-disk engraving, plot overlays,
+        persistent planet spawning, dungeon registry markers, and contract event
+        support. (stated to be WIP/unfinished)
+    - type: Add
+      message: >-
+        Added major shuttle/nav UI upgrades, including azimuth scales/rings,
+        compass overlay, radar mode controls, map biome overlays, landgrab
+        plot/disk markers, dungeon markers, and improved nav/radar layout
+        wrapping.
+    - type: Add
+      message: >-
+        Added Fancy Research Console UI rework with new tech tree visuals, info
+        panels, rounded style boxes, connection rendering, entity-based tech
+        icons, and research availability state tracking.
+    - type: Add
+      message: >-
+        Added new SCP/visual overlay systems such as bloom, grain, retro
+        monitor, and vignette effects, plus CRT shader viewport support.
+    - type: Add
+      message: >-
+        Added new gameplay systems/components including grid claiming, grid
+        raider protections, chain-radiation, scuttle device, shuttle boosting
+        pilot modifiers, item miners, EMP resistance, armor piercing, drifting
+        cargo prices, hitscan gatherables, contract/saving contraband support,
+        and multiple persistent-planet helpers.
+    - type: Add
+      message: >-
+        Added new regression/integration coverage with Pow3r power solver
+        stability tests and vending inventory inheritance resolver tests.
+    - type: Remove
+      message: >-
+        Removed old ChemMaster/ReagentDispenser transfer button amounts of
+        25/50/100 and replaced them with a new set.
+    - type: Remove
+      message: >-
+        Removed `RotateWithEntity` from shared shuttle/nav state flow and
+        related client/server usage.
+    - type: Remove
+      message: >-
+        Removed the standalone artifact crusher locale string in favor of shared
+        activation text.
+    - type: Remove
+      message: Deleted stale backup/new duplicate shipyard grid save source files.
+    - type: Tweak
+      message: >-
+        Reworked chemistry dispenser/ChemMaster amount presets to
+        1/5/10/15/20/30/40/60/120.
+    - type: Tweak
+      message: >-
+        Improved multiple UI text/display cases, including localized job loadout
+        titles, shuttle orientation display, and research visuals.
+    - type: Tweak
+      message: >-
+        Expanded vending inventory prototype support with inheritance and
+        unlimited inherited stock behavior.
+    - type: Tweak
+      message: >-
+        Adjusted shuttle movement handling to support pilot-based
+        acceleration/angular multipliers.
+    - type: Tweak
+      message: Added board/frame size matching for machine frames and boards.
+    - type: Tweak
+      message: Updated README attribution tables for additional borrowed code origins.
+    - type: Fix
+      message: >-
+        Fixed first-open shuttle map population/scan issues and several
+        radar/nav coordinate, panning, anchoring, and rotation bugs.
+    - type: Fix
+      message: >-
+        Fixed surveillance camera CRT shader hookup and scaling viewport shader
+        application.
+    - type: Fix
+      message: >-
+        Fixed watchlist async exception handling, playtime save task exception
+        handling, round persistence logging, salvage mission task flow, and
+        several `async void`/exception swallowing issues.
+    - type: Fix
+      message: >-
+        Fixed flammable/fire event iteration allocation behavior, cached
+        multiple hot entity queries, and reduced several repeated per-tick
+        allocations/perf pitfalls across instruments, suit sensors, pathfinding,
+        worldgen, NPC steering, and other systems.
+    - type: Fix
+      message: >-
+        Fixed ship save authorization by requiring deed possession or admin
+        rights before saving.
+    - type: Fix
+      message: >-
+        Fixed ship save edge cases by backing up saves server-side, ejecting
+        minded players before save deletion, removing save-contraband entities,
+        sanitizing more problematic components, and deleting owning stations to
+        avoid late-join black screens.
+    - type: Fix
+      message: >-
+        Fixed docking validation to properly consider both shuttles and allow
+        gas dock exceptions.
+    - type: Fix
+      message: >-
+        Fixed FTL restrictions by preventing landings too close to
+        dungeon/contract hotspots and correcting no-landing-radius checks.
+    - type: Fix
+      message: >-
+        Fixed silicon law copying to preserve live modified laws instead of
+        resetting to prototype defaults.
+    - type: Fix
+      message: >-
+        Fixed mind/job transfer edge cases for AI/borg shunting and station pay
+        scheduling across body transfers.
+    - type: Fix
+      message: >-
+        Fixed gun/device-link firing direction, hitscan damage event
+        propagation, projectile damage modifiers, and mounted gun shot origin
+        behavior.
+    - type: Fix
+      message: >-
+        Fixed NPC ranged LOS/targeting to account for destructible shoot-through
+        logic and obstacle handling.
+    - type: Fix
+      message: >-
+        Fixed cleanup/protection issues for biome planets, player-owned ships,
+        claimed grids, POI infrastructure, and trash/orphan grid cleanup
+        behavior.
+    - type: Fix
+      message: >-
+        Fixed round-end auto-call override support, magboots/jetpack
+        interaction, EMP scaling resistance, random teleport overload support,
+        and various construction/wiring/deconstruction protection checks.
+  id: 464
+  time: '2026-05-28T01:38:54.0000000+00:00'
+- author: SeaborneProto
+  changes:
+    - type: Add
+      message: Added Korpus Novy Mir company!
+  id: 465
+  time: '2026-05-28T21:55:17.0000000+00:00'
+- author: Sully669
+  changes:
+    - type: Fix
+      message: Blueprint litograph/material silo taking paper
+    - type: Add
+      message: Document paper can fill printers
+  id: 466
+  time: '2026-05-28T21:55:35.0000000+00:00'
+- author: Fasuh
+  changes:
+    - type: Fix
+      message: Fixed Anaconda gun needing ammo and not self recharging.
+  id: 467
+  time: '2026-05-29T03:05:57.0000000+00:00'
+- author: Illumos
+  changes:
+    - type: Tweak
+      message: Skates are now 40% faster!
+  id: 468
+  time: '2026-05-29T03:09:30.0000000+00:00'
+- author: Illumos
+  changes:
+    - type: Add
+      message: Painkillers!
+  id: 469
+  time: '2026-05-29T18:53:06.0000000+00:00'
+- author: Typheus
+  changes:
+    - type: Tweak
+      message: Rain lizard code optimized and trimmed.
+  id: 470
+  time: '2026-05-29T18:53:26.0000000+00:00'
+- author: fenndragon
+  changes:
+    - type: Fix
+      message: >-
+        Fixed issues that were preventing round from continuing, research
+        issues, and station pay
+  id: 471
+  time: '2026-05-29T19:08:08.0000000+00:00'

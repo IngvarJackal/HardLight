@@ -5,11 +5,20 @@
   id: BaseMobVulpkanin
   name: Urist McBark
   components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Canilunzt
+    understands:
+    - GalacticCommon
+    - Canilunzt
+    - Fox # "vaguely canidae"
+    - Dog # "vaguely canidae"
   - type: Hunger
   - type: Thirst
   # HardLight start: Removed for now, will re-add later.
-  #- type: MessyDrinker
-  #  spillChance: 0.05 # 🌟Starlight🌟 26% chance to spill per 30u of liquid
+  # - type: MessyDrinker
+  #   spillChance: 0.05 # 🌟Starlight🌟 26% chance to spill per 30u of liquid
   # HardLight end
   - type: Icon
     sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi # Starlight

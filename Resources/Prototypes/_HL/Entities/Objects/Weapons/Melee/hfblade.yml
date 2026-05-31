@@ -1,0 +1,72 @@
+- type: entity
+  name: α-type high-frequency blade
+  parent: Katana
+  id: WeaponHFKatana
+  description: Hey, wait a minute. This isn't my sword.
+  components:
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Melee/hfblade.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    resistanceBypass: true
+    damage:
+      types:
+        Slash: 16
+        Structural: 25
+  - type: Item
+    sprite: _Mono/Objects/Weapons/Melee/hfblade.rsi
+  - type: Clothing
+    sprite: _Mono/Objects/Weapons/Melee/hfblade.rsi
+    slots:
+    - Back
+    - Belt
+    - suitStorage
+  - type: DisarmMalus
+    malus: 0.5
+  - type: StaticPrice
+    price: 5000
+  - type: Reflect
+    reflectProb: 0.5
+    reflects:
+    - NonEnergy
+
+- type: entity
+  name: β-type high-frequency blade
+  parent: WeaponHFKatana
+  description: A high-temperature of the α-type high-frequency blade. Don't touch it barehanded.
+  id: WeaponHFKatanaBeta
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    resistanceBypass: true
+    damage:
+      types:
+        Heat: 20
+        Structural: 25
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Melee/murasama.rsi
+  - type: Item
+    sprite: _Mono/Objects/Weapons/Melee/murasama.rsi
+  - type: Clothing
+    sprite: _Mono/Objects/Weapons/Melee/murasama.rsi
+
+- type: entity
+  name: γ-type high-frequency blade
+  parent: WeaponHFKatana
+  id: WeaponHFKatanaGamma
+  description: An experimental version of the α-type high-frequency blade. Mildly radioactive.
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    resistanceBypass: true
+    damage:
+      types:
+        Radiation: 16
+        Structural: 25
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Melee/phaseblade.rsi
+    state: e_sword
+  - type: Item
+    sprite: _Mono/Objects/Weapons/Melee/phaseblade.rsi
+  - type: Clothing
+    sprite: _Mono/Objects/Weapons/Melee/phaseblade.rsi

@@ -84,7 +84,7 @@ public sealed partial class XenoComponent : Component
 
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier TailHitSound = new SoundCollectionSpecifier("XenoTailSwipe");
+    public SoundSpecifier TailHitSound = new SoundCollectionSpecifier("CM14XenoTailSwipe");
 
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]

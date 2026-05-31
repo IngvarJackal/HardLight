@@ -1,0 +1,26 @@
+- type: entity
+  parent: [RMCMarineUniformBase, RMCAlternateFoldableUniformBase]
+  id: AU14DesertFatigues
+  name: USCM Desert fatigues
+  description: Standard-issue USCM fatigues. They have shards of light Kevlar to help protect against stabbing weapons and bullets.
+  components:
+  - type: Sprite
+    sprite: _AU14/Clothing/desertfatigues.rsi
+
+- type: entity
+  parent: [RMCMarineUniformBase, RMCAlternateFoldableUniformBase]
+  id: AU14JungleFatigues
+  name: USCM Jungle fatigues
+  description: Standard-issue USCM fatigues. They have shards of light Kevlar to help protect against stabbing weapons and bullets.
+  components:
+  - type: Sprite
+    sprite: _AU14/Clothing/junglefatigues.rsi
+
+- type: entity
+  parent: [RMCMarineUniformBase, RMCAlternateFoldableUniformBase]
+  id: AU14TacticalFlightSuit
+  name: Aircrew Flightsuit
+  description: Standard-issue USCM flightsuit. It has integrated life support mechanisms.
+  components:
+  - type: Sprite
+    sprite: _AU14/Clothing/tacticalflightsuit.rsi

@@ -128,6 +128,9 @@ uplink-security-armingsword-desc = Ancient design meets modern materials.
 uplink-security-captainsword-name = Captain's Sabre
 uplink-security-captainsword-desc = A sword normally reserved for captains, admiralty, and other high command. Has a small chance to reflect incoming projectiles.
 
+uplink-security-ccofficersword-name = Ornate Officer's Sabre
+uplink-security-ccofficersword-desc = A sword normally reserved for Colonial Command officials. It has a small chance to reflect projectiles. 
+
 uplink-security-pulsepistol-name = Pulse Pistol
 uplink-security-pulsepistol-desc = A high powered laser pistol normally reserved for elite ERT units. Has an internal battery, but requires using a security charging dock.
 

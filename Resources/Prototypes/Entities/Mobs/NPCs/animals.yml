@@ -4,6 +4,15 @@
   id: MobBat
   description: Some cultures find them terrifying, others crunchy on the teeth.
   components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Bat
+    understands:
+    - Bat
+    - GalacticCommon
+  # Starlight-end
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 6
@@ -13,7 +22,7 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: bat
       sprite: Mobs/Animals/bat.rsi
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Speech
     speechSounds: Squeak
     speechVerb: SmallMob
@@ -52,8 +61,6 @@
     flavorKind: station-event-random-sentience-flavor-organic
   - type: Bloodstream
     bloodMaxVolume: 50
-  - type: ReplacementAccent
-    accent: mouse
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -182,6 +189,14 @@
   id: MobChicken
   description: Comes before an egg, and IS a dinosaur!
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Chicken
+    understands:
+    - Chicken
+    - GalacticCommon
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -195,7 +210,7 @@
     noMovementLayers:
       movement:
         state: chicken-0
-  - type: Carriable #Delta-V
+  - type: Carriable # DeltaV
     freeHandsRequired: 1
   - type: Fixtures
     fixtures:
@@ -253,8 +268,6 @@
     eggSpawn:
     - id: FoodEggLaid # Frontier: FoodEgg<FoodEggLaid
   - type: ExaminableHunger
-  - type: ReplacementAccent
-    accent: chicken
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
@@ -483,6 +496,15 @@
   id: MobMothroach
   description: This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Mothroach
+    understands:
+    - Moffic
+    - Mothroach
+    - GalacticCommon
+  # Starlight-end
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -573,8 +595,6 @@
       prob: 0.3 # Frontier
   - type: Extractable
     grindableSolutionName: food
-  - type: ReplacementAccent
-    accent: mothroach
   - type: ZombieAccentOverride
     accent: zombieMoth
   - type: Vocal
@@ -662,6 +682,14 @@
   id: MobDuckMallard
   description: An adorable mallard duck, it's fluffy and soft!
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Duck
+    understands:
+    - Duck
+    - GalacticCommon
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -679,7 +707,7 @@
         - MobMask
         layer:
         - MobLayer
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
     freeHandsRequired: 1
   - type: Tag
     tags:
@@ -723,8 +751,6 @@
     eggSpawn:
     - id: FoodEggLaid # Frontier: FoodEgg<FoodEggLaid
   - type: ExaminableHunger
-  - type: ReplacementAccent
-    accent: duck
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
@@ -970,7 +996,7 @@
     noMovementLayers:
       movement:
         state: crab
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
     freeHandsRequired: 1
   - type: Physics
   - type: Fixtures
@@ -1042,7 +1068,7 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: goat
       sprite: Mobs/Animals/goat.rsi
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Fixtures
     fixtures:
       fix1:
@@ -1154,7 +1180,7 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: goose
       sprite: Mobs/Animals/goose.rsi
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Fixtures
     fixtures:
       fix1:
@@ -1203,6 +1229,14 @@
   id: MobGorilla
   description: Smashes, roars, looks cool. Don't stand near one.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1369,6 +1403,14 @@
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+  # Starlight-end
   - type: CombatMode
   - type: SurgeryTarget # Shitmed
   - type: Targeting # Shitmed
@@ -1414,7 +1456,7 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Hands
   - type: ComplexInteraction
   - type: GenericVisualizer
@@ -1494,8 +1536,6 @@
   - type: Genetics # Funkystation - Genetics
     mutationSlots: 4
 
-
-
 - type: entity
   name: monkey
   id: MobMonkey
@@ -1507,7 +1547,6 @@
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
-  - type: MonkeyAccent
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-primate
   - type: AlwaysRevolutionaryConvertible
@@ -1539,6 +1578,15 @@
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   suffix: syndicate base
   components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+  # Starlight-end
   - type: NameIdentifier
     group: Monkey
   - type: SentienceTarget
@@ -1546,7 +1594,6 @@
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
-  - type: MonkeyAccent
   - type: NpcFactionMember
     factions:
     - Syndicate
@@ -1570,6 +1617,15 @@
   parent: MobBaseSyndicateMonkey
   suffix: syndicate agent
   components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+  # Starlight-end
   # make the player a traitor once its taken
   - type: AutoTraitor
     profile: TraitorReinforcement
@@ -1579,6 +1635,15 @@
   parent: MobBaseSyndicateMonkey
   suffix: NukeOps
   components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+  # Starlight-end
   - type: NukeOperative
 
 - type: entity
@@ -1588,11 +1653,19 @@
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    - Draconic
+    understands:
+    - Ancestor
+    - Draconic
+    - GalacticCommon
+  # Starlight-end
   - type: NameIdentifier
     group: Kobold
   - type: LizardAccent
-  - type: ReplacementAccent
-    accent: kobold
   - type: Speech
     speechSounds: Lizard
     speechVerb: Reptilian
@@ -1720,6 +1793,17 @@
   parent: MobBaseKobold
   suffix: syndicate base
   components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    - Draconic
+    understands:
+    - Ancestor
+    - Draconic
+    - GalacticCommon
+  # Starlight-end
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1762,6 +1846,14 @@
   id: MobMouse
   description: Squeak!
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
+    - GalacticCommon
+  # Starlight-end
   - type: Body
     prototype: Mouse
   - type: SurgeryTarget # Shitmed
@@ -1840,7 +1932,7 @@
       10: Critical
       20: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1.9  # DeltaV - Allows them to sneak over traps
+    baseWalkSpeed : 1.9  # DeltaV: Allows them to sneak over traps
     baseSprintSpeed : 5
   - type: DamageStateVisuals
     states:
@@ -1883,8 +1975,6 @@
     spawned:
     - id: FoodMeatRat
       amount: 1
-  - type: ReplacementAccent
-    accent: mouse
   - type: Tag
     tags:
     - Trash
@@ -2073,12 +2163,12 @@
       chance: 0.8
 
 - type: entity
-  name: lizard #Weh
+  name: lizard # Weh
   parent: SimpleMobBase
   id: MobLizard
   description: A harmless dragon.
   components:
-  # Imp: kobold accent, reptilian vocal sounds, and Hiss emote
+  # Imp start: Kobold accent, reptilian vocal sounds, and Hiss emote
   - type: ReplacementAccent
     accent: kobold
   - type: Speech
@@ -2090,7 +2180,7 @@
       Male: MaleReptilian
       Female: FemaleReptilian
       Unsexed: MaleReptilian
-  # End Imp: kobold accent, reptilian vocal sounds, and Hiss emote
+  # Imp end
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3
@@ -2100,7 +2190,7 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: lizard
       sprite: Mobs/Animals/lizard.rsi
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2163,7 +2253,7 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: slug
       sprite: Mobs/Animals/slug.rsi
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
     freeHandsRequired: 1
   - type: Physics
   - type: Fixtures
@@ -2221,7 +2311,7 @@
     noMovementLayers:
       movement:
         state: frog
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2276,7 +2366,7 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: parrot
       sprite: Mobs/Animals/parrot.rsi
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
     freeHandsRequired: 1
   - type: Fixtures
     fixtures:
@@ -2346,7 +2436,7 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: penguin
       sprite: Mobs/Animals/penguin.rsi
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2484,7 +2574,7 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: snake
       sprite: Mobs/Animals/snake.rsi
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2533,7 +2623,15 @@
   id: MobSpiderBase
   abstract: true
   components:
-  - type: Carriable #DeltaV ##shiva deserves to be held
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Chittin
+    understands:
+    - Chittin
+    - GalacticCommon
+  # Starlight-end
+  - type: Carriable # DeltaV: Shiva deserves to be held
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2575,8 +2673,6 @@
   - type: MeleeChemicalInjector
     transferAmount: 0.75
     solution: melee
-  - type: ReplacementAccent
-    accent: xeno
   - type: InteractionPopup
     successChance: 0.5
     interactSuccessString: petting-success-tarantula
@@ -2751,11 +2847,6 @@
   id: MobGiantSpiderWizard
   description: This spider looks a little magical
   suffix: Wizard
-  components:
-  - type: Accentless
-    removes:
-    - type: ReplacementAccent
-      accent: xeno  #let this wizard speak
 
 - type: entity
   name: possum
@@ -2769,7 +2860,7 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: possum
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2845,7 +2936,7 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: raccoon
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2895,6 +2986,15 @@
   id: MobFox
   description: They're a fox.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Fox
+    understands:
+    - Fox
+    - Canilunzt
+    - GalacticCommon
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Animals/fox.rsi
@@ -2908,7 +3008,7 @@
     noMovementLayers:
       movement:
         state: fox
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2976,13 +3076,22 @@
   id: MobCorgi
   description: Finally, a space corgi!
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Dog
+    understands:
+    - Dog
+    - Canilunzt
+    - GalacticCommon
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/corgi.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: corgi
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Physics
   - type: Speech
     speechVerb: Canine
@@ -3013,8 +3122,6 @@
     spawned:
     - id: FoodMeat
       amount: 2
-  - type: ReplacementAccent
-    accent: dog
   - type: InteractionPopup
     interactSuccessString: petting-success-dog
     interactFailureString: petting-failure-generic
@@ -3040,6 +3147,16 @@
   id: MobCorgiNarsi
   description: Ian! No!
   components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Dog
+    understands:
+    - Dog
+    - Canilunzt
+    - GalacticCommon
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/corgi.rsi
@@ -3129,13 +3246,22 @@
   id: MobCat
   description: Feline pet, very funny.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Cat
+    understands:
+    - Cat
+    - Nekomimetic
+    - GalacticCommon
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/cat.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: cat
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -3166,8 +3292,6 @@
     spawned:
     - id: FoodMeat
       amount: 3
-  - type: ReplacementAccent
-    accent: cat
   - type: InteractionPopup
     successChance: 0.7
     interactSuccessString: petting-success-cat
@@ -3195,7 +3319,7 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 4
-  # DeltaV: get cats to fight with mice
+  # DeltaV start: Get cats to fight with mice
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -3204,7 +3328,7 @@
     - Cat
   - type: LeashAnchor # Floofstation
     kind: Intrinsic
-  # End DeltaV
+  # DeltaV end
 
 - type: entity
   name: calico cat
@@ -3231,6 +3355,14 @@
   parent: MobCatSpace
   description: Explosive kitten.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Cat
+    understands:
+    - Cat
+    - GalacticCommon
+  # Starlight-end
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -3350,7 +3482,7 @@
         Base: kitten_dead
       Dead:
         Base: kitten_dead
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
     freeHandsRequired: 1
   - type: Butcherable
     spawned:
@@ -3382,7 +3514,7 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: sloth
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -3440,7 +3572,7 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: ferret
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -3495,6 +3627,14 @@
   id: MobHamster
   description: A cute, fluffy, robust hamster.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
+    - GalacticCommon
+  # Starlight-end
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -3552,7 +3692,7 @@
       40: Critical
       60: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1.9  # DeltaV - Allows them to sneak over traps
+    baseWalkSpeed : 1.9  # DeltaV: Allows them to sneak over traps
     baseSprintSpeed : 4
   - type: Inventory
     speciesId: hamster
@@ -3587,8 +3727,6 @@
     spawned:
     - id: FoodMeat
       amount: 1
-  - type: ReplacementAccent
-    accent: mouse
   - type: Tag
     tags:
     - VimPilot
@@ -3646,13 +3784,21 @@
   id: MobPig
   description: Oink.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Pig
+    understands:
+    - Pig
+    - GalacticCommon
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: pig
       sprite: Mobs/Animals/pig.rsi
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Fixtures
     fixtures:
       fix1:
@@ -3701,8 +3847,6 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/pig_oink.ogg
-  - type: ReplacementAccent
-    accent: pig
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
@@ -3719,13 +3863,21 @@
   id: MobDionaNymph
   description: It's like a cat, only.... branch-ier.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Sylvan
+    understands:
+    - Sylvan
+    - GalacticCommon
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: nymph
       sprite: Mobs/Animals/nymph.rsi
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -3800,8 +3952,14 @@
   id: MobDionaNymphAccent # No talky. For non-brain & wild nymphs
   suffix: Accent
   components:
-  - type: ReplacementAccent
-    accent: nymph
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Sylvan
+    understands:
+    - Sylvan
+    - GalacticCommon
+  # Starlight-end
 
 - type: entity
   name: reindeer buck

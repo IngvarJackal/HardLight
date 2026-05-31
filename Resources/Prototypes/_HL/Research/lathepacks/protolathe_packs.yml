@@ -1,0 +1,12 @@
+# A consolidatd spot for putting science unlocks into the protolathe, I guess
+- type: latheRecipePack
+  id: NFCookingBagPack
+  recipes:
+  - NFCookingBag
+
+- type: latheRecipePack
+  id: HLTacticalBagsPack
+  recipes:
+  - ClothingBackpackTactical #HL
+  - ClothingBackpackExplorer #HL
+  - ClothingRucksack #HL

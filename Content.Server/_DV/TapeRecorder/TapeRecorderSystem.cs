@@ -1,5 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Hands.Systems;
+using Content.Server.Popups;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
 using Content.Shared.Chat;
@@ -8,9 +9,8 @@ using Content.Shared.Speech;
 using Content.Shared._DV.TapeRecorder;
 using Content.Shared._DV.TapeRecorder.Components;
 using Content.Shared._DV.TapeRecorder.Systems;
-using Robust.Server.Audio;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 using System.Text;
 
 namespace Content.Server._DV.TapeRecorder;
@@ -21,6 +21,7 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -28,6 +29,24 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
 
         SubscribeLocalEvent<TapeRecorderComponent, ListenEvent>(OnListen);
         SubscribeLocalEvent<TapeRecorderComponent, PrintTapeRecorderMessage>(OnPrintMessage);
+        SubscribeLocalEvent<TapeRecorderComponent, TapeRecordingStoppedEvent>(OnRecordingStopped);
+    }
+
+    private void OnRecordingStopped(Entity<TapeRecorderComponent> ent, ref TapeRecordingStoppedEvent args)
+    {
+        var current = Transform(ent).ParentUid;
+        while (current.IsValid())
+        {
+            if (TryComp<ActorComponent>(current, out _))
+            {
+                var msg = args.Reason == TapeRecordingStopReason.TapeFull
+                    ? Loc.GetString("tape-recorder-stopped-tape-full")
+                    : Loc.GetString("tape-recorder-stopped-transcript-full");
+                _popup.PopupEntity(msg, ent, current);
+                return;
+            }
+            current = Transform(current).ParentUid;
+        }
     }
 
     /// <summary>

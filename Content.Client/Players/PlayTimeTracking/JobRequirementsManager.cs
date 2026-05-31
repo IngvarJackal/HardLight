@@ -29,6 +29,7 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
     private readonly List<ProtoId<JobPrototype>> _jobBans = new();
     private readonly List<ProtoId<AntagPrototype>> _antagBans = new();
     private readonly List<string> _jobWhitelists = new();
+    private bool _playTimesLoaded;
 
     private ISawmill _sawmill = default!;
 
@@ -53,6 +54,7 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         {
             // Reset on disconnect, just in case.
             _roles.Clear();
+            _playTimesLoaded = false;
             _jobWhitelists.Clear();
             _jobBans.Clear();
             _antagBans.Clear();
@@ -79,6 +81,8 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         {
             _roles[tracker] = time;
         }
+
+        _playTimesLoaded = true;
 
         /*var sawmill = Logger.GetSawmill("play_time");
         foreach (var (tracker, time) in _roles)
@@ -198,9 +202,27 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         }
     }
 
+    public bool TryGetPlayTimes(ICommonSession session, [NotNullWhen(true)] out IReadOnlyDictionary<string, TimeSpan>? playTimes)
+    {
+        playTimes = null;
+
+        if (session != _playerManager.LocalSession || !_playTimesLoaded)
+        {
+            return false;
+        }
+
+        playTimes = _roles;
+        return true;
+    }
+
     public IReadOnlyDictionary<string, TimeSpan> GetPlayTimes(ICommonSession session)
     {
         if (session != _playerManager.LocalSession)
+        {
+            return new Dictionary<string, TimeSpan>();
+        }
+
+        if (!_playTimesLoaded)
         {
             return new Dictionary<string, TimeSpan>();
         }

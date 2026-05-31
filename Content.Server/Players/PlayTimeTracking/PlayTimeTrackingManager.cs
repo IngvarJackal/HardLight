@@ -211,6 +211,17 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
         return GetTrackerTimes(session);
     }
 
+    public bool TryGetPlayTimes(ICommonSession session, [NotNullWhen(true)] out IReadOnlyDictionary<string, TimeSpan>? playTimes)
+    {
+        playTimes = null;
+
+        if (!TryGetTrackerTimes(session, out var times))
+            return false;
+
+        playTimes = times;
+        return true;
+    }
+
     private void SendPlayTimes(ICommonSession pSession)
     {
         var roles = GetTrackerTimes(pSession);
@@ -260,6 +271,10 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
         try
         {
             await task;
+        }
+        catch (Exception e) // VRS: surface playtime save failures instead of letting them become unhandled async-void exceptions.
+        {
+            Logger.GetSawmill("play_time").Error($"Play time save task failed: {e}");
         }
         finally
         {

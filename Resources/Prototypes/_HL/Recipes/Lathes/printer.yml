@@ -1,0 +1,260 @@
+
+# ColSec
+- type: latheRecipe
+  id: PaperWrittenNfsdWarrantRecipe
+  result: PaperWrittenNfsdWarrant
+  categories:
+  - ColSec
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenNfsdWarrantShipRecipe
+  result: PaperWrittenNfsdWarrantShip
+  categories:
+  - ColSec
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenNfsdWarrantDepartmentRecipe
+  result: PaperWrittenNfsdWarrantDepartment
+  categories:
+  - ColSec
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenNfsdReportRecipe
+  result: PaperWrittenNfsdReport
+  categories:
+  - ColSec
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenNfsdArrestWarrantRecipe
+  result: PaperWrittenNfsdArrestWarrant
+  categories:
+  - ColSec
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenNfsdArrestReportRecipe
+  result: PaperWrittenNfsdArrestReport
+  categories:
+  - ColSec
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenNfsdDutyLogRecipe
+  result: PaperWrittenNfsdDutyLog
+  categories:
+  - ColSec
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenNfsdAuthorizationRecipe
+  result: PaperWrittenNfsdAuthorization
+  categories:
+  - ColSec
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenNfsdContrabandAmnestyRecipe
+  result: PaperWrittenNfsdContrabandAmnesty
+  categories:
+  - ColSec
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenNfsdContrabandTurnoverRecipe
+  result: PaperWrittenNfsdContrabandTurnover
+  categories:
+  - ColSec
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenNfsdContrabandPermitRecipe
+  result: PaperWrittenNfsdContrabandPermit
+  categories:
+  - ColSec
+  - Misc
+  completetime: 2
+  materials:
+    Paper: 100
+
+# Medical
+- type: latheRecipe
+  id: PaperWrittenMedicalFormPatientInfoRecipe
+  result: PaperWrittenMedicalFormPatientInfo
+  categories:
+  - Medical
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenMedicalFormPrescriptionRecipe
+  result: PaperWrittenMedicalFormPrescription
+  categories:
+  - Medical
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenMedicalFormHealthInsuranceRecipe
+  result: PaperWrittenMedicalFormHealthInsurance
+  categories:
+  - Medical
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenMedicalFormServiceInvoiceRecipe
+  result: PaperWrittenMedicalFormServiceInvoice
+  categories:
+  - Medical
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenMedicalFormReceiptInvoiceRecipe
+  result: PaperWrittenMedicalFormReceiptInvoice
+  categories:
+  - Medical
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenMedicalFormReleaseRecipe
+  result: PaperWrittenMedicalFormRelease
+  categories:
+  - Medical
+  completetime: 2
+  materials:
+    Paper: 100
+
+# Harbor Master / STC
+
+- type: latheRecipe
+  id: PaperWrittenStcFormCitationParkingRecipe
+  result: PaperWrittenStcFormCitationParking
+  categories:
+  - HarborMaster
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenStcFormCitationTrafficRecipe
+  result: PaperWrittenStcFormCitationTraffic
+  categories:
+  - HarborMaster
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenStcFormProsecutionRequestRecipe
+  result: PaperWrittenStcFormProsecutionRequest
+  categories:
+  - HarborMaster
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenStcFormTrafficLogRecipe
+  result: PaperWrittenStcFormTrafficLog
+  categories:
+  - HarborMaster
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenStcFormWellnessCheckRecipe
+  result: PaperWrittenStcFormWellnessCheck
+  categories:
+  - HarborMaster
+  completetime: 2
+  materials:
+    Paper: 100
+
+# Misc
+
+
+- type: latheRecipe
+  id: PaperWrittenFrontierEmploymentRecipe
+  result: PaperWrittenFrontierEmployment
+  categories:
+  - Misc
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenFrontierEmployeePayHistoryRecipe
+  result: PaperWrittenFrontierEmployeePayHistory
+  categories:
+  - Misc
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenFrontierFundRequisitionRecipe
+  result: PaperWrittenFrontierFundRequisition
+  categories:
+  - Misc
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenFrontierShuttleTitleChangeRecipe
+  result: PaperWrittenFrontierShuttleTitleChange
+  categories:
+  - Misc
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenFrontierAuthorizationRecipe
+  result: PaperWrittenFrontierAuthorization
+  categories:
+  - Misc
+  completetime: 2
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PaperWrittenFrontierShuttleDerelictRecipe
+  result: PaperWrittenFrontierShuttleDerelict
+  categories:
+  - Misc
+  completetime: 2
+  materials:
+    Paper: 100

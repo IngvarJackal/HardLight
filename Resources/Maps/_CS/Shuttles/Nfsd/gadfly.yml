@@ -1864,18 +1864,6 @@ entities:
     - type: Transform
       pos: 0.5,9.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts: {}
-      lastSignals: {}
-      ports:
-      - device-button-1
-      - device-button-2
-      - device-button-3
-      - device-button-4
-      - device-button-5
-      - device-button-6
-      - device-button-7
-      - device-button-8
 - proto: ComputerIFF
   entities:
   - uid: 33

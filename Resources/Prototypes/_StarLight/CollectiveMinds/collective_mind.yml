@@ -1,8 +1,0 @@
-# Converted to an entity prototype to avoid unknown prototype type errors.
-- type: entity
-  id: CollectiveMindEmpathy
-  name: collective-mind-empathy
-  components:
-  - type: Tag
-    tags:
-    - CollectiveMindEmpathy

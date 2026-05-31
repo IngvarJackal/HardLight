@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: AutumnalModding
+# Discord: LilyflowerFDL
+
+# Maintainer Info
+# GitHub: AutumnalModding
+# Discord: LilyflowerFDL
+
+- type: vessel
+  id: Bullet
+  name: LRSI Bullet
+  description: An RD-GCP hull retrofitted by Lumi-Raina Shipbuilders Incorporated to function as a 'spacefaring RV'.
+  price: 15000 # ~15% markup
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_HL/Shuttles/bullet.yml
+  guidebookPage: null
+  class:
+  - Civilian
+  engine:
+  - RTG
+
+- type: gameMap
+  id: Bullet
+  mapName: 'LRSI Bullet'
+  mapPath: /Maps/_HL/Shuttles/bullet.yml
+  minPlayers: 0
+  stations:
+    Bullet:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bullet {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

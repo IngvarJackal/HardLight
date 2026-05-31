@@ -185,7 +185,7 @@
             </TabContainer>
         </BoxContainer>
         <!-- Right side -->
-        <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Center">
+        <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Center" MaxWidth="350" MinWidth="350" > <!--Hardlight: Add MaxWidth and MinWidth. Set to 350-->
             <SpriteView Name="SpriteView" Scale="8 8" Margin="4" SizeFlagsStretchRatio="1" />
             <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5">
                 <Button Name="SpriteRotateLeft" Text="◀" StyleClasses="OpenRight" />

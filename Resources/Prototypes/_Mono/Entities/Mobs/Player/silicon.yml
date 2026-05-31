@@ -1,0 +1,137 @@
+# Mono port: trimmed for VRS — only PlayerStationAiRedacted (used by 6 event
+# maps: nebula, razorn, wyrm, wyvern, zenith, zenith_e) and its dependency
+# chain. All other Mono borg/AI prototypes have been removed because the maps
+# don't reference them and their dependencies (LanguageKnowledge, CollectiveMind,
+# Scrammer, AdvancedPilot, ShuttleBoostingPilot systems and corresponding
+# lawsets/borg-types/datasets) are not yet ported in VRS.
+
+# Datasets (LocalizedDataset to satisfy VRS RandomMetadata.NameSegments which
+# requires LocalizedDatasetPrototype, not plain DatasetPrototype).
+
+- type: localizedDataset
+  id: MonoRemnantCoreTitle
+  values:
+    prefix: dataset-mono-remnant-core-title-
+    count: 1
+
+- type: localizedDataset
+  id: MonoRemnantAdjective
+  values:
+    prefix: dataset-mono-remnant-adjective-
+    count: 24
+
+- type: localizedDataset
+  id: MonoRemnantNoun
+  values:
+    prefix: dataset-mono-remnant-noun-
+    count: 26
+
+# AI core (held entity skeleton)
+
+- type: entity
+  id: AiHeldMono
+  description: Components added / removed from an entity that gets inserted into an AI core.
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+  - type: IntrinsicRadioReceiver
+  - type: IgnoreUIRange
+  - type: StationAiHeld
+  - type: StationAiOverlay
+  - type: ShowElectrocutionHUD
+  - type: ActionGrant
+    actions:
+    - ActionJumpToCore
+    - ActionSurvCameraLights
+    - ActionAIViewLaws
+    - ActionOpenRemoteDevicesMenu
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+      enum.RemoteDeviceUiKey.Key:
+        type: RemoteDevicesBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+  - type: RadarConsole
+    followEntity: false
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+    transmitFrequencyId: ShuttleTimer
+  - type: HolographicAvatar
+    layerData:
+    - sprite: Mobs/Silicon/station_ai.rsi
+      state: default
+  - type: ShowJobIcons
+  # VRS: AdvancedPilotComponent is not present in this codebase.
+
+# Remnant AI core
+
+- type: entity
+  id: PlayerStationAiRedacted
+  parent: PlayerStationAiEmpty
+  suffix: Ghost Role, Remnant
+  components:
+  - type: ContainerComp
+    proto: AiHeldRedacted
+    container: station_ai_mind_slot
+  - type: ContainerFill
+    containers:
+      station_ai_mind_slot:
+      - StationAiBrainRedacted
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    layers:
+    - state: base
+    - state: ai
+      shader: unshaded
+  - type: Anchorable
+
+- type: entity
+  id: StationAiBrainRedacted
+  parent: StationAiBrain
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: Sprite
+  # VRS: SiliconLawProvider 'Redacted' lawset not yet ported; falls back to
+  # default upstream lawset until the Mono lawsets are imported.
+  - type: GhostRole
+    name: ghost-role-information-redacted-core
+    description: ghost-role-information-redacted-core-description
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default
+    # VRS: GhostRolePrototype 'RemnantAICore' not yet ported.
+  - type: Access
+    groups:
+    - AllAccess
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: GhostTakeoverAvailable
+  - type: RandomMetadata
+    nameSegments:
+    - MonoRemnantCoreTitle
+    - MonoRemnantAdjective
+    - MonoRemnantNoun
+
+- type: entity
+  id: AiHeldRedacted
+  parent: AiHeldMono
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Common
+    - Traffic
+  - type: ActiveRadio
+    channels:
+    - Common
+    - Traffic
+  # VRS: 'Remnants' radio channel + CollectiveMind system not yet ported;
+  # falls back to common-channel only.

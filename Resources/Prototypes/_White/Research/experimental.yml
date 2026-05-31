@@ -1,0 +1,30 @@
+- type: technology
+  id: NightVisionTech
+  name: research-technology-night-vision
+  entityIcon: ClothingEyesNightVisionGoggles
+  icon:
+    sprite: _White/Clothing/Eyes/Goggles/nightvision.rsi
+    state: icon
+  discipline: Experimental
+  tier: 2
+  cost: 20000
+  recipeUnlocks:
+  - ClothingEyesNightVisionGoggles
+  technologyPrerequisites:
+  - SuperParts
+  position: 1, 15
+- type: technology
+  id: ThermalVisionTech
+  name: research-technology-thermal-vision
+  entityIcon: ClothingEyesThermalVisionGoggles
+  icon:
+    sprite: Clothing/Eyes/Glasses/thermal.rsi
+    state: icon
+  discipline: Experimental
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+  - ClothingEyesThermalVisionGoggles
+  technologyPrerequisites:
+  - NightVisionTech
+  position: 2, 15

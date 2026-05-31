@@ -14,6 +14,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -356,7 +357,17 @@ namespace Content.Server.RoundEnd
             // Check if we should auto-call.
             int mins = _autoCalledBefore ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
                                         : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
-            if (mins != 0 && _gameTiming.CurTime - AutoCallStartTime > TimeSpan.FromMinutes(mins))
+
+            // Mono: allow an active RoundEndTimeRule game rule to override the auto-call time.
+            var roundEndTimeQuery = EntityQueryEnumerator<RoundEndTimeRuleComponent, ActiveGameRuleComponent>();
+            TimeSpan? roundEndTimeOverride = null;
+            while (roundEndTimeQuery.MoveNext(out _, out var endTimeComp, out _))
+            {
+                roundEndTimeOverride = endTimeComp.EndAt;
+            }
+
+            var autoCallThreshold = roundEndTimeOverride ?? (mins != 0 ? TimeSpan.FromMinutes(mins) : (TimeSpan?)null);
+            if (autoCallThreshold.HasValue && _gameTiming.CurTime - AutoCallStartTime > autoCallThreshold.Value)
             {
                 if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {

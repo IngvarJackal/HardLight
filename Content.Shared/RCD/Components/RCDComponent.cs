@@ -1,4 +1,5 @@
 using Content.Shared.RCD.Systems;
+using Content.Shared.Atmos.Components; // Starlight-edit: RPLD/RPD layered placement support
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Physics;
@@ -72,4 +73,19 @@ public sealed partial class RCDComponent : Component
     /// </summary>
     public EntityUid? LinkedShuttleUid = null;
     // End Frontier: ship-based RCDs
+
+    // Starlight: RPLD
+    /// <summary>
+    /// Indicates whether this is an RPLD (plumbing)
+    /// </summary>
+    [DataField("isRPLD"), AutoNetworkedField]
+    public bool IsRPLD { get; set; } = false;
+
+    // Starlight: RPLD
+    /// <summary>
+    /// Last free-mode layer selected on the client.
+    /// Used by the server as the authoritative layer when placing layered pipes in Free mode.
+    /// </summary>
+    [DataField]
+    public AtmosPipeLayer? LastSelectedLayer { get; set; } = null;
 }

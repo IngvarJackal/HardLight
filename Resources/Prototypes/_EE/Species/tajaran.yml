@@ -6,7 +6,7 @@
   sprites: MobTajaranSprites
   markingLimits: MobTajaranMarkingLimits
   dollPrototype: MobTajaranDummy
-  skinColoration: AnimalFur
+  skinColoration: AnyColour # Hardlight
 
 - type: markingPoints
   id: MobTajaranMarkingLimits

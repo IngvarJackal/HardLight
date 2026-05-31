@@ -6,7 +6,8 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyArcadia
+      #- EncryptionKeyArcadia
+      - EncryptionKeyCommon
 
 - type: entity
   parent: TelecomServer
@@ -26,7 +27,8 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyCartel
+      #- EncryptionKeyCartel
+      - EncryptionKeyCommon
 
 - type: entity
   parent: TelecomServer
@@ -46,7 +48,8 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyViperCell
+      #- EncryptionKeyViperCell
+      - EncryptionKeyCommon
 
 - type: entity
   parent: TelecomServer
@@ -56,7 +59,8 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyStatic
+      #- EncryptionKeyStatic
+      - EncryptionKeyCommon
 
 - type: entity
   parent: TelecomServer
@@ -66,7 +70,8 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyEvent1
+      #- EncryptionKeyEvent1
+      - EncryptionKeyCommon
 
 - type: entity
   parent: TelecomServer
@@ -76,7 +81,8 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyEvent2
+      #- EncryptionKeyEvent2
+      - EncryptionKeyCommon
 
 - type: entity
   parent: TelecomServer
@@ -86,4 +92,5 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyEvent3
+      #- EncryptionKeyEvent3
+      - EncryptionKeyCommon

@@ -326,12 +326,13 @@ namespace Content.Server.Preferences.Managers
                     prefsData.Prefs = prefs;
                     prefsData.PrefsLoaded = true;
 
-                    // Validate all profiles before sending to client to ensure species loadouts are normalized
+                    // Refresh only needs structural normalization before resending prefs.
+                    // Avoid session-dependent loadout checks here because supporting data can still be loading.
                     var collection = IoCManager.Instance!;
                     var validatedChars = new Dictionary<int, ICharacterProfile>();
                     foreach (var (slot, profile) in prefs.Characters)
                     {
-                        validatedChars[slot] = profile.Validated(session, collection);
+                        validatedChars[slot] = profile.Validated(null, collection);
                     }
                     prefs = new PlayerPreferences(validatedChars, prefs.SelectedCharacterIndex, prefs.AdminOOCColor);
 

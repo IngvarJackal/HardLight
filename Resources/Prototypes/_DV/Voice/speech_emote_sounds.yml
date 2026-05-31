@@ -82,6 +82,8 @@
       collection: FeroxiGnashes # Flooftier
     MonkeyScreeches: # Frontier
       collection: MonkeyScreeches # Frontier
+    Trill: # Hardlight
+      collection: FelionoidTrills # Hardlight
 
 - type: emoteSounds
   id: MobDog

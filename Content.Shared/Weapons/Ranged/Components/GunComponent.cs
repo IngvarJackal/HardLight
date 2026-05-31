@@ -290,6 +290,13 @@ public sealed partial class GunComponent : Component
     [DataField]
     public float Recoil = 0f;
 
+    // VRS (Triad #3731)
+    /// <summary>
+    /// Damage multiplier applied to each fired projectile.
+    /// </summary>
+    [DataField]
+    public float DamageModifier = 1f;
+
     // HardLight start
     /// <summary>
     /// Cooldown state for handling-rule failure popups.

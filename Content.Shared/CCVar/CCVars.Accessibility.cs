@@ -73,4 +73,18 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> AccessibilityServerCensorNudity =
             CVarDef.Create("accessibility.server_censor_nudity", false, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
+
+    #region Starlight
+    /// <summary>
+    /// If enabled, job icons in chat and status icons are not animated.
+    /// </summary>
+    public static readonly CVarDef<bool> DisableJobIconAnimation =
+        CVarDef.Create("accessibility.disable_job_icon_animation", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// HardLight: If enabled, language icons are hidden in chat and speech bubbles.
+    /// </summary>
+    public static readonly CVarDef<bool> DisableLanguageIcons =
+        CVarDef.Create("accessibility.disable_language_icons", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+    #endregion Starlight
 }

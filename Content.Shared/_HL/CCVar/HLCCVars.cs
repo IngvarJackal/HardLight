@@ -114,6 +114,23 @@ public sealed class HLCCVars
         CVarDef.Create("hardlight.shipyard.purchase_dock_cap_grid", 12, CVar.SERVERONLY,
             desc: "Max station-side docks considered during shipyard purchase docking. <= 0 disables the cap on this side.");
 
+    // HardLight: Emergency shuttle/escape-pod docking-search caps. Evac hits the same pathological
+    // dock-pair search as shipyard purchase, but on a much more player-visible path: once when
+    // the shuttle is called to station and again shortly before launch when it precomputes its
+    // ColComm destination. We preserve priority docks in the capped pass and still fall back to
+    // the full search on miss so this optimization cannot strand the shuttle.
+    public static readonly CVarDef<bool> EmergencyShuttleDockCapEnabled =
+        CVarDef.Create("hardlight.emergency_shuttle.dock_cap_enabled", true, CVar.SERVERONLY,
+            desc: "If true, emergency shuttle and escape pod docking use a capped, spatially spread subset of docks per side before falling back to the full search.");
+
+    public static readonly CVarDef<int> EmergencyShuttleDockCapShuttle =
+        CVarDef.Create("hardlight.emergency_shuttle.dock_cap_shuttle", 8, CVar.SERVERONLY,
+            desc: "Max shuttle-side docks considered during emergency shuttle and escape pod docking. <= 0 disables the cap on this side.");
+
+    public static readonly CVarDef<int> EmergencyShuttleDockCapGrid =
+        CVarDef.Create("hardlight.emergency_shuttle.dock_cap_grid", 12, CVar.SERVERONLY,
+            desc: "Max destination-side docks considered during emergency shuttle and escape pod docking. <= 0 disables the cap on this side.");
+
     /// <summary>
     /// HardLight: number of UseDelay component resets to process per tick during the post-load
     /// sanitize phase of a freshly loaded ship. Set to 0 to disable spreading and do all resets
@@ -143,7 +160,7 @@ public sealed class HLCCVars
     /// </summary>
     public static readonly CVarDef<bool> MechGunOutsideMech =
         CVarDef.Create("mech.gun_outside_mech", false, CVar.SERVERONLY, desc: "If true, allows mech weapons to be used outside of mechs.");
-	
+
     /// <summary>
     /// Starlight: Sends afk players to cryo.
     /// </summary>

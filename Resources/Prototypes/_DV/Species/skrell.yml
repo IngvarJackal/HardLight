@@ -8,7 +8,7 @@
   defaultSkinTone: "#8cd7a3"
   markingLimits: MobSkrellMarkingLimits
   dollPrototype: MobSkrellDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   maleFirstNames: RMCNamesSkrellFirst
   femaleFirstNames: RMCNamesSkrellFirst
   lastNames: RMCNamesSkrellLast

@@ -1,0 +1,26 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesNightVisionGoggles
+  name: night vision goggles
+  description: Now you can see in the dark!
+  components:
+  - type: Sprite
+    sprite: _White/Clothing/Eyes/Goggles/nightvision.rsi
+  - type: Clothing
+    sprite: _White/Clothing/Eyes/Goggles/nightvision.rsi
+  - type: NightVision
+  - type: IdentityBlocker
+    coverage: EYES
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesThermalVisionGoggles
+  name: thermal vision goggles
+  description: Now you can see everyone!
+  components:
+  - type: Sprite
+    sprite: _White/Clothing/Eyes/Goggles/thermal.rsi
+  - type: Clothing
+    sprite: _White/Clothing/Eyes/Goggles/thermal.rsi
+  - type: ThermalVision
+  - type: IdentityBlocker
+    coverage: EYES

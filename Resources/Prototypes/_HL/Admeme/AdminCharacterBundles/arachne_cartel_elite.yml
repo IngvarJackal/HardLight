@@ -126,7 +126,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyCartel
+      #- EncryptionKeyCartel
       - EncryptionKeySyndie
       - EncryptionKeyStationMaster
 

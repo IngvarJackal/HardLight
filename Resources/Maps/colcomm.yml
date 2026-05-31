@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 267.3.0
+  engineVersion: 274.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/31/2026 21:16:56
-  entityCount: 23037
+  time: 05/20/2026 06:06:09
+  entityCount: 23169
 maps: []
 grids:
 - 2
@@ -6812,6 +6812,2336 @@ entities:
     - type: ImplicitRoof
     - type: TileHistory
       chunkHistory: {}
+    - type: CleanupImmune
+    - type: NavMap
+  - uid: 606
+    components:
+    - type: MetaData
+      name: solution - buffer
+    - type: Transform
+      parent: 8781
+    - type: Solution
+      solution:
+        maxVol: 1000000
+        name: buffer
+        reagents: []
+    - type: ContainedSolution
+      containerName: buffer
+  - uid: 607
+    components:
+    - type: MetaData
+      name: solution - buffer
+    - type: Transform
+      parent: 8782
+    - type: Solution
+      solution:
+        maxVol: 1000000
+        name: buffer
+        reagents: []
+    - type: ContainedSolution
+      containerName: buffer
+  - uid: 608
+    components:
+    - type: MetaData
+      name: solution - buffer
+    - type: Transform
+      parent: 8783
+    - type: Solution
+      solution:
+        maxVol: 1000000
+        name: buffer
+        reagents: []
+    - type: ContainedSolution
+      containerName: buffer
+  - uid: 609
+    components:
+    - type: MetaData
+      name: solution - tank
+    - type: Transform
+      parent: 8786
+    - type: Solution
+      solution:
+        maxVol: 5000
+        name: tank
+        reagents:
+        - data: []
+          ReagentId: SpaceCleaner
+          Quantity: 5000
+    - type: ContainedSolution
+      containerName: tank
+  - uid: 610
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8814
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 611
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8816
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: food
+  - uid: 8843
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8820
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: food
+  - uid: 8844
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8821
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 8845
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8823
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 15398
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8824
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 19065
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8826
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: food
+  - uid: 19066
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8828
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 19067
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8830
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: food
+  - uid: 19068
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8831
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 19069
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8832
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23038
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8833
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23039
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8834
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23040
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8835
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23041
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8836
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23042
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8837
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23043
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8838
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23044
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8839
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23045
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8841
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23046
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8842
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23047
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8848
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23048
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8851
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23049
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8852
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23050
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8853
+    - type: Solution
+      solution:
+        maxVol: 250
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 2
+        - data: []
+          ReagentId: Bicaridine
+          Quantity: 20
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23051
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8861
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23052
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8862
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23053
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8863
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23054
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8864
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23055
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8865
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23056
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8867
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23057
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8868
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23058
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 8869
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23059
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 9032
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23060
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 9033
+    - type: Solution
+      solution:
+        maxVol: 250
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 2
+        - data: []
+          ReagentId: Bicaridine
+          Quantity: 20
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23061
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 9034
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23062
+    components:
+    - type: MetaData
+      name: solution - drink
+    - type: Transform
+      parent: 10374
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: drink
+        reagents: []
+    - type: ContainedSolution
+      containerName: drink
+  - uid: 23063
+    components:
+    - type: MetaData
+      name: solution - drink
+    - type: Transform
+      parent: 10375
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: drink
+        reagents: []
+    - type: ContainedSolution
+      containerName: drink
+  - uid: 23064
+    components:
+    - type: MetaData
+      name: solution - drink
+    - type: Transform
+      parent: 10376
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: drink
+        reagents:
+        - data: []
+          ReagentId: JackRose
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: drink
+  - uid: 23065
+    components:
+    - type: MetaData
+      name: solution - drink
+    - type: Transform
+      parent: 10377
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: drink
+        reagents: []
+    - type: ContainedSolution
+      containerName: drink
+  - uid: 23066
+    components:
+    - type: MetaData
+      name: solution - drink
+    - type: Transform
+      parent: 10378
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: drink
+        reagents: []
+    - type: ContainedSolution
+      containerName: drink
+  - uid: 23067
+    components:
+    - type: MetaData
+      name: solution - drink
+    - type: Transform
+      parent: 10379
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: drink
+        reagents:
+        - data: []
+          ReagentId: PumpkinSpiceLatte
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: drink
+  - uid: 23068
+    components:
+    - type: MetaData
+      name: solution - drink
+    - type: Transform
+      parent: 10380
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: drink
+        reagents:
+        - data: []
+          ReagentId: SoyLatte
+          Quantity: 30
+    - type: ContainedSolution
+      containerName: drink
+  - uid: 23069
+    components:
+    - type: MetaData
+      name: solution - pen
+    - type: Transform
+      parent: 10381
+    - type: Solution
+      solution:
+        maxVol: 15
+        name: pen
+        reagents:
+        - data: []
+          ReagentId: Epinephrine
+          Quantity: 12
+        - data: []
+          ReagentId: TranexamicAcid
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: pen
+  - uid: 23070
+    components:
+    - type: MetaData
+      name: solution - pen
+    - type: Transform
+      parent: 10382
+    - type: Solution
+      solution:
+        maxVol: 15
+        name: pen
+        reagents:
+        - data: []
+          ReagentId: Epinephrine
+          Quantity: 12
+        - data: []
+          ReagentId: TranexamicAcid
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: pen
+  - uid: 23071
+    components:
+    - type: MetaData
+      name: solution - pen
+    - type: Transform
+      parent: 10383
+    - type: Solution
+      solution:
+        maxVol: 15
+        name: pen
+        reagents:
+        - data: []
+          ReagentId: Epinephrine
+          Quantity: 12
+        - data: []
+          ReagentId: TranexamicAcid
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: pen
+  - uid: 23072
+    components:
+    - type: MetaData
+      name: solution - pen
+    - type: Transform
+      parent: 10384
+    - type: Solution
+      solution:
+        maxVol: 15
+        name: pen
+        reagents:
+        - data: []
+          ReagentId: Epinephrine
+          Quantity: 12
+        - data: []
+          ReagentId: TranexamicAcid
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: pen
+  - uid: 23073
+    components:
+    - type: MetaData
+      name: solution - pen
+    - type: Transform
+      parent: 10385
+    - type: Solution
+      solution:
+        maxVol: 15
+        name: pen
+        reagents:
+        - data: []
+          ReagentId: Epinephrine
+          Quantity: 12
+        - data: []
+          ReagentId: TranexamicAcid
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: pen
+  - uid: 23074
+    components:
+    - type: MetaData
+      name: solution - pen
+    - type: Transform
+      parent: 10386
+    - type: Solution
+      solution:
+        maxVol: 15
+        name: pen
+        reagents:
+        - data: []
+          ReagentId: Epinephrine
+          Quantity: 12
+        - data: []
+          ReagentId: TranexamicAcid
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: pen
+  - uid: 23075
+    components:
+    - type: MetaData
+      name: solution - Welder
+    - type: Transform
+      parent: 10696
+    - type: Solution
+      solution:
+        maxVol: 12
+        name: Welder
+        reagents:
+        - data: []
+          ReagentId: WeldingFuel
+          Quantity: 12
+    - type: ContainedSolution
+      containerName: Welder
+  - uid: 23076
+    components:
+    - type: MetaData
+      name: solution - drainBuffer
+    - type: Transform
+      parent: 10697
+    - type: Solution
+      solution:
+        maxVol: 1000
+        name: drainBuffer
+        reagents: []
+    - type: ContainedSolution
+      containerName: drainBuffer
+  - uid: 23077
+    components:
+    - type: MetaData
+      name: solution - drainBuffer
+    - type: Transform
+      parent: 10698
+    - type: Solution
+      solution:
+        maxVol: 1000
+        name: drainBuffer
+        reagents: []
+    - type: ContainedSolution
+      containerName: drainBuffer
+  - uid: 23078
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10699
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23079
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10700
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23080
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10701
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23081
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10702
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23082
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10703
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23083
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10704
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23084
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10705
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23085
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10706
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23086
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10707
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23087
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10708
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23088
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10709
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23089
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10710
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23090
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10711
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23091
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10712
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23092
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10713
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23093
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10714
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23094
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10715
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23095
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10716
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23096
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10717
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23097
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10718
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23098
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10719
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23099
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10720
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23100
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10721
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23101
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10722
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23102
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10723
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23103
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10724
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23104
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10725
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23105
+    components:
+    - type: MetaData
+      name: solution - pool
+    - type: Transform
+      parent: 10726
+    - type: Solution
+      solution:
+        maxVol: 9999999
+        name: pool
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 9999999
+    - type: ContainedSolution
+      containerName: pool
+  - uid: 23106
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10735
+    - type: Solution
+      solution:
+        maxVol: 35
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 15
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 5
+        - data: []
+          ReagentId: Flavorol
+          Quantity: 10
+        - data: []
+          ReagentId: Protein
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23107
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10736
+    - type: Solution
+      solution:
+        maxVol: 35
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 15
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 5
+        - data: []
+          ReagentId: Flavorol
+          Quantity: 10
+        - data: []
+          ReagentId: Protein
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23108
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10737
+    - type: Solution
+      solution:
+        maxVol: 35
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 15
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 5
+        - data: []
+          ReagentId: Flavorol
+          Quantity: 10
+        - data: []
+          ReagentId: Protein
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23109
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10738
+    - type: Solution
+      solution:
+        maxVol: 35
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 15
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 5
+        - data: []
+          ReagentId: Flavorol
+          Quantity: 10
+        - data: []
+          ReagentId: CapsaicinOil
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23110
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10739
+    - type: Solution
+      solution:
+        maxVol: 35
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 15
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 5
+        - data: []
+          ReagentId: Flavorol
+          Quantity: 10
+        - data: []
+          ReagentId: CapsaicinOil
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23111
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10740
+    - type: Solution
+      solution:
+        maxVol: 35
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 15
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 5
+        - data: []
+          ReagentId: Flavorol
+          Quantity: 10
+        - data: []
+          ReagentId: CapsaicinOil
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23112
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10741
+    - type: Solution
+      solution:
+        maxVol: 35
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 15
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 5
+        - data: []
+          ReagentId: Flavorol
+          Quantity: 10
+        - data: []
+          ReagentId: Protein
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23113
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10742
+    - type: Solution
+      solution:
+        maxVol: 35
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 15
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 5
+        - data: []
+          ReagentId: Flavorol
+          Quantity: 10
+        - data: []
+          ReagentId: Protein
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23114
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10743
+    - type: Solution
+      solution:
+        maxVol: 35
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 15
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 5
+        - data: []
+          ReagentId: Flavorol
+          Quantity: 10
+        - data: []
+          ReagentId: Protein
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23115
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10744
+    - type: Solution
+      solution:
+        maxVol: 12
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 4
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 4
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23116
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10745
+    - type: Solution
+      solution:
+        maxVol: 35
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 15
+        - data: []
+          ReagentId: Flavorol
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23117
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10746
+    - type: Solution
+      solution:
+        maxVol: 35
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 15
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 5
+        - data: []
+          ReagentId: Flavorol
+          Quantity: 10
+        - data: []
+          ReagentId: Protein
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23118
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10747
+    - type: Solution
+      solution:
+        maxVol: 35
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 15
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 5
+        - data: []
+          ReagentId: Flavorol
+          Quantity: 10
+        - data: []
+          ReagentId: Protein
+          Quantity: 3
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23119
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10748
+    - type: Solution
+      solution:
+        maxVol: 250
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 2
+        - data: []
+          ReagentId: Bicaridine
+          Quantity: 20
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23120
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 10749
+    - type: Solution
+      solution:
+        maxVol: 12
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Nutriment
+          Quantity: 4
+        - data: []
+          ReagentId: Vitamin
+          Quantity: 4
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23122
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 23121
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+        - data: []
+          ReagentId: JuiceThatMakesYouBark
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23123
+    components:
+    - type: MetaData
+      name: solution - bucket
+    - type: Transform
+      parent: 16497
+    - type: Solution
+      solution:
+        maxVol: 800
+        name: bucket
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 600
+    - type: ContainedSolution
+      containerName: bucket
+  - uid: 23124
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 16544
+    - type: Solution
+      solution:
+        maxVol: 5
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 5
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23125
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 16545
+    - type: Solution
+      solution:
+        maxVol: 5
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 5
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23126
+    components:
+    - type: MetaData
+      name: solution - lube
+    - type: Transform
+      parent: 16553
+    - type: Solution
+      solution:
+        maxVol: 250
+        name: lube
+        reagents: []
+    - type: ContainedSolution
+      containerName: lube
+  - uid: 23127
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 16568
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23128
+    components:
+    - type: MetaData
+      name: solution - lube
+    - type: Transform
+      parent: 16573
+    - type: Solution
+      solution:
+        maxVol: 250
+        name: lube
+        reagents: []
+    - type: ContainedSolution
+      containerName: lube
+  - uid: 23129
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 16589
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23130
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 16590
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23131
+    components:
+    - type: MetaData
+      name: solution - beaker
+    - type: Transform
+      parent: 16591
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: beaker
+        reagents:
+        - data: []
+          ReagentId: Plasma
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: beaker
+  - uid: 23132
+    components:
+    - type: MetaData
+      name: solution - beaker
+    - type: Transform
+      parent: 16592
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: beaker
+        reagents:
+        - data: []
+          ReagentId: Plasma
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: beaker
+  - uid: 23133
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 22997
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+        - data: []
+          ReagentId: AbyssalBlood
+          Quantity: 5
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23134
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 23001
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23135
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 22998
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+        - data: []
+          ReagentId: JuiceThatMakesYouWeh
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23136
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 16601
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23137
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 22995
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23138
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 1
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23139
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 16602
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+        - data: []
+          ReagentId: Blood
+          Quantity: 3
+        - data: []
+          ReagentId: AbyssalBlood
+          Quantity: 2
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23140
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 22994
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+        - data: []
+          ReagentId: JuiceThatMakesYouWeh
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23141
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 22996
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+        - data: []
+          ReagentId: JuiceThatMakesYouWeh
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23142
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 23000
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+        - data: []
+          ReagentId: JuiceThatMakesYouWeh
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23143
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 16603
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+        - data: []
+          ReagentId: NebulaDream
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23144
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 16604
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+        - data: []
+          ReagentId: NebulaDream
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23145
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 16605
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+        - data: []
+          ReagentId: JuiceThatMakesYouWeh
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23146
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 16606
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23147
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 22999
+    - type: Solution
+      solution:
+        maxVol: 20
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+        - data: []
+          ReagentId: JuiceThatMakesYouWeh
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23148
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 16608
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23149
+    components:
+    - type: MetaData
+      name: solution - food
+    - type: Transform
+      parent: 23002
+    - type: Solution
+      solution:
+        maxVol: 10
+        name: food
+        reagents:
+        - data: []
+          ReagentId: Fiber
+          Quantity: 10
+    - type: ContainedSolution
+      containerName: food
+  - uid: 23150
+    components:
+    - type: MetaData
+      name: solution - absorbed
+    - type: Transform
+      parent: 16924
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: absorbed
+        reagents: []
+    - type: ContainedSolution
+      containerName: absorbed
+  - uid: 23151
+    components:
+    - type: MetaData
+      name: solution - absorbed
+    - type: Transform
+      parent: 16925
+    - type: Solution
+      solution:
+        maxVol: 30
+        name: absorbed
+        reagents: []
+    - type: ContainedSolution
+      containerName: absorbed
+  - uid: 23152
+    components:
+    - type: MetaData
+      name: solution - drainBuffer
+    - type: Transform
+      parent: 18859
+    - type: Solution
+      solution:
+        maxVol: 200
+        name: drainBuffer
+        reagents: []
+    - type: ContainedSolution
+      containerName: drainBuffer
+  - uid: 23153
+    components:
+    - type: MetaData
+      name: solution - tank
+    - type: Transform
+      parent: 18859
+    - type: Solution
+      solution:
+        maxVol: 500
+        name: tank
+        reagents: []
+    - type: ContainedSolution
+      containerName: tank
+  - uid: 23154
+    components:
+    - type: MetaData
+      name: solution - drainBuffer
+    - type: Transform
+      parent: 18860
+    - type: Solution
+      solution:
+        maxVol: 200
+        name: drainBuffer
+        reagents: []
+    - type: ContainedSolution
+      containerName: drainBuffer
+  - uid: 23155
+    components:
+    - type: MetaData
+      name: solution - tank
+    - type: Transform
+      parent: 18860
+    - type: Solution
+      solution:
+        maxVol: 500
+        name: tank
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 500
+    - type: ContainedSolution
+      containerName: tank
+  - uid: 23156
+    components:
+    - type: MetaData
+      name: solution - drainBuffer
+    - type: Transform
+      parent: 18861
+    - type: Solution
+      solution:
+        maxVol: 200
+        name: drainBuffer
+        reagents: []
+    - type: ContainedSolution
+      containerName: drainBuffer
+  - uid: 23157
+    components:
+    - type: MetaData
+      name: solution - tank
+    - type: Transform
+      parent: 18861
+    - type: Solution
+      solution:
+        maxVol: 500
+        name: tank
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 500
+    - type: ContainedSolution
+      containerName: tank
+  - uid: 23158
+    components:
+    - type: MetaData
+      name: solution - spray
+    - type: Transform
+      parent: 18873
+    - type: Solution
+      solution:
+        maxVol: 100
+        name: spray
+        reagents:
+        - data: []
+          ReagentId: SpaceCleaner
+          Quantity: 100
+    - type: ContainedSolution
+      containerName: spray
+  - uid: 23159
+    components:
+    - type: MetaData
+      name: solution - spray
+    - type: Transform
+      parent: 18874
+    - type: Solution
+      solution:
+        maxVol: 100
+        name: spray
+        reagents:
+        - data: []
+          ReagentId: SpaceCleaner
+          Quantity: 100
+    - type: ContainedSolution
+      containerName: spray
+  - uid: 23162
+    components:
+    - type: MetaData
+      name: solution - tank
+    - type: Transform
+      parent: 22636
+    - type: Solution
+      solution:
+        maxVol: 500
+        name: tank
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 500
+    - type: ContainedSolution
+      containerName: tank
+  - uid: 23163
+    components:
+    - type: MetaData
+      name: solution - tank
+    - type: Transform
+      parent: 22637
+    - type: Solution
+      solution:
+        maxVol: 500
+        name: tank
+        reagents:
+        - data: []
+          ReagentId: Water
+          Quantity: 500
+    - type: ContainedSolution
+      containerName: tank
 - proto: AirAlarm
   entities:
   - uid: 3
@@ -9626,6 +11956,18 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-41.5
       parent: 2
+  - uid: 23160
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-25.5
+      parent: 2
+  - uid: 23161
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-25.5
+      parent: 2
 - proto: AirlockHatchMaintenance
   entities:
   - uid: 380
@@ -11540,39 +13882,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 26.5,45.5
       parent: 2
-  - uid: 606
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.5,-32.5
-      parent: 2
-  - uid: 607
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,-32.5
-      parent: 2
-  - uid: 608
-    components:
-    - type: Transform
-      pos: 3.5,-35.5
-      parent: 2
-  - uid: 609
-    components:
-    - type: Transform
-      pos: 3.5,-34.5
-      parent: 2
-  - uid: 610
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,-32.5
-      parent: 2
-  - uid: 611
-    components:
-    - type: Transform
-      pos: 3.5,-33.5
-      parent: 2
 - proto: BlastDoorOpen
   entities:
   - uid: 612
@@ -11662,6 +13971,49 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,8.5
+      parent: 2
+  - uid: 23164
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-32.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        23167:
+        - - DoorStatus
+          - Toggle
+  - uid: 23165
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,-32.5
+      parent: 2
+  - uid: 23166
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,-32.5
+      parent: 2
+  - uid: 23167
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-33.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 2
+  - uid: 23168
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-34.5
+      parent: 2
+  - uid: 23169
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-35.5
       parent: 2
 - proto: BlockGameArcade
   entities:
@@ -55247,16 +57599,94 @@ entities:
     - type: Transform
       pos: -13.5,53.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        beakerSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        outputSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        solution@buffer: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 606
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - buffer
   - uid: 8782
     components:
     - type: Transform
       pos: 23.5,56.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        beakerSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        outputSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        solution@buffer: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 607
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - buffer
   - uid: 8783
     components:
     - type: Transform
       pos: 24.5,56.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        beakerSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        outputSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        solution@buffer: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 608
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - buffer
 - proto: ChessBoard
   entities:
   - uid: 8784
@@ -55279,6 +57709,14 @@ entities:
     - type: Transform
       pos: -4.5,60.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - tank
+    - type: ContainerContainer
+      containers:
+        solution@tank: !type:ContainerSlot
+          ent: 609
 - proto: CloningPod
   entities:
   - uid: 8787
@@ -55426,6 +57864,21 @@ entities:
     - type: Transform
       pos: -5.5959373,17.5117
       parent: 2
+- proto: ClothingClothWrap
+  entities:
+  - uid: 8861
+    components:
+    - type: Transform
+      pos: 5.327466,41.706276
+      parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23051
 - proto: ClothingEyesEyepatchHudMedical
   entities:
   - uid: 8813
@@ -55455,39 +57908,71 @@ entities:
     - type: Transform
       pos: -3.4686494,58.29148
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 8844
 - proto: ClothingHeadHatBeret
   entities:
   - uid: 8823
     components:
     - type: Transform
       parent: 8822
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: HEAD
       inSlot: head
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 8845
 - proto: ClothingHeadHatBeretQM
   entities:
   - uid: 8814
     components:
     - type: Transform
       parent: 8812
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: HEAD
       inSlot: head
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 610
 - proto: ClothingHeadHatCentcom
   entities:
   - uid: 8828
     components:
     - type: Transform
       parent: 8827
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: HEAD
       inSlot: head
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 19066
 - proto: ClothingHeadHatCentcomcap
   entities:
   - uid: 8831
@@ -55495,6 +57980,14 @@ entities:
     - type: Transform
       pos: -3.7075405,29.760056
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 19068
 - proto: ClothingHeadHatCone
   entities:
   - uid: 8832
@@ -55502,36 +57995,92 @@ entities:
     - type: Transform
       pos: 21.91996,51.169712
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 19069
   - uid: 8833
     components:
     - type: Transform
       pos: 21.858807,48.012024
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23038
   - uid: 8834
     components:
     - type: Transform
       pos: 23.558859,51.243145
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23039
   - uid: 8835
     components:
     - type: Transform
       pos: 23.620012,47.999786
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23040
   - uid: 8836
     components:
     - type: Transform
       pos: 25.246681,51.243145
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23041
   - uid: 8837
     components:
     - type: Transform
       pos: 25.099915,48.012024
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23042
   - uid: 8838
     components:
     - type: Transform
       pos: 21.869175,49.652065
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23043
 - proto: ClothingHeadHelmetJustice
   entities:
   - uid: 8839
@@ -55539,6 +58088,20 @@ entities:
     - type: Transform
       pos: -11.283249,-29.276892
       parent: 2
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23044
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
 - proto: ClothingMaskGasCentcom
   entities:
   - uid: 8829
@@ -55556,6 +58119,20 @@ entities:
     components:
     - type: Transform
       parent: 8822
+    - type: ContainerContainer
+      containers:
+        toggleable-clothing: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 15398
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: TypingIndicatorClothing
       gotEquippedTime: 135.8331975
     - type: Clothing
@@ -55572,32 +58149,19 @@ entities:
     components:
     - type: Transform
       parent: 8840
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: NECK
       inSlot: neck
     - type: Physics
       canCollide: False
-- proto: ClothingNeckGoldmedal
-  entities:
-  - uid: 8843
-    components:
-    - type: Transform
-      pos: 1.2522923,-10.489983
-      parent: 2
-- proto: ClothingNeckMedalNfsdShieldGold
-  entities:
-  - uid: 8844
-    components:
-    - type: Transform
-      pos: 1.2054173,-10.974358
-      parent: 2
-- proto: ClothingNeckSciencemedal
-  entities:
-  - uid: 8845
-    components:
-    - type: Transform
-      pos: 0.7679173,-11.005608
-      parent: 2
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23045
 - proto: ClothingOuterCoatBomber
   entities:
   - uid: 8819
@@ -55757,18 +58321,29 @@ entities:
     components:
     - type: Transform
       parent: 8827
+    - type: ContainerContainer
+      containers:
+        toggleable-clothing: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 19067
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: OUTERCLOTHING
       inSlot: outerClothing
     - type: Physics
       canCollide: False
-- proto: ClothingShoesClothwrap
-  entities:
-  - uid: 8861
-    components:
-    - type: Transform
-      pos: 5.327466,41.706276
-      parent: 2
 - proto: ClothingShoesColorBlue
   entities:
   - uid: 8862
@@ -55776,6 +58351,14 @@ entities:
     - type: Transform
       pos: 3.6547518,36.502556
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23052
 - proto: ClothingShoesColorPurple
   entities:
   - uid: 8863
@@ -55783,6 +58366,14 @@ entities:
     - type: Transform
       pos: 3.5545912,36.594273
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23053
 - proto: ClothingShoesColorRed
   entities:
   - uid: 8864
@@ -55790,6 +58381,14 @@ entities:
     - type: Transform
       pos: 3.6547518,36.74578
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23054
 - proto: ClothingShoesLeather
   entities:
   - uid: 8865
@@ -55797,39 +58396,71 @@ entities:
     - type: Transform
       pos: 5.662251,40.441746
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23055
 - proto: ClothingUniformDama0965
   entities:
   - uid: 8851
     components:
     - type: Transform
       parent: 8849
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: NECK
       inSlot: neck
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23048
 - proto: ClothingUniformJumpskirtYellowOldDress
   entities:
   - uid: 8867
     components:
     - type: Transform
       parent: 8866
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: INNERCLOTHING
       inSlot: jumpsuit
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23056
 - proto: ClothingUniformJumpsuitColorBlack
   entities:
   - uid: 8826
     components:
     - type: Transform
       parent: 8822
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: INNERCLOTHING
       inSlot: jumpsuit
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 19065
 - proto: ClothingUniformJumpsuitCoroner
   entities:
   - uid: 8868
@@ -55837,55 +58468,103 @@ entities:
     - type: Transform
       pos: 20.673975,64.666595
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23057
   - uid: 8869
     components:
     - type: Transform
       pos: 20.528141,64.68744
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23058
 - proto: ClothingUniformJumpsuitMilitaryContractor
   entities:
   - uid: 8816
     components:
     - type: Transform
       parent: 8812
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: INNERCLOTHING
       inSlot: jumpsuit
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 611
 - proto: ClothingUniformJumpsuitMilitaryTurtleneckBlueMercenaryMedic
   entities:
   - uid: 8848
     components:
     - type: Transform
       parent: 8846
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: INNERCLOTHING
       inSlot: jumpsuit
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23047
 - proto: ClothingUniformJumpsuitPsychologist
   entities:
   - uid: 8820
     components:
     - type: Transform
       parent: 8817
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: INNERCLOTHING
       inSlot: jumpsuit
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 8843
 - proto: ClothingUniformMNKBlackShoulder
   entities:
   - uid: 8852
     components:
     - type: Transform
       parent: 8849
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: INNERCLOTHING
       inSlot: jumpsuit
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23049
 - proto: ColcommComputerComms
   entities:
   - uid: 8870
@@ -56982,11 +59661,19 @@ entities:
     components:
     - type: Transform
       parent: 9031
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: INNERCLOTHING
       inSlot: jumpsuit
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23059
 - proto: CoolCoyoteClothesKimonoBlue
   entities:
   - uid: 9034
@@ -56994,17 +59681,33 @@ entities:
     - type: Transform
       pos: 5.698663,41.302284
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23061
 - proto: CoolCoyoteClothesMarlowDuds
   entities:
   - uid: 8842
     components:
     - type: Transform
       parent: 8840
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Clothing
       inSlotFlag: INNERCLOTHING
       inSlot: jumpsuit
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23046
 - proto: CrateEngineeringCableHV
   entities:
   - uid: 9035
@@ -57074,74 +59777,214 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-43.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23016
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,-42.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23017
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,-39.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23018
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,-38.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23019
     components:
     - type: Transform
       pos: 6.5,-41.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23020
     components:
     - type: Transform
       pos: 6.5,-40.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23021
     components:
     - type: Transform
       pos: 6.5,-39.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23022
     components:
     - type: Transform
       pos: 6.5,-42.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23023
     components:
     - type: Transform
       pos: 8.5,-38.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23024
     components:
     - type: Transform
       pos: 8.5,-39.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23025
     components:
     - type: Transform
       pos: 8.5,-40.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23026
     components:
     - type: Transform
       pos: 8.5,-41.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23027
     components:
     - type: Transform
       pos: 8.5,-42.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 23028
     components:
     - type: Transform
       pos: 8.5,-43.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        storage: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        body_container: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: CurtainsGreen
   entities:
   - uid: 9044
@@ -57185,7 +60028,7 @@ entities:
       pos: -29.5,7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -158989
+      secondsUntilStateChange: -159433.64
       state: Opening
   - uid: 9052
     components:
@@ -57213,7 +60056,7 @@ entities:
       pos: -20.5,7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -168723.94
+      secondsUntilStateChange: -169168.58
       state: Opening
   - uid: 9057
     components:
@@ -57891,7 +60734,7 @@ entities:
       pos: -44.5,-24.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -30005.328
+      secondsUntilStateChange: -30449.967
       state: Opening
   - uid: 9192
     components:
@@ -64729,18 +67572,142 @@ entities:
     - type: Transform
       pos: -0.46371782,25.74165
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - drink
+    - type: ContainerContainer
+      containers:
+        solution@drink: !type:ContainerSlot
+          ent: 23062
   - uid: 10375
     components:
     - type: Transform
       pos: -0.8368639,-10.018802
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - drink
+    - type: ContainerContainer
+      containers:
+        solution@drink: !type:ContainerSlot
+          ent: 23063
 - proto: DrinkJackRoseGlass
   entities:
   - uid: 10376
     components:
+    - type: MetaData
+      desc: Excessively Red.
+      name: Jack rose glass
     - type: Transform
       pos: 7.470228,-23.036743
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - drink
+    - type: TransformableContainer
+      transformed: True
+      currentReagent:
+        metamorphicChangeColor: False
+        spoilsInto: null
+        metabolisms:
+          Drink:
+            effects:
+            - !type:SatiateThirst
+              factor: 2
+              probability: 1
+              conditions: null
+            - !type:AdjustReagent
+              probability: 1
+              conditions: null
+              amount: 0.06
+              group: null
+              reagent: Ethanol
+            metabolismRate: 0.5
+        worksOnTheDead: False
+        friction: 0.4
+        viscosity: 0
+        fizziness: 0
+        preservedBySpoilageContainers: True
+        spoilTime: 0
+        absorbent: False
+        metamorphicFillBaseName: fill-
+        evaporationSpeed: 0
+        slipData:
+          slipFriction: 0
+          superSlippery: False
+          requiredSlipSpeed: 3.5
+          launchForwardsMultiplier: 1.5
+          paralyzeTime: 1.5
+        flavorMinimum: 0.1
+        flavor: jackrose
+        recognizable: False
+        allowedJobs: []
+        allowedDepartments: []
+        reactiveEffects:
+          Flammable:
+            effects:
+            - !type:FlammableReaction
+              probability: 1
+              conditions: null
+              multiplierOnExisting: -1
+              multiplier: 0.05
+            methods:
+            - Touch
+        tileReactions:
+        - !type:FlammableTileReaction
+          temperatureMultiplier: 1.35
+        plantMetabolism:
+        - !type:PlantAdjustNutrition
+          guidebookIsAttributePositive: True
+          amount: 0.25
+          guidebookAttributeName: plant-attribute-nutrition
+          probability: 1
+          conditions: null
+        - !type:PlantAdjustWater
+          guidebookIsAttributePositive: True
+          amount: 0.7
+          guidebookAttributeName: plant-attribute-water
+          probability: 1
+          conditions: null
+        pricePerUnit: 0
+        metamorphicMaxFillLevels: 4
+        metamorphicSprite:
+          sprite: Objects/Consumable/Drinks/jackrose.rsi
+          state: icon_empty
+        meltingPoint: null
+        boilingPoint: null
+        specificHeat: 1
+        color: '#F53B3BFF'
+        physicalDesc: reagent-physical-desc-tart
+        desc: reagent-desc-jack-rose
+        abstract: False
+        parent:
+        - BaseAlcohol
+        group: Drinks
+        name: reagent-name-jack-rose
+        id: JackRose
+        isNourishing: False
+        footstepSound: !type:SoundCollectionSpecifier
+          params:
+            variation: null
+            playOffsetSeconds: 0
+            loop: False
+            referenceDistance: 1
+            rolloffFactor: 1
+            maxDistance: 15
+            pitch: 1
+            volume: 6
+          collection: FootstepWater
+        contrabandSeverity: null
+    - type: ContainerContainer
+      containers:
+        solution@drink: !type:ContainerSlot
+          ent: 23064
+    - type: NameModifier
+      baseName: metamorphic glass
 - proto: DrinkMugBlack
   entities:
   - uid: 10377
@@ -64748,6 +67715,14 @@ entities:
     - type: Transform
       pos: -7.672021,-23.145744
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - drink
+    - type: ContainerContainer
+      containers:
+        solution@drink: !type:ContainerSlot
+          ent: 23065
 - proto: DrinkMugRed
   entities:
   - uid: 10378
@@ -64755,20 +67730,240 @@ entities:
     - type: Transform
       pos: -7.2484093,-23.236086
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - drink
+    - type: ContainerContainer
+      containers:
+        solution@drink: !type:ContainerSlot
+          ent: 23066
 - proto: DrinkPumpkinSpiceLatte
   entities:
   - uid: 10379
     components:
+    - type: MetaData
+      desc: It's autumn somewhere. Smells like cinnamon and cloves.
+      name: spiced pumpkin latte glass
     - type: Transform
       pos: -4.404341,42.567184
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - drink
+    - type: TransformableContainer
+      transformed: True
+      currentReagent:
+        metamorphicChangeColor: False
+        spoilsInto: null
+        metabolisms:
+          Drink:
+            effects:
+            - !type:SatiateThirst
+              factor: 2
+              probability: 1
+              conditions: null
+            - !type:AdjustReagent
+              probability: 1
+              conditions: null
+              amount: 0.05
+              group: null
+              reagent: Theobromine
+            - !type:AdjustReagent
+              probability: 1
+              conditions: null
+              amount: 0.2
+              group: null
+              reagent: Sugar
+            metabolismRate: 0.5
+        worksOnTheDead: False
+        friction: 1
+        viscosity: 0
+        fizziness: 0
+        preservedBySpoilageContainers: True
+        spoilTime: 0
+        absorbent: False
+        metamorphicFillBaseName: fill-
+        evaporationSpeed: 0
+        slipData:
+          slipFriction: 0
+          superSlippery: False
+          requiredSlipSpeed: 3.5
+          launchForwardsMultiplier: 1.5
+          paralyzeTime: 1.5
+        flavorMinimum: 0.1
+        flavor: basic
+        recognizable: False
+        allowedJobs: []
+        allowedDepartments: []
+        reactiveEffects:
+          Extinguish:
+            effects:
+            - !type:ExtinguishReaction
+              probability: 1
+              conditions: null
+              fireStacksAdjustment: -1.5
+            methods:
+            - Touch
+        tileReactions:
+        - !type:ExtinguishTileReaction
+          coolingTemperature: 2
+        - !type:SpillIfPuddlePresentTileReaction {}
+        plantMetabolism:
+        - !type:PlantAdjustWater
+          guidebookIsAttributePositive: True
+          amount: 1
+          guidebookAttributeName: plant-attribute-water
+          probability: 1
+          conditions: null
+        pricePerUnit: 0
+        metamorphicMaxFillLevels: 2
+        metamorphicSprite:
+          sprite: _NF/Objects/Consumable/Drinks/pumpkinspicelatte.rsi
+          state: icon_empty
+        meltingPoint: null
+        boilingPoint: null
+        specificHeat: 1
+        color: '#A45C08FF'
+        physicalDesc: reagent-physical-desc-aromatic
+        desc: reagent-desc-pumpkin-spice-latte
+        abstract: False
+        parent:
+        - BaseDrink
+        group: Drinks
+        name: reagent-name-pumpkin-spice-latte
+        id: PumpkinSpiceLatte
+        isNourishing: False
+        footstepSound: !type:SoundCollectionSpecifier
+          params:
+            variation: null
+            playOffsetSeconds: 0
+            loop: False
+            referenceDistance: 1
+            rolloffFactor: 1
+            maxDistance: 15
+            pitch: 1
+            volume: 6
+          collection: FootstepWater
+        contrabandSeverity: null
+    - type: ContainerContainer
+      containers:
+        solution@drink: !type:ContainerSlot
+          ent: 23067
+    - type: NameModifier
+      baseName: metamorphic glass
 - proto: DrinkSoyLatte
   entities:
   - uid: 10380
     components:
+    - type: MetaData
+      desc: A coffee drink made with espresso and steamed soy milk.
+      name: soy latte glass
     - type: Transform
       pos: -3.7012162,42.55155
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - drink
+    - type: TransformableContainer
+      transformed: True
+      currentReagent:
+        metamorphicChangeColor: False
+        spoilsInto: null
+        metabolisms:
+          Drink:
+            effects:
+            - !type:SatiateThirst
+              factor: 2
+              probability: 1
+              conditions: null
+            - !type:GenericStatusEffect
+              probability: 1
+              conditions: null
+              type: Remove
+              refresh: True
+              time: 2
+              component: ""
+              key: Drowsiness
+            metabolismRate: 0.5
+        worksOnTheDead: False
+        friction: 1
+        viscosity: 0
+        fizziness: 0
+        preservedBySpoilageContainers: True
+        spoilTime: 0
+        absorbent: False
+        metamorphicFillBaseName: fill-
+        evaporationSpeed: 0
+        slipData:
+          slipFriction: 0
+          superSlippery: False
+          requiredSlipSpeed: 3.5
+          launchForwardsMultiplier: 1.5
+          paralyzeTime: 1.5
+        flavorMinimum: 0.1
+        flavor: soy
+        recognizable: False
+        allowedJobs: []
+        allowedDepartments: []
+        reactiveEffects:
+          Extinguish:
+            effects:
+            - !type:ExtinguishReaction
+              probability: 1
+              conditions: null
+              fireStacksAdjustment: -1.5
+            methods:
+            - Touch
+        tileReactions:
+        - !type:ExtinguishTileReaction
+          coolingTemperature: 2
+        - !type:SpillIfPuddlePresentTileReaction {}
+        plantMetabolism:
+        - !type:PlantAdjustWater
+          guidebookIsAttributePositive: True
+          amount: 1
+          guidebookAttributeName: plant-attribute-water
+          probability: 1
+          conditions: null
+        pricePerUnit: 0
+        metamorphicMaxFillLevels: 1
+        metamorphicSprite:
+          sprite: Objects/Consumable/Drinks/soy_latte.rsi
+          state: icon_empty
+        meltingPoint: null
+        boilingPoint: null
+        specificHeat: 1
+        color: '#664300FF'
+        physicalDesc: reagent-physical-desc-strong-smelling
+        desc: reagent-desc-soy-latte
+        abstract: False
+        parent:
+        - BaseDrink
+        group: Drinks
+        name: reagent-name-soy-latte
+        id: SoyLatte
+        isNourishing: False
+        footstepSound: !type:SoundCollectionSpecifier
+          params:
+            variation: null
+            playOffsetSeconds: 0
+            loop: False
+            referenceDistance: 1
+            rolloffFactor: 1
+            maxDistance: 15
+            pitch: 1
+            volume: 6
+          collection: FootstepWater
+        contrabandSeverity: null
+    - type: ContainerContainer
+      containers:
+        solution@drink: !type:ContainerSlot
+          ent: 23068
+    - type: NameModifier
+      baseName: metamorphic glass
 - proto: EmergencyMedipen
   entities:
   - uid: 10381
@@ -64776,31 +67971,79 @@ entities:
     - type: Transform
       pos: 6.4282374,55.82448
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pen
+    - type: ContainerContainer
+      containers:
+        solution@pen: !type:ContainerSlot
+          ent: 23069
   - uid: 10382
     components:
     - type: Transform
       pos: 6.5872355,55.640892
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pen
+    - type: ContainerContainer
+      containers:
+        solution@pen: !type:ContainerSlot
+          ent: 23070
   - uid: 10383
     components:
     - type: Transform
       pos: 6.4404683,55.530743
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pen
+    - type: ContainerContainer
+      containers:
+        solution@pen: !type:ContainerSlot
+          ent: 23071
   - uid: 10384
     components:
     - type: Transform
       pos: 6.623927,55.383873
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pen
+    - type: ContainerContainer
+      containers:
+        solution@pen: !type:ContainerSlot
+          ent: 23072
   - uid: 10385
     components:
     - type: Transform
       pos: 13.001318,62.682213
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pen
+    - type: ContainerContainer
+      containers:
+        solution@pen: !type:ContainerSlot
+          ent: 23073
   - uid: 10386
     components:
     - type: Transform
       pos: 13.013549,62.510864
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pen
+    - type: ContainerContainer
+      containers:
+        solution@pen: !type:ContainerSlot
+          ent: 23074
 - proto: EmergencyRollerBed
   entities:
   - uid: 10387
@@ -66652,7 +69895,7 @@ entities:
       pos: 51.5,29.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -9056.871
+      secondsUntilStateChange: -9501.51
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -68304,6 +71547,14 @@ entities:
     - type: Transform
       pos: -4.1095514,27.607529
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - Welder
+    - type: ContainerContainer
+      containers:
+        solution@Welder: !type:ContainerSlot
+          ent: 23075
 - proto: FloorDrain
   entities:
   - uid: 10697
@@ -68311,16 +71562,32 @@ entities:
     - type: Transform
       pos: -9.5,51.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - drainBuffer
     - type: Fixtures
       fixtures: {}
+    - type: ContainerContainer
+      containers:
+        solution@drainBuffer: !type:ContainerSlot
+          ent: 23076
   - uid: 10698
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,51.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - drainBuffer
     - type: Fixtures
       fixtures: {}
+    - type: ContainerContainer
+      containers:
+        solution@drainBuffer: !type:ContainerSlot
+          ent: 23077
 - proto: FloorWaterEntity
   entities:
   - uid: 10699
@@ -68329,150 +71596,374 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,-1.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23078
   - uid: 10700
     components:
     - type: Transform
       pos: -4.5,-2.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23079
   - uid: 10701
     components:
     - type: Transform
       pos: -4.5,-3.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23080
   - uid: 10702
     components:
     - type: Transform
       pos: -6.5,-2.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23081
   - uid: 10703
     components:
     - type: Transform
       pos: -5.5,-2.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23082
   - uid: 10704
     components:
     - type: Transform
       pos: -5.5,-3.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23083
   - uid: 10705
     components:
     - type: Transform
       pos: -6.5,-3.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23084
   - uid: 10706
     components:
     - type: Transform
       pos: -5.5,-4.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23085
   - uid: 10707
     components:
     - type: Transform
       pos: -6.5,-4.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23086
   - uid: 10708
     components:
     - type: Transform
       pos: -4.5,-4.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23087
   - uid: 10709
     components:
     - type: Transform
       pos: 6.5,-2.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23088
   - uid: 10710
     components:
     - type: Transform
       pos: 7.5,-2.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23089
   - uid: 10711
     components:
     - type: Transform
       pos: 8.5,-2.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23090
   - uid: 10712
     components:
     - type: Transform
       pos: 8.5,-3.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23091
   - uid: 10713
     components:
     - type: Transform
       pos: 7.5,-3.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23092
   - uid: 10714
     components:
     - type: Transform
       pos: 6.5,-3.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23093
   - uid: 10715
     components:
     - type: Transform
       pos: 6.5,-4.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23094
   - uid: 10716
     components:
     - type: Transform
       pos: 7.5,-4.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23095
   - uid: 10717
     components:
     - type: Transform
       pos: 8.5,-4.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23096
   - uid: 10718
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 7.5,-1.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23097
   - uid: 10719
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 8.5,-1.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23098
   - uid: 10720
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -6.5,-1.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23099
   - uid: 10721
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,-1.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23100
   - uid: 10722
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.5,-1.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23101
   - uid: 10723
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,-16.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23102
   - uid: 10724
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,-17.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23103
   - uid: 10725
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,-18.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23104
   - uid: 10726
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,-19.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - pool
+    - type: ContainerContainer
+      containers:
+        solution@pool: !type:ContainerSlot
+          ent: 23105
 - proto: FloraTreeLarge
   entities:
   - uid: 10727
@@ -68526,116 +72017,258 @@ entities:
     - type: Transform
       pos: -3.3513656,39.49287
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23116
 - proto: FoodMealMisoNoodles
   entities:
   - uid: 10735
     components:
     - type: Transform
       parent: 10733
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23106
 - proto: FoodMealShoyuNoodles
   entities:
   - uid: 10736
     components:
     - type: Transform
       parent: 10733
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23107
   - uid: 10737
     components:
     - type: Transform
       parent: 10733
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23108
   - uid: 10746
     components:
     - type: Transform
       pos: -3.4138656,38.21073
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23117
 - proto: FoodMealSpicyNoodles
   entities:
   - uid: 10738
     components:
     - type: Transform
       parent: 10733
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23109
   - uid: 10739
     components:
     - type: Transform
       parent: 10733
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23110
   - uid: 10740
     components:
     - type: Transform
       parent: 10733
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23111
 - proto: FoodMealTonkatsuNoodles
   entities:
   - uid: 10741
     components:
     - type: Transform
       parent: 10733
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23112
   - uid: 10742
     components:
     - type: Transform
       parent: 10733
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23113
   - uid: 10743
     components:
     - type: Transform
       parent: 10733
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23114
   - uid: 10747
     components:
     - type: Transform
       pos: -3.330532,38.63811
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23118
 - proto: FoodPoppy
   entities:
   - uid: 8853
     components:
     - type: Transform
       parent: 8849
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: StackSignature
+      signature: FoodPoppy|Bicaridine=2000;Nutriment=200;
     - type: Clothing
       inSlotFlag: HEAD
       inSlot: head
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23050
   - uid: 9033
     components:
     - type: Transform
       parent: 9031
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: StackSignature
+      signature: FoodPoppy|Bicaridine=2000;Nutriment=200;
     - type: Clothing
       inSlotFlag: HEAD
       inSlot: head
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23060
   - uid: 10748
     components:
     - type: Transform
       pos: 5.328918,40.86565
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: StackSignature
+      signature: FoodPoppy|Bicaridine=2000;Nutriment=200;
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23119
 - proto: FoodRiceEgg
   entities:
   - uid: 10744
     components:
     - type: Transform
       parent: 10733
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Physics
       canCollide: False
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23115
   - uid: 10749
     components:
     - type: Transform
       pos: -3.486782,37.689537
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23120
 - proto: GasCanisterBrokenBase
   entities:
   - uid: 10750
@@ -105473,19 +109106,14 @@ entities:
     - type: Transform
       pos: 7.5,-35.5
       parent: 2
+    - type: Gateway
+      enabled: True
 - proto: GlassBoxLaser
   entities:
   - uid: 15397
     components:
     - type: Transform
       pos: -4.5,31.5
-      parent: 2
-- proto: GoldRing
-  entities:
-  - uid: 15398
-    components:
-    - type: Transform
-      pos: 0.9397923,-10.677483
       parent: 2
 - proto: GravityGenerator
   entities:
@@ -113652,6 +117280,60 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,58.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - bucket
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        mop_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        trashbag_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        bucket_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        plunger_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        wetfloorsign_slot4: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        wetfloorsign_slot3: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        wetfloorsign_slot2: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        wetfloorsign_slot1: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        lightreplacer_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        spraybottle_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@bucket: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23123
 - proto: KitchenElectricRange
   entities:
   - uid: 16498
@@ -113805,22 +117487,19 @@ entities:
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
-        606:
+        23168:
         - - Pressed
           - Toggle
-        607:
+        23169:
         - - Pressed
           - Toggle
-        610:
+        23164:
         - - Pressed
           - Toggle
-        611:
+        23165:
         - - Pressed
           - Toggle
-        609:
-        - - Pressed
-          - Toggle
-        608:
+        23166:
         - - Pressed
           - Toggle
 - proto: LockableButtonEngineering
@@ -114523,11 +118202,31 @@ entities:
     - type: Transform
       pos: 5.6708856,41.670593
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23124
+    - type: StackSignature
+      signature: MaterialDurathread1|Fiber=500;
   - uid: 16545
     components:
     - type: Transform
       pos: 5.7333856,41.851276
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 23125
+    - type: StackSignature
+      signature: MaterialDurathread1|Fiber=500;
 - proto: MedalCase
   entities:
   - uid: 16546
@@ -114578,6 +118277,28 @@ entities:
     - type: Transform
       pos: 4.5,56.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        blueprint: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        solution@lube: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23126
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - lube
 - proto: MedkitAdvancedFilled
   entities:
   - uid: 16554
@@ -114683,6 +118404,20 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.734802,-16.6833
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23127
 - proto: NFPosterContrabandEmsCoords
   entities:
   - uid: 16569
@@ -114718,6 +118453,28 @@ entities:
     - type: Transform
       pos: 4.5,27.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        blueprint: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        solution@lube: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23128
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - lube
 - proto: NFSignEms2
   entities:
   - uid: 16574
@@ -114842,6 +118599,20 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.9866672,-10.224358
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23129
 - proto: PillowBodyNebula
   entities:
   - uid: 16590
@@ -114849,6 +118620,20 @@ entities:
     - type: Transform
       pos: -1.5420597,20.562984
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23130
 - proto: PlasmaChemistryVial
   entities:
   - uid: 16591
@@ -114856,12 +118641,28 @@ entities:
     - type: Transform
       pos: 24.027771,60.625324
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - beaker
+    - type: ContainerContainer
+      containers:
+        solution@beaker: !type:ContainerSlot
+          ent: 23131
   - uid: 16592
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 23.526316,60.551888
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - beaker
+    - type: ContainerContainer
+      containers:
+        solution@beaker: !type:ContainerSlot
+          ent: 23132
 - proto: PlasmaReinforcedWindowDirectional
   entities:
   - uid: 16593
@@ -114919,6 +118720,20 @@ entities:
     - type: Transform
       pos: -0.2375288,-10.768802
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23133
 - proto: PlushieAvali
   entities:
   - uid: 23001
@@ -114926,6 +118741,20 @@ entities:
     - type: Transform
       pos: 2.6116672,-10.005608
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23134
 - proto: PlushieBountyHunter
   entities:
   - uid: 22998
@@ -114933,6 +118762,20 @@ entities:
     - type: Transform
       pos: 2.6897922,-10.708733
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23135
 - proto: PlushieCarp
   entities:
   - uid: 16601
@@ -114941,6 +118784,20 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.7164555,-18.812904
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23136
 - proto: PlushieCentCom
   entities:
   - uid: 22995
@@ -114948,6 +118805,20 @@ entities:
     - type: Transform
       pos: -0.7375288,-10.753177
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23137
 - proto: PlushieFRouny
   entities:
   - uid: 1
@@ -114955,6 +118826,20 @@ entities:
     - type: Transform
       pos: 0.53223133,-10.096927
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23138
 - proto: PlushieLivyathan
   entities:
   - uid: 16602
@@ -114962,6 +118847,20 @@ entities:
     - type: Transform
       pos: 1.5433594,-10.034427
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23139
 - proto: PlushieLizardCCO
   entities:
   - uid: 22994
@@ -114969,6 +118868,20 @@ entities:
     - type: Transform
       pos: 2.0277343,-9.940677
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23140
 - proto: PlushieLizardHoS
   entities:
   - uid: 22996
@@ -114976,6 +118889,20 @@ entities:
     - type: Transform
       pos: -0.38964367,-10.050052
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23141
 - proto: PlushieLizardMaid
   entities:
   - uid: 23000
@@ -114983,6 +118910,20 @@ entities:
     - type: Transform
       pos: 1.5022923,-10.708733
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23142
 - proto: PlushieNebula
   entities:
   - uid: 16603
@@ -114990,11 +118931,39 @@ entities:
     - type: Transform
       pos: 0.89160633,-10.065677
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23143
   - uid: 16604
     components:
     - type: Transform
       pos: -22.66746,51.69545
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23144
 - proto: PlushieNirouJol
   entities:
   - uid: 16605
@@ -115002,6 +118971,20 @@ entities:
     - type: Transform
       pos: 0.17285633,-10.065677
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23145
 - proto: PlushieRainbowCarp
   entities:
   - uid: 16606
@@ -115010,6 +118993,20 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.349538,-17.65631
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23146
 - proto: PlushieSharkCaptain
   entities:
   - uid: 22999
@@ -115017,6 +119014,20 @@ entities:
     - type: Transform
       pos: 2.0960422,-10.693108
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23147
 - proto: PlushieSharkGrey
   entities:
   - uid: 16608
@@ -115025,6 +119036,20 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.257808,-19.41874
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23148
 - proto: PlushieSlimeVulp
   entities:
   - uid: 23002
@@ -115032,6 +119057,41 @@ entities:
     - type: Transform
       pos: 0.36166728,-10.771233
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23149
+- proto: PlushieStoneRengault
+  entities:
+  - uid: 23121
+    components:
+    - type: Transform
+      pos: 0.9834231,-10.6881695
+      parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
+    - type: ContainerContainer
+      containers:
+        stash: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        solution@food: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23122
 - proto: PosterContrabandBeachStarYamamoto
   entities:
   - uid: 16609
@@ -117245,11 +121305,27 @@ entities:
     - type: Transform
       pos: -4.8985443,42.61462
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - absorbed
+    - type: ContainerContainer
+      containers:
+        solution@absorbed: !type:ContainerSlot
+          ent: 23150
   - uid: 16925
     components:
     - type: Transform
       pos: -14.3556385,53.60845
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - absorbed
+    - type: ContainerContainer
+      containers:
+        solution@absorbed: !type:ContainerSlot
+          ent: 23151
 - proto: Railing
   entities:
   - uid: 16926
@@ -127925,8 +132001,19 @@ entities:
       rot: 3.141592653589793 rad
       pos: -9.5,51.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - drainBuffer
+      - tank
     - type: Fixtures
       fixtures: {}
+    - type: ContainerContainer
+      containers:
+        solution@drainBuffer: !type:ContainerSlot
+          ent: 23152
+        solution@tank: !type:ContainerSlot
+          ent: 23153
 - proto: SinkWide
   entities:
   - uid: 18860
@@ -127934,16 +132021,38 @@ entities:
     - type: Transform
       pos: -4.5,51.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - drainBuffer
+      - tank
     - type: Fixtures
       fixtures: {}
+    - type: ContainerContainer
+      containers:
+        solution@drainBuffer: !type:ContainerSlot
+          ent: 23154
+        solution@tank: !type:ContainerSlot
+          ent: 23155
   - uid: 18861
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,55.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - drainBuffer
+      - tank
     - type: Fixtures
       fixtures: {}
+    - type: ContainerContainer
+      containers:
+        solution@drainBuffer: !type:ContainerSlot
+          ent: 23156
+        solution@tank: !type:ContainerSlot
+          ent: 23157
 - proto: SMESAdvanced
   entities:
   - uid: 18862
@@ -129221,11 +133330,27 @@ entities:
     - type: Transform
       pos: -3.3218822,57.765198
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - spray
+    - type: ContainerContainer
+      containers:
+        solution@spray: !type:ContainerSlot
+          ent: 23158
   - uid: 18874
     components:
     - type: Transform
       pos: -3.6276474,57.691765
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - spray
+    - type: ContainerContainer
+      containers:
+        solution@spray: !type:ContainerSlot
+          ent: 23159
 - proto: StairDark
   entities:
   - uid: 18875
@@ -130357,41 +134482,6 @@ entities:
     components:
     - type: Transform
       pos: 13.967932,48.466366
-      parent: 2
-- proto: TreasureCoinDiamond
-  entities:
-  - uid: 19065
-    components:
-    - type: Transform
-      pos: 0.9085423,-10.974358
-      parent: 2
-- proto: TreasureCoinGold
-  entities:
-  - uid: 19066
-    components:
-    - type: Transform
-      pos: 0.6429173,-10.489983
-      parent: 2
-- proto: TreasureCoinSilver
-  entities:
-  - uid: 19067
-    components:
-    - type: Transform
-      pos: 0.9554173,-10.411858
-      parent: 2
-- proto: Turnstile
-  entities:
-  - uid: 19068
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,-25.5
-      parent: 2
-  - uid: 19069
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-25.5
       parent: 2
 - proto: TwoWayLever
   entities:
@@ -148484,11 +152574,39 @@ entities:
     - type: Transform
       pos: 1.5,12.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - tank
+    - type: ContainerContainer
+      containers:
+        bin-container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        solution@tank: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23162
   - uid: 22637
     components:
     - type: Transform
       pos: 0.5,-27.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - tank
+    - type: ContainerContainer
+      containers:
+        bin-container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        solution@tank: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23163
 - proto: WeaponCapacitorRecharger
   entities:
   - uid: 22638

@@ -87,8 +87,13 @@ public abstract partial class SharedGunSystem
         if (GetBallisticShots(component) >= component.Capacity)
             return;
 
-        component.Entities.Add(args.Used);
-        Containers.Insert(args.Used, component.Container);
+        var ammo = ExtractSingleAmmoForInsert(args.Used, Transform(uid).Coordinates);
+
+        if (ammo == null)
+            return;
+
+        component.Entities.Add(ammo.Value);
+        Containers.Insert(ammo.Value, component.Container);
         // Not predicted so
         Audio.PlayPredicted(component.SoundInsert, uid, args.User);
         args.Handled = true;
@@ -304,12 +309,14 @@ public abstract partial class SharedGunSystem
 
         // TODO this should be part of the prototype, not set on map init.
         // Alternatively, just track spawned count, instead of unspawned count.
-        if (component.Proto != null)
+        if (component.Proto != null && component.FillFromPrototype)
         {
             component.UnspawnedCount = Math.Max(0, component.Capacity - component.Container.ContainedEntities.Count);
-            UpdateBallisticAppearance(uid, component);
+            component.FillFromPrototype = false;
             Dirty(uid, component);
         }
+
+        UpdateBallisticAppearance(uid, component);
     }
 
     protected int GetBallisticShots(BallisticAmmoProviderComponent component)

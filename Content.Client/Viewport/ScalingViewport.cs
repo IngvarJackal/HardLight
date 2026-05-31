@@ -37,6 +37,9 @@ namespace Content.Client.Viewport
 
         private readonly List<CopyPixelsDelegate<Rgba32>> _queuedScreenshots = new();
 
+        // Mono - #3902 Silicon CRT shader
+        public ShaderInstance? Shader;
+
         public int CurrentRenderScale => _curRenderScale;
 
         /// <summary>
@@ -170,7 +173,10 @@ namespace Content.Client.Viewport
             var drawBox = GetDrawBox();
             var drawBoxGlobal = drawBox.Translated(GlobalPixelPosition);
             _viewport.RenderScreenOverlaysBelow(handle, this, drawBoxGlobal);
+            // Mono - #3902 Silicon CRT shader
+            handle.DrawingHandleScreen.UseShader(Shader);
             handle.DrawingHandleScreen.DrawTextureRect(_viewport.RenderTarget.Texture, drawBox);
+            handle.DrawingHandleScreen.UseShader(null);
             _viewport.RenderScreenOverlaysAbove(handle, this, drawBoxGlobal);
         }
 

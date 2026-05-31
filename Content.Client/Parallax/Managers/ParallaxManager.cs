@@ -81,10 +81,11 @@ public sealed class ParallaxManager : IParallaxManager
             }
             else
             {
-                layers = await Task.WhenAll(
+                layers = await Task.WhenAll(new[]
+                {
                     LoadParallaxLayers(parallaxPrototype.Layers, cancel),
-                    LoadParallaxLayers(parallaxPrototype.LayersLQ, cancel)
-                );
+                    LoadParallaxLayers(parallaxPrototype.LayersLQ, cancel),
+                });
             }
 
             _loadingParallaxes.Remove(name, out _);

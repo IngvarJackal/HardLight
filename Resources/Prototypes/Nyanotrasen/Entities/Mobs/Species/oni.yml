@@ -4,6 +4,16 @@
   id: MobOniBase
   abstract: true
   components:
+  # HardLight start
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - SolCommon
+    understands:
+    - GalacticCommon
+    - SolCommon
+    - Nekomimetic
+  # HardLight end
   - type: Speech
     speechSounds: Baritone
   - type: HumanoidAppearance

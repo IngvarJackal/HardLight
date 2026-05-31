@@ -92,7 +92,7 @@ public sealed class RespiratorSystem : EntitySystem
                 toProcess.Add(uid);
             }
         }
-        catch (Exception e) when (e is InvalidOperationException || e.Message.Contains("Collection was modified"))
+        catch (InvalidOperationException) // VRS: drop fragile message-text branch (matched FTL fix); InvalidOperationException already covers the collection-modified case and works under any culture.
         {
             return;
         }

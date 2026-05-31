@@ -254,7 +254,7 @@
   parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitJuggernaut, BaseC3ExpeditionContraband] # Jugger Suit
   id: ClothingOuterHardsuitNfsdExperimental
   name: ColSec M92-X tacsuit
-  description: A experimental modification of the M92 tacsuit for spec-ops units of the ColSec. Externally the same, internally its higher-quality alloys and fabric.
+  description: A experimental modification of the M92 tacsuit for spec-ops units of ColSec. Externally the same, internally its higher-quality alloys and fabric.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi

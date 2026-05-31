@@ -3,8 +3,6 @@
   start: start
   graph:
     - node: start
-      actions:
-        - !type:DestroyEntity {}
       edges:
         - to: BeamPrism
           steps:

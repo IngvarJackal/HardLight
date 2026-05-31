@@ -1,18 +1,18 @@
 ﻿- type: entity
   name: Urist McFelionoid
-  parent: BaseMobHuman 
+  parent: BaseMobHuman
   # removed BaseSpeciesPickupable, handled by another engine
   id: BaseMobFelionoid
   abstract: true
   components:
-  # - type: LanguageKnowledge # HL: component not available in this codebase
-  #   speaks:
-  #   - GalacticCommon
-  #   - Nekomimetic
-  #   understands:
-  #   - GalacticCommon
-  #   - Nekomimetic
-  #   - Cat
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Nekomimetic
+    understands:
+    - GalacticCommon
+    - Nekomimetic
+    - Cat
   # - type: Absorbable # HL: component not available in this codebase
   # copied from felinid
   - type: Sprite

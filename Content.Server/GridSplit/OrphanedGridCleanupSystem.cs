@@ -10,6 +10,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using Content.Shared.Parallax.Biomes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.GridSplit;
@@ -169,6 +170,10 @@ public sealed class OrphanedGridCleanupSystem : EntitySystem
         // If grid has zero tiles, it's definitely a candidate for cleanup
         if (tileCount == 0)
         {
+            // Never delete biome planet maps — they start with 0 tiles (lazy generation).
+            if (HasComp<BiomeComponent>(gridUid))
+                return false;
+
             // But still check for important entities (like players stuck in space)
             if (HasImportantEntities(gridUid))
                 return false;

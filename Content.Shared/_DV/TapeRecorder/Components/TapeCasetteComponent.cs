@@ -40,6 +40,13 @@ public sealed partial class TapeCassetteComponent : Component
     public float CorruptionChance = 0.25f;
 
     /// <summary>
+    /// Running total of recorded message character lengths including per-line formatting overhead.
+    /// Maintained incrementally to avoid recomputing on every frame.
+    /// </summary>
+    [DataField]
+    public int TranscriptLength = 0;
+
+    /// <summary>
     /// Temporary storage for all heard messages that need processing
     /// </summary>
     [DataField]

@@ -6,7 +6,7 @@
   sprites: MobChitinidSprites
   markingLimits: MobChitinidMarkingLimits
   dollPrototype: MobChitinidDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
 
 - type: speciesBaseSprites
   id: MobChitinidSprites

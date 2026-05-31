@@ -1,0 +1,68 @@
+# VRS: Ported from Triad_Sector — base rules + faction-rolling schedulers
+# for hostile shuttle station events. The Triad_Sector copy of this file kept
+# the schedulers commented out; we enable them here so VRS NFAdventure rounds
+# actually get the damaged-AI / Chimera / Asakim ship encounters.
+#
+# Round-restart schedulers (Hour4 / Hour1 portstrike timings) intentionally
+# excluded — VRS does not force round restarts, those live in timings.yml.
+
+- type: entity
+  abstract: true
+  parent: BaseGameRule
+  id: BaseRandomShuttleRule
+  components:
+  - type: StationEvent
+    weight: 10
+    reoccurrenceDelay: 30
+    duration: 1
+    maxOccurrences: 2 # should be the same as [copies] in ship_spawns.yml
+  - type: RuleGrids
+  - type: LoadMapRule
+
+- type: entity
+  id: MonoAISTCShuttleSpawnerScheduler
+  parent: BaseGameRule
+  components:
+    - type: BasicStationEventScheduler
+      scheduledGameRules: !type:NestedSelector
+        tableId: DamagedAIShipsTable
+      minimumTimeUntilFirstEvent: 3600 # 1 hour
+      minMaxEventTiming:
+        min: 5400 # 90 minutes between events
+        max: 7200 # 120 minutes between events
+
+- type: entity
+  id: MonoAISTCShuttleSpawnerSchedulerTier2
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: DamagedAIShipsTableT2
+    minimumTimeUntilFirstEvent: 10800 # 3 hours
+    minMaxEventTiming:
+      min: 3600 # 60 minutes between events
+      max: 3600 # 60 minutes between events
+
+- type: entity
+  id: MonoAsakimSTCShuttleSpawnerScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: AsakimShipsTable
+    minimumTimeUntilFirstEvent: 3600 # 1 hour
+    minMaxEventTiming:
+      min: 3600 # 60 minutes between events
+      max: 7200 # 120 minutes between events
+
+- type: entity
+  id: MonoChimeraSTCShuttleSpawnerScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: ChimeraShipsTable
+    minimumTimeUntilFirstEvent: 3600 # 1 hour
+    minMaxEventTiming: # 2-4 events
+      min: 2400 # 40 minutes between events
+      max: 4800 # 80 minutes between events

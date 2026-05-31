@@ -6,6 +6,17 @@
   description: A flying leviathan, loosely related to space carps.
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Carptongue
+    understands:
+    - GalacticCommon
+    - Carptongue
+    - Thaveyan
+  # Starlight-end
   - type: ThermalVision # Starlight
   - type: Bloodstream
     bloodMaxVolume: 650

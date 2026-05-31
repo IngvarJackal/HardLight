@@ -2,7 +2,7 @@
   id: EggLayerFertile
   name: hl-trait-egglayer-fertile-name
   description: hl-trait-egglayer-fertile-desc
-  category: Physical
+  category: Lewd
   mutuallyExclusiveTraits:
   - EggLayer
   - EggLayerInfertile
@@ -21,7 +21,7 @@
   id: EggLayer
   name: hl-trait-egglayer-name
   description: hl-trait-egglayer-desc
-  category: Physical
+  category: Lewd
   mutuallyExclusiveTraits:
   - EggLayerFertile
   - EggLayerInfertile
@@ -40,7 +40,7 @@
   id: EggLayerInfertile
   name: hl-trait-egglayer-infertile-name
   description: hl-trait-egglayer-infertile-desc
-  category: Physical
+  category: Lewd
   mutuallyExclusiveTraits:
   - EggLayerFertile
   - EggLayer

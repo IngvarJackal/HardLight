@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: BaseItemHarmless
   id: BasePillow
   abstract: true
   components:

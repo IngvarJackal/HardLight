@@ -6,6 +6,7 @@
   abstract: true
   components:
   - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]

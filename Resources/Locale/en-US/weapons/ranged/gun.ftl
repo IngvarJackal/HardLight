@@ -49,3 +49,6 @@ gun-revolver-insert = Inserted
 gun-revolver-spin = Spin revolver
 gun-revolver-spun = Spun
 gun-speedloader-empty = Speedloader empty
+
+# VRS (Triad #3731)
+gun-damage-modifier-examine = This weapon deals [color={$color}]{$modifier}[/color] of its normal damage.

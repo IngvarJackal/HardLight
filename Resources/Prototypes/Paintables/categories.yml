@@ -3,6 +3,8 @@
   groups:
   - AirlockStandard
   - AirlockGlass
+  - HeavyStandard # Mono - #3881
+  - HeavyGlass # Mono - #3881
 
 - type: paintableGroupCategory
   id: Canisters

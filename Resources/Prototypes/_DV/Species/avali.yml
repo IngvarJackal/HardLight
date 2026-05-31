@@ -7,7 +7,7 @@
   defaultSkinTone: "#D2B48C"
   markingLimits: MobAvaliMarkingLimits
   dollPrototype: MobAvaliDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   maleFirstNames: names_avali_first
   femaleFirstNames: names_avali_first
   lastNames: names_avali_packs

@@ -6,7 +6,7 @@
   sprites: MobFelionoidSprites
   markingLimits: MobFelionoidMarkingLimits
   dollPrototype: MobFelionoidDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   defaultSkinTone: "#666666"
   maleFirstNames: names_felionoid
   femaleFirstNames: names_felionoid

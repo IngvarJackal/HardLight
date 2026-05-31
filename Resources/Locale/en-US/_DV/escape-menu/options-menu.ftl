@@ -1,8 +1,3 @@
-ui-options-tab-extra = Extra
-ui-options-general-forknotice = Note: These settings are fork-specific and might not apply on other servers.
-
-ui-options-no-filters = Disable species vi
-
 ## DeltaV NanoChat keybinds
 ui-options-header-nano-chat = NanoChat
 ui-options-function-nano-chat-navigate-up = Navigate up

@@ -1,0 +1,58 @@
+# VRS: ambient wandering mob packs that populate persistent biome planets.
+# Each layer uses Poisson-disc placement with `radius` minimum spacing and a
+# `size` (marker chunk) so packs stay sparse and rarely cluster. Group
+# sizes are intentionally small — these are *encounters*, not raids.
+
+- type: biomeMarkerLayer
+  id: VRSWanderingXenos
+  prototype: MobXeno
+  radius: 80
+  size: 64
+  maxCount: 12
+  minGroupSize: 2
+  maxGroupSize: 4
+
+- type: biomeMarkerLayer
+  id: VRSWanderingXenoDrones
+  prototype: MobXenoDroneNPC
+  radius: 80
+  size: 64
+  maxCount: 12
+  minGroupSize: 2
+  maxGroupSize: 4
+
+- type: biomeMarkerLayer
+  id: VRSWanderingXenoRunners
+  prototype: MobXenoRunnerNPC
+  radius: 80
+  size: 64
+  maxCount: 12
+  minGroupSize: 2
+  maxGroupSize: 4
+
+- type: biomeMarkerLayer
+  id: VRSWanderingExplorersMelee
+  prototype: MobExplorerMeleeT1
+  radius: 100
+  size: 64
+  maxCount: 8
+  minGroupSize: 1
+  maxGroupSize: 3
+
+- type: biomeMarkerLayer
+  id: VRSWanderingExplorersRanged
+  prototype: MobExplorerRangedT1
+  radius: 100
+  size: 64
+  maxCount: 8
+  minGroupSize: 1
+  maxGroupSize: 3
+
+- type: biomeMarkerLayer
+  id: VRSWanderingCarpsSalvage
+  prototype: MobCarpSalvage
+  radius: 80
+  size: 64
+  maxCount: 10
+  minGroupSize: 2
+  maxGroupSize: 4

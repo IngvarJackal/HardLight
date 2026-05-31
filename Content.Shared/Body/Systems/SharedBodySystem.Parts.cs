@@ -627,9 +627,33 @@ public partial class SharedBodySystem
         return Resolve(partId, ref part, logMissing: false)
             && Resolve(parentId, ref parentPart, logMissing: false)
             && parentPart.Children.TryGetValue(slotId, out var parentSlotData)
+            && AssignMissingPartTypeAndSymmetry(partId, part, parentSlotData, slotId)
             && part.PartType == parentSlotData.Type
             && Containers.TryGetContainer(parentId, GetPartSlotContainerId(slotId), out var container)
             && Containers.CanInsert(partId, container);
+    }
+
+    /// <summary>
+    /// Assigns the part type and symmetry to this part based on the parent slot if it's not already set.
+    /// </summary>
+    private bool AssignMissingPartTypeAndSymmetry(EntityUid partId, BodyPartComponent? part, BodyPartSlot parentSlotData, string slotId)
+    {
+        if (part == null)
+            return false;
+
+        if (part.PartType != BodyPartType.Other)
+            return true;
+
+        part.PartType = parentSlotData.Type;
+
+        // Infer symmetry from slot id, might be a cooked implementation but leshrug
+        if (slotId.Contains("left", StringComparison.OrdinalIgnoreCase))
+            part.Symmetry = BodyPartSymmetry.Left;
+        else if (slotId.Contains("right", StringComparison.OrdinalIgnoreCase))
+            part.Symmetry = BodyPartSymmetry.Right;
+
+        Dirty(partId, part);
+        return true;
     }
 
     /// <summary>

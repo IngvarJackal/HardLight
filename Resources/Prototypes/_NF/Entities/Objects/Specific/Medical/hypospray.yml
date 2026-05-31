@@ -95,6 +95,8 @@
       - state: base-colorA-inhand-right
         color: "#666865"
       - state: base-colorB-inhand-right
+  - type: Tag
+    tags: [Medipen]
 
 - type: entity
   parent: ChemicalMedipen
@@ -114,7 +116,7 @@
     injectOnly: true
     transferAmount: 15 # Explicitly redefined in case parent changes
   - type: Tag
-    tags: []
+    tags: [Medipen]
 
 - type: entity
   name: hemostasis auto-injector
@@ -151,6 +153,8 @@
           Quantity: 5
         - ReagentId: Saline
           Quantity: 15
+  - type: Tag
+    tags: [Medipen]
 
 - type: entity
   name: stimulant auto-injector
@@ -188,6 +192,8 @@
           Quantity: 10
         - ReagentId: Dylovene
           Quantity: 10
+  - type: Tag
+    tags: [Medipen]
 
 - type: entity
   name: crisis auto-injector
@@ -225,6 +231,8 @@
           Quantity: 10
         - ReagentId: DexalinPlus
           Quantity: 10
+  - type: Tag
+    tags: [Medipen]
 
 - type: entity
   name: lacerinol auto-injector
@@ -260,6 +268,8 @@
           Quantity: 10
         - ReagentId: TranexamicAcid
           Quantity: 5
+  - type: Tag
+    tags: [Medipen]
 
 - type: entity
   name: bruizine auto-injector
@@ -295,6 +305,8 @@
           Quantity: 10
         - ReagentId: TranexamicAcid
           Quantity: 5
+  - type: Tag
+    tags: [Medipen]
 
 - type: entity
   name: polypyrylium oligomers auto-injector
@@ -328,6 +340,8 @@
         reagents:
         - ReagentId: PolypyryliumOligomers
           Quantity: 15
+  - type: Tag
+    tags: [Medipen]
 
 - type: entity
   name: barkeeper's friend auto-injector
@@ -365,6 +379,8 @@
           Quantity: 15
         - ReagentId: Dylovene
           Quantity: 5
+  - type: Tag
+    tags: [Medipen]
 
 - type: entity
   parent: BaseItem
@@ -479,3 +495,5 @@
           Quantity: 15
         - ReagentId: TranexamicAcid
           Quantity: 5
+  - type: Tag
+    tags: [Medipen]

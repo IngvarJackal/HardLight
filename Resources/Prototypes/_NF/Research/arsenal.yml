@@ -25,6 +25,7 @@
   - ClothingRucksack #HL
   technologyPrerequisites:
   - AdvancedRiotControl
+  position: 3, 2
 
 # Tier 2
 
@@ -36,12 +37,15 @@
     state: icon
   discipline: Experimental
   tier: 1
-  cost: 9000
+  cost: 10000
+
   recipeUnlocks:
   - ClothingShoesBootsMagSecurity
   - ClothingShoesBootsMagMercenary
   technologyPrerequisites:
   - MagnetsTech
+  - AdvancedParts
+  position: -3, -1
 
 - type: technology
   id: HardsuitsArmored
@@ -58,6 +62,8 @@
   technologyPrerequisites:
   - AdvancedRiotControl
   - HardsuitsAdvanced
+  - HardsuitsSpecialized
+  position: 2, 8
 
 - type: technology
   id: ArsenalStyle
@@ -91,6 +97,7 @@
   - ClothingOuterCoatBomberRandomized
   technologyPrerequisites:
   - BountyHunting
+  position: 4, 2
 
 # Tier 3
 
@@ -108,3 +115,5 @@
   - BlueprintClothingOuterHardsuitScaf
   technologyPrerequisites:
   - HardsuitsArmored
+  - SuperParts
+  position: 3, 8

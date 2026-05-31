@@ -1,0 +1,36 @@
+- type: reagent
+  id: Painkillers
+  name: reagent-name-painkillers
+  group: Medicine
+  desc: reagent-desc-painkillers
+  physicalDesc: reagent-physical-desc-sweet
+  flavor: sweet
+  color: "#ffc0cb"
+  metabolisms:
+    Medicine:
+      metabolismRate : 0.02
+      effects:
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages:
+          - "reagent-effect-painkiller-strong1"
+          - "reagent-effect-painkiller-strong4"
+          - "reagent-effect-painkiller-strong5"
+          - "reagent-effect-painkiller-strong6"
+        probability: 0.2
+      - !type:PopupMessage
+        type: Local
+        visualType: Small
+        messages:
+          - "reagent-effect-painkiller-fade"
+        probability: 0.7
+        conditions:
+          - !type:ReagentThreshold
+            max: 0.2
+      - !type:Painkillers
+      - !type:Painkillers
+        type: Remove
+        conditions:
+          - !type:ReagentThreshold
+            max: 0.2

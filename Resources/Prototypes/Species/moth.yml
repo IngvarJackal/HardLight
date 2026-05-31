@@ -7,7 +7,7 @@
   defaultSkinTone: "#ffda93"
   markingLimits: MobMothMarkingLimits
   dollPrototype: MobMothDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   maleFirstNames: NamesMothFirstMale
   femaleFirstNames: NamesMothFirstFemale
   lastNames: NamesMothLast

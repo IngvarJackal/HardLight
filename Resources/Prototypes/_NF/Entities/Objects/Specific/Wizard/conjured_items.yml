@@ -8,6 +8,14 @@
   - type: TimedDespawn
     lifetime: 10
 
+- type: entity
+  abstract: true
+  parent: ConjuredObject10
+  id: ConjuredObject180
+  components:
+  - type: TimedDespawn
+    lifetime: 180
+
 # Conjured objects
 - type: entity
   name: soap

@@ -21,3 +21,160 @@
   - type: Speech
     speechSounds: Borg
     speechVerb: Robotic
+
+- type: trait
+  id: HLVoiceAvali
+  name: hl-trait-voice-avali-name
+  description: hl-trait-voice-avali-desc
+  replaceComponents: true
+  cost: 1
+  category: SpeechTraits
+  components:
+  - type: Speech
+    speechSounds: MaleAvali
+    speechVerb: Parrot
+
+- type: trait
+  id: HLVoiceSyndieborg
+  name: hl-trait-voice-syndieborg-name
+  description: hl-trait-voice-syndieborg-desc
+  replaceComponents: true
+  cost: 1
+  category: SpeechTraits
+  components:
+  - type: Speech
+    speechSounds: SyndieBorg
+    speechVerb: Robotic
+
+- type: trait
+  id: HLVoiceXenoborg
+  name: hl-trait-voice-xenoborg-name
+  description: hl-trait-voice-xenoborg-desc
+  replaceComponents: true
+  cost: 1
+  category: SpeechTraits
+  components:
+  - type: Speech
+    speechSounds: Xenoborg
+    speechVerb: Robotic
+  - type: TypingIndicator
+    proto: xenoborg
+
+- type: trait
+  id: HLVoiceVulpkanin
+  name: hl-trait-voice-vulpkanin-name
+  description: hl-trait-voice-vulpkanin-desc
+  replaceComponents: true
+  cost: 1
+  category: SpeechTraits
+  components:
+  - type: Speech
+    speechSounds: Vulpkanin
+    speechVerb: Vulpkanin
+
+- type: trait
+  id: HLVoiceLizard
+  name: hl-trait-voice-lizard-name
+  description: hl-trait-voice-lizard-desc
+  replaceComponents: true
+  cost: 1
+  category: SpeechTraits
+  components:
+  - type: Speech
+    speechSounds: Lizard
+    speechVerb: Reptilian
+  - type: TypingIndicator
+    proto: lizard
+
+- type: trait
+  id: HLVoiceSlime
+  name: hl-trait-voice-slime-name
+  description: hl-trait-voice-slime-desc
+  replaceComponents: true
+  cost: 1
+  category: SpeechTraits
+  components:
+  - type: Speech
+    speechSounds: Slime
+    speechVerb: Slime
+  - type: TypingIndicator
+    proto: slime
+
+- type: trait
+  id: HLVoiceFox
+  name: hl-trait-voice-fox-name
+  description: hl-trait-voice-fox-desc
+  replaceComponents: true
+  cost: 1
+  category: SpeechTraits
+  components:
+  - type: Speech
+    speechSounds: Fox
+    speechVerb: Canine
+
+- type: trait
+  id: HLVoiceDog
+  name: hl-trait-voice-dog-name
+  description: hl-trait-voice-dog-desc
+  replaceComponents: true
+  cost: 1
+  category: SpeechTraits
+  components:
+  - type: Speech
+    speechSounds: Dog
+    speechVerb: Canine
+
+- type: trait
+  id: HLVoiceMoth
+  name: hl-trait-voice-moth-name
+  description: hl-trait-voice-moth-desc
+  replaceComponents: true
+  cost: 1
+  category: SpeechTraits
+  components:
+  - type: Speech
+    speechVerb: Moth
+    speechSounds: Moth
+  - type: TypingIndicator
+    proto: moth
+
+- type: trait
+  id: HLVoiceCat
+  name: hl-trait-voice-cat-name
+  description: hl-trait-voice-cat-desc
+  replaceComponents: true
+  cost: 1
+  category: SpeechTraits
+  components:
+  - type: Speech
+    speechSounds: Cat
+    speechVerb: Felinid
+  - type: TypingIndicator
+    proto: felinid
+
+- type: trait
+  id: HLVoiceResomi
+  name: hl-trait-voice-resomi-name
+  description: hl-trait-voice-resomi-desc
+  replaceComponents: true
+  cost: 1
+  category: SpeechTraits
+  components:
+  - type: Speech
+    speechVerb: Parrot
+    speechSounds: UnisexResomi
+
+- type: trait
+  id: HLVoiceWawa
+  name: hl-trait-voice-wawa-name
+  description: hl-trait-voice-wawa-desc
+  replaceComponents: true
+  cost: 1
+  category: SpeechTraits
+  components:
+  - type: Speech
+    speechVerb: Wawa
+    speechSounds: Wawa
+  - type: TypingIndicator
+    proto: moth
+

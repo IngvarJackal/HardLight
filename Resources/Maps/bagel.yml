@@ -4,8 +4,8 @@ meta:
   engineVersion: 274.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/13/2026 21:09:50
-  entityCount: 25482
+  time: 05/25/2026 01:43:09
+  entityCount: 25484
 maps:
 - 1
 grids:
@@ -17777,10 +17777,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 25368
@@ -17806,10 +17803,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 25370
@@ -17835,10 +17829,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 25372
@@ -17864,10 +17855,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 25374
@@ -17893,10 +17881,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 25376
@@ -17922,10 +17907,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 25378
@@ -17951,10 +17933,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 25380
@@ -17980,10 +17959,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 25382
@@ -18009,10 +17985,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 25384
@@ -19060,6 +19033,19 @@ entities:
           Quantity: 1500
     - type: ContainedSolution
       containerName: tank
+  - uid: 25483
+    components:
+    - type: MetaData
+      name: solution - vat_oil
+    - type: Transform
+      parent: 20692
+    - type: Solution
+      solution:
+        maxVol: 100
+        name: vat_oil
+        reagents: []
+    - type: ContainedSolution
+      containerName: vat_oil
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 3
@@ -86718,16 +86704,7 @@ entities:
       transformed: True
       currentReagent:
         metamorphicChangeColor: False
-        absorbent: False
-        reactiveEffects:
-          Extinguish:
-            effects:
-            - !type:ExtinguishReaction
-              probability: 1
-              conditions: null
-              fireStacksAdjustment: -1.5
-            methods:
-            - Touch
+        spoilsInto: null
         metabolisms:
           Drink:
             effects:
@@ -86762,14 +86739,11 @@ entities:
         friction: 1
         viscosity: 0
         fizziness: 0
+        preservedBySpoilageContainers: True
+        spoilTime: 0
+        absorbent: False
+        metamorphicFillBaseName: fill-
         evaporationSpeed: 0
-        plantMetabolism:
-        - !type:PlantAdjustWater
-          guidebookIsAttributePositive: True
-          amount: 1
-          guidebookAttributeName: plant-attribute-water
-          probability: 1
-          conditions: null
         slipData:
           slipFriction: 0
           superSlippery: False
@@ -86781,13 +86755,27 @@ entities:
         recognizable: False
         allowedJobs: []
         allowedDepartments: []
+        reactiveEffects:
+          Extinguish:
+            effects:
+            - !type:ExtinguishReaction
+              probability: 1
+              conditions: null
+              fireStacksAdjustment: -1.5
+            methods:
+            - Touch
         tileReactions:
         - !type:ExtinguishTileReaction
           coolingTemperature: 2
         - !type:SpillIfPuddlePresentTileReaction {}
+        plantMetabolism:
+        - !type:PlantAdjustWater
+          guidebookIsAttributePositive: True
+          amount: 1
+          guidebookAttributeName: plant-attribute-water
+          probability: 1
+          conditions: null
         pricePerUnit: 0
-        metamorphicFillBaseName: fill-
-        physicalDesc: reagent-physical-desc-soothing
         metamorphicMaxFillLevels: 5
         metamorphicSprite:
           sprite: Objects/Consumable/Drinks/doctorsdelightglass.rsi
@@ -86796,7 +86784,15 @@ entities:
         boilingPoint: null
         specificHeat: 1
         color: '#FF8CFFFF'
+        physicalDesc: reagent-physical-desc-soothing
         desc: reagent-desc-doctors-delight
+        abstract: False
+        parent:
+        - BaseDrink
+        group: Drinks
+        name: reagent-name-doctors-delight
+        id: DoctorsDelight
+        isNourishing: False
         footstepSound: !type:SoundCollectionSpecifier
           params:
             variation: null
@@ -86808,13 +86804,6 @@ entities:
             pitch: 1
             volume: 6
           collection: FootstepWater
-        abstract: False
-        parent:
-        - BaseDrink
-        group: Drinks
-        name: reagent-name-doctors-delight
-        id: DoctorsDelight
-        isNourishing: False
         contrabandSeverity: null
     - type: ContainerContainer
       containers:
@@ -92127,13 +92116,7 @@ entities:
       pos: -38.57393,-30.478518
       parent: 2
     - type: SolutionContainerManager
-      solutions:
-        food:
-          temperature: 293.15
-          canReact: True
-          maxVol: 0
-          name: food
-          reagents: []
+      solutions: null
       containers:
       - food
     - type: ContainerContainer
@@ -92241,13 +92224,7 @@ entities:
     - type: Transform
       parent: 11630
     - type: SolutionContainerManager
-      solutions:
-        food:
-          temperature: 293.15
-          canReact: True
-          maxVol: 0
-          name: food
-          reagents: []
+      solutions: null
       containers:
       - food
     - type: Physics
@@ -92262,13 +92239,7 @@ entities:
     - type: Transform
       parent: 11630
     - type: SolutionContainerManager
-      solutions:
-        food:
-          temperature: 293.15
-          canReact: True
-          maxVol: 0
-          name: food
-          reagents: []
+      solutions: null
       containers:
       - food
     - type: Physics
@@ -92283,13 +92254,7 @@ entities:
     - type: Transform
       parent: 11630
     - type: SolutionContainerManager
-      solutions:
-        food:
-          temperature: 293.15
-          canReact: True
-          maxVol: 0
-          name: food
-          reagents: []
+      solutions: null
       containers:
       - food
     - type: Physics
@@ -129733,17 +129698,60 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: KitchenElectricGrill
+- proto: KitchenAssembler
   entities:
   - uid: 16895
     components:
     - type: Transform
+      pos: 25.5,-33.5
+      parent: 2
+- proto: KitchenDeepFryer
+  entities:
+  - uid: 20692
+    components:
+    - type: Transform
       pos: 25.5,-30.5
       parent: 2
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - vat_oil
+    - type: ContainerContainer
+      containers:
+        vat_entities: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        solution@vat_oil: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 25483
+- proto: KitchenElectricGrill
+  entities:
   - uid: 16896
     components:
     - type: Transform
       pos: 26.5,-30.5
+      parent: 2
+- proto: KitchenElectricRange
+  entities:
+  - uid: 20691
+    components:
+    - type: Transform
+      pos: 24.5,-30.5
+      parent: 2
+  - uid: 25484
+    components:
+    - type: Transform
+      pos: -12.5,-15.5
       parent: 2
 - proto: KitchenMicrowave
   entities:
@@ -130651,6 +130659,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 25162
+    - type: StackSignature
+      signature: MaterialCloth|Fiber=500;
 - proto: MaterialDiamond1
   entities:
   - uid: 17017
@@ -130681,6 +130691,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 25164
+    - type: StackSignature
+      signature: MaterialDurathread|Fiber=500;
 - proto: MaterialHideBear
   entities:
   - uid: 17019
@@ -131377,18 +131389,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-58.5
       parent: 2
-  - uid: 25468
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-56.5
-      parent: 2
-  - uid: 25470
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-56.5
-      parent: 2
   - uid: 25466
     components:
     - type: Transform
@@ -131400,6 +131400,18 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,-57.5
+      parent: 2
+  - uid: 25468
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-56.5
+      parent: 2
+  - uid: 25470
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-56.5
       parent: 2
 - proto: NFWeaponEnergyRifleCarbine
   entities:
@@ -145124,6 +145136,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 25342
+    - type: StackSignature
+      signature: SheetUranium|Radium=200;Uranium=800;
   - uid: 19277
     components:
     - type: Transform
@@ -145137,6 +145151,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 25343
+    - type: StackSignature
+      signature: SheetUranium|Radium=200;Uranium=800;
 - proto: ShieldGeneratorPOI
   entities:
   - uid: 19278
@@ -156367,6 +156383,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 25387
+    - type: StackSignature
+      signature: SpaceCash10|Fiber=100;
   - uid: 20200
     components:
     - type: Transform
@@ -156380,6 +156398,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 25388
+    - type: StackSignature
+      signature: SpaceCash10|Fiber=100;
 - proto: SpaceHeater
   entities:
   - uid: 20201
@@ -160248,16 +160268,6 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-37.5
-      parent: 2
-  - uid: 20691
-    components:
-    - type: Transform
-      pos: 24.5,-30.5
-      parent: 2
-  - uid: 20692
-    components:
-    - type: Transform
-      pos: 25.5,-30.5
       parent: 2
   - uid: 20693
     components:

@@ -28,7 +28,9 @@ public sealed partial class UltraVisionOverlay : Overlay
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         if (_playerManager.LocalEntity is not { Valid: true } player
-            || !_entityManager.HasComponent<UltraVisionComponent>(player))
+            || (!
+                _entityManager.HasComponent<UltraVisionComponent>(player)
+                && !_entityManager.HasComponent<UltraVisionNoBypassComponent>(player)))
         {
             return false;
         }

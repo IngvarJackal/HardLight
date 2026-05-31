@@ -1,8 +1,10 @@
 #nullable enable
+using Content.Server._Mono.Ships.Systems; // Mono
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
+using Content.Shared._Mono.Ships.Components; // Mono
 using Content.Shared._NF.Shuttles.Events; // Frontier
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
@@ -54,6 +56,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly Content.Server.Salvage.SalvageSystem _salvage = default!;
     [Dependency] private readonly ExpeditionDiskSystem _expeditionDisks = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!; // HL
+    [Dependency] private readonly CrewedShuttleSystem _crewedShuttle = default!; // Mono
 
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -221,6 +224,19 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private void OnConsoleUIOpenAttempt(EntityUid uid, ShuttleConsoleComponent component,
         ActivatableUIOpenAttemptEvent args)
     {
+        // Mono: on crewed shuttles, deny opening a shuttle console if this user already has
+        // a gunnery console open on the same grid (unless they are an AdvancedPilot).
+        var shuttle = _transform.GetParentUid(uid);
+        var uiOpen = _crewedShuttle.AnyGunneryConsoleActiveByPlayer(shuttle, args.User);
+        var forceOne = HasComp<CrewedShuttleComponent>(shuttle) && !HasComp<AdvancedPilotComponent>(args.User);
+
+        if (uiOpen && forceOne)
+        {
+            args.Cancel();
+            _popup.PopupClient(Loc.GetString("shuttle-console-crewed"), args.User);
+            return;
+        }
+
         if (!TryPilot(args.User, uid))
             args.Cancel();
     }

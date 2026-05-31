@@ -8,7 +8,7 @@
   defaultSkinTone: "#ffda93"
   markingLimits: MobProtogenMarkingLimits
   dollPrototype: MobProtogenDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   hasSubspecies: true # This is the "parent" species that will be displayed in species list as well as subspecies list
   subspeciesName: subspecies-name-protogen # This name is dispayed when you're picking subspecies
   loadout: ProtogenLoadout
@@ -181,7 +181,7 @@
   defaultSkinTone: "#ffda93"
   markingLimits: MobProtoVulpMarkingLimits
   dollPrototype: MobProtoVulpDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   subspeciesOf: Protogen # This is alternative version of other species. It will only be displayed in subspecies list
   subspeciesName: subspecies-name-protovulp
   loadout: ProtogenLoadout
@@ -348,7 +348,7 @@
   defaultSkinTone: "#6c741d"
   markingLimits: MobProtoVoxMarkingLimits
   dollPrototype: MobProtoVoxDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   subspeciesOf: Protogen
   subspeciesName: subspecies-name-protovox
   sexes:
@@ -435,7 +435,7 @@
   defaultSkinTone: "#ffffff"
   markingLimits: MobProtoThavenMarkingLimits
   dollPrototype: MobProtoThavenDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   subspeciesOf: Protogen
   subspeciesName: subspecies-name-protothaven
   maleFirstNames: NamesThaven
@@ -519,7 +519,7 @@
   defaultSkinTone: "#b8b8b8"
   markingLimits: MobProtoSlimePersonMarkingLimits
   dollPrototype: MobProtoSlimePersonDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   subspeciesOf: Protogen
   subspeciesName: subspecies-name-protoslimeperson
   loadout: ProtogenLoadout
@@ -595,7 +595,7 @@
   defaultSkinTone: "#ffffff"
   markingLimits: MobProtoKinMarkingLimits
   dollPrototype: MobProtoKinDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   subspeciesOf: Protogen
   subspeciesName: subspecies-name-protokin
   maleFirstNames: names_shadekin
@@ -681,7 +681,7 @@
   defaultSkinTone: "#faf7f7"
   markingLimits: MobProtoResomiMarkingLimits
   dollPrototype: MobProtoResomiDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   subspeciesOf: Protogen # This is alternative version of other species. It will only be displayed in subspecies list
   subspeciesName: subspecies-name-protoresomi
   maleFirstNames: NamesResomiMale
@@ -770,7 +770,7 @@
   defaultSkinTone: "#faf7f7"
   markingLimits: MobProtoReptileMarkingLimits
   dollPrototype: MobProtoReptileDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   subspeciesOf: Protogen
   subspeciesName: subspecies-name-protoreptile
   maleFirstNames: NamesReptilianMale
@@ -851,7 +851,7 @@
   defaultSkinTone: "#ffda93"
   markingLimits: MobProtoMothMarkingLimits
   dollPrototype: MobProtoMothDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   subspeciesOf: Protogen
   subspeciesName: subspecies-name-protomoth
   maleFirstNames: NamesMothFirstMale
@@ -932,7 +932,7 @@
   defaultSkinTone: "#ffda93"
   markingLimits: MobProtoHumieMarkingLimits
   dollPrototype: MobProtoHumieDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   subspeciesOf: Protogen
   subspeciesName: subspecies-name-protohumie
   loadout: ProtogenLoadout
@@ -1008,7 +1008,7 @@
   defaultSkinTone: "#666666"
   markingLimits: MobProtoFelineMarkingLimits
   dollPrototype: MobProtoFelineDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   subspeciesOf: Protogen
   subspeciesName: subspecies-name-protofeline
   loadout: ProtogenLoadout
@@ -1089,7 +1089,7 @@
   markingLimits: MobProtoDawiMarkingLimits
   dollPrototype: MobProtoDawiDummy
   defaultSkinTone: "#666666"
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   subspeciesOf: Protogen
   subspeciesName: subspecies-name-protodawi
   loadout: ProtogenLoadout
@@ -1140,7 +1140,7 @@
   markingLimits: MobProtoDionaeMarkingLimits
   dollPrototype: MobProtoDionaeDummy
   defaultSkinTone: "#cdb369"
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   maleFirstNames: NamesDionaFirst
   femaleFirstNames: NamesDionaFirst
   lastNames: NamesDionaLast
@@ -1224,7 +1224,7 @@
   markingLimits: MobProtoAvaliMarkingLimits
   dollPrototype: MobProtoAvaliDummy
   defaultSkinTone: "#D2B48C"
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   maleFirstNames: names_avali_first
   femaleFirstNames: names_avali_first
   lastNames: names_avali_packs
@@ -1314,7 +1314,7 @@
   markingLimits: MobProtoArachnidMarkingLimits
   dollPrototype: MobProtoArachnidDummy
   defaultSkinTone: "#385878"
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   subspeciesOf: Protogen
   subspeciesName: subspecies-name-protoarachnid
   loadout: ProtogenLoadout

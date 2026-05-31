@@ -58,7 +58,17 @@ public sealed class WatchlistWebhookManager : IWatchlistWebhookManager
         if (e.NewStatus != SessionStatus.Connected)
             return;
 
-        var watchlists = await _adminNotes.GetActiveWatchlists(e.Session.UserId);
+        // VRS: catch DB/notes failures so an exception here doesn't escape an async-void handler and crash the server.
+        List<AdminWatchlistRecord> watchlists;
+        try
+        {
+            watchlists = await _adminNotes.GetActiveWatchlists(e.Session.UserId);
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"Failed to fetch active watchlists for {e.Session.UserId}: {ex}");
+            return;
+        }
 
         if (watchlists.Count == 0)
             return;

@@ -11,12 +11,12 @@ public abstract class SharedDockingSystem : EntitySystem
     public const float DockRange = 1f + 0.2f;
     public static readonly double AlignmentTolerance = Angle.FromDegrees(15).Theta;
 
-    public bool CanShuttleDock(EntityUid? shuttle)
+    public bool CanShuttleDock(EntityUid? shuttle, SharedDockingComponent? dockComp = null) // VRS: gas docks bypass PreventPilotComponent (Triad #3817)
     {
         if (shuttle == null)
             return false;
 
-        return !HasComp<PreventPilotComponent>(shuttle.Value);
+        return !HasComp<PreventPilotComponent>(shuttle.Value) || dockComp?.DockType.HasFlag(DockType.Gas) == true;
     }
 
     public bool CanShuttleUndock(EntityUid? shuttle)

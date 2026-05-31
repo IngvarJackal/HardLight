@@ -1,4 +1,5 @@
 using Content.Server.Chat.Systems;
+using Content.Shared._Starlight.Language; // Starlight
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
 using Content.Shared.Whitelist;
@@ -70,7 +71,7 @@ public sealed class SurveillanceCameraMicrophoneSystem : EntitySystem
         if (!TryComp(uid, out SurveillanceCameraComponent? camera))
             return;
 
-        var ev = new SurveillanceCameraSpeechSendEvent(args.Source, args.Message);
+        var ev = new SurveillanceCameraSpeechSendEvent(args.Source, args.Message, args.Language); // Starlight
 
         foreach (var monitor in camera.ActiveMonitors)
         {
@@ -99,11 +100,13 @@ public sealed class SurveillanceCameraSpeechSendEvent : EntityEventArgs
 {
     public EntityUid Speaker { get; }
     public string Message { get; }
+    public LanguagePrototype? Language { get; } //Starlight
 
-    public SurveillanceCameraSpeechSendEvent(EntityUid speaker, string message)
+    public SurveillanceCameraSpeechSendEvent(EntityUid speaker, string message, LanguagePrototype? language) // Starlight
     {
         Speaker = speaker;
         Message = message;
+        Language = language; // Starlight
     }
 }
 

@@ -17,7 +17,7 @@
   defaultSkinTone: "#ffffff"
   markingLimits: MobThavenMarkingLimits
   dollPrototype: MobThavenDummy
-  skinColoration: Hues
+  skinColoration: AnyColour # Hardlight
   maleFirstNames: NamesThaven
   femaleFirstNames: NamesThaven
   naming: First

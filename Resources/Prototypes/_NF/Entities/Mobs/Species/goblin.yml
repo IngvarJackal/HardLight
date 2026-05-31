@@ -4,6 +4,15 @@
   id: MobGoblinBase
   abstract: true
   components:
+  # HardLight start
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Ancestor
+    understands:
+    - GalacticCommon
+    - Ancestor
+  # HardLight end
   - type: Sprite
     scale: 0.8, 0.7
   - type: HumanoidAppearance

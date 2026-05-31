@@ -1,0 +1,31 @@
+# VRS: Ported from Triad_Sector — Mono Anomalous Lab POI.
+# Uses Mono-specific map (different from the NF AnomalousLab).
+
+- type: pointOfInterest
+  id: MonoAnomalousLab
+  parent: BasePOI
+  name: 'Anomalous Lab'
+  minimumDistance: 7000
+  maximumDistance: 10800
+  spawnGamePreset: [ NFAdventure, NFPirate ]
+  spawnGroup: ScienceLab
+  gridPath: /Maps/_Mono/POI/anomalouslab.yml
+  addComponents:
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
+
+- type: gameMap
+  id: MonoAnomalousLab
+  mapName: 'Anomalous Lab'
+  mapPath: /Maps/_Mono/POI/anomalouslab.yml
+  minPlayers: 0
+  stations:
+    MonoAnomalousLab:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Anomalous Lab'
+        - type: StationJobs
+          availableJobs: {}
+        - type: StationDeadDropHintExempt

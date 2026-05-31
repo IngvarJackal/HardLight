@@ -142,7 +142,14 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         string? errorStackTrace = null;
         try
         {
-            await InternalProcess().ContinueWith((t) => { success = false; errorStackTrace = t.Exception?.InnerException?.StackTrace; }, TaskContinuationOptions.OnlyOnFaulted);
+            // VRS: previously this awaited a ContinueWith(OnlyOnFaulted) which is canceled on success
+            // and would throw TaskCanceledException on the success path. Use a direct try/catch instead.
+            await InternalProcess();
+        }
+        catch (Exception ex)
+        {
+            success = false;
+            errorStackTrace = ex.StackTrace;
         }
         finally
         {

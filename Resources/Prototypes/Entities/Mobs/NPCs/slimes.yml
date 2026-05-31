@@ -5,13 +5,22 @@
   abstract: true
   description: It looks so much like jelly. I wonder what it tastes like?
   components:
+  # Starlight - Start
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Bubblish
+    understands:
+    - Bubblish
+    - GalacticCommon
+  # Starlight - End
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/slimes.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: blue_adult_slime
-  - type: Carriable #DeltaV
+  - type: Carriable # DeltaV
   - type: Fixtures
     fixtures:
       fix1:
@@ -126,8 +135,6 @@
   abstract: true
   description: It looks so much like jelly. I wonder what it tastes like?
   components:
-  - type: ReplacementAccent
-    accent: slimes
     # Frontier: Disabled
     # - type: GhostTakeoverAvailable
     # - type: GhostRole

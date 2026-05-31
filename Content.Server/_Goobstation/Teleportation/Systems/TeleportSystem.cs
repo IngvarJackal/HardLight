@@ -6,6 +6,7 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Stacks;
+using Content.Shared.Teleportation;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -64,6 +65,17 @@ public sealed class TeleportSystem : EntitySystem
     public void RandomTeleport(EntityUid uid, RandomTeleportComponent component)
     {
         RandomTeleport(uid, component.TeleportRadius, component.TeleportSound, component.TeleportAttempts);
+    }
+
+    /// <summary>
+    /// VRS port (Mono): RandomTeleport overload taking a <see cref="TeleportSpecifier"/>.
+    /// MinRadiusFraction / AvoidSpace / ForceSafe fields are accepted for source-compatibility
+    /// with Mono callers but are not yet honored by this implementation; they degrade to the
+    /// existing radius/sound/attempts behavior.
+    /// </summary>
+    public void RandomTeleport(EntityUid uid, TeleportSpecifier specifier)
+    {
+        RandomTeleport(uid, specifier.TeleportRadius, specifier.TeleportSound, specifier.TeleportAttempts);
     }
 
     public void RandomTeleport(EntityUid uid, float radius, SoundSpecifier sound, int attempts)

@@ -362,6 +362,62 @@ public sealed partial class ShuttleSystem
         }
     }
 
+    /// <summary>
+    /// HardLight: Moves a shuttle from its current position to docked on the target one, using the capped
+    /// docking-search fast path before falling back to the full search inside docking config lookup.
+    /// If no docks are free when FTLing it will arrive in proximity.
+    /// </summary>
+    public void FTLToDock(
+        EntityUid shuttleUid,
+        ShuttleComponent component,
+        EntityUid target,
+        int maxShuttleDocks,
+        int maxGridDocks,
+        float? startupTime = null,
+        float? hyperspaceTime = null,
+        string? priorityTag = null)
+    {
+        if (!TrySetupFTL(shuttleUid, component, out var hyperspace))
+            return;
+
+        var speedFactor = GetFTLSpeedFactor(shuttleUid);
+        startupTime ??= DefaultStartupTime * speedFactor;
+        hyperspaceTime ??= DefaultTravelTime * speedFactor;
+
+        var config = _dockSystem.GetDockingConfig(
+            shuttleUid,
+            target,
+            priorityTag,
+            DockType.Airlock,
+            maxShuttleDocks,
+            maxGridDocks);
+
+        hyperspace.StartupTime = startupTime.Value;
+        hyperspace.TravelTime = hyperspaceTime.Value;
+        hyperspace.StateTime = StartEndTime.FromStartDuration(
+            _gameTiming.CurTime,
+            TimeSpan.FromSeconds(hyperspace.StartupTime));
+        hyperspace.PriorityTag = priorityTag;
+
+        _console.RefreshShuttleConsoles(shuttleUid);
+
+        if (config != null)
+        {
+            hyperspace.TargetCoordinates = config.Coordinates;
+            hyperspace.TargetAngle = config.Angle;
+        }
+        else if (TryGetFTLProximity(shuttleUid, new EntityCoordinates(target, Vector2.Zero), out var coords, out var targAngle))
+        {
+            hyperspace.TargetCoordinates = coords;
+            hyperspace.TargetAngle = targAngle;
+        }
+        else
+        {
+            hyperspace.TargetCoordinates = Transform(shuttleUid).Coordinates;
+            Log.Error($"Unable to FTL grid {ToPrettyString(shuttleUid)} to target properly?");
+        }
+    }
+
     private bool TrySetupFTL(EntityUid uid, ShuttleComponent shuttle, [NotNullWhen(true)] out FTLComponent? component)
     {
         component = null;
@@ -606,7 +662,7 @@ public sealed partial class ShuttleSystem
                 toProcess.Add(uid);
             }
         }
-        catch (Exception e) when (e is InvalidOperationException || e.Message.Contains("Collection was modified"))
+        catch (InvalidOperationException) // VRS: drop fragile message-text match; collection-modified throws InvalidOperationException
         {
             return;
         }
@@ -822,6 +878,42 @@ public sealed partial class ShuttleSystem
         }
 
         var config = _dockSystem.GetDockingConfig(shuttleUid, targetUid, priorityTag, dockType, maxShuttleDocks, maxGridDocks);
+
+        if (config != null)
+        {
+            FTLDock((shuttleUid, shuttleXform), config);
+            return true;
+        }
+
+        TryFTLProximity(shuttleUid, targetUid, shuttleXform, targetXform);
+        return false;
+    }
+
+    /// <summary>
+    /// HardLight: Capped variant of <see cref="TryFTLDock(EntityUid, ShuttleComponent, EntityUid, out DockingConfig?, string?, DockType)"/>
+    /// that still returns the chosen config to the caller.
+    /// </summary>
+    public bool TryFTLDock(
+        EntityUid shuttleUid,
+        ShuttleComponent component,
+        EntityUid targetUid,
+        [NotNullWhen(true)] out DockingConfig? config,
+        int maxShuttleDocks,
+        int maxGridDocks,
+        string? priorityTag = null,
+        DockType dockType = DockType.Airlock)
+    {
+        config = null;
+
+        if (!_xformQuery.TryGetComponent(shuttleUid, out var shuttleXform) ||
+            !_xformQuery.TryGetComponent(targetUid, out var targetXform) ||
+            targetXform.MapUid == null ||
+            !targetXform.MapUid.Value.IsValid())
+        {
+            return false;
+        }
+
+        config = _dockSystem.GetDockingConfig(shuttleUid, targetUid, priorityTag, dockType, maxShuttleDocks, maxGridDocks);
 
         if (config != null)
         {

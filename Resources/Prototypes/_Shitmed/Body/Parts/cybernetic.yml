@@ -174,7 +174,7 @@
   parent: HeadHuman
   id: FireproofHead
   name: head
-  description: A fireproof head. 
+  description: A fireproof head.
   components:
   - type: Damageable
     damageContainer: Silicon
@@ -189,7 +189,7 @@
   - type: Damageable
     damageContainer: Silicon
     damageModifierSet: Fireproof
-    
+
 - type: entity
   parent: LeftLegCybernetic
   id: FireproofLeftLeg
@@ -199,7 +199,7 @@
   - type: Damageable
     damageContainer: Silicon
     damageModifierSet: Fireproof
-    
+
 - type: entity
   parent: RightArmCybernetic
   id: FireproofRightArm
@@ -209,7 +209,7 @@
   - type: Damageable
     damageContainer: Silicon
     damageModifierSet: Fireproof
-    
+
 - type: entity
   parent: LeftArmCybernetic
   id: FireproofLeftArm
@@ -219,7 +219,7 @@
   - type: Damageable
     damageContainer: Silicon
     damageModifierSet: Fireproof
-    
+
 - type: entity
   id: RightFootFireproof
   parent: RightFootHuman
@@ -246,7 +246,7 @@
   - type: Damageable
     damageContainer: Silicon
     damageModifierSet: Fireproof
-    
+
 - type: entity
   id: LeftHandFireproof
   parent: LeftHandHuman

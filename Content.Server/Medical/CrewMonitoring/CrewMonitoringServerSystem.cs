@@ -39,11 +39,18 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
             return;
         _updateDiff -= UpdateRate;
 
-        var servers = EntityQueryEnumerator<CrewMonitoringServerComponent>();
+        var servers = EntityQueryEnumerator<CrewMonitoringServerComponent, TransformComponent>();
+        var processedMaps = new HashSet<MapId>();
 
-        while (servers.MoveNext(out var id, out var server))
+        while (servers.MoveNext(out var id, out var server, out var xform))
         {
             if (!_singletonServerSystem.IsActiveServer(id))
+                continue;
+
+            // VRS: suit sensors are map-scoped. Broadcasting every active crew monitor server
+            // globally causes station + expedition ship datasets to fight each other on clients.
+            // Keep one authoritative broadcast per map per tick.
+            if (!processedMaps.Add(xform.MapID))
                 continue;
 
             UpdateTimeout(id);

@@ -43,7 +43,7 @@
   parent: PosterBase
   id: NFPosterLegitWantedClarpy
   name: "Wanted: Clarpy"
-  description: Wanted for insurgency. Spot them? You can help deal a blow to the Rogue Sector, contact the ColSec.
+  description: Wanted for insurgency. Spot them? You can help deal a blow to the Rogue Sector, contact ColSec.
   components:
   - type: Sprite
     sprite: _NF/Structures/Wallmounts/posters.rsi
@@ -73,7 +73,7 @@
   parent: PosterBase
   id: NFPosterLegitGunTurnIn
   name: "Turn In Your Guns!"
-  description: The Colsec reminds you to give in your unregistered guns found planetside. The FUCs these are worth help keep the department running. Do your duty!
+  description: ColSec reminds you to give in your unregistered guns found planetside. The FUCs these are worth help keep the department running. Do your duty!
   components:
   - type: Sprite
     sprite: _NF/Structures/Wallmounts/posters.rsi
@@ -335,3 +335,63 @@
   - type: Sprite
     sprite: _NF/Structures/Wallmounts/posters.rsi
     state: nf_poster25_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandGas
+  name: "Group for Atmos Shenanigans"
+  description: "The frezon must flow."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster26_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandCloudWatchers
+  name: "Cloud Watchers"
+  description: "Every asteroid belt hides a lil guy."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster27_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandGoblinLeague
+  name: "Goblin League"
+  description: "Stop a cousin and ask about the Goblin League today!"
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster28_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandEms
+  name: "Emergency Medical Society"
+  description: "Your health, our prosperity."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster29_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandSsfLogo
+  name: "SSF Logo"
+  description: "Settler's Spacecraft Firm: Pioneers of the Stars."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster30_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandDbiLogo
+  name: "DBI Logo"
+  description: "Dung Beetle Incorporated: Pushing forward inovation no matter how steep the path, or heavy the past!"
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster31_contraband

@@ -17,6 +17,16 @@
   id: BaseMobThaven
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+      - GalacticCommon
+      - Thaveyan
+    understands:
+      - GalacticCommon
+      - Thaveyan
+      - Carptongue
+  # Starlight-end
   - type: Hunger
   - type: Thirst
   - type: Icon
@@ -143,7 +153,6 @@
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
         requireInputValidation: false
-
 
 - type: entity
   parent: BaseSpeciesDummy

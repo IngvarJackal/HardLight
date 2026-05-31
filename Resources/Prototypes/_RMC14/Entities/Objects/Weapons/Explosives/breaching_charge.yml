@@ -1,0 +1,38 @@
+- type: Tag
+  id: RMCExplosiveBreachingCharge
+
+- type: entity
+  parent: [ BaseItem, BaseC3ExpeditionContraband ]
+  id: RMCExplosiveBreachingCharge
+  name: breaching charge # TODO RMC14 disable with multitool?
+  description: An explosive device used to break into areas while protecting the user from the blast as well as deploying deadly shrapnel on the other side.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Explosives/satchel_charge.rsi
+    state: icon
+    layers:
+    - state: icon
+      map: ["base"]
+  - type: Item
+    size: Small
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+    offset: -0.15,0.0
+  - type: LandAtCursor
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 1
+    intensitySlope: 5
+    maxIntensity: 1
+    canCreateVacuum: false
+  - type: ExplodeOnTrigger
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        base:
+          Primed: { state: active }
+          Unprimed: { state: icon }
+  - type: Tag
+    tags:
+    - RMCExplosiveBreachingCharge

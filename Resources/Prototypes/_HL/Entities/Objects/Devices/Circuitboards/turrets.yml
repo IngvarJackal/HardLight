@@ -544,3 +544,8 @@
   components:
   - type: MachineBoard
     prototype: ThrusterLarge
+    frameSize: 2x2 # Mono: requires 2x2 machine frame
+    requirements:
+      Capacitor: 4
+    stackRequirements:
+      Steel: 20

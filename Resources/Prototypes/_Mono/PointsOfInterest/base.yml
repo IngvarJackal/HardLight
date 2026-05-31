@@ -1,0 +1,22 @@
+# VRS: Ported from Triad_Sector — Mono POI base prototypes.
+# BaseMobilePOI: like BasePOI but not ForceAnchored (can move).
+# BaseRepairablePOI: extends Mobile with repair snapshot.
+
+- type: pointOfInterest
+  id: BaseMobilePOI
+  abstract: true
+  minimumDistance: 4000
+  maximumDistance: 8000
+  spawnGamePreset: [ NFAdventure, NFPirate ]
+  spawnGroup: Optional
+  addComponents:
+  - type: IFF
+    color: "#ffa600"
+    readOnly: true
+
+- type: pointOfInterest
+  id: BaseRepairablePOI
+  parent: BaseMobilePOI
+  abstract: true
+  addComponents:
+  - type: InitRepairSnapshot

@@ -410,9 +410,18 @@ public sealed partial class BankSystem : SharedBankSystem
     /// <summary>
     /// Ensures the bank account listed in the lobby is accurate by ensuring the preferences cache is up-to-date.
     /// </summary>
-    private void OnPlayerLobbyJoin(PlayerJoinedLobbyEvent args)
+    private async void OnPlayerLobbyJoin(PlayerJoinedLobbyEvent args)
     {
-        var cts = new CancellationToken();
-        _prefsManager.RefreshPreferencesAsync(args.PlayerSession, cts);
+        try
+        {
+            await _prefsManager.RefreshPreferencesAsync(args.PlayerSession, CancellationToken.None);
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        catch (Exception e)
+        {
+            _log.Error($"Failed to refresh lobby preferences for {args.PlayerSession}: {e}");
+        }
     }
 }

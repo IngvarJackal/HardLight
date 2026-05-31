@@ -26,6 +26,9 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
 
     private void OnGetEyeOffsetEvent(EntityUid uid, EyeCursorOffsetComponent component, ref GetEyeOffsetEvent args)
     {
+        if (!component.Enabled)
+            return;
+
         var offset = OffsetAfterMouse(uid, component);
         if (offset == null)
             return;

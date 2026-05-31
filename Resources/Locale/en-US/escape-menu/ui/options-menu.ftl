@@ -373,6 +373,7 @@ ui-options-enable-color-name = Add colors to character names
 ui-options-colorblind-friendly = Colorblind friendly mode
 ui-options-reduced-motion = Reduce motion of visual effects
 ui-options-screen-shake-intensity = Screen shake intensity
+ui-options-no-filters = Disable species vision
 
 ## EE - Combat Options
 ui-options-function-look-up = Look up/Take aim

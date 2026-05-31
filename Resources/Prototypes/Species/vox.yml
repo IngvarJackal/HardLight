@@ -6,7 +6,7 @@
   sprites: MobVoxSprites
   markingLimits: MobVoxMarkingLimits
   dollPrototype: MobVoxDummy
-  skinColoration: Hues # imp VoxFeathers<Hues
+  skinColoration: AnyColour # Hardlight
   defaultSkinTone: "#6c741d"
   maleFirstNames: NamesVox
   femaleFirstNames: NamesVox

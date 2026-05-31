@@ -9,15 +9,3 @@
     revertOnDeath: true
     revertOnCrit: true
     duration: 20
-
-- type: polymorph
-  id: LivyathanDragonMorph
-  configuration:
-    entity: MobDragonLivyathan
-    delay: 2
-    forced: false
-    inventory: None
-    transferName: true
-    transferDamage: true
-    revertOnCrit: true
-    revertOnDeath: true

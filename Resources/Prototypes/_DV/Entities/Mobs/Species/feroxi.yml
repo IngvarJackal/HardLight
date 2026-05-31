@@ -5,6 +5,16 @@
   save: false
   abstract: true
   components:
+  # HardLight start
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Carptongue
+    understands:
+    - GalacticCommon
+    - Carptongue
+    - Bubblish
+  # HardLight end
   - type: HumanoidAppearance
     species: Feroxi
   - type: Hunger

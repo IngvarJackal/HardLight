@@ -1,0 +1,15 @@
+# VRS port: Mono — Silicon laser turret. Re-faction of the existing VRS
+# WeaponTurretLaserSyndicateNF onto the SiliconsExpeditionNF faction so
+# silicon-themed shuttle events can spawn turrets that target/are targeted
+# correctly by the silicon NPC factions.
+
+- type: entity
+  id: WeaponTurretLaserSilicon
+  name: laser turret
+  suffix: Frontier, Silicon
+  parent:
+  - WeaponTurretLaserSyndicateNF
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SiliconsExpeditionNF

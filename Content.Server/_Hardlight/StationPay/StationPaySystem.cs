@@ -50,8 +50,11 @@ public sealed class StationPaySystem : EntitySystem
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
         SubscribeLocalEvent<RoleAddedEvent>(OnRoleAddedEvent);
         SubscribeLocalEvent<RoleRemovedEvent>(OnRoleRemovedEvent);
-        // Mind moves between bodies do not fire role add/remove events.
-        // Use broadcast mind events and gate on JobTrackingComponent.
+        // Keep payout scheduling aligned across mind transfers between bodies; RoleAdded/RoleRemoved
+        // do not fire when a mind moves between entities, so the schedule could be stranded on the
+        // old body and silently fail. JobTrackingSystem already owns the directed
+        // <JobTrackingComponent, MindAddedMessage/MindRemovedMessage> subscription, so we hook the
+        // broadcast variant and gate on the component ourselves.
         SubscribeLocalEvent<MindAddedMessage>(OnAnyMindAdded);
         SubscribeLocalEvent<MindRemovedMessage>(OnAnyMindRemoved);
 
@@ -103,7 +106,7 @@ public sealed class StationPaySystem : EntitySystem
         // payout anyone who worked less than an hour at round end
         foreach (var (uid, lastPayout) in _scheduledPayouts)
         {
-            _ = PayoutFor(uid, now - lastPayout);
+            PayoutFor(uid, now - lastPayout);
         }
 
         _scheduledPayouts.Clear();
@@ -188,6 +191,8 @@ public sealed class StationPaySystem : EntitySystem
         _scheduledPayouts.Remove((EntityUid)args.Mind.OwnedEntity);
     }
 
+    // Re-schedule payouts when a mind moves into a job-tracked body (mid-round body swap, cloning, etc.).
+    // Mirrors the OnRoleAddedEvent gating but uses the in-game-attached session as the authoritative check.
     private void OnAnyMindAdded(MindAddedMessage args)
     {
         var uid = args.Container.Owner;
@@ -204,6 +209,8 @@ public sealed class StationPaySystem : EntitySystem
         TrySchedulePayout(uid);
     }
 
+    // Drop schedule entries for bodies that are no longer minded so the Update loop doesn't
+    // tight-loop retrying payouts against an entity that can never receive one.
     private void OnAnyMindRemoved(MindRemovedMessage args)
     {
         _scheduledPayouts.Remove(args.Container.Owner);
@@ -232,6 +239,9 @@ public sealed class StationPaySystem : EntitySystem
             return false;
         }
 
+        // Don't deposit if there's no in-game session attached to this body. Returning false here
+        // (instead of true) leaves the schedule unadvanced so the missed interval is retried once
+        // the player is back in-game, rather than silently dropped.
         if (!_player.TryGetSessionByEntity(uid, out var session)
             || session.Status != SessionStatus.InGame)
         {
@@ -332,6 +342,9 @@ public sealed class StationPaySystem : EntitySystem
         for (var i = 0; i < _duePayoutsScratch.Count; i++)
         {
             var (uid, oldScheduled) = _duePayoutsScratch[i];
+            // Pay first, then decide whether to advance the schedule. If payout failed (e.g. player
+            // briefly offline / not yet attached), keep the original scheduled time so the interval
+            // is retried on the next Update tick instead of silently consumed.
             var payoutSucceeded = PayoutFor(uid, PayoutDelay);
             var newScheduled = payoutSucceeded ? oldScheduled + PayoutDelay : oldScheduled;
 

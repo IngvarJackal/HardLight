@@ -1,0 +1,118 @@
+# Mono port: nanolaminate hull walls used by capital-class hostile shuttle event
+# POIs (wyrm, wyvern). The original Mono prototype carries the ArmorThickness
+# component (armor-piercing damage modifier) which is now ported in #37.
+# Once both #33 and #37 are in dev, this rewire restores ArmorThickness so the
+# walls behave like the Mono originals (capital-class hull armour, pierceable
+# only by AP rounds with sufficient piercing budget).
+
+- type: entity
+  id: WallNanolaminateDiagonal
+  name: nanolaminate wall
+  suffix: ADS ONLY, Diagonal
+  description: A dense wall made of a strange material, the texture is smooth yet rough.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Tag
+    tags:
+    - Wall
+    - Diagonal
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _Shitmed/Structures/Walls/abductor_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _Shitmed/Structures/Walls/abductor_diagonal.rsi
+    state: state0
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 2000
+        behaviors:
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              Girder:
+                min: 1
+                max: 1
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+  - type: Physics
+    bodyType: Static
+  - type: Pullable
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer # VRS: substituted for Mono's DiagonalWallLayer (not ported)
+        density: 7500
+  - type: Construction
+    graph: Girder
+    node: diagonalshuttleWall
+  - type: ShipRepairable
+    repairTime: 3
+    repairCost: 6
+  - type: ArmorThickness
+    thickness: 10
+
+- type: entity
+  parent: BaseWallTierFour
+  id: WallNanolaminate
+  name: nanolaminate wall
+  suffix: ADS ONLY
+  description: A dense wall made of a strange material, the texture is smooth yet rough.
+  components:
+  - type: StaticPrice
+    price: 250
+  - type: RadiationBlocker
+    resistance: 5
+  - type: ArmorThickness
+    thickness: 10
+  - type: Sprite
+    sprite: _Shitmed/Structures/Walls/abductor.rsi
+  - type: Icon
+    sprite: _Shitmed/Structures/Walls/abductor.rsi
+    state: full
+  - type: Construction
+    graph: Girder
+    node: shuttleWall
+  - type: IconSmooth
+    key: walls
+    base: state
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 15000
+  - type: Appearance

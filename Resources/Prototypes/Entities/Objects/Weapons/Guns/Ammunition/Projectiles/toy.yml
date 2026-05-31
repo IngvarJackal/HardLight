@@ -2,7 +2,7 @@
   id: BulletFoam
   description: I hope you're wearing eye protection.
   name: foam dart
-  parent: BaseItem
+  parent: BaseItemHarmless
   components:
   - type: Fixtures
     fixtures:

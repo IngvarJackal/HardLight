@@ -57,6 +57,20 @@ namespace Content.Server.Shuttles.Components
         [ViewVariables]
         public float AngularThrust = 0f;
 
+        // <Mono>
+        /// <summary>
+        /// Multiplier to angular thrust. Set depending on pilot via <c>GetShuttleInputsEvent</c>.
+        /// </summary>
+        [ViewVariables]
+        public float AngularMultiplier = 1f;
+
+        /// <summary>
+        /// Multiplier to linear thrust. Set depending on pilot via <c>GetShuttleInputsEvent</c>.
+        /// </summary>
+        [ViewVariables]
+        public float AccelerationMultiplier = 1f;
+        // </Mono>
+
         /// <summary>
         /// A bitmask of all the directions we are considered thrusting.
         /// </summary>

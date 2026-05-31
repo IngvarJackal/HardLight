@@ -11,6 +11,7 @@ using Content.Shared.Popups;
 using Content.Shared.Strip;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -43,6 +44,8 @@ public sealed class ToggleableClothingSystem : EntitySystem
         SubscribeLocalEvent<ToggleableClothingComponent, GetItemActionsEvent>(OnGetActions);
         SubscribeLocalEvent<ToggleableClothingComponent, ComponentRemove>(OnRemoveToggleable);
         SubscribeLocalEvent<ToggleableClothingComponent, GotUnequippedEvent>(OnToggleableUnequip);
+        SubscribeLocalEvent<ToggleableClothingComponent, ComponentGetState>(OnGetState);
+        SubscribeLocalEvent<ToggleableClothingComponent, ComponentHandleState>(OnHandleState);
 
         SubscribeLocalEvent<AttachedClothingComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<AttachedClothingComponent, GotUnequippedEvent>(OnAttachedUnequip);
@@ -53,6 +56,47 @@ public sealed class ToggleableClothingSystem : EntitySystem
         SubscribeLocalEvent<ToggleableClothingComponent, GetVerbsEvent<EquipmentVerb>>(OnGetVerbs);
         SubscribeLocalEvent<AttachedClothingComponent, GetVerbsEvent<EquipmentVerb>>(OnGetAttachedStripVerbsEvent);
         SubscribeLocalEvent<ToggleableClothingComponent, ToggleClothingDoAfterEvent>(OnDoAfterComplete);
+    }
+
+    private void OnGetState(EntityUid uid, ToggleableClothingComponent component, ref ComponentGetState args)
+    {
+        TryGetNetEntity(component.ActionEntity, out NetEntity? actionEntity);
+        TryGetNetEntity(component.ClothingUid, out NetEntity? clothingUid);
+
+        args.State = new ToggleableClothingComponentState(
+            component.Action,
+            actionEntity,
+            component.MarkingPrototype,
+            component.ClothingPrototype,
+            component.MarkingsVisible,
+            component.Slot,
+            component.RequiredFlags,
+            component.ContainerId,
+            clothingUid,
+            component.StripDelay,
+            component.VerbText);
+    }
+
+    private void OnHandleState(EntityUid uid, ToggleableClothingComponent component, ref ComponentHandleState args)
+    {
+        if (args.Current is not ToggleableClothingComponentState state)
+            return;
+
+        component.Action = state.Action;
+        component.ActionEntity = state.ActionEntity is { } actionEntity && TryGetEntity(actionEntity, out var actionUid)
+            ? actionUid
+            : null;
+        component.MarkingPrototype = state.MarkingPrototype;
+        component.ClothingPrototype = state.ClothingPrototype;
+        component.MarkingsVisible = state.MarkingsVisible;
+        component.Slot = state.Slot;
+        component.RequiredFlags = state.RequiredFlags;
+        component.ContainerId = state.ContainerId;
+        component.ClothingUid = state.ClothingUid is { } clothingEntity && TryGetEntity(clothingEntity, out var clothingUid)
+            ? clothingUid
+            : null;
+        component.StripDelay = state.StripDelay;
+        component.VerbText = state.VerbText;
     }
 
     /// <summary>

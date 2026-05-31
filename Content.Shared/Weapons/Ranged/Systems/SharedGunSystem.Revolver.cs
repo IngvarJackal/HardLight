@@ -301,6 +301,11 @@ public partial class SharedGunSystem
             return true;
         }
 
+        var ammoEntity = ExtractSingleAmmoForInsert(uid, Transform(revolverUid).Coordinates);
+
+        if (ammoEntity == null)
+            return false;
+
         // Try to insert the entity directly.
         for (var i = 0; i < component.Capacity; i++)
         {
@@ -312,9 +317,9 @@ public partial class SharedGunSystem
                 continue;
             }
 
-            component.AmmoSlots[index] = uid;
-            Containers.Insert(uid, component.AmmoContainer);
-            SetChamber(index, component, uid);
+            component.AmmoSlots[index] = ammoEntity.Value;
+            Containers.Insert(ammoEntity.Value, component.AmmoContainer);
+            SetChamber(index, component, ammoEntity.Value);
             Audio.PlayPredicted(component.SoundInsert, revolverUid, user);
             Popup(Loc.GetString("gun-revolver-insert"), revolverUid, user);
             UpdateRevolverAppearance(revolverUid, component);

@@ -129,6 +129,17 @@ public sealed partial class NpcFactionSystem : EntitySystem
     }
 
     /// <summary>
+    /// Returns whether both entities share at least one direct faction membership.
+    /// </summary>
+    public bool SharesAnyFaction(Entity<NpcFactionMemberComponent?> ent, Entity<NpcFactionMemberComponent?> other)
+    {
+        if (!Resolve(ent, ref ent.Comp, false) || !Resolve(other, ref other.Comp, false))
+            return false;
+
+        return ent.Comp.Factions.Overlaps(other.Comp.Factions);
+    }
+
+    /// <summary>
     /// Adds this entity to the particular faction.
     /// </summary>
     public void AddFaction(Entity<NpcFactionMemberComponent?> ent, string faction, bool dirty = true)

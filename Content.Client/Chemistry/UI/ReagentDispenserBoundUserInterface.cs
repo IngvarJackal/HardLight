@@ -42,6 +42,7 @@ namespace Content.Client.Chemistry.UI
 
             _window.OnDispenseReagentButtonPressed += (id) => SendMessage(new ReagentDispenserDispenseReagentMessage(id));
             _window.OnEjectJugButtonPressed += (id) => SendMessage(new ItemSlotButtonPressedEvent(id));
+            _window.OnToggleValveButtonPressed += () => SendMessage(new ReagentDispenserToggleValveMessage()); // Starlight-edit: Plumbing valve
         }
 
         /// <summary>

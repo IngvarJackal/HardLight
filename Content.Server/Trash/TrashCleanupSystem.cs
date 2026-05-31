@@ -1,6 +1,7 @@
 using Content.Server.Station.Components;
 using System.Linq;
 using Content.Server.Worldgen.Components;
+using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Mind.Components;
 using Content.Shared.Station.Components;
@@ -210,6 +211,15 @@ public sealed class TrashCleanupSystem : EntitySystem
         // Protect grids with important components that indicate they shouldn't be deleted
         if (HasComp<WorldControllerComponent>(gridUid))
             return true;
+
+        // Protect player-owned ships. If a grid is referenced by a shuttle deed, it is an owned vessel and
+        // should only be removed by explicit shipyard/admin flows, not the generic trash cleanup pass.
+        var deedQuery = EntityQueryEnumerator<ShuttleDeedComponent>();
+        while (deedQuery.MoveNext(out _, out var deed))
+        {
+            if (deed.ShuttleUid is { } netShuttle && GetEntity(netShuttle) == gridUid)
+                return true;
+        }
 
         // Check if grid has any players on it
         var playerQuery = EntityQueryEnumerator<ActorComponent, TransformComponent>();

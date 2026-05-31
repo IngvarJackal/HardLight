@@ -24,13 +24,13 @@ public sealed class SharedPettableInteractionOverrideSystem : EntitySystem
         var popup = EnsureComp<InteractionPopupComponent>(uid);
         _interactionPopup.ConfigureInteractionPopup(
             (uid, popup),
-            0.75f,
+            1.0F,
             "petting-success-soft-floofy-kitsune",
-            "petting-failure-generic",
+            "petting-success-soft-floofy-kitsune",
             PetSound,
-            null,
+            PetSound,
             "EffectHearts",
-            null,
+            "EffectHearts",
             null,
             true);
     }

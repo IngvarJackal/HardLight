@@ -88,6 +88,38 @@ public abstract class SharedResearchSystem : EntitySystem
         return true;
     }
 
+    public bool CanContributeToDisciplineProgress(TechnologyPrototype technology, string disciplineId)
+    {
+        return CanContributeToDisciplineProgress(technology, disciplineId, new HashSet<string>());
+    }
+
+    private bool CanContributeToDisciplineProgress(
+        TechnologyPrototype technology,
+        string disciplineId,
+        HashSet<string> visited)
+    {
+        if (technology.Hidden || technology.Discipline != disciplineId)
+            return false;
+
+        if (!visited.Add(technology.ID))
+            return false;
+
+        foreach (var prereqId in technology.TechnologyPrerequisites)
+        {
+            var prereq = PrototypeManager.Index<TechnologyPrototype>(prereqId);
+            if (prereq.Discipline != disciplineId ||
+                prereq.Tier > technology.Tier ||
+                !CanContributeToDisciplineProgress(prereq, disciplineId, visited))
+            {
+                visited.Remove(technology.ID);
+                return false;
+            }
+        }
+
+        visited.Remove(technology.ID);
+        return true;
+    }
+
     public Dictionary<string, int> GetDisciplineTiers(TechnologyDatabaseComponent component)
     {
         var tiers = new Dictionary<string, int>();
@@ -107,20 +139,18 @@ public abstract class SharedResearchSystem : EntitySystem
     public int GetHighestDisciplineTier(TechnologyDatabaseComponent component, TechDisciplinePrototype techDiscipline)
     {
         var allTech = PrototypeManager.EnumeratePrototypes<TechnologyPrototype>()
-            .Where(p => p.Discipline == techDiscipline.ID && !p.Hidden).ToList();
+            .Where(p => CanContributeToDisciplineProgress(p, techDiscipline.ID)).ToList();
         var allUnlocked = new List<TechnologyPrototype>();
         foreach (var recipe in component.UnlockedTechnologies)
         {
             var proto = PrototypeManager.Index<TechnologyPrototype>(recipe);
-            if (proto.Discipline != techDiscipline.ID)
+            if (!CanContributeToDisciplineProgress(proto, techDiscipline.ID))
                 continue;
             allUnlocked.Add(proto);
         }
 
         var highestTier = techDiscipline.TierPrerequisites.Keys.Max();
         var tier = 2; //tier 1 is always given
-
-        // todo this might break if you have hidden technologies. i'm not sure
 
         while (tier <= highestTier)
         {

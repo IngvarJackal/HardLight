@@ -1,0 +1,13 @@
+# Mono port: EMP RPG variant used by hostile shuttle event POIs.
+- type: entity
+  suffix: EMP
+  parent: WeaponLauncherRocket
+  id: WeaponLauncherRocketEmp
+  components:
+  - type: Gun
+    projectileSpeed: 25 # Mono: EMP RPGs should not be nerfed
+  - type: BallisticAmmoProvider
+    proto: CartridgeRocketEmp
+    whitelist:
+      tags:
+        - CartridgeRocketEmp # Mono: only EMP rockets work in this launcher

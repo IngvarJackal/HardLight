@@ -6,10 +6,14 @@
     state: syringe_gun
   discipline: CivilianServices
   tier: 2
-  cost: 10000
+  cost: 25000
+
   recipeUnlocks:
     - LauncherSyringe
     - MiniSyringe
     - SyringeDart
     - NFDartTracking
     - DartGun
+  technologyPrerequisites:
+    - IndustrialMedicine
+  position: -5, 11

@@ -1,40 +1,49 @@
-using Content.Shared._HL.Weapons.Components;
-using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared.Weapons.Ranged.Events;
+using System;
+using Content.Server._HL.Weapons.Components;
+using Content.Server.Stunnable;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Throwing;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Physics.Events;
 
 namespace Content.Server._HL.Weapons.Systems;
 
 public sealed class GunUserThrowbackSystem : EntitySystem
 {
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly ThrownItemSystem _thrownItems = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<GunUserThrowbackComponent, AmmoShotEvent>(OnAmmoShot);
+        SubscribeLocalEvent<RecoilImpactStunComponent, StartCollideEvent>(OnStartCollide);
+        SubscribeLocalEvent<RecoilImpactStunComponent, LandEvent>(OnLand);
+        SubscribeLocalEvent<RecoilImpactStunComponent, StopThrowEvent>(OnStopThrow);
     }
 
-    private void OnAmmoShot(Entity<GunUserThrowbackComponent> ent, ref AmmoShotEvent args)
+    private void OnStartCollide(Entity<RecoilImpactStunComponent> ent, ref StartCollideEvent args)
     {
-        if (args.Shooter is not { } shooter || ent.Comp.Strength <= 0f)
+        if (!TryComp(ent, out ThrownItemComponent? thrown))
+        {
+            RemCompDeferred<RecoilImpactStunComponent>(ent);
+            return;
+        }
+
+        if (!args.OtherFixture.Hard || HasComp<MobStateComponent>(args.OtherEntity))
             return;
 
-        if (!TryComp<GunComponent>(ent, out var gun) || gun.ShootCoordinates is not { } shootCoordinates)
-            return;
+        _thrownItems.StopThrow(ent, thrown);
+        _stun.TryStun(ent, TimeSpan.FromSeconds(ent.Comp.StunTime), true);
+    }
 
-        var shooterCoords = _transform.GetMapCoordinates(shooter);
-        var targetCoords = _transform.ToMapCoordinates(shootCoordinates);
+    private void OnLand(Entity<RecoilImpactStunComponent> ent, ref LandEvent args)
+    {
+        RemCompDeferred<RecoilImpactStunComponent>(ent);
+    }
 
-        if (shooterCoords.MapId != targetCoords.MapId)
-            return;
-
-        var recoilDirection = shooterCoords.Position - targetCoords.Position;
-        if (recoilDirection.LengthSquared() <= 0f)
-            return;
-
-        _throwing.TryThrow(shooter, recoilDirection, ent.Comp.Strength, user: shooter, compensateFriction: ent.Comp.CompensateFriction);
+    private void OnStopThrow(EntityUid uid, RecoilImpactStunComponent component, StopThrowEvent args)
+    {
+        RemCompDeferred<RecoilImpactStunComponent>(uid);
     }
 }

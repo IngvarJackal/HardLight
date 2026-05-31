@@ -97,6 +97,7 @@
       - BountyContractsCartridge # Frontier
       - AstroNavCartridge # Frontier
       - NanoChatCartridge # DeltaV
+      - LandgrabCartridge # VRS
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -147,6 +148,7 @@
     mindRoles: [] # Frontier: no default value here
   - type: ShipyardSellCondition # Frontier: Teleport to shipyard console on sale
     preserveOnSale: true
+  - type: RetroMonitorView # Mono - #3902
 
 - type: entity
   parent: BasePDA

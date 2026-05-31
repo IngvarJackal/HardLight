@@ -272,6 +272,12 @@ public sealed class FollowerSystem : EntitySystem
         if (!deparent || !TryComp(uid, out TransformComponent? xform))
             return;
 
+        if (TerminatingOrDeleted(xform.GridUid) && TerminatingOrDeleted(xform.MapUid))
+        {
+            _transform.DetachEntity(uid, xform);
+            return;
+        }
+
         _transform.AttachToGridOrMap(uid, xform);
         if (xform.MapUid != null)
             return;

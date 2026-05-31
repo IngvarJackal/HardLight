@@ -41,6 +41,10 @@ public sealed partial class MachineBoardComponent : Component
     /// </summary>
     [DataField(required: true)]
     public EntProtoId Prototype;
+
+    // VRS (Triad #3703) - sets the framesize this board can go into
+    [DataField]
+    public string? FrameSize = null;
 }
 
 /// <summary>

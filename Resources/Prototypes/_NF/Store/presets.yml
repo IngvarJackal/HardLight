@@ -73,6 +73,7 @@
     - UplinkMercenarySMGs
     - UplinkMercenaryHandguns
     - UplinkMercenaryAmmo
+    - UplinkMercenaryMelee # Hardlight: Melee
     currencyWhitelist:
     - MercCoin
     balance:

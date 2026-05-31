@@ -83,12 +83,11 @@ public sealed partial class NPCSteeringSystem
             // Just walk into it stupid
             if (isDoor && !isAccessRequired)
             {
-                var doorQuery = GetEntityQuery<DoorComponent>();
-
+                // VRS: use cached _doorQuery field instead of re-fetching per call.
                 // ... At least if it's not a bump open.
                 foreach (var ent in obstacleEnts)
                 {
-                    if (!doorQuery.TryGetComponent(ent, out var door))
+                    if (!_doorQuery.TryGetComponent(ent, out var door))
                         continue;
 
                     if (!door.BumpOpen && (component.Flags & PathFlags.Interact) != 0x0)
@@ -106,12 +105,11 @@ public sealed partial class NPCSteeringSystem
 
             if ((component.Flags & PathFlags.Prying) != 0x0 && isDoor)
             {
-                var doorQuery = GetEntityQuery<DoorComponent>();
-
+                // VRS: use cached _doorQuery field instead of re-fetching per call.
                 // Get the relevant obstacle
                 foreach (var ent in obstacleEnts)
                 {
-                    if (doorQuery.TryGetComponent(ent, out var door) && door.State != DoorState.Open)
+                    if (_doorQuery.TryGetComponent(ent, out var door) && door.State != DoorState.Open)
                     {
                         // TODO: Use the verb.
 

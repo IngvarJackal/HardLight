@@ -10,6 +10,7 @@
     state: icon
   discipline: Arsenal
   tier: 1
+  position: -4, 8
   cost: 5000
   recipeUnlocks:
   - NFWeaponPka # Frontier: WeaponProtoKineticAccelerator<NFWeaponPka
@@ -34,6 +35,7 @@
     state: fueltank
   discipline: Arsenal
   tier: 2
+  position: 2, 14
   cost: 10000
   recipeUnlocks:
   - Magazine45_ACPPistolIncendiary
@@ -66,13 +68,17 @@
 
 - type: technology
   id: WeaponizedLaserManipulation
+  technologyPrerequisites:
+    - BasicParts
   name: research-technology-weaponized-laser-manipulation
   icon:
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
     state: icon
   discipline: Arsenal
   tier: 1
-  cost: 7500
+  position: 2, 3
+  cost: 10000
+
   recipeUnlocks: # Frontier
   - WeaponLaserCarbine # Frontier
   - WeaponMechCombatFiredartLaser # Goobstation
@@ -87,6 +93,7 @@
     state: uranium
   discipline: Arsenal
   tier: 2
+  position: 3, 14
   cost: 7500
   recipeUnlocks:
   - Magazine45_ACPPistolUranium
@@ -120,13 +127,17 @@
 
 - type: technology
   id: AdvancedRiotControl
+  technologyPrerequisites:
+    - BasicParts
   name: research-technology-advanced-riot-control
   icon:
     sprite: Objects/Weapons/Melee/truncheon.rsi
     state: icon
   discipline: Arsenal
   tier: 1
-  cost: 8000
+  position: 2, 2
+  cost: 10000
+
   recipeUnlocks: # Frontier
   - Truncheon # Frontier
   - TelescopicShield # Frontier
@@ -135,13 +146,17 @@
 
 - type: technology
   id: ExplosiveTechnology
+  technologyPrerequisites:
+    - SuperParts
   name: research-technology-explosive-technology
   icon:
     sprite: Objects/Devices/payload.rsi
     state: payload-explosive-armed
   discipline: Arsenal
   tier: 1
-  cost: 10000
+  position: 1, 14
+  cost: 25000
+
   recipeUnlocks:
   - SignallerAdvanced
   - SignalTrigger
@@ -159,6 +174,7 @@
     state: icon
   discipline: Arsenal
   tier: 1
+  position: 1, 2
   cost: 5000
   recipeUnlocks:
   - ClothingBackpackElectropack
@@ -167,13 +183,17 @@
 
 - type: technology
   id: ConcentratedLaserWeaponry
+  technologyPrerequisites:
+    - WeaponizedLaserManipulation
   name: research-technology-concentrated-laser-weaponry
   icon:
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
     state: icon
   discipline: Arsenal
   tier: 2
-  cost: 10000
+  position: 3, 3
+  cost: 25000
+
   recipeUnlocks: # Frontier
   - WeaponLaserCannon # Frontier
 
@@ -185,6 +205,7 @@
     state: display
   discipline: Arsenal
   tier: 2
+  position: 4, 2
   cost: 7500
   recipeUnlocks:
   - PKAUpgradeDamage
@@ -202,6 +223,7 @@
     state: icon
   discipline: Arsenal
   tier: 2
+  position: 4, 4
   cost: 10000
   recipeUnlocks: # Frontier
   - WeaponXrayCannon # Frontier
@@ -216,7 +238,9 @@
     state: full
   discipline: Arsenal
   tier: 2
-  cost: 10500
+  position: -5, 8
+  cost: 10000
+
   recipeUnlocks:
   - PowerCageRechargerCircuitboard
   - PowerCageSmall
@@ -232,18 +256,24 @@
   #  - ShuttleGunFriendshipCircuitboard # Frontier
   technologyPrerequisites:
   - SalvageWeapons
+  - ExplosiveTechnology
 
 # Tier 3
 
 - type: technology
   id: PortableMicrofusionWeaponry
+  technologyPrerequisites:
+    - ConcentratedLaserWeaponry
+    - SuperParts
   name: research-technology-portable-microfusion-weaponry
   icon:
     sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
     state: icon
   discipline: Arsenal
   tier: 3
-  cost: 15000
+  position: 4, 3
+  cost: 30000
+
   recipeUnlocks:
   - WeaponAdvancedLaser # Frontier
   - PortableRecharger
@@ -257,6 +287,7 @@
     state: icon
   discipline: Arsenal
   tier: 3
+  position: 5, 3
   cost: 15000
   recipeUnlocks: # Frontier
   - WeaponTemperatureGun # Frontier
@@ -269,6 +300,7 @@
     state: icon
   discipline: Arsenal
   tier: 3
+  position: -5, 9
   cost: 15000
   recipeUnlocks:
   - NFWeaponEnergyPistolLaserSvalinn

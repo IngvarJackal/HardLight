@@ -1652,7 +1652,7 @@ namespace Content.Client.Lobby.UI
 
             _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection)
             {
-                Title = jobProto?.ID + "-loadout",
+                Title = jobProto?.LocalizedName + " loadout", // VRS: show localized job name instead of raw ID (Mono #3878)
             };
 
             // Refresh the buttons etc.
@@ -1806,6 +1806,23 @@ namespace Content.Client.Lobby.UI
                         Markings.CurrentSkinColor = color;
                         Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
                         break;
+                }
+
+                case HumanoidSkinColor.AnyColour: // Hardlight
+                {
+
+                    if (!RgbSkinColorContainer.Visible)
+                    {
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = true;
+                    }
+
+                    var color = _rgbSkinColorSelector.Color;
+
+                    Markings.CurrentSkinColor = color;
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+                    break;
+
                 }
             }
 
@@ -2127,6 +2144,17 @@ namespace Content.Client.Lobby.UI
                         _rgbSkinColorSelector.Color = SkinColor.ClosestAnimalFurColor(Profile.Appearance.SkinColor);
 
                         break;
+                }
+                case HumanoidSkinColor.AnyColour: // Hardlight
+                {
+                    if (!RgbSkinColorContainer.Visible)
+                    {
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = true;
+                    }
+
+                    _rgbSkinColorSelector.Color = Profile.Appearance.SkinColor;
+                    break;
                 }
             }
 

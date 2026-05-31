@@ -1,0 +1,43 @@
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase, BaseColcommContraband] # Frontier: BaseCommandContraband<BaseC1Contraband
+  id: ClothingBeltOrnateSheath
+  name: ornate sabre sheath
+  description: An especially ornate sheath designed to hold an officer's blade.
+  components:
+  - type: Sprite
+    sprite: _HL/Clothing/Belt/ornatesheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _HL/Clothing/Belt/ornatesheath.rsi
+    #- type: Item # Frontier
+    #size: Ginormous # Frontier
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - CCSabre
+          - CaptainSabre
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - CCSabre
+          - CaptainSabre
+  - type: Appearance
+
+- type: entity
+  id: ClothingBeltOrnateSheathFilled
+  parent: ClothingBeltOrnateSheath
+  suffix: Filled, CCSabre
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - CCOfficerSabre

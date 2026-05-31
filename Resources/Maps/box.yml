@@ -4,7 +4,7 @@ meta:
   engineVersion: 274.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/13/2026 21:26:27
+  time: 05/25/2026 14:33:00
   entityCount: 29145
 maps:
 - 1
@@ -20038,10 +20038,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 28970
@@ -20067,10 +20064,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 28972
@@ -20096,10 +20090,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 28974
@@ -20125,10 +20116,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 28976
@@ -20154,10 +20142,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 28978
@@ -20183,10 +20168,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 28980
@@ -20212,10 +20194,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 28982
@@ -20241,10 +20220,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 28984
@@ -20270,10 +20246,7 @@ entities:
       solution:
         maxVol: 500
         name: tank
-        reagents:
-        - data: []
-          ReagentId: Water
-          Quantity: 500
+        reagents: []
     - type: ContainedSolution
       containerName: tank
   - uid: 28986
@@ -25241,7 +25214,7 @@ entities:
       pos: 24.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -108797.516
+      secondsUntilStateChange: -108928.32
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -26794,7 +26767,7 @@ entities:
       pos: 9.5,25.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -22054.012
+      secondsUntilStateChange: -22184.814
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -31978,7 +31951,7 @@ entities:
   - uid: 1453
     components:
     - type: Transform
-      pos: -6.0280805,52.564606
+      pos: -5.08096,52.650185
       parent: 2
     - type: Tag
       tags:
@@ -91586,7 +91559,7 @@ entities:
   - uid: 11269
     components:
     - type: Transform
-      pos: -6.4873962,52.56498
+      pos: -5.67471,49.60331
       parent: 2
 - proto: ClothingOuterArmorBulletproof
   entities:
@@ -107865,7 +107838,7 @@ entities:
       pos: 18.5,-13.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -16028.521
+      secondsUntilStateChange: -16159.325
       state: Closing
   - uid: 13779
     components:
@@ -107873,7 +107846,7 @@ entities:
       pos: 18.5,-14.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -16064.222
+      secondsUntilStateChange: -16195.025
       state: Closing
   - uid: 13780
     components:
@@ -108041,7 +108014,7 @@ entities:
       pos: -34.5,-14.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -102986.055
+      secondsUntilStateChange: -103116.86
       state: Closing
   - uid: 13807
     components:
@@ -150215,6 +150188,11 @@ entities:
     - type: Transform
       pos: 38.5,-4.5
       parent: 2
+  - uid: 23582
+    components:
+    - type: Transform
+      pos: -6.5,52.5
+      parent: 2
 - proto: KitchenKnife
   entities:
   - uid: 19574
@@ -160982,7 +160960,6 @@ entities:
     - type: TileFrictionModifier
       modifier: 1
     - type: Evaporation
-      nextTick: 0
   - uid: 20884
     components:
     - type: Transform
@@ -161003,7 +160980,6 @@ entities:
     - type: TileFrictionModifier
       modifier: 1
     - type: Evaporation
-      nextTick: 0
   - uid: 20885
     components:
     - type: Transform
@@ -161025,7 +161001,6 @@ entities:
     - type: TileFrictionModifier
       modifier: 1
     - type: Evaporation
-      nextTick: 0
   - uid: 20886
     components:
     - type: Transform
@@ -161047,7 +161022,6 @@ entities:
     - type: TileFrictionModifier
       modifier: 1
     - type: Evaporation
-      nextTick: 0
 - proto: Rack
   entities:
   - uid: 20887
@@ -169204,6 +169178,8 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 28919
+    - type: StackSignature
+      signature: SheetUranium|Radium=200;Uranium=800;
 - proto: Shovel
   entities:
   - uid: 22363
@@ -180905,11 +180881,6 @@ entities:
     components:
     - type: Transform
       pos: -18.5,16.5
-      parent: 2
-  - uid: 23582
-    components:
-    - type: Transform
-      pos: -6.5,52.5
       parent: 2
   - uid: 23583
     components:

@@ -1,0 +1,15 @@
+- type: paintableGroup
+  id: HeavyStandard
+  iconPriority: 100
+  defaultStyle: basic
+  styles:
+    basic: AirlockHeavy
+    engineering: AirlockHeavyEngineering
+    grey: AirlockHeavyGrey
+
+- type: paintableGroup
+  id: HeavyGlass
+  iconPriority: 90
+  defaultStyle: basic
+  styles:
+    basic: AirlockHeavyGlass

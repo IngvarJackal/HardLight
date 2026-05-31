@@ -1,6 +1,9 @@
+using Content.Server.Destructible; // VRS (Triad #3732)
 using Content.Server.NPC.Components;
 using Content.Shared.CombatMode;
+using Content.Shared.Damage.Components; // VRS (Triad #3732)
 using Content.Shared.Interaction;
+using Content.Shared.NPC.Components; // VRS (Triad #3732)
 using Content.Shared.Physics;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
@@ -14,12 +17,15 @@ public sealed partial class NPCCombatSystem
 {
     [Dependency] private readonly SharedCombatModeSystem _combat = default!;
     [Dependency] private readonly RotateToFaceSystem _rotate = default!;
+    [Dependency] private readonly DestructibleSystem _destructible = default!; // VRS (Triad #3732)
 
     private EntityQuery<CombatModeComponent> _combatQuery;
     private EntityQuery<NPCSteeringComponent> _steeringQuery;
     private EntityQuery<RechargeBasicEntityAmmoComponent> _rechargeQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<TransformComponent> _xformQuery;
+    private EntityQuery<RequireProjectileTargetComponent> _requireTargetQuery; // VRS (Triad #3732)
+    private EntityQuery<NpcFactionMemberComponent> _factionQuery; // VRS (Triad #3732)
 
     // TODO: Don't predict for hitscan
     private const float ShootSpeed = 20f;
@@ -36,6 +42,8 @@ public sealed partial class NPCCombatSystem
         _rechargeQuery = GetEntityQuery<RechargeBasicEntityAmmoComponent>();
         _steeringQuery = GetEntityQuery<NPCSteeringComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
+        _requireTargetQuery = GetEntityQuery<RequireProjectileTargetComponent>(); // VRS (Triad #3732)
+        _factionQuery = GetEntityQuery<NpcFactionMemberComponent>(); // VRS (Triad #3732)
 
         SubscribeLocalEvent<NPCRangedCombatComponent, ComponentStartup>(OnRangedStartup);
         SubscribeLocalEvent<NPCRangedCombatComponent, ComponentShutdown>(OnRangedShutdown);
@@ -150,8 +158,9 @@ public sealed partial class NPCCombatSystem
                 comp.LOSAccumulator += UnoccludedCooldown;
 
                 // For consistency with NPC steering.
-                var collisionGroup = comp.UseOpaqueForLOSChecks ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
-                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, collisionGroup);
+                var obstructedMask = comp.UseOpaqueForLOSChecks ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
+                // VRS (Triad #3732): use InRangeGoodTarget to allow shooting through destroyable obstacles
+                comp.TargetInLOS = InRangeGoodTarget((gunUid, gun), uid, comp.Target, distance, comp.ShotsThreshold, obstructedMask);
             }
 
             if (!comp.TargetInLOS)
@@ -223,5 +232,38 @@ public sealed partial class NPCCombatSystem
             _gun.SetTarget(gun, comp.Target); // Frontier - This ensures that the bullet won't fly over the target if it's downed
             _gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
         }
+    }
+
+    // VRS (Triad #3732)
+    public bool InRangeGoodTarget(Entity<GunComponent?> gun, EntityUid source, EntityUid target, float distance, float shotsThreshold, CollisionGroup obstructedMask = CollisionGroup.Opaque, CollisionGroup bulletMask = CollisionGroup.Impassable | CollisionGroup.BulletImpassable)
+    {
+        if (!Resolve(gun, ref gun.Comp, false))
+            return false;
+
+        var dmg = _gun.GetNextDamage(gun).GetTotal().Float();
+        var destroyAccum = 0f;
+        var firerate = gun.Comp.FireRateModified;
+        var threshold = shotsThreshold;
+        // For consistency with NPC steering.
+        return _interaction.InRangeUnobstructed(source, target, distance + 0.1f, obstructedMask,
+            predicate: (EntityUid uid) => {
+                if (_physicsQuery.TryGetComponent(uid, out var physics)
+                    && (physics.CollisionLayer & (int)bulletMask) == 0
+                ) // this will collide with the bullet
+                    return true;
+
+                if (_requireTargetQuery.HasComponent(uid)) // requires targeting so it won't collide
+                    return true;
+
+                // do not consider living things for shoot-through
+                if (!_factionQuery.HasComp(uid)
+                    && _destructible.TryGetDestroyedAt(uid, out var at))
+                {
+                    destroyAccum += at.Value.Float() / dmg / firerate;
+                    if (destroyAccum < threshold)
+                        return true;
+                }
+                return false;
+            });
     }
 }

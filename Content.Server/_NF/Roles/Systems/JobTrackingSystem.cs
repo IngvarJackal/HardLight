@@ -404,6 +404,37 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
         _colcommJobs.TryTrackPlayerJob(colcomm, userId, colcommJob);
     }
 
+    /// <summary>
+    /// VRS: Move a <see cref="JobTrackingComponent"/> from one body to another so a subsequent
+    /// mind transfer between them does not trigger the slot-reopen pathway. Used by the
+    /// AI / borg shunt flow (<c>PositronicJumpSystem</c>) to fix HardLight issue #1354 where
+    /// the AI job slot reopened to new joiners as soon as the AI shunted into a chassis.
+    /// </summary>
+    /// <remarks>
+    /// The destination's <see cref="MindAddedMessage"/> still runs <see cref="OnJobMindAdded"/>
+    /// and falls through to <see cref="CloseJob"/>, but <c>CloseJob</c>'s
+    /// <c>IsPlayerJobTracked</c> guard short-circuits the actual slot decrement because the
+    /// player is already tracked against this slot from their original spawn.
+    /// </remarks>
+    public void MoveTrackingFromTo(EntityUid from, EntityUid to)
+    {
+        if (!TryComp<JobTrackingComponent>(from, out var source))
+            return;
+
+        // Suppress OnJobMindRemoved on the source: it early-returns when Active is false.
+        source.Active = false;
+
+        var dest = EnsureComp<JobTrackingComponent>(to);
+        dest.Job = source.Job;
+        dest.SpawnStation = source.SpawnStation;
+        // Mark Active so the destination's OnJobMindAdded skips the activation branch and
+        // CloseJob reaches its IsPlayerJobTracked no-op path instead of trying to consume
+        // a slot that was already consumed at the original spawn.
+        dest.Active = true;
+
+        RemComp<JobTrackingComponent>(from);
+    }
+
     private bool ShouldReopenTrackedJob(EntityUid spawnStation, ProtoId<JobPrototype> job)
     {
         if (JobShouldBeReopened(job))

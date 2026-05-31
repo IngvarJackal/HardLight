@@ -1,0 +1,19 @@
+# Mono port: Triad uses "Rogue" naming for pirate-locked airlocks.
+# VRS keeps the "Pirate" naming. These thin parents preserve the Rogue
+# prototype IDs used by the hostile shuttle event POI maps without
+# duplicating the underlying door/electronics setup.
+
+- type: entity
+  parent: AirlockExternalGlassPirateLocked
+  id: AirlockExternalGlassRogueLocked
+  suffix: Rogue, Glass, Locked
+
+- type: entity
+  parent: AirlockShuttleSyndicatePirateLocked
+  id: AirlockShuttleSyndicateRogueLocked
+  suffix: Rogue, Locked
+
+- type: entity
+  parent: AirlockHatchPirateLocked
+  id: AirlockHatchRogueLocked
+  suffix: Rogue, Locked
