@@ -109,8 +109,20 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         // Subscribe to ensure MetaDataComponent on projectile entities for networking
         SubscribeLocalEvent<ProjectileComponent, ComponentStartup>(OnProjectileMetaStartup);
 
+        // HardLight: record the origin grid so ship-gun shells can phase through their own ship.
+        SubscribeLocalEvent<Content.Shared._Mono.ProjectileGridPhaseComponent, ComponentStartup>(OnProjectileGridPhaseStartup);
+
         // Mono
         SubscribeLocalEvent<ProjectileComponent, TileFrictionEvent>(OnTileFriction);
+    }
+
+    /// <summary>
+    /// Records the grid a phasing projectile was fired from, so it can ignore collisions with that
+    /// grid's entities (hull, shield, etc.) for its whole flight. Ported from Triad Sector.
+    /// </summary>
+    private void OnProjectileGridPhaseStartup(EntityUid uid, Content.Shared._Mono.ProjectileGridPhaseComponent component, ComponentStartup args)
+    {
+        component.SourceGrid = Transform(uid).GridUid;
     }
 
     /// <summary>
@@ -481,6 +493,19 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         if (component.IgnoreShooter && (args.OtherEntity == component.Shooter || args.OtherEntity == component.Weapon))
         {
             args.Cancelled = true;
+        }
+
+        // HardLight (ported from Triad Sector): ship-gun shells phase through ALL entities on their
+        // origin grid - their own ship's hull, shield, turrets, everything - for their whole flight.
+        // This is networked, so the client predicts the same pass-through and the shell is never
+        // slowed / re-parented to its own (rotating) grid. Fixes "shells originate from grid centre
+        // with broken convergence" when firing through a friendly shield.
+        if (TryComp<Content.Shared._Mono.ProjectileGridPhaseComponent>(uid, out var phaseComp)
+            && phaseComp.SourceGrid is { } sourceGrid
+            && Transform(args.OtherEntity).GridUid == sourceGrid)
+        {
+            args.Cancelled = true;
+            return;
         }
 
         // Check if any shield system wants to prevent collision

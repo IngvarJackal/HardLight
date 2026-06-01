@@ -228,6 +228,11 @@ public sealed partial class ShipShieldsSystem : EntitySystem
                 ? _transformSystem.GetGrid(shooterUid)
                 : null;
 
+        Content.Shared._Mono.Debugging.ProjDebug.Log("shield.prevent",
+            $"net={GetNetEntity(args.OtherEntity)} shieldedGrid={ToPrettyString(component.Shielded)} " +
+            $"weapon={ToPrettyString(projectile.Weapon ?? default)} firingGrid={ToPrettyString(firingGrid ?? default)} " +
+            $"ownGrid={firingGrid == component.Shielded}");
+
         if (firingGrid == component.Shielded)
         {
             args.Cancelled = true;

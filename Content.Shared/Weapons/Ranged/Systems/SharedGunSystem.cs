@@ -622,7 +622,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             $"speed={speed:0.###} linVel={Content.Shared._Mono.Debugging.ProjDebug.V(targetVelocity)} " +
             $"projAngleOffset={Content.Shared._Mono.Debugging.ProjDebug.Deg(projectile.Angle)} " +
             $"finalWorldRot={Content.Shared._Mono.Debugging.ProjDebug.Deg(TransformSystem.GetWorldRotation(spawnXform))} " +
-            $"parent={ToPrettyString(spawnXform.ParentUid)}");
+            $"parent={ToPrettyString(spawnXform.ParentUid)} gt={spawnXform.GridTraversal}");
     }
 
     // Mono

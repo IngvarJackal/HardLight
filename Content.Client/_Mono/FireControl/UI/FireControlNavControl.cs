@@ -340,11 +340,11 @@ public sealed class FireControlNavControl : BaseShuttleControl
 
             if (shape == RadarBlipShape.Ring)
             {
-                DrawShieldRing(handle, viewPosition, scale, color.WithAlpha(0.8f));
+                DrawShieldRing(handle, viewPosition, scale, color.WithAlpha(blipData.Alpha));
             }
             else
             {
-                DrawBlipShape(handle, viewPosition, scale * 3f, color.WithAlpha(0.8f), shape);
+                DrawBlipShape(handle, viewPosition, scale * 3f, color.WithAlpha(blipData.Alpha), shape);
             }
 
             if (_isMouseInside && _controllables != null)

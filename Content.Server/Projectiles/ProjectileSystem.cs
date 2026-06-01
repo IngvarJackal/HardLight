@@ -15,6 +15,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics; // Mono
+using Robust.Shared.Physics.Events; // HardLight - PreventCollideEvent in anti-tunnel raycast
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using System.Linq;
@@ -163,6 +164,19 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                 false) // IncludeNonHard = false
                 .ToList();
 
+            // P0 instrumentation: only log when the ray actually hit something (rare/interesting).
+            var rawHitCount = hits.Count;
+            if (rawHitCount > 0)
+            {
+                TryComp<Content.Shared._Mono.ProjectileGridPhaseComponent>(uid, out var phaseDbg);
+                var hitDesc = string.Join("; ", hits.Select(h =>
+                    $"{ToPrettyString(h.HitEntity)}@{h.Distance:0.##}grid={ToPrettyString(Transform(h.HitEntity).GridUid ?? default)}"));
+                Content.Shared._Mono.Debugging.ProjDebug.Log("raycast.hits",
+                    $"net={GetNetEntity(uid)} vel={physicsComp.LinearVelocity.Length():0.#} rayDist={rayDistance:0.##} " +
+                    $"resetVel={projectileComp.RaycastResetVelocity} hasPhase={phaseDbg != null} " +
+                    $"sourceGrid={ToPrettyString(phaseDbg?.SourceGrid ?? default)} rawHits=[{hitDesc}]");
+            }
+
             // If IgnoreShooter is true, remove the shooter from the list of potential hits.
             if (projectileComp.IgnoreShooter && projectileComp.Shooter.HasValue)
             {
@@ -174,6 +188,21 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                 hits.RemoveAll(hit => !_whitelist.CheckBoth(hit.HitEntity, targetFilter.Blacklist, targetFilter.Whitelist));
             }
 
+            // HardLight (ported from Triad Sector): the anti-tunnel raycast must respect collision
+            // prevention. Without this a ship's own shell "hits" its own shield (a hard
+            // BulletImpassable fixture) and gets teleported onto the shield entity - which sits at the
+            // grid centre - with its speed clamped to MinRaycastVelocity*0.99 (=74.25). That is the
+            // "shells originate from the grid centre / slow to 74 when firing through our shield" bug.
+            // Drop any hit a PreventCollideEvent cancels (own-grid phasing, shooter, etc.).
+            hits.RemoveAll(hit =>
+            {
+                var prevented = RaycastHitPrevented(uid, physicsComp, projFix, hit.HitEntity);
+                if (rawHitCount > 0)
+                    Content.Shared._Mono.Debugging.ProjDebug.Log("raycast.prevent",
+                        $"net={GetNetEntity(uid)} hit={ToPrettyString(hit.HitEntity)} prevented={prevented}");
+                return prevented;
+            });
+
             if (hits.Count > 0)
             {
                 // Process the closest hit
@@ -181,14 +210,58 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                 hits.Sort((a, b) => a.Distance.CompareTo(b.Distance));
                 var closestHit = hits.First();
 
-                // teleport us so we hit it
-                // this is cursed but i don't think there's a better way to force a collision here
-                _transformSystem.SetWorldPosition(uid, _transformSystem.GetWorldPosition(closestHit.HitEntity));
+                // teleport us to the actual hit POINT along the ray - NOT the hit entity's origin
+                // (for a ship shield that origin is the grid centre, which yanked shells to centre).
+                var tpPos = lastPosition + rayDirection * closestHit.Distance;
+                Content.Shared._Mono.Debugging.ProjDebug.Log("raycast.teleport",
+                    $"net={GetNetEntity(uid)} hit={ToPrettyString(closestHit.HitEntity)} " +
+                    $"to={Content.Shared._Mono.Debugging.ProjDebug.V(tpPos)} dist={closestHit.Distance:0.##} " +
+                    $"clampVel={projectileComp.RaycastResetVelocity}");
+                _transformSystem.SetWorldPosition(uid, tpPos);
                 if (projectileComp.RaycastResetVelocity)
                     _physics.SetLinearVelocity(uid, rayDirection * MinRaycastVelocity * 0.99f);
 
                 continue;
             }
+
+            if (rawHitCount > 0)
+                Content.Shared._Mono.Debugging.ProjDebug.Log("raycast.passed",
+                    $"net={GetNetEntity(uid)} all {rawHitCount} raw hit(s) phased - shell continues unmodified");
         }
+    }
+
+    /// <summary>
+    /// HardLight (ported from Triad Sector): mirror the engine's ShouldCollide PreventCollide
+    /// handshake so the anti-tunnel raycast ignores entities the projectile would actually phase
+    /// through - its own grid (ProjectileGridPhaseComponent), shields, the shooter, etc. Returns
+    /// true if the hit should be ignored.
+    /// </summary>
+    private bool RaycastHitPrevented(EntityUid uid, PhysicsComponent body, Fixture projFix, EntityUid hitEnt)
+    {
+        // No body / no fixtures to collide with -> not a real collision (skip), matching Triad.
+        if (!_physQuery.TryComp(hitEnt, out var otherBody) || !_fixQuery.TryComp(hitEnt, out var otherFixtures))
+            return true;
+
+        Fixture? hitFix = null;
+        foreach (var kv in otherFixtures.Fixtures)
+        {
+            if (kv.Value.Hard)
+            {
+                hitFix = kv.Value;
+                break;
+            }
+        }
+
+        if (hitFix == null)
+            return true; // nothing hard to actually collide with
+
+        var ourEv = new PreventCollideEvent(uid, hitEnt, body, otherBody, projFix, hitFix);
+        RaiseLocalEvent(uid, ref ourEv);
+        if (ourEv.Cancelled)
+            return true;
+
+        var otherEv = new PreventCollideEvent(hitEnt, uid, otherBody, body, hitFix, projFix);
+        RaiseLocalEvent(hitEnt, ref otherEv);
+        return otherEv.Cancelled;
     }
 }

@@ -98,7 +98,10 @@ public static class ProjDebug
                     _truncated = true;
                 }
 
-                _userData.AppendAllText(_path, $"[{DateTime.Now:HH:mm:ss.fff}] {tag,-22} {message}\n");
+                // [S]/[C] marks server vs client on every line, so shared-code records stay
+                // unambiguous even when a line is quoted out of its (already per-side) file.
+                var sideTag = Side == "server" ? "S" : Side == "client" ? "C" : "?";
+                _userData.AppendAllText(_path, $"[{DateTime.Now:HH:mm:ss.fff}] [{sideTag}] {tag,-22} {message}\n");
             }
         }
         catch

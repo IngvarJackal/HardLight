@@ -40,6 +40,11 @@ public sealed partial class RadarBlipSystem : EntitySystem
     private static readonly TimeSpan MinRequestPeriod = TimeSpan.FromMilliseconds(225);
     private static readonly TimeSpan ReportCacheLifetime = TimeSpan.FromMilliseconds(75);
 
+    // HardLight: projectile detection ranges. All projectiles within 512 m are sent (early warning);
+    // the firing ship's own shells are sent out to 2048 m. Client fades alpha within these bands.
+    private const float OtherProjectileRange = 512f;
+    private const float OwnProjectileRange = 2048f;
+
     // HardLight: live-tunable overrides via CVars (HLCCVars.RadarMinRequestMs / RadarReportCacheTtlMs).
     // Defaults below are fallbacks if the CVars are not yet bound at first request.
     private TimeSpan _minRequestPeriod = MinRequestPeriod;
@@ -197,18 +202,36 @@ public sealed partial class RadarBlipSystem : EntitySystem
         var blipEnumerator = EntityQueryEnumerator<RadarBlipComponent, TransformComponent, PhysicsComponent>();
         while (blipEnumerator.MoveNext(out var blipUid, out var blip, out var blipXform, out var blipPhysics))
         {
+            var blipGrid = blipXform.GridUid;
+
+            // HardLight: projectiles get their own detection range so a station gets early warning of
+            // incoming fire. A projectile "belongs" to its firing grid (recorded as SourceGrid) even
+            // once it has flown off onto the map, so own shells stay categorised as own out to 2048 m.
+            var isProjectile = HasComp<Content.Shared.Projectiles.ProjectileComponent>(blipUid);
+            var owningGrid = blipGrid;
+            if (TryComp<Content.Shared._Mono.ProjectileGridPhaseComponent>(blipUid, out var phase) && phase.SourceGrid != null)
+                owningGrid = phase.SourceGrid;
+            var isOwnProjectile = isProjectile && MatchesAnyRadarSourceGrid(owningGrid);
+
+            var range = isProjectile
+                ? (isOwnProjectile ? OwnProjectileRange : OtherProjectileRange)
+                : component.MaxRange;
+
             if (!blip.Enabled
                 || blipXform.MapID != radarMapId
-                || !NearAnySources(_xform.GetWorldPosition(blipXform), sourcePositions, component.MaxRange)
+                || !NearAnySources(_xform.GetWorldPosition(blipXform), sourcePositions, range)
             )
                 continue;
-
-            var blipGrid = blipXform.GridUid;
 
             if (blip.RequireNoGrid && blipGrid != null // if we want no grid but we are on a grid
                 || !blip.VisibleFromOtherGrids && !MatchesAnyRadarSourceGrid(blipGrid)
             )
                 continue; // don't show this blip
+
+            // Tell the client how to fade this blip with distance (alpha math is fully client-side).
+            var fade = isProjectile
+                ? (isOwnProjectile ? RadarBlipFadeMode.OwnProjectile : RadarBlipFadeMode.OtherProjectile)
+                : RadarBlipFadeMode.None;
 
             var netBlipUid = GetNetEntity(blipUid);
 
@@ -261,7 +284,8 @@ public sealed partial class RadarBlipSystem : EntitySystem
                             blipVelocity,
                             rotation,
                             configIdx,
-                            gridConfigIdx));
+                            gridConfigIdx,
+                            fade));
         }
     }
 

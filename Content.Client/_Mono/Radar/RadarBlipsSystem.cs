@@ -44,6 +44,12 @@ public sealed partial class RadarBlipsSystem : EntitySystem
         _hitscans = ev.HitscanLines;
         _lastUpdatedTime = _timing.CurTime;
         _lastHitscanUpdatedTime = _timing.CurTime;
+
+        // Debug: which blip net ids did the client actually receive this update? Correlate with the
+        // server's radar.blip.include / .skip lines to see where shells stop being sent / rendered.
+        var ids = string.Join(",", ev.Blips.Select(b => b.Uid.Id));
+        Content.Shared._Mono.Debugging.ProjDebug.Log("radar.blip.recv",
+            $"count={ev.Blips.Count} hitscans={ev.HitscanLines.Count} netIds=[{ids}]");
     }
 
     private void RemoveBlip(BlipRemovalEvent args)
@@ -107,10 +113,32 @@ public sealed partial class RadarBlipsSystem : EntitySystem
             }
             var maybeGrid = grid != EntityUid.Invalid ? grid : (EntityUid?)null;
 
-            _cachedBlipData.Add(new(blip.Uid, predictedPos, rotation, maybeGrid, config));
+            // HardLight: client-side distance fade. Server only tags the blip's fade mode; the alpha
+            // curve lives here. Enemy shells fade out near the 512 m edge; own shells stay bright out
+            // to ~2 km. Distance is from the requesting radar console.
+            var distance = (predictedMap.Position - _radarWorldPosition).Length();
+            var alpha = BlipAlpha(blip.Fade, distance);
+
+            _cachedBlipData.Add(new(blip.Uid, predictedPos, rotation, maybeGrid, config, alpha));
         }
 
         return _cachedBlipData;
+    }
+
+    /// <summary>
+    /// HardLight: per-blip render alpha as a function of distance from the radar. Both projectile
+    /// curves drop 25% every 32 m and reach 100% below the ramp start:
+    /// enemy shells 75%@448 / 50%@480 / 25%@512; own shells 75%@1952 / 50%@1984 / 25%@2016.
+    /// Non-projectile blips keep the previous constant alpha.
+    /// </summary>
+    private static float BlipAlpha(RadarBlipFadeMode fade, float distance)
+    {
+        return fade switch
+        {
+            RadarBlipFadeMode.OtherProjectile => Math.Clamp(1f - MathF.Max(0f, distance - 416f) / 32f * 0.25f, 0f, 1f),
+            RadarBlipFadeMode.OwnProjectile => Math.Clamp(1f - MathF.Max(0f, distance - 1920f) / 32f * 0.25f, 0f, 1f),
+            _ => 0.8f,
+        };
     }
 
     /// <summary>
@@ -280,5 +308,6 @@ public record struct BlipData
     EntityCoordinates Position,
     Angle Rotation,
     EntityUid? GridUid,
-    BlipConfig Config
+    BlipConfig Config,
+    float Alpha
 );
