@@ -2,6 +2,7 @@
 // All rights reserved. Relicensed under AGPL with permission
 
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._Mono.Debugging;
 using Content.Shared._Mono.FireControl;
 using Content.Shared.Power;
 using Content.Shared.Weapons.Ranged.Components;
@@ -453,6 +454,12 @@ public sealed partial class FireControlSystem : EntitySystem
         var targetCoords = GetCoordinates(coordinates);
         var artilleryFired = false; // Track if any artillery weapons fired
 
+        var targetMap = _xform.ToMapCoordinates(targetCoords);
+        ProjDebug.Log("server.fireweapons",
+            $"server={ToPrettyString(server)} weapons={weapons.Count} " +
+            $"targetCoordsEnt={ToPrettyString(targetCoords.EntityId)} targetLocal={ProjDebug.V(targetCoords.Position)} " +
+            $"targetMap={ProjDebug.V(targetMap.Position)} mapId={targetMap.MapId}");
+
         foreach (var weapon in weapons)
         {
             var localWeapon = GetEntity(weapon);
@@ -544,6 +551,13 @@ public sealed partial class FireControlSystem : EntitySystem
         // Calculate direction
         var direction = targetPos - weaponPos;
         var distance = direction.Length();
+
+        ProjDebug.Log("server.attemptfire",
+            $"weapon={ToPrettyString(weapon)} weaponMap={ProjDebug.V(weaponPos)} " +
+            $"targetMap={ProjDebug.V(targetPos)} dir={ProjDebug.V(direction)} " +
+            $"aimAngle={ProjDebug.Deg(direction.ToAngle())} dist={distance:0.###} " +
+            $"weaponWorldRot={ProjDebug.Deg(_xform.GetWorldRotation(weapon))}");
+
         if (distance <= float.Epsilon)
             return false; // Can't fire at the same position
 
@@ -566,12 +580,19 @@ public sealed partial class FireControlSystem : EntitySystem
             if (hasGun && gun is { } rotateGun && rotateGun.DefaultDirection.LengthSquared() > float.Epsilon)
                 goalAngle -= Angle.FromWorldVec(rotateGun.DefaultDirection);
 
+            ProjDebug.Log("server.rotateface",
+                $"weapon={ToPrettyString(weapon)} goalAngle={ProjDebug.Deg(goalAngle)} " +
+                $"defaultDir={(hasGun && gun != null ? ProjDebug.V(gun.DefaultDirection) : "n/a")}");
+
             _rotateToFace.TryRotateTo(weapon, goalAngle, 0f, Angle.FromDegrees(1), float.MaxValue, weaponXform);
         }
 
         // Try to get a gun component and fire the weapon
         if (gun is { } fireGun)
         {
+            ProjDebug.Log("server.attemptshots",
+                $"weapon={ToPrettyString(weapon)} coordsEnt={ToPrettyString(coords.EntityId)} " +
+                $"coordsLocal={ProjDebug.V(coords.Position)}");
             _gun.AttemptShots(user, weapon, fireGun, coords, TimeSpan.FromSeconds(0.2));
             return true;
         }

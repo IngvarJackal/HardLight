@@ -7,6 +7,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Shuttles.UI;
+using Content.Shared._Mono.Debugging;
 using Content.Shared._Mono.FireControl;
 using Content.Shared.Physics;
 using Content.Shared.Shuttles.BUIStates;
@@ -153,7 +154,7 @@ public sealed class FireControlNavControl : BaseShuttleControl
 
     private void TryFireAtPosition(Vector2 relativePosition)
     {
-        var coords = GetMouseEntityCoordinates(relativePosition);
+        var coords = GetMouseEntityCoordinates(relativePosition, log: true);
         OnRadarClick?.Invoke(coords);
     }
 
@@ -203,6 +204,14 @@ public sealed class FireControlNavControl : BaseShuttleControl
         {
             return;
         }
+
+        // Follow the ship's rotation instead of the console's fixed local angle.
+        // state.Angle is the console's LocalRotation (constant relative to the grid), which would
+        // freeze the radar facing "north" and also desync click inversion in GetMouseEntityCoordinates
+        // (which converts to grid-local using the grid's live world rotation). Recompute from the live
+        // grid world rotation each frame so drawing and click-inversion use one consistent angle.
+        var coordEnt = _coordinates.Value.EntityId;
+        _rotation = _transform.GetWorldRotation(coordEnt);
 
         var worldRot = _rotation.Value;
 
@@ -510,15 +519,30 @@ public sealed class FireControlNavControl : BaseShuttleControl
     }
 
     // Mono
-    private EntityCoordinates GetMouseEntityCoordinates(Vector2 relativePosition)
+    private EntityCoordinates GetMouseEntityCoordinates(Vector2 relativePosition, bool log = false)
     {
         if (_coordinates is not { } cord || _rotation is not { } rot)
             return new();
 
-        var screenRelativeWorldPos = InverseMapPosition(relativePosition);
+        // relativePosition arrives in virtual UI pixels, but InverseMapPosition works in
+        // physical pixels (MidPointVector/MinimapScale are scaled by UIScale). Convert here so
+        // aiming stays correct at non-100% UI scale. Matches the convention in InverseScalePosition.
+        var physicalPosition = relativePosition * UIScale;
+
+        var screenRelativeWorldPos = InverseMapPosition(physicalPosition);
         var relativeWorldPos = rot.RotateVec(screenRelativeWorldPos);
         var coordEntRot = _transform.GetWorldRotation(cord.EntityId);
         var coords = cord.Offset((-coordEntRot).RotateVec(relativeWorldPos));
+
+        if (log)
+        {
+            var worldTarget = _transform.ToMapCoordinates(coords);
+            ProjDebug.Log("client.aim",
+                $"relUI={ProjDebug.V(relativePosition)} uiScale={UIScale:0.###} viewRot={ProjDebug.Deg(rot)} " +
+                $"gridRot={ProjDebug.Deg(coordEntRot)} shuttleRel={ProjDebug.V(screenRelativeWorldPos)} " +
+                $"-> worldTarget={ProjDebug.V(worldTarget.Position)} mapId={worldTarget.MapId}");
+        }
+
         return coords;
     }
 

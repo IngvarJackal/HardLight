@@ -166,6 +166,12 @@ public sealed partial class GunSystem : SharedGunSystem
         if (gridUid != EntityUid.Invalid && TryComp<PhysicsComponent>(gridUid, out var gridPhysics))
             gunVelocity = gridPhysics.LinearVelocity;
 
+        Content.Shared._Mono.Debugging.ProjDebug.Log("server.shoot",
+            $"gun={ToPrettyString(gunUid)} fromMap={Content.Shared._Mono.Debugging.ProjDebug.V(fromMap.Position)} " +
+            $"toMap={Content.Shared._Mono.Debugging.ProjDebug.V(toMap)} mapDir={Content.Shared._Mono.Debugging.ProjDebug.V(mapDirection)} " +
+            $"mapAngle={Content.Shared._Mono.Debugging.ProjDebug.Deg(mapAngle)} recoilAngle={Content.Shared._Mono.Debugging.ProjDebug.Deg(angle)} " +
+            $"gunVel={Content.Shared._Mono.Debugging.ProjDebug.V(gunVelocity)} grid={ToPrettyString(gridUid)} ammo={ammo.Count}");
+
         // I must be high because this was getting tripped even when true.
         // DebugTools.Assert(direction != Vector2.Zero);
         var shotProjectiles = new List<EntityUid>(ammo.Count);
