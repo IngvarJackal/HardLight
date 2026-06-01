@@ -228,12 +228,16 @@ public sealed partial class ShipShieldsSystem : EntitySystem
                 ? _transformSystem.GetGrid(shooterUid)
                 : null;
 
-        Content.Shared._Mono.Debugging.ProjDebug.Log("shield.prevent",
-            $"net={GetNetEntity(args.OtherEntity)} shieldedGrid={ToPrettyString(component.Shielded)} " +
-            $"weapon={ToPrettyString(projectile.Weapon ?? default)} firingGrid={ToPrettyString(firingGrid ?? default)} " +
-            $"ownGrid={firingGrid == component.Shielded}");
-
         if (firingGrid == component.Shielded)
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        // HardLight: EMP weapons (ion cannon "Harbinger", TOVEK, RUBICON - any round with EmpOnTrigger)
+        // BYPASS shields. The EMP pulse is meant to reach the hull, so let the projectile pass through
+        // uninterrupted (no deflect, no delete) to detonate on the ship behind the shield.
+        if (HasComp<Content.Server.Emp.EmpOnTriggerComponent>(args.OtherEntity))
         {
             args.Cancelled = true;
             return;
@@ -256,14 +260,20 @@ public sealed partial class ShipShieldsSystem : EntitySystem
         // why shoot the projectile again when you can just 180 its physics, tho?
         //_gun.ShootProjectile(args.OtherEntity, deflectionVector, _physicsSystem.GetMapLinearVelocity(uid), uid, null, velocity.Length());
 
+        // Foreign, non-EMP ship projectile: the shield INTERCEPTS it. The emitter absorbs the hit;
+        // OnShieldDeflected also strips Explosive/trigger payloads so nothing detonates at the shield.
         if (component.Source is { } emitterSource)
         {
             var ev = new ShieldDeflectedEvent(args.OtherEntity, projectile);
             RaiseLocalEvent(emitterSource, ref ev);
         }
 
-        // Shield absorbed this projectile. Cancel physics collision so trigger-on-collide payloads
-        // do not execute world effects at the shield location.
+        // Guarantee the projectile is consumed even with no emitter source: just delete it. A deleted
+        // projectile never runs its trigger/explosive payload, so it's gone with no explosion.
+        projectile.ProjectileSpent = true;
+        QueueDel(args.OtherEntity);
+
+        // Cancel the physics collision so nothing bounces / triggers at the shield boundary.
         args.Cancelled = true;
     }
 
@@ -364,6 +374,7 @@ public sealed partial class ShipShieldsSystem : EntitySystem
         if (source != null && TryComp<ShipShieldEmitterComponent>(source.Value, out var emitter))
         {
             shieldVisuals.ShieldColor = emitter.ShieldColor;
+            shieldVisuals.Padding = emitter.ShieldPadding; // HardLight: per-emitter shield size
             Dirty(shield, shieldVisuals);
         }
 

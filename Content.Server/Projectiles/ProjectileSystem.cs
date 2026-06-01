@@ -177,56 +177,53 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                     $"sourceGrid={ToPrettyString(phaseDbg?.SourceGrid ?? default)} rawHits=[{hitDesc}]");
             }
 
-            // If IgnoreShooter is true, remove the shooter from the list of potential hits.
-            if (projectileComp.IgnoreShooter && projectileComp.Shooter.HasValue)
-            {
-                hits.RemoveAll(hit => hit.HitEntity == projectileComp.Shooter.Value);
-            }
+            TryComp<ProjectileTargetWhitelistComponent>(uid, out var targetFilter); // HardLight
 
-            if (TryComp<ProjectileTargetWhitelistComponent>(uid, out var targetFilter)) // HardLight
-            {
-                hits.RemoveAll(hit => !_whitelist.CheckBoth(hit.HitEntity, targetFilter.Blacklist, targetFilter.Whitelist));
-            }
+            // Walk hits nearest-first. The first un-prevented hard hit is where the shell lands
+            // (anti-tunnel snap). Crucially, if a PreventCollide handler CONSUMES the shell - e.g. a
+            // shield intercepts and deletes it - we STOP there and must NOT keep scanning and teleport
+            // the shell to something behind the shield (that let fast shells punch through shields).
+            // Entities the shell merely passes through (own grid via phasing, EMP rounds bypassing a
+            // shield, the shooter) are skipped without stopping. This routes the fast-projectile path
+            // through exactly the same shield/phase logic as the normal physics collision.
+            hits.Sort((a, b) => a.Distance.CompareTo(b.Distance));
 
-            // HardLight (ported from Triad Sector): the anti-tunnel raycast must respect collision
-            // prevention. Without this a ship's own shell "hits" its own shield (a hard
-            // BulletImpassable fixture) and gets teleported onto the shield entity - which sits at the
-            // grid centre - with its speed clamped to MinRaycastVelocity*0.99 (=74.25). That is the
-            // "shells originate from the grid centre / slow to 74 when firing through our shield" bug.
-            // Drop any hit a PreventCollideEvent cancels (own-grid phasing, shooter, etc.).
-            hits.RemoveAll(hit =>
+            foreach (var hit in hits)
             {
-                var prevented = RaycastHitPrevented(uid, physicsComp, projFix, hit.HitEntity);
-                if (rawHitCount > 0)
-                    Content.Shared._Mono.Debugging.ProjDebug.Log("raycast.prevent",
-                        $"net={GetNetEntity(uid)} hit={ToPrettyString(hit.HitEntity)} prevented={prevented}");
-                return prevented;
-            });
+                var hitEnt = hit.HitEntity;
 
-            if (hits.Count > 0)
-            {
-                // Process the closest hit
-                // IntersectRay results are not guaranteed to be sorted by distance, so we sort them.
-                hits.Sort((a, b) => a.Distance.CompareTo(b.Distance));
-                var closestHit = hits.First();
+                if (projectileComp.IgnoreShooter && projectileComp.Shooter == hitEnt)
+                    continue;
 
-                // teleport us to the actual hit POINT along the ray - NOT the hit entity's origin
-                // (for a ship shield that origin is the grid centre, which yanked shells to centre).
-                var tpPos = lastPosition + rayDirection * closestHit.Distance;
+                if (targetFilter != null && !_whitelist.CheckBoth(hitEnt, targetFilter.Blacklist, targetFilter.Whitelist))
+                    continue;
+
+                if (RaycastHitPrevented(uid, physicsComp, projFix, hitEnt))
+                {
+                    // The collision was prevented. If a handler also consumed the shell (a shield
+                    // intercept QueueDel's it / marks it spent), the shell is gone - stop here, do NOT
+                    // punch through to deeper hits behind the shield.
+                    if (projectileComp.ProjectileSpent || TerminatingOrDeleted(uid) || EntityManager.IsQueuedForDeletion(uid))
+                    {
+                        Content.Shared._Mono.Debugging.ProjDebug.Log("raycast.intercept",
+                            $"net={GetNetEntity(uid)} consumed at {ToPrettyString(hitEnt)} - no punch-through");
+                        break;
+                    }
+                    // Otherwise the shell genuinely passes through this entity (own grid / EMP bypass).
+                    continue;
+                }
+
+                // Real collision: snap to the hit POINT (not the entity origin) so the normal collision
+                // pipeline resolves it this tick, then stop.
+                var tpPos = lastPosition + rayDirection * hit.Distance;
                 Content.Shared._Mono.Debugging.ProjDebug.Log("raycast.teleport",
-                    $"net={GetNetEntity(uid)} hit={ToPrettyString(closestHit.HitEntity)} " +
-                    $"to={Content.Shared._Mono.Debugging.ProjDebug.V(tpPos)} dist={closestHit.Distance:0.##} " +
-                    $"clampVel={projectileComp.RaycastResetVelocity}");
+                    $"net={GetNetEntity(uid)} hit={ToPrettyString(hitEnt)} to={Content.Shared._Mono.Debugging.ProjDebug.V(tpPos)} " +
+                    $"dist={hit.Distance:0.##} clampVel={projectileComp.RaycastResetVelocity}");
                 _transformSystem.SetWorldPosition(uid, tpPos);
                 if (projectileComp.RaycastResetVelocity)
                     _physics.SetLinearVelocity(uid, rayDirection * MinRaycastVelocity * 0.99f);
-
-                continue;
+                break;
             }
-
-            if (rawHitCount > 0)
-                Content.Shared._Mono.Debugging.ProjDebug.Log("raycast.passed",
-                    $"net={GetNetEntity(uid)} all {rawHitCount} raw hit(s) phased - shell continues unmodified");
         }
     }
 
