@@ -147,9 +147,20 @@ public sealed partial class GunSystem : SharedGunSystem
         var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle());
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
-        var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out _)
-            ? TransformSystem.WithEntityId(fromCoordinates, gridUid)
-            : new EntityCoordinates(_map.GetMapOrInvalid(fromMap.MapId), fromMap.Position);
+        var foundGrid = MapManager.TryFindGridAt(fromMap, out var gridUid, out _);
+
+        // HardLight: ship-gun (fire-control turret) shells parent to the MAP, not the firing grid.
+        // Grid-parenting made clients render the shell in the grid's interpolation-lagged,
+        // moving/rotating frame and then teleport on the grid->map reparent: shells appeared to
+        // originate from the grid centre and stutter, worst when a shield slowed them near the hull
+        // so they lingered grid-parented (confirmed via ProjDebug: client world lagged server by
+        // ~9u while both were grid-parented). The grid's velocity is still inherited via gunVelocity
+        // below, so ballistics are unchanged. Handheld guns keep the original grid-parenting.
+        EntityCoordinates fromEnt;
+        if (foundGrid && !HasComp<Content.Server._Mono.FireControl.FireControllableComponent>(gunUid))
+            fromEnt = TransformSystem.WithEntityId(fromCoordinates, gridUid);
+        else
+            fromEnt = new EntityCoordinates(_map.GetMapOrInvalid(fromMap.MapId), fromMap.Position);
 
         // Update shot based on the recoil
         toMap = fromMap.Position + angle.ToVec() * mapDirection.Length();
@@ -397,6 +408,39 @@ public sealed partial class GunSystem : SharedGunSystem
 
     private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, GunComponent gun, EntityUid gunUid, EntityUid? user)
     {
+        // HardLight: ship-gun (fire-control turret) shells must stay map-parented for their whole
+        // flight. The engine's grid traversal otherwise reparents them to the firing grid while
+        // they're over it; that grid is usually rotating, so the client renders the shell in the
+        // grid's interpolation-lagged frame -> the shell appears offset from the hull, gets dragged
+        // by the rotation ("wrong convergence") and teleports on the grid->map reparent. A shield
+        // slows the shell so it lingers grid-parented and the glitch becomes severe.
+        // Disabling traversal + popping it to the map keeps it in the stable, lag-free map frame.
+        if (HasComp<Content.Server._Mono.FireControl.FireControllableComponent>(gunUid))
+        {
+            var projXform = Transform(uid);
+            projXform.GridTraversal = false;
+
+            if (projXform.MapUid is { } mapUid && projXform.ParentUid != mapUid)
+            {
+                var worldPos = TransformSystem.GetWorldPosition(uid);
+                TransformSystem.SetCoordinates(uid, new EntityCoordinates(mapUid, worldPos));
+            }
+
+            // HardLight: make ship-gun shells appear on radar as server-driven blips for their
+            // entire flight, visible from other grids. Blips are sent from the server based on the
+            // RadarBlipComponent (independent of client PVS), so a station can see incoming heavy
+            // shells - which reach several km - and tell which direction the bombardment comes from.
+            // Previously most shells had no RadarBlip, so they only existed as PVS-limited rendered
+            // entities and vanished from radar long before impact.
+            var blip = EnsureComp<Content.Server._NF.Radar.RadarBlipComponent>(uid);
+            blip.RadarColor = Color.OrangeRed;
+            blip.Shape = Content.Shared._NF.Radar.RadarBlipShape.Triangle;
+            blip.Scale = 1.5f;
+            blip.VisibleFromOtherGrids = true;
+            blip.RequireNoGrid = false;
+            blip.Enabled = true;
+        }
+
         if (gun.Target is { } target && !TerminatingOrDeleted(target))
         {
             var targeted = EnsureComp<TargetedProjectileComponent>(uid);

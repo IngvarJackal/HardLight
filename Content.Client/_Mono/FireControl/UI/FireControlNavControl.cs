@@ -62,6 +62,11 @@ public sealed class FireControlNavControl : BaseShuttleControl
     private float _lastCursorUpdateTime;
     private const float CursorUpdateInterval = 0.05f;
 
+    // Perpendicular offsets (metres) for the targeting-line safety corridor. The centre line (0.0)
+    // is the one drawn; the line only shows when ALL offsets are clear, giving a margin against own
+    // shells clipping own hull when the ship moves/rotates.
+    private static readonly float[] TargetingCorridorOffsets = { -0.2f, -0.1f, 0f, 0.1f, 0.2f };
+
     public Action<EntityCoordinates>? OnRadarClick;
     public bool ShowIFF { get; set; } = true;
 
@@ -345,29 +350,58 @@ public sealed class FireControlNavControl : BaseShuttleControl
             if (_isMouseInside && _controllables != null)
             {
                 var worldPosition = mapPosition;
-                var isFireControllable = _controllables.Any(c =>
-                {
-                    var coords = EntManager.GetCoordinates(c.Coordinates);
-                    var entityMapPos = _transform.ToMapCoordinates(coords);
-                    return Vector2.Distance(entityMapPos.Position, worldPosition) < 0.1f &&
-                           _selectedWeapons.Contains(c.NetEntity);
-                });
 
-                if (isFireControllable)
+                // Find the selected weapon (turret) whose position matches this blip.
+                NetEntity? matchedWeapon = null;
+                foreach (var c in _controllables)
+                {
+                    if (!_selectedWeapons.Contains(c.NetEntity))
+                        continue;
+
+                    var entityMapPos = _transform.ToMapCoordinates(EntManager.GetCoordinates(c.Coordinates));
+                    if (Vector2.Distance(entityMapPos.Position, worldPosition) < 0.1f)
+                    {
+                        matchedWeapon = c.NetEntity;
+                        break;
+                    }
+                }
+
+                if (matchedWeapon is { } weaponNet)
                 {
                     var cursorViewPos = InverseScalePosition(_lastMousePos);
                     cursorViewPos = ScalePosition(cursorViewPos);
 
                     var cursorWorldPos = Vector2.Transform(cursorViewPos, viewToWorld);
 
-                    var direction = cursorWorldPos - worldPosition;
-                    var ray = new CollisionRay(worldPosition, direction.Normalized(), (int)CollisionGroup.Impassable);
+                    var toCursor = cursorWorldPos - worldPosition;
+                    var distance = toCursor.Length();
 
-                    var results = _physics.IntersectRay(xform.MapID, ray, direction.Length(), ignoredEnt: _coordinates?.EntityId);
-
-                    if (!results.Any())
+                    if (distance > 0.01f)
                     {
-                        handle.DrawLine(viewPosition, cursorViewPos, color.WithAlpha(0.3f));
+                        var dir = toCursor / distance;
+                        var perp = new Vector2(-dir.Y, dir.X);
+
+                        // Ignore only the firing turret itself (it doesn't collide with its own shell);
+                        // own walls and everything else still block, since shells DO hit own hull.
+                        var turret = EntManager.GetEntity(weaponNet);
+
+                        // Cast a parallel corridor of rays at perpendicular offsets so the line only
+                        // shows when the shot has a safety margin - grid movement/rotation can otherwise
+                        // nudge own shells into own walls. Only the centre (0.0) line is ever drawn.
+                        var clear = true;
+                        foreach (var offset in TargetingCorridorOffsets)
+                        {
+                            var origin = worldPosition + perp * offset;
+                            var ray = new CollisionRay(origin, dir, (int)CollisionGroup.Impassable);
+                            if (_physics.IntersectRay(xform.MapID, ray, distance, ignoredEnt: turret).Any())
+                            {
+                                clear = false;
+                                break;
+                            }
+                        }
+
+                        if (clear)
+                            handle.DrawLine(viewPosition, cursorViewPos, color.WithAlpha(0.3f));
                     }
                 }
             }
