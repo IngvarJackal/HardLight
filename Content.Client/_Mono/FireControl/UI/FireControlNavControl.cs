@@ -7,7 +7,6 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Shuttles.UI;
-using Content.Shared._Mono.Debugging;
 using Content.Shared._Mono.FireControl;
 using Content.Shared.Physics;
 using Content.Shared.Shuttles.BUIStates;
@@ -159,7 +158,7 @@ public sealed class FireControlNavControl : BaseShuttleControl
 
     private void TryFireAtPosition(Vector2 relativePosition)
     {
-        var coords = GetMouseEntityCoordinates(relativePosition, log: true);
+        var coords = GetMouseEntityCoordinates(relativePosition);
         OnRadarClick?.Invoke(coords);
     }
 
@@ -340,11 +339,11 @@ public sealed class FireControlNavControl : BaseShuttleControl
 
             if (shape == RadarBlipShape.Ring)
             {
-                DrawShieldRing(handle, viewPosition, scale, color.WithAlpha(blipData.Alpha));
+                DrawShieldRing(handle, viewPosition, scale, color.WithAlpha(0.8f));
             }
             else
             {
-                DrawBlipShape(handle, viewPosition, scale * 3f, color.WithAlpha(blipData.Alpha), shape);
+                DrawBlipShape(handle, viewPosition, scale * 3f, color.WithAlpha(0.8f), shape);
             }
 
             if (_isMouseInside && _controllables != null)
@@ -553,7 +552,7 @@ public sealed class FireControlNavControl : BaseShuttleControl
     }
 
     // Mono
-    private EntityCoordinates GetMouseEntityCoordinates(Vector2 relativePosition, bool log = false)
+    private EntityCoordinates GetMouseEntityCoordinates(Vector2 relativePosition)
     {
         if (_coordinates is not { } cord || _rotation is not { } rot)
             return new();
@@ -567,15 +566,6 @@ public sealed class FireControlNavControl : BaseShuttleControl
         var relativeWorldPos = rot.RotateVec(screenRelativeWorldPos);
         var coordEntRot = _transform.GetWorldRotation(cord.EntityId);
         var coords = cord.Offset((-coordEntRot).RotateVec(relativeWorldPos));
-
-        if (log)
-        {
-            var worldTarget = _transform.ToMapCoordinates(coords);
-            ProjDebug.Log("client.aim",
-                $"relUI={ProjDebug.V(relativePosition)} uiScale={UIScale:0.###} viewRot={ProjDebug.Deg(rot)} " +
-                $"gridRot={ProjDebug.Deg(coordEntRot)} shuttleRel={ProjDebug.V(screenRelativeWorldPos)} " +
-                $"-> worldTarget={ProjDebug.V(worldTarget.Position)} mapId={worldTarget.MapId}");
-        }
 
         return coords;
     }

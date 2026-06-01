@@ -103,24 +103,8 @@ public record struct BlipNetData
     Vector2 Vel,
     Angle Rotation,
     ushort ConfigIndex,
-    ushort? OnGridConfigIndex,
-    // HardLight: category the CLIENT uses to pick a distance-based render alpha. The server only
-    // categorises (own/other projectile); the actual brightness math is entirely client-side.
-    RadarBlipFadeMode Fade = RadarBlipFadeMode.None
+    ushort? OnGridConfigIndex
 );
-
-/// <summary>
-/// HardLight: how the client should fade a blip's alpha with distance. The server tags projectile
-/// blips so the client can fade enemy shells out near the edge of detection range while keeping own
-/// shells bright much further out. Non-projectile blips use <see cref="None"/> (constant alpha).
-/// </summary>
-[Serializable, NetSerializable]
-public enum RadarBlipFadeMode : byte
-{
-    None = 0,
-    OwnProjectile = 1,
-    OtherProjectile = 2,
-}
 
 [Serializable, NetSerializable]
 public record struct HitscanNetData(NetEntity? Grid, Vector2 Start, Vector2 End, float Thickness, Color Color);

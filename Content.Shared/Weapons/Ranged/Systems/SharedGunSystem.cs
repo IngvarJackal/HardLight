@@ -613,16 +613,6 @@ public abstract partial class SharedGunSystem : EntitySystem
         projectile.Weapon = gunUid;
 
         TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle() + projectile.Angle);
-
-        var spawnXform = Transform(uid);
-        Content.Shared._Mono.Debugging.ProjDebug.Log("projectile.spawn",
-            $"net={GetNetEntity(uid)} proj={ToPrettyString(uid)} gun={ToPrettyString(gunUid)} " +
-            $"spawnWorld={Content.Shared._Mono.Debugging.ProjDebug.V(TransformSystem.GetWorldPosition(spawnXform))} " +
-            $"dir={Content.Shared._Mono.Debugging.ProjDebug.V(direction)} dirAngle={Content.Shared._Mono.Debugging.ProjDebug.Deg(direction.ToWorldAngle())} " +
-            $"speed={speed:0.###} linVel={Content.Shared._Mono.Debugging.ProjDebug.V(targetVelocity)} " +
-            $"projAngleOffset={Content.Shared._Mono.Debugging.ProjDebug.Deg(projectile.Angle)} " +
-            $"finalWorldRot={Content.Shared._Mono.Debugging.ProjDebug.Deg(TransformSystem.GetWorldRotation(spawnXform))} " +
-            $"parent={ToPrettyString(spawnXform.ParentUid)} gt={spawnXform.GridTraversal}");
     }
 
     // Mono

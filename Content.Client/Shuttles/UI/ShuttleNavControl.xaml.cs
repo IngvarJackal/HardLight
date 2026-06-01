@@ -914,7 +914,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         foreach (var blip in rawBlips)
         {
             var position = Vector2.Transform(_transform.ToMapCoordinates(blip.Position).Position, worldToView);
-            var color = blip.Config.Color.WithAlpha(blip.Alpha); // HardLight: client-side distance fade
+            var color = blip.Config.Color.WithAlpha(0.8f);
             var box = new Box2Rotated(blip.Config.Bounds, 0);
             if (blip.Config.RespectZoom)
                 box.Box = new Box2(box.Box.BottomLeft * MinimapScale, box.Box.TopRight * MinimapScale);

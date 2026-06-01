@@ -164,19 +164,6 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                 false) // IncludeNonHard = false
                 .ToList();
 
-            // P0 instrumentation: only log when the ray actually hit something (rare/interesting).
-            var rawHitCount = hits.Count;
-            if (rawHitCount > 0)
-            {
-                TryComp<Content.Shared._Mono.ProjectileGridPhaseComponent>(uid, out var phaseDbg);
-                var hitDesc = string.Join("; ", hits.Select(h =>
-                    $"{ToPrettyString(h.HitEntity)}@{h.Distance:0.##}grid={ToPrettyString(Transform(h.HitEntity).GridUid ?? default)}"));
-                Content.Shared._Mono.Debugging.ProjDebug.Log("raycast.hits",
-                    $"net={GetNetEntity(uid)} vel={physicsComp.LinearVelocity.Length():0.#} rayDist={rayDistance:0.##} " +
-                    $"resetVel={projectileComp.RaycastResetVelocity} hasPhase={phaseDbg != null} " +
-                    $"sourceGrid={ToPrettyString(phaseDbg?.SourceGrid ?? default)} rawHits=[{hitDesc}]");
-            }
-
             TryComp<ProjectileTargetWhitelistComponent>(uid, out var targetFilter); // HardLight
 
             // Walk hits nearest-first. The first un-prevented hard hit is where the shell lands
@@ -204,11 +191,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                     // intercept QueueDel's it / marks it spent), the shell is gone - stop here, do NOT
                     // punch through to deeper hits behind the shield.
                     if (projectileComp.ProjectileSpent || TerminatingOrDeleted(uid) || EntityManager.IsQueuedForDeletion(uid))
-                    {
-                        Content.Shared._Mono.Debugging.ProjDebug.Log("raycast.intercept",
-                            $"net={GetNetEntity(uid)} consumed at {ToPrettyString(hitEnt)} - no punch-through");
                         break;
-                    }
                     // Otherwise the shell genuinely passes through this entity (own grid / EMP bypass).
                     continue;
                 }
@@ -216,9 +199,6 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                 // Real collision: snap to the hit POINT (not the entity origin) so the normal collision
                 // pipeline resolves it this tick, then stop.
                 var tpPos = lastPosition + rayDirection * hit.Distance;
-                Content.Shared._Mono.Debugging.ProjDebug.Log("raycast.teleport",
-                    $"net={GetNetEntity(uid)} hit={ToPrettyString(hitEnt)} to={Content.Shared._Mono.Debugging.ProjDebug.V(tpPos)} " +
-                    $"dist={hit.Distance:0.##} clampVel={projectileComp.RaycastResetVelocity}");
                 _transformSystem.SetWorldPosition(uid, tpPos);
                 if (projectileComp.RaycastResetVelocity)
                     _physics.SetLinearVelocity(uid, rayDirection * MinRaycastVelocity * 0.99f);

@@ -164,12 +164,6 @@ public sealed partial class GunSystem : SharedGunSystem
         // gun-relative muzzle velocity, consistent with the grid frame the shell spawns in.
         var gunVelocity = Physics.GetMapLinearVelocity(gunUid) - Physics.GetMapLinearVelocity(fromEnt);
 
-        Content.Shared._Mono.Debugging.ProjDebug.Log("server.shoot",
-            $"gun={ToPrettyString(gunUid)} fromMap={Content.Shared._Mono.Debugging.ProjDebug.V(fromMap.Position)} " +
-            $"toMap={Content.Shared._Mono.Debugging.ProjDebug.V(toMap)} mapDir={Content.Shared._Mono.Debugging.ProjDebug.V(mapDirection)} " +
-            $"mapAngle={Content.Shared._Mono.Debugging.ProjDebug.Deg(mapAngle)} recoilAngle={Content.Shared._Mono.Debugging.ProjDebug.Deg(angle)} " +
-            $"gunVel={Content.Shared._Mono.Debugging.ProjDebug.V(gunVelocity)} grid={ToPrettyString(gridUid)} ammo={ammo.Count}");
-
         // I must be high because this was getting tripped even when true.
         // DebugTools.Assert(direction != Vector2.Zero);
         var shotProjectiles = new List<EntityUid>(ammo.Count);
@@ -404,18 +398,6 @@ public sealed partial class GunSystem : SharedGunSystem
             // the gun-relative muzzle velocity (see Shoot) its grid-frame velocity is correct, so there
             // is no slowdown / grid-centre rendering and no need to fight grid traversal.
             EnsureComp<Content.Shared._Mono.ProjectileGridPhaseComponent>(uid);
-
-            // Make ship-gun shells appear on radar as server-driven blips for their entire flight,
-            // visible from other grids. Blips are sent from the server based on the RadarBlipComponent
-            // (independent of client PVS), so a station can see incoming heavy shells - which reach
-            // several km - and tell which direction the bombardment comes from.
-            var blip = EnsureComp<Content.Server._NF.Radar.RadarBlipComponent>(uid);
-            blip.RadarColor = Color.OrangeRed;
-            blip.Shape = Content.Shared._NF.Radar.RadarBlipShape.Triangle;
-            blip.Scale = 1.5f;
-            blip.VisibleFromOtherGrids = true;
-            blip.RequireNoGrid = false;
-            blip.Enabled = true;
         }
 
         if (gun.Target is { } target && !TerminatingOrDeleted(target))
