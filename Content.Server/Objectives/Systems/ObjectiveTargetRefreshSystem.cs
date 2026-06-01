@@ -1,6 +1,7 @@
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.Mind;
 using Content.Server.Objectives.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Ghost;
@@ -30,7 +31,9 @@ public sealed class ObjectiveTargetRefreshSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
-        SubscribeLocalEvent<MindContainerComponent, EntityTerminatingEvent>(OnMindContainerTerminating);
+        // Run after MindSystem so the mind's OwnedEntity is already cleared (victory state settled)
+        // before we decide whether a kill/maroon objective should be rerolled.
+        SubscribeLocalEvent<EntityTerminatingEvent>(OnEntityTerminating, after: new[] { typeof(MindSystem) });
     }
 
     /// <summary>
@@ -58,8 +61,14 @@ public sealed class ObjectiveTargetRefreshSystem : EntitySystem
     /// Fallback for disconnected players whose body entity is deleted by admin or timer cleanup.
     /// Connected players always auto-ghost first and are caught by <see cref="OnPlayerDetached"/>.
     /// </summary>
-    private void OnMindContainerTerminating(EntityUid uid, MindContainerComponent component, ref EntityTerminatingEvent args)
+    private void OnEntityTerminating(ref EntityTerminatingEvent args)
     {
+        var uid = args.Entity.Owner;
+
+        // Only care about entities that can hold a mind.
+        if (!HasComp<MindContainerComponent>(uid))
+            return;
+
         // Ghost deletion is already handled (or already triggered) via OnPlayerDetached.
         if (HasComp<GhostComponent>(uid))
             return;
@@ -76,6 +85,9 @@ public sealed class ObjectiveTargetRefreshSystem : EntitySystem
 
     private void HandleTargetLeft(EntityUid targetMindId)
     {
+        var targetName = TryComp<MindComponent>(targetMindId, out var targetMind) ? targetMind.CharacterName ?? "Unknown" : "Unknown";
+        Log.Info($"ObjectiveTargetRefresh: target mind {ToPrettyString(targetMindId)} ({targetName}) left the round, scanning traitor objectives for rerolls.");
+
         var traitorQuery = EntityQueryEnumerator<TraitorRuleComponent, GameRuleComponent>();
         while (traitorQuery.MoveNext(out var ruleUid, out var traitorComp, out var gameRule))
         {
@@ -107,8 +119,12 @@ public sealed class ObjectiveTargetRefreshSystem : EntitySystem
                     // Don't reroll if the traitor already has any progress (partial kills, etc.).
                     var progress = _objectives.GetProgress(objUid, (traitorMindId, traitorMind));
                     if (progress is null or >= 0.01f)
+                    {
+                        Log.Info($"ObjectiveTargetRefresh: traitor {ToPrettyString(traitorMindId)} has progress {progress} on objective {ToPrettyString(objUid)} targeting the leaver, skipping reroll.");
                         continue;
+                    }
 
+                    Log.Info($"ObjectiveTargetRefresh: traitor {ToPrettyString(traitorMindId)} has objective {ToPrettyString(objUid)} targeting the leaver with no progress, rerolling.");
                     TryRerollObjectiveTarget(objUid, i, traitorMindId, traitorMind);
                 }
             }
@@ -120,6 +136,7 @@ public sealed class ObjectiveTargetRefreshSystem : EntitySystem
         if (!TryComp<PickRandomPersonComponent>(objUid, out var pickComp))
         {
             // Can't pick a new target without a pool — remove the unachievable objective.
+            Log.Info($"ObjectiveTargetRefresh: objective {ToPrettyString(objUid)} has no PickRandomPersonComponent pool, removing it from traitor {ToPrettyString(traitorMindId)}.");
             _mind.TryRemoveObjective(traitorMindId, traitorMind, objIndex);
             NotifyTraitor(traitorMind, Loc.GetString("objective-target-refresh-removed"));
             return;
@@ -130,6 +147,7 @@ public sealed class ObjectiveTargetRefreshSystem : EntitySystem
         if (newTarget == null)
         {
             // No valid replacement found — remove the objective rather than leave it stuck.
+            Log.Info($"ObjectiveTargetRefresh: no valid replacement target found for objective {ToPrettyString(objUid)}, removing it from traitor {ToPrettyString(traitorMindId)}.");
             _mind.TryRemoveObjective(traitorMindId, traitorMind, objIndex);
             NotifyTraitor(traitorMind, Loc.GetString("objective-target-refresh-removed"));
             return;
@@ -142,6 +160,7 @@ public sealed class ObjectiveTargetRefreshSystem : EntitySystem
         RaiseLocalEvent(objUid, ref afterEv);
 
         var newName = TryComp<MindComponent>(newTarget.Value, out var newMind) ? newMind.CharacterName ?? "Unknown" : "Unknown";
+        Log.Info($"ObjectiveTargetRefresh: rerolled objective {ToPrettyString(objUid)} for traitor {ToPrettyString(traitorMindId)} to new target {ToPrettyString(newTarget.Value)} ({newName}).");
         NotifyTraitor(traitorMind, Loc.GetString("objective-target-refresh-rerolled", ("name", newName)));
     }
 
