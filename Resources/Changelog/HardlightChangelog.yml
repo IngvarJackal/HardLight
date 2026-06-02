@@ -4486,3 +4486,9 @@ Entries:
       message: New links for Sec SOP/Space law
   id: 474
   time: '2026-06-01T01:40:16.0000000+00:00'
+- author: IngvarJackal
+  changes:
+    - type: Tweak
+      message: cryoed traitor objectives now reroll
+  id: 475
+  time: '2026-06-02T18:45:19.0000000+00:00'
