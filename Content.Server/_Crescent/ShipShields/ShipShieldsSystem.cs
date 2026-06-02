@@ -145,7 +145,6 @@ public sealed partial class ShipShieldsSystem : EntitySystem
         _shipWeaponProjectileQuery = GetEntityQuery<ShipWeaponProjectileComponent>();
 
         SubscribeLocalEvent<ShipShieldComponent, PreventCollideEvent>(OnPreventCollide);
-        SubscribeLocalEvent<ShipShieldComponent, HitScanReflectAttemptEvent>(OnShieldHitscanHit); // Mono - intercept ship-weapon hitscans
         SubscribeLocalEvent<ShipShieldEmitterComponent, ComponentShutdown>(OnEmitterShutdown); // Mono
         SubscribeLocalEvent<ShipShieldedComponent, MapInitEvent>(OnShieldedMapInit);
         // HardLight: key the grid-shape-change sub on ShipShieldedComponent rather than
@@ -234,9 +233,7 @@ public sealed partial class ShipShieldsSystem : EntitySystem
             return;
         }
 
-        // HardLight: EMP weapons (ion cannon "Harbinger", TOVEK, RUBICON - any round with EmpOnTrigger)
-        // BYPASS shields. The EMP pulse is meant to reach the hull, so let the projectile pass through
-        // uninterrupted (no deflect, no delete) to detonate on the ship behind the shield.
+        // HardLight: EMP weapons (any round with EmpOnTrigger) bypass shields to detonate on the hull.
         if (HasComp<Content.Server.Emp.EmpOnTriggerComponent>(args.OtherEntity))
         {
             args.Cancelled = true;
@@ -275,40 +272,6 @@ public sealed partial class ShipShieldsSystem : EntitySystem
 
         // Cancel the physics collision so nothing bounces / triggers at the shield boundary.
         args.Cancelled = true;
-    }
-
-    /// <summary>
-    /// Handles hitscan (laser/energy) weapons fired by ship weapon turrets hitting the shield.
-    /// Absorbs the shot and deals damage to the emitter so shields are meaningful against energy weapons.
-    /// Regular crew handheld weapons are intentionally excluded via the SpaceArtillery check.
-    /// </summary>
-    private void OnShieldHitscanHit(EntityUid uid, ShipShieldComponent component, ref HitScanReflectAttemptEvent args)
-    {
-        // Only intercept ship-weapon turret fire (SpaceArtillery component on the gun entity).
-        // This lets crew handheld laser fire pass through the shield from inside the ship.
-        if (!HasComp<SpaceArtilleryComponent>(args.SourceItem))
-            return;
-
-        // Get the hitscan damage from the ammo provider attached to the gun.
-        if (!TryComp<HitscanBatteryAmmoProviderComponent>(args.SourceItem, out var ammoProvider))
-            return;
-
-        if (!_prototypeManager.TryIndex<HitscanPrototype>(ammoProvider.Prototype, out var hitscanProto))
-            return;
-
-        var totalDamage = hitscanProto.Damage?.GetTotal() ?? 0;
-        if (totalDamage <= 0)
-            return;
-
-        if (component.Source is { } source)
-        {
-            var ev = new ShieldHitscanDeflectedEvent((float) totalDamage);
-            RaiseLocalEvent(source, ref ev);
-        }
-
-        // Do NOT set args.Reflected = true — we want the ray to terminate at the shield,
-        // not bounce back. GunSystem will call TryChangeDamage on the shield entity which
-        // has no DamageableComponent, so no further damage occurs. The hitscan is absorbed.
     }
 
     private void OnEmitterShutdown(EntityUid uid, ShipShieldEmitterComponent emitter, ComponentShutdown args) // Mono
@@ -408,7 +371,8 @@ public sealed partial class ShipShieldsSystem : EntitySystem
 
         _fixtureSystem.TryCreateFixture(shield, internalPoly, "internalShield",
             hard: true,
-            collisionLayer: (int)CollisionGroup.BulletImpassable, // Mono - Only try to block bullets
+            // HardLight: also HitscanImpassable.
+            collisionLayer: (int)(CollisionGroup.BulletImpassable | CollisionGroup.HitscanImpassable),
             body: shieldPhysics);
 
         _physicsSystem.SetCanCollide(shield, true, body: shieldPhysics);
@@ -434,7 +398,7 @@ public sealed partial class ShipShieldsSystem : EntitySystem
         return true;
     }
 
-    // 
+    //
     // HardLight start
     private bool HasEmitterShield(EntityUid emitterUid, EntityUid gridUid, ShipShieldEmitterComponent emitter)
     {
@@ -714,7 +678,8 @@ public sealed partial class ShipShieldsSystem : EntitySystem
 
         _fixtureSystem.TryCreateFixture(shieldUid, internalPoly, "internalShield",
             hard: true,
-            collisionLayer: (int)CollisionGroup.BulletImpassable,
+            // HardLight: HitscanImpassable so rebuilt shields keep stopping energy beams (see ShieldEntity).
+            collisionLayer: (int)(CollisionGroup.BulletImpassable | CollisionGroup.HitscanImpassable),
             updates: false,
             body: shieldPhysics);
     }

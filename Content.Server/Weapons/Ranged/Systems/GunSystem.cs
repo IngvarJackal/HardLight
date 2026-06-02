@@ -52,6 +52,7 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Weapons.Ranged.Components;
 using Content.Shared._Mono;
+using Content.Shared._Crescent.ShipShields;
 using Content.Shared._RMC14.Weapons.Ranged.Prediction;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
@@ -155,13 +156,8 @@ public sealed partial class GunSystem : SharedGunSystem
         toMap = fromMap.Position + angle.ToVec() * mapDirection.Length();
         mapDirection = toMap - fromMap.Position;
         mapAngle = mapDirection.ToAngle(); // HardLight
-        // HardLight: use Triad Sector's muzzle-velocity computation - the gun's full map velocity
-        // (which INCLUDES the firing ship's rotational ω×r component) relative to the spawn frame.
-        // The previous override (gridPhysics.LinearVelocity) only captured the grid's LINEAR
-        // velocity, so a rotating-but-not-translating ship fired shells with no rotational component;
-        // once the shell sat in the ship's rotating frame its velocity was reinterpreted (170 -> ~74)
-        // and it rendered "from the grid centre". Subtracting fromEnt's map velocity yields the
-        // gun-relative muzzle velocity, consistent with the grid frame the shell spawns in.
+        // HardLight: gun-relative muzzle velocity (includes the ship's rotational omega x r component).
+        // Using only the grid's linear velocity made a rotating ship's shells render from the grid centre.
         var gunVelocity = Physics.GetMapLinearVelocity(gunUid) - Physics.GetMapLinearVelocity(fromEnt);
 
         // I must be high because this was getting tripped even when true.
@@ -232,6 +228,10 @@ public sealed partial class GunSystem : SharedGunSystem
                     //in the situation when user == null, means that the cannon fires on its own (via signals). And we need the gun to not fire by itself in this case
                     var lastUser = user ?? gunUid;
 
+                    // HardLight: ship shield interaction (own-shield bypass + enemy-shield scatter).
+                    var firingGrid = Transform(gunUid).GridUid;
+                    var isShipWeaponBeam = HasComp<Content.Server._Mono.SpaceArtillery.Components.SpaceArtilleryComponent>(gunUid);
+
                     if (hitscan.Reflective != ReflectType.None)
                     {
                         var reflectAttempts = 0;
@@ -246,8 +246,14 @@ public sealed partial class GunSystem : SharedGunSystem
                                 break;
 
                             var ray = new CollisionRay(from.Position, dir, hitscan.CollisionMask);
+                            // HardLight: also ignore the firing ship's own shield so a turret never hits its own bubble.
                             var rayCastResults =
-                                Physics.IntersectRay(from.MapId, ray, hitscan.MaxLength, lastUser, false).ToList();
+                                Physics.IntersectRayWithPredicate(from.MapId, ray, hitscan.MaxLength,
+                                    ent => ent == lastUser
+                                        || (firingGrid != null
+                                            && TryComp<ShipShieldComponent>(ent, out var ownSc)
+                                            && ownSc.Shielded == firingGrid.Value),
+                                    false).ToList();
                             if (!rayCastResults.Any())
                                 break;
 
@@ -273,6 +279,31 @@ public sealed partial class GunSystem : SharedGunSystem
                             var hit = result.HitEntity;
 
                                 FireEffects(fromEffect, result.Distance, dir.Normalized().ToAngle(), hitscan, hit, user, gunUid);
+
+                            // HardLight: an enemy shield scatters a ship-weapon beam instead of
+                            // blocking it, and drains the shield emitter; the beam then continues from the crossing point.
+                            if (TryComp<ShipShieldComponent>(hit, out var crossedShield))
+                            {
+                                if (isShipWeaponBeam)
+                                {
+                                    if (crossedShield.Source is { } emitterSource)
+                                    {
+                                        var drain = (float)(hitscan.Damage?.GetTotal() ?? 0);
+                                        var drainEv = new Content.Server._Crescent.ShipShields.ShipShieldsSystem.ShieldHitscanDeflectedEvent(drain);
+                                        RaiseLocalEvent(emitterSource, ref drainEv);
+                                    }
+
+                                    var deviation = Angle.FromDegrees(Random.NextFloat(-80f, 80f));
+                                    dir = deviation.RotateVec(dir).Normalized();
+                                }
+
+                                // Continue from the crossing point, ignoring this shield so we don't re-hit it.
+                                from = new MapCoordinates(result.HitPos + dir * 0.1f, from.MapId);
+                                fromEffect = TransformSystem.ToCoordinates(from);
+                                lastUser = hit;
+                                reflectAttempts++;
+                                continue;
+                            }
 
                             var ev = new HitScanReflectAttemptEvent(user, gunUid, hitscan.Reflective, dir, false);
                             RaiseLocalEvent(hit, ref ev);
@@ -391,12 +422,7 @@ public sealed partial class GunSystem : SharedGunSystem
     {
         if (HasComp<Content.Server._Mono.FireControl.FireControllableComponent>(gunUid))
         {
-            // HardLight (ported from Triad Sector): phase ship-gun shells through their own ship for
-            // their whole flight. The component records the origin grid on ComponentStartup and the
-            // projectile PreventCollide handler ignores collisions with that grid. Networked, so the
-            // client predicts the same pass-through. The shell stays grid-parented like in Triad; with
-            // the gun-relative muzzle velocity (see Shoot) its grid-frame velocity is correct, so there
-            // is no slowdown / grid-centre rendering and no need to fight grid traversal.
+            // HardLight: ship-gun shells phase through their own ship for their whole flight (networked).
             EnsureComp<Content.Shared._Mono.ProjectileGridPhaseComponent>(uid);
         }
 

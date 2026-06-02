@@ -166,13 +166,9 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
             TryComp<ProjectileTargetWhitelistComponent>(uid, out var targetFilter); // HardLight
 
-            // Walk hits nearest-first. The first un-prevented hard hit is where the shell lands
-            // (anti-tunnel snap). Crucially, if a PreventCollide handler CONSUMES the shell - e.g. a
-            // shield intercepts and deletes it - we STOP there and must NOT keep scanning and teleport
-            // the shell to something behind the shield (that let fast shells punch through shields).
-            // Entities the shell merely passes through (own grid via phasing, EMP rounds bypassing a
-            // shield, the shooter) are skipped without stopping. This routes the fast-projectile path
-            // through exactly the same shield/phase logic as the normal physics collision.
+            // HardLight: walk hits nearest-first and route them through the same PreventCollide logic
+            // as a normal physics collision. Stop at the first real hit; if a handler consumes the shell
+            // (e.g. a shield intercept), stop there too instead of punching through to hits behind it.
             hits.Sort((a, b) => a.Distance.CompareTo(b.Distance));
 
             foreach (var hit in hits)
@@ -187,17 +183,14 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
                 if (RaycastHitPrevented(uid, physicsComp, projFix, hitEnt))
                 {
-                    // The collision was prevented. If a handler also consumed the shell (a shield
-                    // intercept QueueDel's it / marks it spent), the shell is gone - stop here, do NOT
-                    // punch through to deeper hits behind the shield.
+                    // Collision prevented. If the shell was also consumed (shield intercept), stop;
+                    // otherwise it genuinely passes through (own grid / EMP bypass) so keep scanning.
                     if (projectileComp.ProjectileSpent || TerminatingOrDeleted(uid) || EntityManager.IsQueuedForDeletion(uid))
                         break;
-                    // Otherwise the shell genuinely passes through this entity (own grid / EMP bypass).
                     continue;
                 }
 
-                // Real collision: snap to the hit POINT (not the entity origin) so the normal collision
-                // pipeline resolves it this tick, then stop.
+                // Real collision: snap to the hit point so the normal collision pipeline resolves it.
                 var tpPos = lastPosition + rayDirection * hit.Distance;
                 _transformSystem.SetWorldPosition(uid, tpPos);
                 if (projectileComp.RaycastResetVelocity)
@@ -208,14 +201,11 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     }
 
     /// <summary>
-    /// HardLight (ported from Triad Sector): mirror the engine's ShouldCollide PreventCollide
-    /// handshake so the anti-tunnel raycast ignores entities the projectile would actually phase
-    /// through - its own grid (ProjectileGridPhaseComponent), shields, the shooter, etc. Returns
-    /// true if the hit should be ignored.
+    /// HardLight: mirror the engine's PreventCollide handshake so the anti-tunnel raycast ignores
+    /// entities the projectile would phase through (own grid, shields, shooter). Returns true to ignore.
     /// </summary>
     private bool RaycastHitPrevented(EntityUid uid, PhysicsComponent body, Fixture projFix, EntityUid hitEnt)
     {
-        // No body / no fixtures to collide with -> not a real collision (skip), matching Triad.
         if (!_physQuery.TryComp(hitEnt, out var otherBody) || !_fixQuery.TryComp(hitEnt, out var otherFixtures))
             return true;
 

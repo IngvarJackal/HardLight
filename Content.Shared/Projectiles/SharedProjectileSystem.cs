@@ -117,8 +117,7 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     }
 
     /// <summary>
-    /// Records the grid a phasing projectile was fired from, so it can ignore collisions with that
-    /// grid's entities (hull, shield, etc.) for its whole flight. Ported from Triad Sector.
+    /// HardLight: record the origin grid so the projectile can phase through it for its whole flight.
     /// </summary>
     private void OnProjectileGridPhaseStartup(EntityUid uid, Content.Shared._Mono.ProjectileGridPhaseComponent component, ComponentStartup args)
     {
@@ -495,11 +494,8 @@ public abstract partial class SharedProjectileSystem : EntitySystem
             args.Cancelled = true;
         }
 
-        // HardLight (ported from Triad Sector): ship-gun shells phase through ALL entities on their
-        // origin grid - their own ship's hull, shield, turrets, everything - for their whole flight.
-        // This is networked, so the client predicts the same pass-through and the shell is never
-        // slowed / re-parented to its own (rotating) grid. Fixes "shells originate from grid centre
-        // with broken convergence" when firing through a friendly shield.
+        // HardLight: ship-gun shells phase through every entity on their origin grid (hull, shield,
+        // turrets) for their whole flight, so they never collide with / get slowed by their own ship.
         if (TryComp<Content.Shared._Mono.ProjectileGridPhaseComponent>(uid, out var phaseComp)
             && phaseComp.SourceGrid is { } sourceGrid
             && Transform(args.OtherEntity).GridUid == sourceGrid)

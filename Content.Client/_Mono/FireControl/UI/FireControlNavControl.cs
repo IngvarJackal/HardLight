@@ -61,9 +61,8 @@ public sealed class FireControlNavControl : BaseShuttleControl
     private float _lastCursorUpdateTime;
     private const float CursorUpdateInterval = 0.05f;
 
-    // Perpendicular offsets (metres) for the targeting-line safety corridor. The centre line (0.0)
-    // is the one drawn; the line only shows when ALL offsets are clear, giving a margin against own
-    // shells clipping own hull when the ship moves/rotates.
+    // HardLight: perpendicular offsets (metres) for the targeting-line safety corridor. Only the
+    // centre line is drawn, and only when all offsets are clear (margin against clipping own hull).
     private static readonly float[] TargetingCorridorOffsets = { -0.2f, -0.1f, 0f, 0.1f, 0.2f };
 
     public Action<EntityCoordinates>? OnRadarClick;
@@ -209,11 +208,8 @@ public sealed class FireControlNavControl : BaseShuttleControl
             return;
         }
 
-        // Follow the ship's rotation instead of the console's fixed local angle.
-        // state.Angle is the console's LocalRotation (constant relative to the grid), which would
-        // freeze the radar facing "north" and also desync click inversion in GetMouseEntityCoordinates
-        // (which converts to grid-local using the grid's live world rotation). Recompute from the live
-        // grid world rotation each frame so drawing and click-inversion use one consistent angle.
+        // HardLight: follow the ship's live rotation, not the console's fixed local angle (which froze
+        // the radar facing north and desynced click inversion in GetMouseEntityCoordinates).
         var coordEnt = _coordinates.Value.EntityId;
         _rotation = _transform.GetWorldRotation(coordEnt);
 
@@ -380,13 +376,10 @@ public sealed class FireControlNavControl : BaseShuttleControl
                         var dir = toCursor / distance;
                         var perp = new Vector2(-dir.Y, dir.X);
 
-                        // Ignore only the firing turret itself (it doesn't collide with its own shell);
-                        // own walls and everything else still block, since shells DO hit own hull.
+                        // Ignore only the firing turret (it doesn't collide with its own shell); own
+                        // walls still block. Cast the corridor and draw the line only if all rays are clear.
                         var turret = EntManager.GetEntity(weaponNet);
 
-                        // Cast a parallel corridor of rays at perpendicular offsets so the line only
-                        // shows when the shot has a safety margin - grid movement/rotation can otherwise
-                        // nudge own shells into own walls. Only the centre (0.0) line is ever drawn.
                         var clear = true;
                         foreach (var offset in TargetingCorridorOffsets)
                         {
@@ -557,9 +550,8 @@ public sealed class FireControlNavControl : BaseShuttleControl
         if (_coordinates is not { } cord || _rotation is not { } rot)
             return new();
 
-        // relativePosition arrives in virtual UI pixels, but InverseMapPosition works in
-        // physical pixels (MidPointVector/MinimapScale are scaled by UIScale). Convert here so
-        // aiming stays correct at non-100% UI scale. Matches the convention in InverseScalePosition.
+        // HardLight: convert virtual UI pixels to physical pixels (InverseMapPosition works in those)
+        // so aiming stays correct at non-100% UI scale.
         var physicalPosition = relativePosition * UIScale;
 
         var screenRelativeWorldPos = InverseMapPosition(physicalPosition);
