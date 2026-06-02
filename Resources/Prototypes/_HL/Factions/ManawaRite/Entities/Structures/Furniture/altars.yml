@@ -17,6 +17,7 @@
     radius: 1.5
     energy: 0.1
     color: "#00e8c8"
+  - type: Prayable
   - type: ApcPowerReceiver
     powerLoad: 0
   - type: Machine
@@ -29,10 +30,7 @@
     - ManawaRiteStatic
   - type: MaterialStorage
     canEjectStoredMaterials: true
-    whitelist:
-      tags:
-      - Sheet
-      - RawMaterial
+  - type: OreSiloClient
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
