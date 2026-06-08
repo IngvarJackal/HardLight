@@ -65,3 +65,56 @@
     - type: Brainwasher
       chardingDuration: 10
       configureText: Configure Brainwashing Compulsions
+
+# HardLight - "sexual lubricant" (precum / pussy juice).
+- type: trait
+  id: NaturalLubricantProducer
+  name: hl-trait-natural-lubricant-name
+  description: hl-trait-natural-lubricant-desc
+  category: Lewd
+  mutuallyExclusiveTraits:
+  - NaturalLubricantHeavy
+  - NaturalLubricantExcessive
+  - NaturalLubricantOverflowing
+  components:
+    - type: NaturalLubricantProducer
+      volume: 1
+
+- type: trait
+  id: NaturalLubricantHeavy
+  name: hl-trait-natural-lubricant-heavy-name
+  description: hl-trait-natural-lubricant-heavy-desc
+  category: Lewd
+  mutuallyExclusiveTraits:
+  - NaturalLubricantProducer
+  - NaturalLubricantExcessive
+  - NaturalLubricantOverflowing
+  components:
+    - type: NaturalLubricantProducer
+      volume: 3
+
+- type: trait
+  id: NaturalLubricantExcessive
+  name: hl-trait-natural-lubricant-excessive-name
+  description: hl-trait-natural-lubricant-excessive-desc
+  category: Lewd
+  mutuallyExclusiveTraits:
+  - NaturalLubricantProducer
+  - NaturalLubricantHeavy
+  - NaturalLubricantOverflowing
+  components:
+    - type: NaturalLubricantProducer
+      volume: 5
+
+- type: trait
+  id: NaturalLubricantOverflowing
+  name: hl-trait-natural-lubricant-overflowing-name
+  description: hl-trait-natural-lubricant-overflowing-desc
+  category: Lewd
+  mutuallyExclusiveTraits:
+  - NaturalLubricantProducer
+  - NaturalLubricantHeavy
+  - NaturalLubricantExcessive
+  components:
+    - type: NaturalLubricantProducer
+      volume: 10

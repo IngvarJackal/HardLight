@@ -1,0 +1,14 @@
+# HardLight - toggle action for the sexual lubricant producer (see NaturalLubricantProducerComponent).
+- type: entity
+  id: ActionToggleLeaking
+  name: Toggle leaking
+  description: Start or stop leaking nectar of love.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 1
+    itemIconStyle: NoItem
+    icon:
+      sprite: Fluids/puddle.rsi
+      state: splat0
+    event: !type:ToggleLeakingActionEvent

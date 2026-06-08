@@ -1,0 +1,21 @@
+# HardLight - "sexual lubricant" (precum / pussy juice).
+- type: reagent
+  id: NaturalLubricant
+  name: reagent-name-sexual-lubricant
+  group: NaturalSauce
+  desc: reagent-desc-sexual-lubricant
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: salty
+  color: "#dbe7f0d0"
+  viscosity: 0.1
+  evaporationSpeed: 1.0
+  recognizable: true
+  metabolisms:
+    Drink:
+      effects:
+      # Slight hydration, and only if the drinker consented to interacting with it.
+      - !type:SatiateThirst
+        factor: 0.2
+        conditions:
+        - !type:ConsentCondition
+          consent: NaturalLubricant
