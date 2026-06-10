@@ -8,7 +8,7 @@
   flavor: salty
   color: "#dbe7f0d0"
   viscosity: 0.1
-  evaporationSpeed: 1.0
+  evaporationSpeed: 0.5
   recognizable: true
   metabolisms:
     Drink:
