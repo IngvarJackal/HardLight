@@ -27,6 +27,7 @@ public sealed class EventManagerSystem : EntitySystem
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly JobTrackingSystem _jobs = default!; // Frontier
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!; //Nyano - Summary: pulls in the glimmer system.
+    [Dependency] private readonly StationHeatSystem _stationHeat = default!; // HardLight - event heat/chaos budget
 
 
     public bool EventsEnabled { get; private set; }
@@ -71,7 +72,7 @@ public sealed class EventManagerSystem : EntitySystem
             return;
         }
 
-        var randomLimitedEvent = FindEvent(limitedEvents); // this picks the event, It might be better to use the GetSpawns to do it, but that will be a major rebalancing fuck.
+        var randomLimitedEvent = FindEventWithHeat(limitedEvents); // HardLight: heat-aware pick (falls back to plain weighting when no heat data is present)
         if (randomLimitedEvent == null)
         {
             Log.Warning("The selected random event is null!");
@@ -181,6 +182,78 @@ public sealed class EventManagerSystem : EntitySystem
 
         Log.Error("Event was not found after weighted pick process!");
         return null;
+    }
+
+    /// <summary>
+    /// HardLight: Picks an event like <see cref="FindEvent"/>, but factors in the current station "heat"
+    /// (see <see cref="StationHeatSystem"/> and <see cref="Components.EventHeatComponent"/>):
+    /// <list type="bullet">
+    ///     <item>Events whose heat cost would push past the remaining budget are suppressed, so the schedulers
+    ///           stop piling new threats on top of an ongoing crisis (e.g. nukies / xenoborgs).</item>
+    ///     <item>When the station is quiet, higher-cost (more dangerous) events are biased upward, so it escalates
+    ///           instead of staying random.</item>
+    /// </list>
+    /// Fully back-compatible: events without an <see cref="Components.EventHeatComponent"/> have a cost of 0, are
+    /// never suppressed, and keep their base weight, reproducing the original <see cref="FindEvent"/> behaviour.
+    /// </summary>
+    public string? FindEventWithHeat(Dictionary<EntityPrototype, StationEventComponent> availableEvents)
+    {
+        if (availableEvents.Count == 0)
+        {
+            Log.Warning("No events were available to run!");
+            return null;
+        }
+
+        var ceiling = _configurationManager.GetCVar(CCVars.EventsHeatCeiling);
+        var bias = _configurationManager.GetCVar(CCVars.EventsDangerBias);
+        var headroom = ceiling - _stationHeat.CurrentHeat;
+
+        var weighted = new List<(string Id, float Weight)>();
+        var sumOfWeights = 0.0f;
+
+        foreach (var (proto, stationEvent) in availableEvents)
+        {
+            var cost = GetEventCost(proto);
+
+            // Suppress costly events when the station is already too chaotic. Free (cost 0) events are never suppressed.
+            if (cost > 0.0f && cost > headroom)
+                continue;
+
+            var effectiveWeight = stationEvent.Weight * (1.0f + bias * cost);
+            if (effectiveWeight <= 0.0f)
+                continue;
+
+            weighted.Add((proto.ID, effectiveWeight));
+            sumOfWeights += effectiveWeight;
+        }
+
+        // Everything was suppressed (station saturated) or nothing had weight: run nothing this cycle.
+        if (weighted.Count == 0 || sumOfWeights <= 0.0f)
+            return null;
+
+        sumOfWeights = _random.NextFloat(sumOfWeights);
+
+        foreach (var (id, weight) in weighted)
+        {
+            sumOfWeights -= weight;
+
+            if (sumOfWeights <= 0.0f)
+                return id;
+        }
+
+        return weighted[^1].Id;
+    }
+
+    /// <summary>
+    /// HardLight: Reads the optional heat cost off an event prototype. Returns 0 if it carries no
+    /// <see cref="Components.EventHeatComponent"/>.
+    /// </summary>
+    private float GetEventCost(EntityPrototype proto)
+    {
+        if (proto.TryGetComponent<Components.EventHeatComponent>(out var heat, EntityManager.ComponentFactory))
+            return heat.Cost;
+
+        return 0.0f;
     }
 
     /// <summary>

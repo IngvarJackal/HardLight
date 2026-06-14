@@ -71,6 +71,9 @@
   parent: BaseGameRule
   id: Xenoborgs
   components:
+  - type: EventHeat # HardLight: ongoing mothership threat; suppresses competing scheduler threats while active
+    cost: 250
+    sustained: true
   - type: XenoborgsRule
   - type: RuleGrids
   - type: GameRule

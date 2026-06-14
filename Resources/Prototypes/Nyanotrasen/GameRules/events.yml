@@ -25,6 +25,8 @@
         path: /Audio/Announcements/noosphericstorm.ogg
       weight: 5
       earliestStart: 15
+    - type: EventHeat # HardLight
+      cost: 40
     - type: NoosphericStormRule
 
 # Rat king, paradox anomaly, fugitive, oneiro, etc.
@@ -49,6 +51,8 @@
     - type: StationEvent
       # Favor glimmer events just a little more than regular events.
       weight: 12
+    - type: EventHeat # HardLight: psionic disturbances add minor, decaying chaos
+      cost: 50
     - type: GlimmerEvent
 
 ## Glimmer events
