@@ -187,14 +187,16 @@ public sealed class EventManagerSystem : EntitySystem
     /// <summary>
     /// HardLight: Picks an event like <see cref="FindEvent"/>, but factors in the current station "heat"
     /// (see <see cref="StationHeatSystem"/> and <see cref="Components.EventHeatComponent"/>):
+    /// Heat and weight are cleanly separated: <b>heat decides which events are valid</b>, <b>base weights decide the
+    /// relative distribution</b> among them. An event is valid only if its heat cost fits under both:
     /// <list type="bullet">
-    ///     <item>Events whose heat cost would push past the remaining budget are suppressed, so the schedulers
-    ///           stop piling new threats on top of an ongoing crisis (e.g. nukies / xenoborgs).</item>
-    ///     <item>When the station is quiet, higher-cost (more dangerous) events are biased upward, so it escalates
-    ///           instead of staying random.</item>
+    ///     <item>the affordability ceiling (<c>cost &lt;= ceiling - currentHeat</c>) — stops new ongoing threats
+    ///           stacking on a crisis (no lone ops / dragons during nukies or xenoborgs);</item>
+    ///     <item>the time-gated danger cap (<c>cost &lt;= target + baseline</c>, target rises with the hour) — easy
+    ///           events early, hard events later. With no target heat ("relaxed") only the ceiling applies.</item>
     /// </list>
-    /// Fully back-compatible: events without an <see cref="Components.EventHeatComponent"/> have a cost of 0, are
-    /// never suppressed, and keep their base weight, reproducing the original <see cref="FindEvent"/> behaviour.
+    /// Among the valid events the pick is by plain <see cref="StationEventComponent.Weight"/>, identical to
+    /// <see cref="FindEvent"/>.
     /// </summary>
     public string? FindEventWithHeat(Dictionary<EntityPrototype, StationEventComponent> availableEvents)
     {
@@ -204,9 +206,16 @@ public sealed class EventManagerSystem : EntitySystem
             return null;
         }
 
+        // HardLight: the "Quiet before storm" event can suspend all scheduler picks for an eerie lull.
+        if (_stationHeat.EventsSuspended)
+            return null;
+
         var ceiling = _configurationManager.GetCVar(CCVars.EventsHeatCeiling);
-        var bias = _configurationManager.GetCVar(CCVars.EventsDangerBias);
+        var baseline = _configurationManager.GetCVar(CCVars.EventsHeatBaseline);
+
         var headroom = ceiling - _stationHeat.CurrentHeat;
+        var desired = _stationHeat.TargetHeat;
+        var dangerCap = desired > 0.0f ? desired + baseline : ceiling;
 
         var weighted = new List<(string Id, float Weight)>();
         var sumOfWeights = 0.0f;
@@ -215,16 +224,17 @@ public sealed class EventManagerSystem : EntitySystem
         {
             var cost = GetEventCost(proto);
 
-            // Suppress costly events when the station is already too chaotic. Free (cost 0) events are never suppressed.
-            if (cost > 0.0f && cost > headroom)
+            // Heat gates VALIDITY only: fit under the affordability ceiling and the time-gated danger cap.
+            if (cost > headroom || cost > dangerCap)
                 continue;
 
-            var effectiveWeight = stationEvent.Weight * (1.0f + bias * cost);
-            if (effectiveWeight <= 0.0f)
+            // Base weight drives the DISTRIBUTION among valid events.
+            var weight = stationEvent.Weight;
+            if (weight <= 0.0f)
                 continue;
 
-            weighted.Add((proto.ID, effectiveWeight));
-            sumOfWeights += effectiveWeight;
+            weighted.Add((proto.ID, weight));
+            sumOfWeights += weight;
         }
 
         // Everything was suppressed (station saturated) or nothing had weight: run nothing this cycle.
@@ -245,15 +255,15 @@ public sealed class EventManagerSystem : EntitySystem
     }
 
     /// <summary>
-    /// HardLight: Reads the optional heat cost off an event prototype. Returns 0 if it carries no
-    /// <see cref="Components.EventHeatComponent"/>.
+    /// HardLight: Reads the heat cost off an event prototype. Events with no <see cref="Components.EventHeatComponent"/>
+    /// are treated as an average event (<c>events.heat_baseline</c>, default 50).
     /// </summary>
     private float GetEventCost(EntityPrototype proto)
     {
         if (proto.TryGetComponent<Components.EventHeatComponent>(out var heat, EntityManager.ComponentFactory))
             return heat.Cost;
 
-        return 0.0f;
+        return _configurationManager.GetCVar(CCVars.EventsHeatBaseline);
     }
 
     /// <summary>

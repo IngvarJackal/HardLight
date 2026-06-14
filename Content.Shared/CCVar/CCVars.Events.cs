@@ -45,11 +45,20 @@ public sealed partial class CCVars
         EventsHeatDecayPerCommand = CVarDef.Create("events.heat_decay_per_command", 0.5f, CVar.ARCHIVE | CVar.SERVERONLY);
 
     /// <summary>
-    ///     How strongly low station heat biases event selection toward higher-cost (more dangerous) events.
-    ///     An event's effective weight is multiplied by <c>1 + danger_bias * Cost</c>. 0 disables the bias
-    ///     (pure base-weight selection, but affordability suppression still applies).
+    ///     The maximum factor by which the event schedulers speed up when station heat is far below the round's
+    ///     target heat (see <see cref="Content.Server.StationEvents.Components.HeatTargetRuleComponent"/>). 2 means
+    ///     events fire up to twice as often on a too-quiet station. 1 disables the frequency boost.
     /// </summary>
     [CVarControl(AdminFlags.Server | AdminFlags.Mapping)]
     public static readonly CVarDef<float>
-        EventsDangerBias = CVarDef.Create("events.danger_bias", 0.004f, CVar.ARCHIVE | CVar.SERVERONLY);
+        EventsHeatMaxFrequencyMultiplier = CVarDef.Create("events.heat_max_frequency_mult", 2.0f, CVar.ARCHIVE | CVar.SERVERONLY);
+
+    /// <summary>
+    ///     The "average" event heat: events with no <c>EventHeat</c> component are treated as this cost, and it is the
+    ///     margin added to the round's target heat to form the time-gated difficulty cap (<c>target + baseline</c>)
+    ///     that decides which events are valid each hour. Heat only gates validity; base weights decide distribution.
+    /// </summary>
+    [CVarControl(AdminFlags.Server | AdminFlags.Mapping)]
+    public static readonly CVarDef<float>
+        EventsHeatBaseline = CVarDef.Create("events.heat_baseline", 50f, CVar.ARCHIVE | CVar.SERVERONLY);
 }

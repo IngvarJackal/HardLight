@@ -261,6 +261,7 @@
     - BasicRoundstartVariation
 #    - NFRoundstartVariation
     - DynamicJobAllocation
+    - StationHeatTarget # HardLight: adventure target heat (escalate event frequency when too quiet)
     - VRSPersistentPlanet # VRS — adds the persistent biome planet at round start
     # VRS: Mono hostile-ship station events (damaged AI, Chimera, Asakim factions)
     #- MonoAISTCShuttleSpawnerScheduler

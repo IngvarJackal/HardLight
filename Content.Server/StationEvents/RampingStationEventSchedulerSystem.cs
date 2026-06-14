@@ -11,6 +11,7 @@ public sealed class RampingStationEventSchedulerSystem : GameRuleSystem<RampingS
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EventManagerSystem _event = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly StationHeatSystem _heat = default!; // HardLight
 
     /// <summary>
     /// Returns the ChaosModifier which increases as round time increases to a point.
@@ -70,6 +71,7 @@ public sealed class RampingStationEventSchedulerSystem : GameRuleSystem<RampingS
         var mod = GetChaosModifier(uid, component);
 
         // 4-12 minutes baseline. Will get faster over time as the chaos mod increases.
-        component.TimeUntilNextEvent = _random.NextFloat(240f / mod, 720f / mod);
+        // HardLight: further shorten the interval when the round's heat is below its target.
+        component.TimeUntilNextEvent = _random.NextFloat(240f / mod, 720f / mod) / _heat.GetFrequencyMultiplier();
     }
 }

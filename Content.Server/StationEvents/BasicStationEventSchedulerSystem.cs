@@ -24,6 +24,7 @@ namespace Content.Server.StationEvents
     {
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly EventManagerSystem _event = default!;
+        [Dependency] private readonly StationHeatSystem _heat = default!; // HardLight
 
         protected override void Started(EntityUid uid, BasicStationEventSchedulerComponent component, GameRuleComponent gameRule,
             GameRuleStartedEvent args)
@@ -68,7 +69,8 @@ namespace Content.Server.StationEvents
         /// </summary>
         private void ResetTimer(BasicStationEventSchedulerComponent component)
         {
-            component.TimeUntilNextEvent = component.MinMaxEventTiming.Next(_random);
+            // HardLight: when the round's heat is below its target, fire more often (up to the configured multiplier).
+            component.TimeUntilNextEvent = component.MinMaxEventTiming.Next(_random) / _heat.GetFrequencyMultiplier();
         }
     }
 

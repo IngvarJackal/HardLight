@@ -43,10 +43,10 @@ roles-antag-wizard-objective = Teach them a lesson they'll never forget.
 
 wizard-role-greeting =
     YER A WIZARD!
-    There's been tensions between the Space Wizards Federation and NanoTrasen.
     So you've been selected by the Space Wizards Federation to pay a visit to the station.
     Give them a good demonstration of your powers.
     What you do is up to you, just remember the Space Wizards want you to make it out alive.
+    Note: Colonial Command runs a passive sector threat detection grid. You have at least 90 minutes before it may flag the possibility of a hostile wizard in the sector, so don't expect to stay unnoticed forever.
 
 wizard-round-end-name = wizard
 

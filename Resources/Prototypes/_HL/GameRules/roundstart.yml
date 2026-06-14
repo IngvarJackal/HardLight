@@ -128,9 +128,11 @@
     minPlayers: 0
     requiredJobs:
       HeadOfSecurity: 1
-  - type: EventHeat # HardLight: full nukie op; sustained high heat suppresses competing scheduler threats
-    cost: 250
+  - type: EventHeat # HardLight: holds heat while active so no other big threat can stack; minor events still fit under the ceiling
+    cost: 210
     sustained: true
+  - type: SectorThreatAlertRule # HardLight: CC passive detection reveal at 60-90m, heat releases to decay 30m later
+    announcement: sector-threat-alert-nukeops
   - type: LoadMapRule
     mapPath: /Maps/Nonstations/nukieplanet.yml
   - type: AntagSelection
@@ -251,9 +253,6 @@
     requiredJobs:
       StationCaptain: 1
       HeadOfSecurity: 1
-  - type: EventHeat # HardLight
-    cost: 180
-    sustained: true
   - type: RevolutionaryRule
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
@@ -308,9 +307,8 @@
   components:
   - type: GameRule
     minPlayers: 0
-  - type: EventHeat # HardLight
-    cost: 180
-    sustained: true
+  - type: SectorThreatAlertRule # HardLight: anti-stall reveal only; wizard is opportunistic and holds no sustained heat
+    announcement: sector-threat-alert-wizard
   - type: AntagSelection
     agentName: wizard-round-end-name
     selectionTime: PrePlayerSpawn
@@ -349,9 +347,12 @@
     delay:
       min: 600
       max: 900
-  - type: EventHeat # HardLight
-    cost: 200
+  - type: EventHeat # HardLight: holds heat while active so no other big threat can stack; released ~30m after the reveal
+    cost: 210
     sustained: true
+  - type: SectorThreatAlertRule # HardLight: CC alert 15m after the first initial infected turns, heat releases 30m later
+    announcement: sector-threat-alert-zombies
+    triggerOnZombified: true
   - type: ZombieRule
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
@@ -446,6 +447,18 @@
   - type: RampingStationEventScheduler
     scheduledGameRules: !type:NestedSelector
       tableId: BasicGameRulesTable
+
+# HardLight: round/game-mode heat target. While current heat is below heatPerHour * ceil(hours),
+# the event schedulers fire up to events.heat_max_frequency_mult (default 2x) as often.
+# Add this rule to a preset to make it an "adventure" round; omit it for a "relaxed" round (target 0).
+- type: entity
+  id: StationHeatTarget
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+  - type: HeatTargetRule
+    heatPerHour: 50 # smooth ramp; difficulty cap reaches the heaviest events by ~3rd hour
+    maxHeat: 200
 
 - type: entity # ** DO NOT USE THIS SCHEDULER **
   id: SpaceTrafficControlEventScheduler # iff we make a selector for EntityTables that can respect StationEventComp restrictions, or somehow impliment them otherwise in said tables,

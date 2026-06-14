@@ -128,10 +128,29 @@
     - id: SleeperRevolutionaries
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
+    - id: QuietBeforeStorm
     #- id: WizardSpawn
     #- id: LoneOpsSpawn
     # - id: UnknownShuttleManOWar
     # - id: UnknownShuttleInstigator
+
+- type: entity # HardLight: late-round ominous lull, then a department-gated crisis (see QuietBeforeStormSystem)
+  id: QuietBeforeStorm
+  parent: BaseGameRule
+  components:
+  - type: StationEvent
+    startAnnouncement: quiet-before-storm-announcement
+    startAnnouncementColor: "#9a8fb0"
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    weight: 3
+    earliestStart: 90
+    minimumPlayers: 20
+    maxOccurrences: 1
+    duration: null # the system ends the rule once the crisis resolves
+  - type: EventHeat
+    cost: 50
+  - type: QuietBeforeStormRule
 
 - type: entity
   id: BaseStationEvent
@@ -206,6 +225,8 @@
     reoccurrenceDelay: 200
     earliestStart: 1
     duration: 1
+  - type: EventHeat # HardLight: loot event, low heat
+    cost: 15
   - type: BluespaceLockerRule
 
 - type: entity
@@ -1214,6 +1235,8 @@
     weight: 5
     duration: 35
     reoccurrenceDelay: 120
+  - type: EventHeat # HardLight: loot event, low heat
+    cost: 15
   - type: BluespaceCargoRule
     spawnerPrototype: RandomCargoSpawner
     flashPrototype: EffectFlashBluespaceQuiet
@@ -1232,6 +1255,8 @@
     duration: 35
     maximumPlayers: 40
     reoccurrenceDelay: 180
+  - type: EventHeat # HardLight: loot event, low heat
+    cost: 15
   - type: BluespaceCargoRule
     spawnerPrototype: CrateFoodMcCargo
     flashPrototype: EffectFlashMcBluespace
@@ -1250,6 +1275,8 @@
     earliestStart: 90
     minimumPlayers: 10 # Floof - we ball
     reoccurrenceDelay: 180 # 3 hours
+  - type: EventHeat # HardLight: loot event, low heat
+    cost: 15
   - type: BluespaceCargoRule
     spawnerPrototype: CrateSyndicateSurplusBundle
     maximumSpawns: 1
@@ -1264,6 +1291,8 @@
     earliestStart: 15
     minimumPlayers: 2 # HL
     reoccurrenceDelay: 20
+  - type: EventHeat # HardLight: loot/flavor event, low heat
+    cost: 15
   - type: RandomFaxRule
     minFaxes: 1
     maxFaxes: 2
@@ -1285,6 +1314,8 @@
     weight: 100 # Fairly common.
     minimumPlayers: 10 # Floof - we ball
     duration: 35
+  - type: EventHeat # HardLight: loot/flavor event, low heat
+    cost: 15
   - type: RandomFaxRule
     minFaxes: 3
     maxFaxes: 4
@@ -1855,6 +1886,8 @@
     minimumPlayers: 15
     weight: 5
     duration: 1
+  - type: EventHeat # HardLight: flavor event, low heat
+    cost: 15
   - type: MedicalBountyTargetsRule
     departmentId: Medical
     variance: 0.1
