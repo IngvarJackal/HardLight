@@ -1,3 +1,4 @@
+using Content.Shared.Atmos;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Sequence;
@@ -15,7 +16,7 @@ public static class ShipSaveYamlSanitizer
     /// can skip a redundant sanitizer pass for already-clean saves. Bump the version suffix
     /// when the sanitizer rules change in a way that should re-scrub previously-saved ships.
     /// </summary>
-    public const string SanitizedMarkerComment = "# hl-sanitized: 3";
+    public const string SanitizedMarkerComment = "# hl-sanitized: 4";
 
     // Implants that should not persist when found inside implanters during ship save.
     private static readonly HashSet<string> BlockedContainedImplantPrototypes = new(StringComparer.Ordinal)
@@ -541,6 +542,29 @@ public static class ShipSaveYamlSanitizer
                         compMap.Remove("Devices");
                     }
 
+                    if (typeName == "AtmosMonitor")
+                    {
+                        // gasThresholds is a Dictionary<Gas, ...>. If a saved gas key is no longer a
+                        // valid Gas enum member (e.g. a gas added then reverted, like Respiron /
+                        // HL #2077), the dictionary deserializer throws ("Requested value 'X' was not
+                        // found") and the engine drops the WHOLE entity on load — which is why every
+                        // saved vent/scrubber vanished. Prune only the unknown-gas entries so any
+                        // still-valid custom thresholds survive.
+                        PruneUnknownGasThresholds(compMap, "gasThresholds");
+                        PruneUnknownGasThresholds(compMap, "GasThresholds");
+                    }
+
+                    if (typeName == "SpamEmitSound" && !HasRequiredEmitSound(compMap))
+                    {
+                        // Runtime ambience state (computer sound effects, HL #2084). When the serialized
+                        // diff omits the component's required `sound` field, the engine hits
+                        // RequiredFieldNotMappedException and drops the whole entity on load — which is
+                        // why every saved console/computer vanished. Drop the incomplete component and
+                        // let the prototype/runtime re-supply a valid one. A fully-serialized
+                        // SpamEmitSound (with `sound`) is left untouched.
+                        continue;
+                    }
+
                     if (typeName == "Solution")
                     {
                         if (compMap.TryGetValue("solution", out var solutionNode)
@@ -689,6 +713,41 @@ public static class ShipSaveYamlSanitizer
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// True if a serialized SpamEmitSound (or other BaseEmitSound) component still carries its
+    /// required <c>sound</c> field. Components without it cannot be deserialized and would take the
+    /// whole entity down with them, so callers drop the incomplete component instead.
+    /// </summary>
+    private static bool HasRequiredEmitSound(MappingDataNode compMap)
+    {
+        return compMap.TryGetValue("sound", out _) || compMap.TryGetValue("Sound", out _);
+    }
+
+    /// <summary>
+    /// Removes AtmosMonitor gas-threshold entries whose key is not a valid
+    /// <see cref="Gas"/> enum member. A single unknown key (e.g. a gas added then reverted) otherwise
+    /// throws inside the dictionary deserializer and drops the entire entity on load. Best-effort:
+    /// any structural surprise leaves the node untouched rather than throwing.
+    /// </summary>
+    private static void PruneUnknownGasThresholds(MappingDataNode atmosMonitorComp, string field)
+    {
+        if (!atmosMonitorComp.TryGet(field, out MappingDataNode? thresholds) || thresholds == null)
+            return;
+
+        List<string>? invalid = null;
+        foreach (var (key, _) in thresholds)
+        {
+            if (!Enum.TryParse<Gas>(key, ignoreCase: false, out _))
+                (invalid ??= new List<string>()).Add(key);
+        }
+
+        if (invalid == null)
+            return;
+
+        foreach (var key in invalid)
+            thresholds.Remove(key);
     }
 
     private static bool HasComponentNode(SequenceDataNode components, string componentType)
