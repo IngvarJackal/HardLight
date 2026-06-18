@@ -190,8 +190,8 @@ public sealed class EventManagerSystem : EntitySystem
     /// Heat and weight are cleanly separated: <b>heat decides which events are valid</b>, <b>base weights decide the
     /// relative distribution</b> among them. An event is valid only if its heat cost fits under both:
     /// <list type="bullet">
-    ///     <item>the affordability ceiling (<c>cost &lt;= ceiling - currentHeat</c>) — stops new ongoing threats
-    ///           stacking on a crisis (no lone ops / dragons during nukies or xenoborgs);</item>
+    ///     <item>the affordability ceiling (<c>cost &lt;= ceiling - currentHeat</c>) — stops heavy events piling up
+    ///           while the station is already hot (e.g. no fresh dragon right after a big horde);</item>
     ///     <item>the time-gated danger cap (<c>cost &lt;= target + baseline</c>, target rises with the hour) — easy
     ///           events early, hard events later. With no target heat ("relaxed") only the ceiling applies.</item>
     /// </list>

@@ -34,10 +34,14 @@
     - id: PowerGridCheck
    # - id: RandomSentience
     - id: SlimesSpawn
+    - id: SlimesSpawnHorde
     - id: SolarFlare
     - id: SnakeSpawn
+    - id: SnakeSpawnHorde
     - id: SpiderClownSpawn
+    - id: SpiderClownSpawnHorde
     - id: SpiderSpawn
+    - id: SpiderSpawnHorde
     - id: VentClog
     - id: NFBreakerFlip
     - id: NFGasLeak
@@ -82,27 +86,46 @@
     # - id: UnknownShuttleSpacebus
     # - id: UnknownShuttleSyndieEvacPod
     - id: ArgocyteVents
+    - id: ArgocyteVentsHorde
     - id: XenoVents
+    - id: XenoVentsHorde
     - id: reagentslimeVents
+    - id: reagentslimeVentsHorde
     - id: SpaceVents
+    - id: SpaceVentsHorde
     - id: CarpVents
+    - id: CarpVentsHorde
     - id: MedicalBountyTargetsSpawn
     - id: TickVents
+    - id: TickVentsHorde
     - id: AiVents
+    - id: AiVentsHorde
     - id: Cultvents
+    - id: CultventsHorde
     - id: Syndivents
+    - id: SyndiventsHorde
     - id: Punkvents
+    - id: PunkventsHorde
     - id: Explorervents
+    - id: ExplorerventsHorde
     - id: Mercvents
+    - id: MercventsHorde
     - id: Zedvents
+    - id: ZedventsHorde
     - id: LizardVents
+    - id: LizardVentsHorde
     - id: WawaVents
     - id: IrradiatedPests
     - id: XenoVentsLarva
+    - id: XenoVentsLarvaHorde
     - id: Abyssvents
+    - id: AbyssventsHorde
     - id: glimmervents
+    - id: glimmerventsHorde
     - id: HostileLizardVents
+    - id: HostileLizardVentsHorde
     - id: Lavavents
+    - id: LavaventsHorde
     # - id: GiftsEngineering
     # - id: GiftsFireProtection
     # - id: GiftsJanitor
@@ -148,13 +171,13 @@
     startAnnouncementColor: "#9a8fb0"
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    weight: 3
+    weight: 12
     earliestStart: 90
     minimumPlayers: 20
     maxOccurrences: 1
     duration: null # the system ends the rule once the crisis resolves
-  - type: EventHeat
-    cost: 50
+  # HardLight: no heat of its own — it only suspends the schedulers; heat comes from whatever crisis it triggers
+  # (or none, for the nothingburger outcome).
   - type: QuietBeforeStormRule
 
 - type: entity
@@ -305,9 +328,8 @@
     spawnDistance: 0
   - type: AntagSpawner # Frontier
     prototype: MobDragon # Frontier
-  - type: EventHeat # HardLight: ongoing overt threat, keeps the station "hot" while alive
+  - type: EventHeat # HardLight: serious midround threat
     cost: 130
-    sustained: true
   - type: DragonRule
   - type: AntagObjectives
     objectives:
@@ -343,7 +365,6 @@
     prototype: MobRainbowDragon # Frontier
   - type: EventHeat # HardLight
     cost: 130
-    sustained: true
   - type: DragonRule
   - type: AntagObjectives
     objectives:
@@ -379,7 +400,6 @@
     prototype: MobMagicDragon # Frontier
   - type: EventHeat # HardLight
     cost: 130
-    sustained: true
   - type: DragonRule
   - type: AntagObjectives
     objectives:
@@ -415,7 +435,6 @@
     prototype: MobHoloDragon # Frontier
   - type: EventHeat # HardLight
     cost: 130
-    sustained: true
   - type: DragonRule
   - type: AntagObjectives
     objectives:
@@ -452,7 +471,6 @@
     prototype: MobXenoQueenNPC
   - type: EventHeat # HardLight
     cost: 130
-    sustained: true
   - type: AntagSelection
     definitions:
     - spawnerPrototype: SpawnPointGhostXenoQueen
@@ -483,7 +501,6 @@
     prototype: Fatkid
   - type: EventHeat # HardLight
     cost: 130
-    sustained: true
   - type: AntagSelection
     definitions:
     - spawnerPrototype: SpawnPointGhostFatkid
@@ -511,7 +528,6 @@
   - type: AntagLoadProfileRule
   - type: EventHeat # HardLight
     cost: 130
-    sustained: true
   - type: AntagObjectives
     objectives:
     - StealResearchObjective
@@ -564,7 +580,6 @@
       HeadOfSecurity: 1
   - type: EventHeat # HardLight
     cost: 120
-    sustained: true
   - type: ParadoxCloneRule
     objectiveBlacklist:
       tags:
@@ -758,13 +773,39 @@
       path: /Audio/Announcements/attention.ogg
     earliestStart: 20
     minimumPlayers: 15
-    weight: 5
+    weight: 2.5
+    duration: 60
+    reoccurrenceDelay: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: EventHeat # HardLight
+    cost: 50
+  - type: VentCrittersRule
+    entries:
+    - id: MobAdultSlimesBlueAngry
+      prob: 0.02
+    - id: MobAdultSlimesGreenAngry
+      prob: 0.02
+    - id: MobAdultSlimesYellowAngry
+      prob: 0.02
+
+- type: entity
+  id: SlimesSpawnHorde
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
+    minimumPlayers: 15
+    weight: 2.5
     duration: 60
     reoccurrenceDelay: 60
     requiredJobs:
       HeadOfSecurity: 1
-  - type: EventHeat # HardLight
-    cost: 70
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -773,7 +814,7 @@
       - id: MobAdultSlimesBlueAngry
       - id: MobAdultSlimesGreenAngry
       - id: MobAdultSlimesYellowAngry
-      
+
 - type: entity
   id: SnakeSpawn
   parent: BaseStationEventShortDelay
@@ -784,13 +825,39 @@
       path: /Audio/Announcements/attention.ogg
     earliestStart: 20
     minimumPlayers: 15
-    weight: 5
+    weight: 2.5
+    duration: 60
+    reoccurrenceDelay: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: EventHeat # HardLight
+    cost: 50
+  - type: VentCrittersRule
+    entries:
+    - id: MobPurpleSnake
+      prob: 0.02
+    - id: MobSmallPurpleSnake
+      prob: 0.02
+    - id: MobCobraSpace
+      prob: 0.02
+
+- type: entity
+  id: SnakeSpawnHorde
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
+    minimumPlayers: 15
+    weight: 2.5
     duration: 60
     reoccurrenceDelay: 60
     requiredJobs:
       HeadOfSecurity: 1
-  - type: EventHeat # HardLight
-    cost: 70
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -800,7 +867,7 @@
       - id: MobSmallPurpleSnake
       - id: MobCobraSpace
       - id: NFMobSmallRainbowSnake
-      
+
 
 - type: entity
   id: SpiderSpawn
@@ -812,13 +879,35 @@
       path: /Audio/Announcements/attention.ogg
     earliestStart: 20
     minimumPlayers: 15
-    weight: 5
+    weight: 2.5
+    duration: 60
+    reoccurrenceDelay: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: EventHeat # HardLight
+    cost: 50
+  - type: VentCrittersRule
+    entries:
+    - id: MobGiantSpiderAngry
+      prob: 0.05
+
+- type: entity
+  id: SpiderSpawnHorde
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
+    minimumPlayers: 15
+    weight: 2.5
     duration: 60
     reoccurrenceDelay: 60
     requiredJobs:
       HeadOfSecurity: 1
-  - type: EventHeat # HardLight
-    cost: 70
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -837,15 +926,37 @@
       path: /Audio/Announcements/attention.ogg
     earliestStart: 20
     minimumPlayers: 20
-    weight: 1.5
+    weight: 0.75
+    duration: 60
+    reoccurrenceDelay: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: EventHeat # HardLight
+    cost: 50
+  - type: VentCrittersRule
+    entries:
+    - id: MobClownSpider
+      prob: 0.05
+
+- type: entity
+  id: SpiderClownSpawnHorde
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 20
+    minimumPlayers: 20
+    weight: 0.75
     duration: 60
     reoccurrenceDelay: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
-  - type: EventHeat # HardLight
-    cost: 70
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 80
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -955,7 +1066,6 @@
       SecurityOfficer: 1
   - type: EventHeat # HardLight
     cost: 100
-    sustained: true
   - type: AlertLevelInterceptionRule
   - type: AntagSelection
     definitions:
@@ -991,7 +1101,6 @@
       Warden: 1
   - type: EventHeat # HardLight
     cost: 150
-    sustained: true
   - type: AlertLevelInterceptionRule
   - type: AntagSelection
     selectionTime: PostPlayerSpawn
@@ -1822,6 +1931,47 @@
 
 - type: entity
   id: ArgocyteVents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/aliens.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 30
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: MobArgocyteSlurva
+      prob: 0.008
+    - id: MobArgocyteBarrier
+      prob: 0.01
+    - id: MobArgocyteSkitter
+      prob: 0.01
+    - id: MobArgocyteSwiper
+      prob: 0.01
+    - id: MobArgocyteMolder
+      prob: 0.01
+    - id: MobArgocytePouncer
+      prob: 0.01
+    - id: MobArgocyteGlider
+      prob: 0.01
+    - id: MobArgocyteHarvester
+      prob: 0.01
+    - id: MobArgocyteCrawler
+      prob: 0.01
+    - id: MobArgocyteEnforcer
+      prob: 0.01
+    - id: MobArgocyteFounder
+      prob: 0.01
+
+- type: entity
+  id: ArgocyteVentsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -1832,12 +1982,14 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 30
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # not that weak
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -1859,6 +2011,29 @@
 
 - type: entity
   id: TickVents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EventHeat # HardLight: lone critters, light heat
+    cost: 35
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 20
+    weight: 3
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: MobTick
+      prob: 0.01
+
+- type: entity
+  id: TickVentsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -1869,8 +2044,10 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 20
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 70
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -1920,6 +2097,35 @@
 
 - type: entity
   id: CarpVents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 30
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: MobCarp
+      prob: 0.008
+    - id: MobCarpMagic
+      prob: 0.01
+    - id: MobCarpHolo
+      prob: 0.03
+    - id: MobCarpRainbow
+      prob: 0.01
+    - id: MobShark
+      prob: 0.03
+
+- type: entity
+  id: CarpVentsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -1930,12 +2136,14 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 30
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -1953,6 +2161,33 @@
 
 - type: entity
   id: SpaceVents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 30
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: MobBearSpace
+      prob: 0.03
+    - id: MobKangarooSpace
+      prob: 0.05
+    - id: MobSpiderSpace
+      prob: 0.01
+    - id: MobCobraSpace
+      prob: 0.02
+
+- type: entity
+  id: SpaceVentsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -1963,12 +2198,14 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 30
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -1981,6 +2218,85 @@
 
 - type: entity
   id: reagentslimeVents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 60
+    reoccurrenceDelay: 200
+    minimumPlayers: 40
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: ReagentSlimeBeer
+      prob: 0.003
+    - id: ReagentSlimePax
+      prob: 0.001
+    - id: ReagentSlimeNocturine
+      prob: 0.001
+    - id: ReagentSlimeTHC
+      prob: 0.002
+    - id: ReagentSlimeBicaridine
+      prob: 0.002
+    - id: ReagentSlimeToxin
+      prob: 0.002
+    - id: ReagentSlimeNapalm
+      prob: 0.002
+    - id: ReagentSlimeOmnizine
+      prob: 0.003
+    - id: ReagentSlimeMuteToxin
+      prob: 0.002
+    - id: ReagentSlimeNorepinephricAcid
+      prob: 0.002
+    - id: ReagentSlimeEphedrine
+      prob: 0.002
+    - id: ReagentSlimeRobustHarvest
+      prob: 0.003
+    - id: ReagentSlimeIchor
+      prob: 0.002
+    - id: ReagentSlimeBleach
+      prob: 0.001
+    - id: ReagentSlimeSoap
+      prob: 0.002
+    - id: ReagentSlimeSpacelube
+      prob: 0.002
+    - id: ReagentSlimeBuzzachloricbees
+      prob: 0.002
+    - id: ReagentSlimeCum
+      prob: 0.005
+    - id: ReagentSlimePomelustine
+      prob: 0.005
+    - id: ReagentSlimePhilterex
+      prob: 0.005
+    - id: ReagentSlimeLibidozenithizine
+      prob: 0.004
+    # - id: ReagentSlimeWehjuice
+      # prob: 0.0003
+    - id: ReagentCognizine
+      prob: 0.003
+    - id: ReagentSlimeNecrosol
+      prob: 0.002
+    - id: ReagentSlimeSpaceDrugs
+      prob: 0.003
+    - id: ReagentSlimeUnstableMutagen
+      prob: 0.001
+    - id: ReagentSlimeLead
+      prob: 0.001
+    - id: ReagentSlimechlorinetriflouride
+      prob: 0.002
+    - id: ReagentSlimePotassium
+      prob: 0.001
+    # - id: ReagentSlimeLotophagoiOil
+      # prob: 0.0001
+
+- type: entity
+  id: reagentslimeVentsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -1991,12 +2307,14 @@
     earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 40
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2036,6 +2354,71 @@
 
 - type: entity
   id: XenoVents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/aliens.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 30
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: XenoEggSpawner
+      prob: 0.01
+    - id: MobXenoPraetorianNPC
+      prob: 0.0001
+    - id: MobXenoDroneNPC
+      prob: 0.0001
+    - id: MobXenoRavagerNPC
+      prob: 0.0001
+    - id: MobXenoRunnerNPC
+      prob: 0.0001
+    - id: MobXenoRounyNPC
+      prob: 0.0001
+    - id: MobXenoSpitterNPC
+      prob: 0.0001
+    - id: MobXenoAcidRunner
+      prob: 0.0001
+    - id: MobXenoAcidRunnerPrimed
+      prob: 0.0001
+    - id: MobXenoLarva
+      prob: 0.01
+    - id: MobXenoBoiler
+      prob: 0.0001
+    - id: MobXenoBoxerWarrior
+      prob: 0.0001
+    - id: MobXenoCarrier
+      prob: 0.0001
+    - id: MobXenoCrusher
+      prob: 0.0001
+    - id: MobXenoChargerCrusher
+      prob: 0.0001
+    - id: MobXenoDancerPraetorian
+      prob: 0.0001
+    - id: MobXenoDefender
+      prob: 0.0001
+    - id: MobXenoSentinel
+      prob: 0.0001
+    - id: MobXenoHivelord
+      prob: 0.0001
+    - id: MobXenoParasite
+      prob: 0.0001
+    - id: MobXenoBloodyLarva
+      prob: 0.0001
+    - id: MobXenoLurker
+      prob: 0.0001
+    - id: MobXenoWarrior
+      prob: 0.0001
+
+- type: entity
+  id: XenoVentsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2046,12 +2429,14 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 30
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 100
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2084,6 +2469,41 @@
 
 - type: entity
   id: XenoVentsLarva
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/aliens.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 30
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: MobXenoSpitterLarva
+      prob: 0.01
+    - id: MobXenoSneakyLarva
+      prob: 0.01
+    - id: MobXenoMaleLarva
+      prob: 0.01
+    - id: MobXenoFemaleLarva
+      prob: 0.01
+    - id: MobXenoSpeedyLarva
+      prob: 0.01
+    - id: MobXenoLarva
+      prob: 0.01
+    - id: MobXenoParasite
+      prob: 0.01
+    - id: MobXenoBloodyLarva
+      prob: 0.01
+
+- type: entity
+  id: XenoVentsLarvaHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2094,12 +2514,14 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 30
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2116,6 +2538,59 @@
 
 - type: entity
   id: AiVents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 30
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: MobRogueSiliconScrap
+      prob: 0.008
+    - id: MobRogueSiliconScrapThreads
+      prob: 0.008
+    - id: MobRogueSiliconScrapThrusters
+      prob: 0.008
+    - id: MobRogueSiliconScrapThrustersRanged
+      prob: 0.008
+    - id: MobRogueSiliconScrapFlayer
+      prob: 0.007
+    - id: MobRogueSiliconDroneLethals
+      prob: 0.005
+    - id: MobRogueSiliconDroneNonLethals
+      prob: 0.01
+    - id: MobRogueSiliconDroneScience
+      prob: 0.001
+    - id: MobRogueSiliconViscerator
+      prob: 0.009
+    - id: MobRogueSiliconServo
+      prob: 0.001
+    - id: MobRogueSiliconHerder
+      prob: 0.001
+    - id: MobRogueSiliconHunter
+      prob: 0.001
+    - id: MobRogueSiliconTesla
+      prob: 0.001
+    - id: MobRogueSiliconScrapAsteroid
+      prob: 0.001
+    - id: MobRogueSiliconScrapThreadsAsteroid
+      prob: 0.001
+    - id: MobRogueSiliconScrapThrustersAsteroid
+      prob: 0.001
+    - id: MobRogueSiliconScrapThrustersRangedAsteroid
+      prob: 0.001
+
+- type: entity
+  id: AiVentsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2126,12 +2601,14 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 30
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 100
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2159,6 +2636,49 @@
 
 - type: entity
   id: Syndivents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 400
+    minimumPlayers: 10
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: SpawnMobSyndicateNavalCaptain
+      prob: 0.001
+    - id: SpawnMobSyndicateNavalEngineer
+      prob: 0.001
+    - id: SpawnMobSyndicateNavalMedic
+      prob: 0.001
+    - id: SpawnMobSyndicateNavalSecondOfficer
+      prob: 0.001
+    - id: SpawnMobSyndicateNavalOperator
+      prob: 0.001
+    - id: SpawnMobSyndicateNavalGrenadier
+      prob: 0.001
+    - id: SpawnMobSyndicateNavalSaboteur
+      prob: 0.001
+    - id: SpawnMobExperimentationVictim
+      prob: 0.001
+    - id: SpawnMobSyndicateNavalCommander
+      prob: 0.001
+    - id: SpawnMobSyndicateNavalDeckhand
+      prob: 0.001
+    - id: SpawnMobSyndicateNavalChemwarrior
+      prob: 0.001
+    - id: SpawnMobSyndicateNavalHardVoid
+      prob: 0.001
+
+- type: entity
+  id: SyndiventsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2169,12 +2689,14 @@
     earliestStart: 30
     reoccurrenceDelay: 400
     minimumPlayers: 10
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2196,6 +2718,31 @@
 
 - type: entity
   id: Dinosaurvents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/_HL/Freeallegiance/lizard10.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 10
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: SpawnMobDinosaurSmall
+      prob: 0.04
+    - id: SpawnMobDinosaurMedium
+      prob: 0.02
+    - id: SpawnMobDinosaurBig
+      prob: 0.01
+
+- type: entity
+  id: DinosaurventsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2206,12 +2753,14 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 10
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2223,6 +2772,29 @@
 
 - type: entity
   id: Fleshvents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/aliens.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 10
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: SpawnMobAberrantFleshExpeditions
+      prob: 0.02
+    - id: SpawnMobAberrantFleshNewbornExpeditions
+      prob: 0.01
+
+- type: entity
+  id: FleshventsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2233,12 +2805,14 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 10
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2249,6 +2823,31 @@
 
 - type: entity
   id: Explorervents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/intercept.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 10
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: SpawnMobExplorerT1
+      prob: 0.04
+    - id: SpawnMobExplorerT2
+      prob: 0.02
+    - id: SpawnMobExplorerT3
+      prob: 0.01
+
+- type: entity
+  id: ExplorerventsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2259,12 +2858,14 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 10
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2276,6 +2877,31 @@
 
 - type: entity
   id: Mercvents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/intercept.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 10
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: SpawnMobMercenaryT1
+      prob: 0.04
+    - id: SpawnMobMercenaryT2
+      prob: 0.02
+    - id: SpawnMobMercenaryT3
+      prob: 0.01
+
+- type: entity
+  id: MercventsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2286,12 +2912,14 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 10
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2303,6 +2931,37 @@
 
 - type: entity
   id: Zedvents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/outbreak7.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 10
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: MobZTaken
+      prob: 0.06
+    - id: MobZVasophage
+      prob: 0.04
+    - id: MobZHeadless
+      prob: 0.03
+    - id: MobZBloated
+      prob: 0.02
+    - id: MobZCarrier
+      prob: 0.01
+    - id: MobZP0
+      prob: 0.03
+
+- type: entity
+  id: ZedventsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2313,12 +2972,14 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 10
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2333,6 +2994,39 @@
 
 - type: entity
   id: Punkvents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/intercept.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 10
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: SpawnMobPunkT1
+      prob: 0.03
+    - id: SpawnMobPunkT2
+      prob: 0.03
+    - id: SpawnMobPunkT3
+      prob: 0.03
+    - id: MobPunkGangerSmg
+      prob: 0.03
+    - id: MobPunkGangerShotgun
+      prob: 0.02
+    - id: MobPunkGangerPistol
+      prob: 0.03
+    - id: SpawnMobPunkLeader
+      prob: 0.01
+
+- type: entity
+  id: PunkventsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2343,12 +3037,14 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 10
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2364,6 +3060,41 @@
 
 - type: entity
   id: Cultvents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/intercept.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 300
+    minimumPlayers: 10
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: SpawnMobBloodCultistZealotMelee
+      prob: 0.03
+    - id: SpawnMobBloodCultLeech
+      prob: 0.03
+    - id: SpawnMobBloodCultistZealotRanged
+      prob: 0.03
+    - id: SpawnMobBloodCultistCaster
+      prob: 0.03
+    - id: BloodCultTurret
+      prob: 0.02
+    - id: SpawnMobBloodCultistAcolyte
+      prob: 0.03
+    - id: SpawnMobBloodCultistPriest
+      prob: 0.02
+    - id: SpawnMobBloodCultistJanitor
+      prob: 0.03
+
+- type: entity
+  id: CultventsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2374,12 +3105,14 @@
     earliestStart: 30
     reoccurrenceDelay: 300
     minimumPlayers: 10
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
       Warden: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2394,10 +3127,57 @@
       - id: SpawnMobBloodCultistPriest
       - id: SpawnMobBloodCultistJanitor
       - id: MobBloodCultistAscended
-    
+
 
 - type: entity
   id: LizardVents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 10
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: BlueRainLizard
+      prob: 0.005
+    - id: HostileBlueRainLizard
+      prob: 0.001
+    - id: GreenRainLizard
+      prob: 0.004
+    - id: HostileGreenRainLizard
+      prob: 0.001
+    - id: PinkRainLizard
+      prob: 0.005
+    - id: HostilePinkRainLizard
+      prob: 0.001
+    - id: WhiteRainLizard
+      prob: 0.001
+    - id: HostileWhiteRainLizard
+      prob: 0.001
+    - id: CyanRainLizard
+      prob: 0.001
+    - id: HostileCyanRainLizard
+      prob: 0.001
+    - id: RedRainLizard
+      prob: 0.001
+    - id: HostileRedRainLizard
+      prob: 0.001
+    - id: TrainRainLizard
+      prob: 0.001
+    - id: HostileTrainRainLizard
+      prob: 0.001
+
+- type: entity
+  id: LizardVentsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2408,10 +3188,12 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 10
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 80
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2431,9 +3213,42 @@
       - id: HostileRedRainLizard
       - id: TrainRainLizard
       - id: HostileTrainRainLizard
-      
+
 - type: entity
   id: HostileLizardVents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 10
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: HostileBlueRainLizard
+      prob: 0.01
+    - id: HostileGreenRainLizard
+      prob: 0.01
+    - id: HostilePinkRainLizard
+      prob: 0.01
+    - id: HostileWhiteRainLizard
+      prob: 0.01
+    - id: HostileCyanRainLizard
+      prob: 0.01
+    - id: HostileRedRainLizard
+      prob: 0.01
+    - id: HostileTrainRainLizard
+      prob: 0.01
+
+- type: entity
+  id: HostileLizardVentsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2444,10 +3259,12 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 10
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 80
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2484,6 +3301,29 @@
 
 - type: entity
   id: glimmervents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EventHeat # HardLight: lone critters, light heat
+    cost: 35
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 40
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: MobGlimmerMite
+      prob: 0.01
+
+- type: entity
+  id: glimmerventsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2494,8 +3334,10 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 40
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 80
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2505,6 +3347,29 @@
 
 - type: entity
   id: Abyssvents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 40
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: PortalAbyssal
+      prob: 0.01
+    - id: PortalAbyssalGhost
+      prob: 0.01
+
+- type: entity
+  id: AbyssventsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2515,8 +3380,10 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 40
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 90
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
@@ -2524,9 +3391,50 @@
       children:
       - id: PortalAbyssal
       - id: PortalAbyssalGhost
-      
+
 - type: entity
   id: Lavavents
+  parent: [VentCrittersBase, BaseGameRule]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30
+    reoccurrenceDelay: 200
+    minimumPlayers: 40
+    weight: 3 # Really weak compared to other critters
+    duration: 60
+    requiredJobs:
+      SecurityOfficer: 1
+  - type: VentCrittersRule
+    entries:
+    - id: MobWatcherLavaland
+      prob: 0.01
+    - id: MobWatcherIcewing
+      prob: 0.01
+    - id: MobWatcherMagmawing
+      prob: 0.01
+    - id: MobWatcherPride
+      prob: 0.01
+    - id: MobHellspawn
+      prob: 0.01
+    - id: LavaTalon
+      prob: 0.01
+    - id: MobGoliath
+      prob: 0.01
+    - id: MobHivelord
+      prob: 0.01
+    - id: MobLavalandGoliath
+      prob: 0.01
+    - id: MobLavalandGoldgrub
+      prob: 0.01
+    - id: MobLavalandLegion
+      prob: 0.01
+
+- type: entity
+  id: LavaventsHorde
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
@@ -2537,8 +3445,10 @@
     earliestStart: 30
     reoccurrenceDelay: 200
     minimumPlayers: 40
-    weight: 6 # Really weak compared to other critters
+    weight: 3 # Really weak compared to other critters
     duration: 60
+  - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
+    cost: 100
   - type: VentHordeRule
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector

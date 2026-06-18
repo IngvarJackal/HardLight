@@ -128,11 +128,6 @@
     minPlayers: 0
     requiredJobs:
       HeadOfSecurity: 1
-  - type: EventHeat # HardLight: holds heat while active so no other big threat can stack; minor events still fit under the ceiling
-    cost: 210
-    sustained: true
-  - type: SectorThreatAlertRule # HardLight: CC passive detection reveal at 60-90m, heat releases to decay 30m later
-    announcement: sector-threat-alert-nukeops
   - type: LoadMapRule
     mapPath: /Maps/Nonstations/nukieplanet.yml
   - type: AntagSelection
@@ -307,8 +302,6 @@
   components:
   - type: GameRule
     minPlayers: 0
-  - type: SectorThreatAlertRule # HardLight: anti-stall reveal only; wizard is opportunistic and holds no sustained heat
-    announcement: sector-threat-alert-wizard
   - type: AntagSelection
     agentName: wizard-round-end-name
     selectionTime: PrePlayerSpawn
@@ -347,12 +340,6 @@
     delay:
       min: 600
       max: 900
-  - type: EventHeat # HardLight: holds heat while active so no other big threat can stack; released ~30m after the reveal
-    cost: 210
-    sustained: true
-  - type: SectorThreatAlertRule # HardLight: CC alert 15m after the first initial infected turns, heat releases 30m later
-    announcement: sector-threat-alert-zombies
-    triggerOnZombified: true
   - type: ZombieRule
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn

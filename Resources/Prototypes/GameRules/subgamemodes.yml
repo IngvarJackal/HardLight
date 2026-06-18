@@ -71,11 +71,6 @@
   parent: BaseGameRule
   id: Xenoborgs
   components:
-  - type: EventHeat # HardLight: holds heat while active so no other big threat can stack; minor events still fit under the ceiling
-    cost: 210
-    sustained: true
-  - type: SectorThreatAlertRule # HardLight: CC passive detection reveal at 60-90m, heat releases to decay 30m later
-    announcement: sector-threat-alert-xenoborgs
   - type: XenoborgsRule
   - type: RuleGrids
   - type: GameRule

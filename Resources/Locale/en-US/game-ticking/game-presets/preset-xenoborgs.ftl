@@ -1,9 +1,9 @@
 xenoborgs-title = Xenoborgs
 xenoborgs-description = A Xenoborg Mothership was detected near the station. Stop them from turning every sentient being into a xenoborg.
 
-xenoborgs-welcome = You're a xenoborg. Protect and help the mothership core to make more xenoborgs. and eventually turn all carbon-based life form into silicon. Note: Colonial Command runs a passive sector threat detection grid; you have at least 60 minutes before it may flag the possibility of a xenoborg mothership in the sector, so don't count on staying hidden forever.
+xenoborgs-welcome = You're a xenoborg. Protect and help the mothership core to make more xenoborgs. and eventually turn all carbon-based life form into silicon.
 
-mothership-welcome = You're the mothership core. Guide the xenoborgs so they can bring your materials and sentient brains so you can grow the xenoborg army and turn all carbon-based life form into silicon. Note: Colonial Command runs a passive sector threat detection grid; you have at least 60 minutes before it may flag the possibility of a xenoborg mothership in the sector, so don't count on staying hidden forever.
+mothership-welcome = You're the mothership core. Guide the xenoborgs so they can bring your materials and sentient brains so you can grow the xenoborg army and turn all carbon-based life form into silicon.
 
 xenoborg-shuttle-call = We have detected that Xenoborgs have overtaken the station. Dispatching an emergency shuttle to collect remaining personnel.
 

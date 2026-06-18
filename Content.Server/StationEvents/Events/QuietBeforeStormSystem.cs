@@ -14,8 +14,8 @@ namespace Content.Server.StationEvents.Events;
 ///     HardLight: drives the "Quiet before storm" event. On start it suspends the schedulers for a lull, then resolves
 ///     into one department-gated crisis. The crisis is only valid if its department has at least 2 non-trainee crew;
 ///     if none qualify it falls back to a "nothingburger" (the suspense simply lifts). Severity scales with that
-///     department's headcount. All crisis sub-events are fired directly (bypassing affordability), and since each
-///     carries heat the round's heat climbs and tends to stay high afterwards.
+///     department's headcount. The rule carries no heat of its own; all heat comes from the crisis sub-events it
+///     fires directly (bypassing affordability), so the round stays hot afterwards — or none, for the nothingburger.
 /// </summary>
 public sealed class QuietBeforeStormSystem : StationEventSystem<QuietBeforeStormRuleComponent>
 {
@@ -30,6 +30,9 @@ public sealed class QuietBeforeStormSystem : StationEventSystem<QuietBeforeStorm
     private static readonly ProtoId<JobPrototype> EngineeringIntern = "TechnicalAssistant";
     private static readonly ProtoId<JobPrototype> SecurityIntern = "SecurityCadet";
 
+    // Base vent-critter event ids. Each has a "lone critter" variant (this id, a VentCrittersRule spawn) and a
+    // matching horde variant (this id + "Horde", a VentHordeRule swarm). Invasion fires both of the same type.
+    private const string HordeSuffix = "Horde";
     private static readonly string[] InvasionCritters =
     {
         "Punkvents", "Mercvents", "Explorervents", "ArgocyteVents", "XenoVents", "AiVents",
@@ -128,14 +131,13 @@ public sealed class QuietBeforeStormSystem : StationEventSystem<QuietBeforeStorm
 
     private void Invasion(int score)
     {
+        // Pick one critter type and split the spawns 50/50 between its horde and lone-critter variants, giving the
+        // remainder to the (weaker) lone critters. Same type for both, e.g. slime hordes alongside slime critters.
         var critter = RobustRandom.Pick(InvasionCritters);
-        var count = critter switch
-        {
-            "XenoVents" => (int) MathF.Ceiling(score * 0.5f),
-            "AiVents" => (int) MathF.Ceiling(score * 0.75f),
-            _ => score,
-        };
-        Fire(critter, Math.Max(1, count));
+        var hordes = score / 2;
+        var lone = score - hordes; // gets the remainder, so lone >= hordes
+        Fire(critter + HordeSuffix, hordes);
+        Fire(critter, lone);
     }
 
     private void Nothingburger()

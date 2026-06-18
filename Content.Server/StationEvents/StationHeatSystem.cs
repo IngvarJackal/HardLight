@@ -14,12 +14,9 @@ namespace Content.Server.StationEvents;
 
 /// <summary>
 ///     Tracks a single, round-scoped "heat" value (measured roughly in minutes-of-chaos) describing how
-///     dangerous the station currently is. Heat has two sources:
-///     <list type="bullet">
-///         <item>A decaying impulse pool, fed by one-shot events (<see cref="EventHeatComponent.Sustained"/> = false).</item>
-///         <item>The live sum of <see cref="EventHeatComponent.Cost"/> over all currently active game rules whose
-///               <see cref="EventHeatComponent.Sustained"/> is true (ongoing antags such as nukies / xenoborgs).</item>
-///     </list>
+///     dangerous the station currently is. Heat is a decaying impulse pool: every game rule carrying an
+///     <see cref="EventHeatComponent"/> injects its <see cref="EventHeatComponent.Cost"/> when it starts, and that
+///     contribution decays back toward 0 over time.
 ///     Heat dissipates over time at a rate driven by round length and how much security / command is on station:
 ///     <c>decayPerMinute = perHour * ceil(roundHours) + perSecurity * securityPlayers + perCommand * commandPlayers</c>.
 ///     Consumed by <see cref="EventManagerSystem"/> to suppress events the station "can't afford" (whose cost would
@@ -62,9 +59,8 @@ public sealed class StationHeatSystem : EntitySystem
 
     private void OnRuleStarted(Entity<EventHeatComponent> ent, ref GameRuleStartedEvent args)
     {
-        // Sustained rules are counted live while active; only one-shot rules contribute a decaying impulse.
-        if (!ent.Comp.Sustained)
-            _impulseHeat += ent.Comp.Cost;
+        // Every heat-carrying rule contributes a decaying impulse when it starts.
+        _impulseHeat += ent.Comp.Cost;
     }
 
     private void OnRoundRestart(RoundRestartCleanupEvent args)
@@ -99,9 +95,9 @@ public sealed class StationHeatSystem : EntitySystem
     }
 
     /// <summary>
-    ///     The current total station heat: decaying impulse heat plus the live cost of all active sustained rules.
+    ///     The current total station heat: the decaying impulse pool.
     /// </summary>
-    public float CurrentHeat => _impulseHeat + GetSustainedHeat();
+    public float CurrentHeat => _impulseHeat;
 
     /// <summary>
     ///     How fast heat currently dissipates, in heat units per minute. Scales with round length and with the
@@ -175,32 +171,5 @@ public sealed class StationHeatSystem : EntitySystem
         }
 
         return count;
-    }
-
-    private float GetSustainedHeat()
-    {
-        var total = 0f;
-        var query = EntityQueryEnumerator<EventHeatComponent, ActiveGameRuleComponent>();
-        while (query.MoveNext(out _, out var heat, out _))
-        {
-            if (heat.Sustained && !heat.Released)
-                total += heat.Cost;
-        }
-
-        return total;
-    }
-
-    /// <summary>
-    ///     Stops a sustained rule from holding heat as a fixed floor and instead dumps its cost into the decaying
-    ///     impulse pool, so the round's heat starts naturally falling. Used when an overt threat is "revealed"
-    ///     (some time after the sector threat alert) so it can no longer stall the round indefinitely.
-    /// </summary>
-    public void ReleaseSustained(Entity<EventHeatComponent> ent)
-    {
-        if (!ent.Comp.Sustained || ent.Comp.Released)
-            return;
-
-        ent.Comp.Released = true;
-        _impulseHeat += ent.Comp.Cost;
     }
 }

@@ -46,7 +46,6 @@ wizard-role-greeting =
     So you've been selected by the Space Wizards Federation to pay a visit to the station.
     Give them a good demonstration of your powers.
     What you do is up to you, just remember the Space Wizards want you to make it out alive.
-    Note: Colonial Command runs a passive sector threat detection grid. You have at least 60 minutes before it may flag the possibility of a hostile wizard in the sector, so don't expect to stay unnoticed forever.
 
 wizard-round-end-name = wizard
 
