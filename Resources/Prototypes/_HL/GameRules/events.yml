@@ -154,29 +154,31 @@
     - id: SleeperRevolutionaries
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
-    - id: QuietBeforeStorm
+    - id: AnomalyStorm
     #- id: WizardSpawn
     #- id: LoneOpsSpawn
     # - id: UnknownShuttleManOWar
     # - id: UnknownShuttleInstigator
 
-- type: entity # HardLight: late-round ominous lull, then a department-gated crisis (see QuietBeforeStormSystem)
-  id: QuietBeforeStorm
+- type: entity # HardLight: science-scaled anomaly storm (replaces the old Quiet-before-storm crisis)
+  id: AnomalyStorm
   parent: BaseGameRule
   components:
   - type: StationEvent
-    startAnnouncement: quiet-before-storm-announcement
-    startAnnouncementColor: "#9a8fb0"
+    startAnnouncement: station-event-anomaly-storm-announcement
+    startAnnouncementColor: "#18abf5"
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    weight: 12
-    earliestStart: 90
+    weight: 5
+    earliestStart: 45
     minimumPlayers: 20
-    maxOccurrences: 1
-    duration: null # the system ends the rule once the crisis resolves
-  # HardLight: no heat of its own — it only suspends the schedulers; heat comes from whatever crisis it triggers
-  # (or none, for the nothingburger outcome).
-  - type: QuietBeforeStormRule
+    duration: 60
+    requiredJobs:
+      ResearchDirector: 1
+      Scientist: 1
+  - type: EventHeat # HardLight: serious science crisis
+    cost: 100
+  - type: AnomalyStormRule
 
 - type: entity
   id: BaseStationEvent
@@ -778,14 +780,12 @@
       SecurityOfficer: 1
   - type: EventHeat # HardLight
     cost: 50
-  - type: VentCrittersRule
-    entries:
-    - id: MobAdultSlimesBlueAngry
-      prob: 0.02
-    - id: MobAdultSlimesGreenAngry
-      prob: 0.02
-    - id: MobAdultSlimesYellowAngry
-      prob: 0.02
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: MobAdultSlimesBlueAngry
+      - id: MobAdultSlimesGreenAngry
+      - id: MobAdultSlimesYellowAngry
 
 - type: entity
   id: SlimesSpawnHorde
@@ -803,11 +803,12 @@
     requiredJobs:
       HeadOfSecurity: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: MobAdultSlimesBlueAngry
       - id: MobAdultSlimesGreenAngry
@@ -830,14 +831,12 @@
       SecurityOfficer: 1
   - type: EventHeat # HardLight
     cost: 50
-  - type: VentCrittersRule
-    entries:
-    - id: MobPurpleSnake
-      prob: 0.02
-    - id: MobSmallPurpleSnake
-      prob: 0.02
-    - id: MobCobraSpace
-      prob: 0.02
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: MobPurpleSnake
+      - id: MobSmallPurpleSnake
+      - id: MobCobraSpace
 
 - type: entity
   id: SnakeSpawnHorde
@@ -855,11 +854,12 @@
     requiredJobs:
       HeadOfSecurity: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: MobPurpleSnake
       - id: MobSmallPurpleSnake
@@ -884,10 +884,10 @@
       SecurityOfficer: 1
   - type: EventHeat # HardLight
     cost: 50
-  - type: VentCrittersRule
-    entries:
-    - id: MobGiantSpiderAngry
-      prob: 0.05
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: MobGiantSpiderAngry
 
 - type: entity
   id: SpiderSpawnHorde
@@ -905,11 +905,12 @@
     requiredJobs:
       HeadOfSecurity: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: MobGiantSpiderAngry
       - id: MobSpiderSpace
@@ -931,10 +932,10 @@
       SecurityOfficer: 1
   - type: EventHeat # HardLight
     cost: 50
-  - type: VentCrittersRule
-    entries:
-    - id: MobClownSpider
-      prob: 0.05
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: MobClownSpider
 
 - type: entity
   id: SpiderClownSpawnHorde
@@ -954,11 +955,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 80
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: MobClownSpider
 
@@ -1929,7 +1931,7 @@
 
 - type: entity
   id: ArgocyteVents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -1943,24 +1945,19 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: MobArgocyteSlurva
-      prob: 0.008
-    - id: MobArgocyteSkitter
-      prob: 0.01
-    - id: MobArgocyteSwiper
-      prob: 0.01
-    - id: MobArgocyteMolder
-      prob: 0.01
-    - id: MobArgocytePouncer
-      prob: 0.01
-    - id: MobArgocyteGlider
-      prob: 0.01
-    - id: MobArgocyteHarvester
-      prob: 0.01
-    - id: MobArgocyteCrawler
-      prob: 0.01
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: MobArgocyteSlurva
+      - id: MobArgocyteSkitter
+      - id: MobArgocyteSwiper
+      - id: MobArgocyteMolder
+      - id: MobArgocytePouncer
+      - id: MobArgocyteGlider
+      - id: MobArgocyteHarvester
+      - id: MobArgocyteCrawler
 
 - type: entity
   id: ArgocyteVentsHorde
@@ -1981,11 +1978,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: MobArgocyteSlurva
       - id: MobArgocyteBarrier
@@ -2002,11 +2000,11 @@
 
 - type: entity
   id: TickVents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: EventHeat # HardLight: lone critters, light heat
-    cost: 35
+    cost: 50
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
@@ -2018,10 +2016,10 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: MobTick
-      prob: 0.01
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: MobTick
 
 - type: entity
   id: TickVentsHorde
@@ -2038,11 +2036,12 @@
     weight: 3 # Really weak compared to other critters
     duration: 60
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 70
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: MobTick
       - id: MobTickSalvage
@@ -2088,7 +2087,7 @@
 
 - type: entity
   id: CarpVents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2102,16 +2101,15 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: MobCarp
-      prob: 0.008
-    - id: MobCarpMagic
-      prob: 0.01
-    - id: MobCarpRainbow
-      prob: 0.01
-    - id: MobShark
-      prob: 0.03
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: MobCarp
+      - id: MobCarpMagic
+      - id: MobCarpRainbow
+      - id: MobShark
 
 - type: entity
   id: CarpVentsHorde
@@ -2132,11 +2130,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: MobCarp
       - id: MobCarpMagic
@@ -2150,7 +2149,7 @@
 
 - type: entity
   id: SpaceVents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2164,16 +2163,15 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: MobBearSpace
-      prob: 0.03
-    - id: MobKangarooSpace
-      prob: 0.05
-    - id: MobSpiderSpace
-      prob: 0.01
-    - id: MobCobraSpace
-      prob: 0.02
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: MobBearSpace
+      - id: MobKangarooSpace
+      - id: MobSpiderSpace
+      - id: MobCobraSpace
 
 - type: entity
   id: SpaceVentsHorde
@@ -2194,11 +2192,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: MobBearSpace
       - id: MobKangarooSpace
@@ -2207,7 +2206,7 @@
 
 - type: entity
   id: reagentslimeVents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2221,66 +2220,41 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: ReagentSlimeBeer
-      prob: 0.003
-    - id: ReagentSlimePax
-      prob: 0.001
-    - id: ReagentSlimeNocturine
-      prob: 0.001
-    - id: ReagentSlimeTHC
-      prob: 0.002
-    - id: ReagentSlimeBicaridine
-      prob: 0.002
-    - id: ReagentSlimeToxin
-      prob: 0.002
-    - id: ReagentSlimeNapalm
-      prob: 0.002
-    - id: ReagentSlimeOmnizine
-      prob: 0.003
-    - id: ReagentSlimeMuteToxin
-      prob: 0.002
-    - id: ReagentSlimeNorepinephricAcid
-      prob: 0.002
-    - id: ReagentSlimeEphedrine
-      prob: 0.002
-    - id: ReagentSlimeRobustHarvest
-      prob: 0.003
-    - id: ReagentSlimeIchor
-      prob: 0.002
-    - id: ReagentSlimeBleach
-      prob: 0.001
-    - id: ReagentSlimeSoap
-      prob: 0.002
-    - id: ReagentSlimeSpacelube
-      prob: 0.002
-    - id: ReagentSlimeBuzzachloricbees
-      prob: 0.002
-    - id: ReagentSlimeCum
-      prob: 0.005
-    - id: ReagentSlimePomelustine
-      prob: 0.005
-    - id: ReagentSlimePhilterex
-      prob: 0.005
-    - id: ReagentSlimeLibidozenithizine
-      prob: 0.004
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: ReagentSlimeBeer
+      - id: ReagentSlimePax
+      - id: ReagentSlimeNocturine
+      - id: ReagentSlimeTHC
+      - id: ReagentSlimeBicaridine
+      - id: ReagentSlimeToxin
+      - id: ReagentSlimeNapalm
+      - id: ReagentSlimeOmnizine
+      - id: ReagentSlimeMuteToxin
+      - id: ReagentSlimeNorepinephricAcid
+      - id: ReagentSlimeEphedrine
+      - id: ReagentSlimeRobustHarvest
+      - id: ReagentSlimeIchor
+      - id: ReagentSlimeBleach
+      - id: ReagentSlimeSoap
+      - id: ReagentSlimeSpacelube
+      - id: ReagentSlimeBuzzachloricbees
+      - id: ReagentSlimeCum
+      - id: ReagentSlimePomelustine
+      - id: ReagentSlimePhilterex
+      - id: ReagentSlimeLibidozenithizine
     # - id: ReagentSlimeWehjuice
       # prob: 0.0003
-    - id: ReagentCognizine
-      prob: 0.003
-    - id: ReagentSlimeNecrosol
-      prob: 0.002
-    - id: ReagentSlimeSpaceDrugs
-      prob: 0.003
-    - id: ReagentSlimeUnstableMutagen
-      prob: 0.001
-    - id: ReagentSlimeLead
-      prob: 0.001
-    - id: ReagentSlimechlorinetriflouride
-      prob: 0.002
-    - id: ReagentSlimePotassium
-      prob: 0.001
+      - id: ReagentCognizine
+      - id: ReagentSlimeNecrosol
+      - id: ReagentSlimeSpaceDrugs
+      - id: ReagentSlimeUnstableMutagen
+      - id: ReagentSlimeLead
+      - id: ReagentSlimechlorinetriflouride
+      - id: ReagentSlimePotassium
     # - id: ReagentSlimeLotophagoiOil
       # prob: 0.0001
 
@@ -2303,11 +2277,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: ReagentSlimeBeer
       - id: ReagentSlimePax
@@ -2362,9 +2337,10 @@
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: XenoEggSpawner
       - id: MobXenoAcidRunner
@@ -2386,7 +2362,7 @@
 
 - type: entity
   id: XenoVentsLarva
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2400,24 +2376,19 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: MobXenoSpitterLarva
-      prob: 0.01
-    - id: MobXenoSneakyLarva
-      prob: 0.01
-    - id: MobXenoMaleLarva
-      prob: 0.01
-    - id: MobXenoFemaleLarva
-      prob: 0.01
-    - id: MobXenoSpeedyLarva
-      prob: 0.01
-    - id: MobXenoLarva
-      prob: 0.01
-    - id: MobXenoParasite
-      prob: 0.01
-    - id: MobXenoBloodyLarva
-      prob: 0.01
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: MobXenoSpitterLarva
+      - id: MobXenoSneakyLarva
+      - id: MobXenoMaleLarva
+      - id: MobXenoFemaleLarva
+      - id: MobXenoSpeedyLarva
+      - id: MobXenoLarva
+      - id: MobXenoParasite
+      - id: MobXenoBloodyLarva
 
 - type: entity
   id: XenoVentsLarvaHorde
@@ -2438,11 +2409,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: MobXenoSpitterLarva
       - id: MobXenoSneakyLarva
@@ -2455,7 +2427,7 @@
 
 - type: entity
   id: AiVents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2469,40 +2441,27 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: MobRogueSiliconScrap
-      prob: 0.008
-    - id: MobRogueSiliconScrapThreads
-      prob: 0.008
-    - id: MobRogueSiliconScrapThrusters
-      prob: 0.008
-    - id: MobRogueSiliconScrapThrustersRanged
-      prob: 0.008
-    - id: MobRogueSiliconScrapFlayer
-      prob: 0.007
-    - id: MobRogueSiliconDroneLethals
-      prob: 0.005
-    - id: MobRogueSiliconDroneNonLethals
-      prob: 0.01
-    - id: MobRogueSiliconDroneScience
-      prob: 0.001
-    - id: MobRogueSiliconViscerator
-      prob: 0.009
-    - id: MobRogueSiliconServo
-      prob: 0.001
-    - id: MobRogueSiliconHerder
-      prob: 0.001
-    - id: MobRogueSiliconHunter
-      prob: 0.001
-    - id: MobRogueSiliconScrapAsteroid
-      prob: 0.001
-    - id: MobRogueSiliconScrapThreadsAsteroid
-      prob: 0.001
-    - id: MobRogueSiliconScrapThrustersAsteroid
-      prob: 0.001
-    - id: MobRogueSiliconScrapThrustersRangedAsteroid
-      prob: 0.001
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: MobRogueSiliconScrap
+      - id: MobRogueSiliconScrapThreads
+      - id: MobRogueSiliconScrapThrusters
+      - id: MobRogueSiliconScrapThrustersRanged
+      - id: MobRogueSiliconScrapFlayer
+      - id: MobRogueSiliconDroneLethals
+      - id: MobRogueSiliconDroneNonLethals
+      - id: MobRogueSiliconDroneScience
+      - id: MobRogueSiliconViscerator
+      - id: MobRogueSiliconServo
+      - id: MobRogueSiliconHerder
+      - id: MobRogueSiliconHunter
+      - id: MobRogueSiliconScrapAsteroid
+      - id: MobRogueSiliconScrapThreadsAsteroid
+      - id: MobRogueSiliconScrapThrustersAsteroid
+      - id: MobRogueSiliconScrapThrustersRangedAsteroid
 
 - type: entity
   id: AiVentsHorde
@@ -2525,9 +2484,10 @@
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: MobRogueSiliconScrap
       - id: MobRogueSiliconScrapThreads
@@ -2551,7 +2511,7 @@
 
 - type: entity
   id: Syndivents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2565,16 +2525,15 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: SpawnMobSyndicateNavalEngineer
-      prob: 0.001
-    - id: SpawnMobSyndicateNavalMedic
-      prob: 0.001
-    - id: SpawnMobSyndicateNavalSecondOfficer
-      prob: 0.001
-    - id: SpawnMobSyndicateNavalDeckhand
-      prob: 0.001
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: SpawnMobSyndicateNavalEngineer
+      - id: SpawnMobSyndicateNavalMedic
+      - id: SpawnMobSyndicateNavalSecondOfficer
+      - id: SpawnMobSyndicateNavalDeckhand
 
 - type: entity
   id: SyndiventsHorde
@@ -2595,11 +2554,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: SpawnMobSyndicateNavalCaptain
       - id: SpawnMobSyndicateNavalEngineer
@@ -2617,7 +2577,7 @@
 
 - type: entity
   id: Dinosaurvents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2631,12 +2591,13 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: SpawnMobDinosaurSmall
-      prob: 0.04
-    - id: SpawnMobDinosaurMedium
-      prob: 0.02
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: SpawnMobDinosaurSmall
+      - id: SpawnMobDinosaurMedium
 
 - type: entity
   id: DinosaurventsHorde
@@ -2657,11 +2618,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: SpawnMobDinosaurSmall
       - id: SpawnMobDinosaurMedium
@@ -2669,7 +2631,7 @@
 
 - type: entity
   id: Fleshvents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2683,12 +2645,13 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: SpawnMobAberrantFleshExpeditions
-      prob: 0.02
-    - id: SpawnMobAberrantFleshNewbornExpeditions
-      prob: 0.01
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: SpawnMobAberrantFleshExpeditions
+      - id: SpawnMobAberrantFleshNewbornExpeditions
 
 - type: entity
   id: FleshventsHorde
@@ -2709,18 +2672,19 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: SpawnMobAberrantFleshExpeditions
       - id: SpawnMobAberrantFleshNewbornExpeditions
 
 - type: entity
   id: Explorervents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2734,12 +2698,13 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: SpawnMobExplorerT1
-      prob: 0.04
-    - id: SpawnMobExplorerT2
-      prob: 0.02
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: SpawnMobExplorerT1
+      - id: SpawnMobExplorerT2
 
 - type: entity
   id: ExplorerventsHorde
@@ -2760,11 +2725,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: SpawnMobExplorerT1
       - id: SpawnMobExplorerT2
@@ -2772,7 +2738,7 @@
 
 - type: entity
   id: Mercvents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2786,12 +2752,13 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: SpawnMobMercenaryT1
-      prob: 0.04
-    - id: SpawnMobMercenaryT2
-      prob: 0.02
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: SpawnMobMercenaryT1
+      - id: SpawnMobMercenaryT2
 
 - type: entity
   id: MercventsHorde
@@ -2812,11 +2779,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: SpawnMobMercenaryT1
       - id: SpawnMobMercenaryT2
@@ -2824,7 +2792,7 @@
 
 - type: entity
   id: Zedvents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2838,14 +2806,14 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: MobZTaken
-      prob: 0.06
-    - id: MobZVasophage
-      prob: 0.04
-    - id: MobZHeadless
-      prob: 0.03
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: MobZTaken
+      - id: MobZVasophage
+      - id: MobZHeadless
 
 - type: entity
   id: ZedventsHorde
@@ -2866,11 +2834,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: MobZTaken
       - id: MobZVasophage
@@ -2881,7 +2850,7 @@
 
 - type: entity
   id: Punkvents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2895,20 +2864,17 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: SpawnMobPunkT1
-      prob: 0.03
-    - id: SpawnMobPunkT2
-      prob: 0.03
-    - id: SpawnMobPunkT3
-      prob: 0.03
-    - id: MobPunkGangerSmg
-      prob: 0.03
-    - id: MobPunkGangerShotgun
-      prob: 0.02
-    - id: MobPunkGangerPistol
-      prob: 0.03
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: SpawnMobPunkT1
+      - id: SpawnMobPunkT2
+      - id: SpawnMobPunkT3
+      - id: MobPunkGangerSmg
+      - id: MobPunkGangerShotgun
+      - id: MobPunkGangerPistol
 
 - type: entity
   id: PunkventsHorde
@@ -2929,11 +2895,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: SpawnMobPunkT1
       - id: SpawnMobPunkT2
@@ -2945,7 +2912,7 @@
 
 - type: entity
   id: Cultvents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -2959,16 +2926,15 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: SpawnMobBloodCultistZealotMelee
-      prob: 0.03
-    - id: SpawnMobBloodCultLeech
-      prob: 0.03
-    - id: SpawnMobBloodCultistZealotRanged
-      prob: 0.03
-    - id: SpawnMobBloodCultistAcolyte
-      prob: 0.03
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: SpawnMobBloodCultistZealotMelee
+      - id: SpawnMobBloodCultLeech
+      - id: SpawnMobBloodCultistZealotRanged
+      - id: SpawnMobBloodCultistAcolyte
 
 - type: entity
   id: CultventsHorde
@@ -2989,11 +2955,12 @@
       SecurityOfficer: 1
       Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 50
       children:
       - id: SpawnMobBloodCultistZealotMelee
       - id: SpawnMobBloodCultLeech
@@ -3008,7 +2975,7 @@
 
 - type: entity
   id: LizardVents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -3022,32 +2989,23 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: BlueRainLizard
-      prob: 0.005
-    - id: HostileBlueRainLizard
-      prob: 0.001
-    - id: GreenRainLizard
-      prob: 0.004
-    - id: HostileGreenRainLizard
-      prob: 0.001
-    - id: PinkRainLizard
-      prob: 0.005
-    - id: HostilePinkRainLizard
-      prob: 0.001
-    - id: WhiteRainLizard
-      prob: 0.001
-    - id: HostileWhiteRainLizard
-      prob: 0.001
-    - id: RedRainLizard
-      prob: 0.001
-    - id: HostileRedRainLizard
-      prob: 0.001
-    - id: TrainRainLizard
-      prob: 0.001
-    - id: HostileTrainRainLizard
-      prob: 0.001
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: BlueRainLizard
+      - id: HostileBlueRainLizard
+      - id: GreenRainLizard
+      - id: HostileGreenRainLizard
+      - id: PinkRainLizard
+      - id: HostilePinkRainLizard
+      - id: WhiteRainLizard
+      - id: HostileWhiteRainLizard
+      - id: RedRainLizard
+      - id: HostileRedRainLizard
+      - id: TrainRainLizard
+      - id: HostileTrainRainLizard
 
 - type: entity
   id: LizardVentsHorde
@@ -3066,11 +3024,12 @@
     requiredJobs:
       HeadOfSecurity: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 80
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 12
       children:
       - id: BlueRainLizard
       - id: HostileBlueRainLizard
@@ -3089,7 +3048,7 @@
 
 - type: entity
   id: HostileLizardVents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -3103,20 +3062,17 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: HostileBlueRainLizard
-      prob: 0.01
-    - id: HostileGreenRainLizard
-      prob: 0.01
-    - id: HostilePinkRainLizard
-      prob: 0.01
-    - id: HostileWhiteRainLizard
-      prob: 0.01
-    - id: HostileRedRainLizard
-      prob: 0.01
-    - id: HostileTrainRainLizard
-      prob: 0.01
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: HostileBlueRainLizard
+      - id: HostileGreenRainLizard
+      - id: HostilePinkRainLizard
+      - id: HostileWhiteRainLizard
+      - id: HostileRedRainLizard
+      - id: HostileTrainRainLizard
 
 - type: entity
   id: HostileLizardVentsHorde
@@ -3135,11 +3091,12 @@
     requiredJobs:
       HeadOfSecurity: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 80
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 12
       children:
       - id: HostileBlueRainLizard
       - id: HostileGreenRainLizard
@@ -3164,6 +3121,7 @@
     weight: 6 # Really weak compared to other critters
     duration: 60
   - type: VentHordeRule
+    scalingDepartment: null # HardLight: flavor swarm, keep legacy fixed roll
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
         range: 1, 50
@@ -3172,11 +3130,11 @@
 
 - type: entity
   id: glimmervents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: EventHeat # HardLight: lone critters, light heat
-    cost: 35
+    cost: 50
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
@@ -3188,10 +3146,10 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: MobGlimmerMite
-      prob: 0.01
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: MobGlimmerMite
 
 - type: entity
   id: glimmerventsHorde
@@ -3208,17 +3166,18 @@
     weight: 3 # Really weak compared to other critters
     duration: 60
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 80
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 10
       children:
       - id: MobGlimmerMite
 
 - type: entity
   id: Abyssvents
-  parent: [VentCrittersBase, BaseGameRule]
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -3232,10 +3191,12 @@
     duration: 60
     requiredJobs:
       SecurityOfficer: 1
-  - type: VentCrittersRule
-    entries:
-    - id: PortalAbyssalGhost
-      prob: 0.01
+  - type: EventHeat # HardLight: small horde, scales off security + players
+    cost: 50
+  - type: VentHordeRule
+    table: !type:GroupSelector
+      children:
+      - id: PortalAbyssalGhost
 
 - type: entity
   id: AbyssventsHorde
@@ -3252,11 +3213,12 @@
     weight: 3 # Really weak compared to other critters
     duration: 60
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
-    cost: 90
+    cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 10
       children:
       - id: PortalAbyssal
       - id: PortalAbyssalGhost
@@ -3278,9 +3240,10 @@
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
+    multiplierMin: 3
+    multiplierMax: 6
+    minCount: 5
     table: !type:GroupSelector
-      rolls: !type:RangeNumberSelector
-        range: 1, 5
       children:
       - id: MobWatcherLavaland
       - id: MobWatcherIcewing
@@ -3307,6 +3270,7 @@
     weight: 6 # Really weak compared to other critters
     duration: 10
   - type: VentHordeRule
+    scalingDepartment: null # HardLight: flavor swarm, keep legacy fixed roll
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
         range: 1, 100

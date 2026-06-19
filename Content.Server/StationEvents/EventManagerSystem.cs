@@ -206,10 +206,6 @@ public sealed class EventManagerSystem : EntitySystem
             return null;
         }
 
-        // HardLight: the "Quiet before storm" event can suspend all scheduler picks for an eerie lull.
-        if (_stationHeat.EventsSuspended)
-            return null;
-
         var ceiling = _configurationManager.GetCVar(CCVars.EventsHeatCeiling);
         var baseline = _configurationManager.GetCVar(CCVars.EventsHeatBaseline);
 

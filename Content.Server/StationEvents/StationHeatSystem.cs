@@ -28,7 +28,6 @@ public sealed class StationHeatSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly JobTrackingSystem _jobs = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
 
     private static readonly ProtoId<DepartmentPrototype> SecurityDepartment = "Security";
     private static readonly ProtoId<DepartmentPrototype> CommandDepartment = "Command";
@@ -66,21 +65,6 @@ public sealed class StationHeatSystem : EntitySystem
     private void OnRoundRestart(RoundRestartCleanupEvent args)
     {
         _impulseHeat = 0f;
-        _suspendUntil = TimeSpan.Zero;
-    }
-
-    /// <summary>
-    ///     While suspended, <see cref="EventManagerSystem.FindEventWithHeat"/> picks nothing. Used by the
-    ///     "Quiet before storm" event to hold an eerie lull before unleashing a crisis.
-    /// </summary>
-    private TimeSpan _suspendUntil;
-
-    public bool EventsSuspended => _timing.CurTime < _suspendUntil;
-
-    public void SuspendEventsUntil(TimeSpan until)
-    {
-        if (until > _suspendUntil)
-            _suspendUntil = until;
     }
 
     public override void Update(float frameTime)

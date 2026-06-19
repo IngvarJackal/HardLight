@@ -27,6 +27,7 @@ public sealed class VentHordeRule : StationEventSystem<VentHordeRuleComponent>
     [Dependency] private readonly EntityTableSystem _table = default!;
     [Dependency] private readonly VentHordeSystem _horde = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly EventScalingSystem _scaling = default!; // HardLight
 
     protected override void Added(EntityUid uid, VentHordeRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
@@ -75,7 +76,7 @@ public sealed class VentHordeRule : StationEventSystem<VentHordeRuleComponent>
         // We grab when the gamerule is expected to end and subtract the current time from it to get the duration.
         var duration = (stationEventComp.EndTime - _timing.CurTime) ?? TimeSpan.Zero;
 
-        var spawns = _table.GetSpawns(component.Table);
+        var spawns = ScaledSpawns(component);
 
         if (component.ChosenVent == null)
             return;
@@ -83,7 +84,26 @@ public sealed class VentHordeRule : StationEventSystem<VentHordeRuleComponent>
         // And start the spawn at the chosen vent.
         // The duration is the same as the time until expected gamerule end time, but that is only for convenience.
         // The spawn can happen early in certain circumstances anyway.
-        _horde.StartHordeSpawn(component.ChosenVent.Value, spawns.ToList(), duration);
+        _horde.StartHordeSpawn(component.ChosenVent.Value, spawns, duration);
+    }
+
+    // HardLight: size the swarm off live crew (a department's headcount plus a per-player bump) instead of the
+    // table's fixed RangeNumberSelector. With no ScalingDepartment we keep the legacy single-roll behaviour.
+    private List<Robust.Shared.Prototypes.EntProtoId> ScaledSpawns(VentHordeRuleComponent component)
+    {
+        if (component.ScalingDepartment is not { } department)
+            return _table.GetSpawns(component.Table).ToList();
+
+        var headcount = _scaling.DepartmentHeadcount(department, component.ScalingInternJob);
+        var multiplier = _random.NextFloat(component.MultiplierMin, component.MultiplierMax);
+        var scaled = headcount * multiplier + _scaling.ActivePlayers() * component.PerPlayer;
+        var count = Math.Clamp((int)MathF.Round(scaled), component.MinCount, component.MaxCount);
+
+        var spawns = new List<Robust.Shared.Prototypes.EntProtoId>();
+        for (var i = 0; i < count; i++)
+            spawns.AddRange(_table.GetSpawns(component.Table));
+
+        return spawns;
     }
 
     private EntityUid? ChooseVent()
