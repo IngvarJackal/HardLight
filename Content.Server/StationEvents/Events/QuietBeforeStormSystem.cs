@@ -30,8 +30,9 @@ public sealed class QuietBeforeStormSystem : StationEventSystem<QuietBeforeStorm
     private static readonly ProtoId<JobPrototype> EngineeringIntern = "TechnicalAssistant";
     private static readonly ProtoId<JobPrototype> SecurityIntern = "SecurityCadet";
 
-    // Base vent-critter event ids. Each has a "lone critter" variant (this id, a VentCrittersRule spawn) and a
-    // matching horde variant (this id + "Horde", a VentHordeRule swarm). Invasion fires both of the same type.
+    // Base vent-critter event ids. Most have a "lone critter" variant (this id, a VentCrittersRule spawn) plus a
+    // matching horde variant (this id + "Horde", a VentHordeRule swarm); a few are horde-only. Invasion fires both
+    // variants when the lone one exists, otherwise runs the whole score as hordes.
     private const string HordeSuffix = "Horde";
     private static readonly string[] InvasionCritters =
     {
@@ -134,6 +135,14 @@ public sealed class QuietBeforeStormSystem : StationEventSystem<QuietBeforeStorm
         // Pick one critter type and split the spawns 50/50 between its horde and lone-critter variants, giving the
         // remainder to the (weaker) lone critters. Same type for both, e.g. slime hordes alongside slime critters.
         var critter = RobustRandom.Pick(InvasionCritters);
+
+        // Some critter types only ship a horde variant; with no lone rule to fire, run the whole score as hordes.
+        if (!PrototypeManager.HasIndex<EntityPrototype>(critter))
+        {
+            Fire(critter + HordeSuffix, score);
+            return;
+        }
+
         var hordes = score / 2;
         var lone = score - hordes; // gets the remainder, so lone >= hordes
         Fire(critter + HordeSuffix, hordes);
