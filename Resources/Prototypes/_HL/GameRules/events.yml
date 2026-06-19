@@ -2006,7 +2006,6 @@
       - id: MobArgocyteCrawler
       - id: MobArgocyteEnforcer
       - id: MobArgocyteFounder
-      - id: MobArgocyteLeviathing
 
 
 - type: entity
@@ -2372,49 +2371,11 @@
     entries:
     - id: XenoEggSpawner
       prob: 0.01
-    - id: MobXenoPraetorianNPC
-      prob: 0.0001
-    - id: MobXenoDroneNPC
-      prob: 0.0001
-    - id: MobXenoRavagerNPC
-      prob: 0.0001
-    - id: MobXenoRunnerNPC
-      prob: 0.0001
-    - id: MobXenoRounyNPC
-      prob: 0.0001
-    - id: MobXenoSpitterNPC
-      prob: 0.0001
-    - id: MobXenoAcidRunner
-      prob: 0.0001
-    - id: MobXenoAcidRunnerPrimed
-      prob: 0.0001
     - id: MobXenoLarva
       prob: 0.01
-    - id: MobXenoBoiler
-      prob: 0.0001
-    - id: MobXenoBoxerWarrior
-      prob: 0.0001
-    - id: MobXenoCarrier
-      prob: 0.0001
-    - id: MobXenoCrusher
-      prob: 0.0001
-    - id: MobXenoChargerCrusher
-      prob: 0.0001
-    - id: MobXenoDancerPraetorian
-      prob: 0.0001
-    - id: MobXenoDefender
-      prob: 0.0001
-    - id: MobXenoSentinel
-      prob: 0.0001
-    - id: MobXenoHivelord
-      prob: 0.0001
     - id: MobXenoParasite
       prob: 0.0001
     - id: MobXenoBloodyLarva
-      prob: 0.0001
-    - id: MobXenoLurker
-      prob: 0.0001
-    - id: MobXenoWarrior
       prob: 0.0001
 
 - type: entity
@@ -2443,13 +2404,6 @@
         range: 1, 50
       children:
       - id: XenoEggSpawner
-      - id: MobXenoPraetorianNPC
-      - id: MobXenoDroneNPC
-      - id: MobXenoQueenNPC
-      - id: MobXenoRavagerNPC
-      - id: MobXenoRunnerNPC
-      - id: MobXenoRounyNPC
-      - id: MobXenoSpitterNPC
       - id: MobXenoAcidRunner
       - id: MobXenoAcidRunnerPrimed
       - id: MobXenoLarva
@@ -2577,8 +2531,6 @@
     - id: MobRogueSiliconHerder
       prob: 0.001
     - id: MobRogueSiliconHunter
-      prob: 0.001
-    - id: MobRogueSiliconTesla
       prob: 0.001
     - id: MobRogueSiliconScrapAsteroid
       prob: 0.001
@@ -3418,20 +3370,6 @@
       prob: 0.01
     - id: MobWatcherPride
       prob: 0.01
-    - id: MobHellspawn
-      prob: 0.01
-    - id: LavaTalon
-      prob: 0.01
-    - id: MobGoliath
-      prob: 0.01
-    - id: MobHivelord
-      prob: 0.01
-    - id: MobLavalandGoliath
-      prob: 0.01
-    - id: MobLavalandGoldgrub
-      prob: 0.01
-    - id: MobLavalandLegion
-      prob: 0.01
 
 - type: entity
   id: LavaventsHorde
@@ -3462,12 +3400,6 @@
       - id: LavaTalon
       - id: MobGoliath
       - id: MobHivelord
-      - id: MobLavalandGoliath
-      - id: MobLavalandGoldgrub
-      - id: MobLavalandLegion
-      - id: MobLavalandHierophant
-      - id: MobLavalandAshDrake
-      - id: MobLavalandBubblegum
 
 
 - type: entity
