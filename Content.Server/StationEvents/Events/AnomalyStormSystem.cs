@@ -1,6 +1,8 @@
 using System;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Roles;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -13,11 +15,16 @@ public sealed class AnomalyStormSystem : StationEventSystem<AnomalyStormRuleComp
 {
     [Dependency] private readonly EventScalingSystem _scaling = default!;
 
+    // HardLight: the storm scales off the science department's live headcount (research assistants excluded).
+    // Same pattern as VentHordeRule — reuses EventScalingSystem with a different department.
+    private static readonly ProtoId<DepartmentPrototype> ScalingDepartment = "Science";
+    private static readonly ProtoId<JobPrototype> ScalingInternJob = "ResearchAssistant";
+
     protected override void Ended(EntityUid uid, AnomalyStormRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
         base.Ended(uid, component, gameRule, args);
 
-        var headcount = _scaling.DepartmentHeadcount(component.Department, component.InternJob);
+        var headcount = _scaling.DepartmentHeadcount(ScalingDepartment, ScalingInternJob);
         var score = Math.Clamp(1 + headcount, 1, component.MaxScore);
 
         for (var i = 0; i < score; i++)

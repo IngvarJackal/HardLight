@@ -1,4 +1,3 @@
-using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.StationEvents.Components;
@@ -12,13 +11,7 @@ namespace Content.Server.StationEvents.Components;
 [RegisterComponent, Access(typeof(Events.AnomalyStormSystem))]
 public sealed partial class AnomalyStormRuleComponent : Component
 {
-    /// <summary>Department whose headcount scales the storm.</summary>
-    [DataField]
-    public ProtoId<DepartmentPrototype> Department = "Science";
-
-    /// <summary>Trainee role excluded from the headcount.</summary>
-    [DataField]
-    public ProtoId<JobPrototype>? InternJob = "ResearchAssistant";
+    // HardLight: the scaling department (Science) is a constant on AnomalyStormSystem, not a datafield.
 
     /// <summary>Severity (number of anomaly spawns) is clamped to at most this.</summary>
     [DataField]

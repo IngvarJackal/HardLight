@@ -1,7 +1,5 @@
 ﻿using Content.Server.StationEvents.Events;
 using Content.Shared.EntityTable.EntitySelectors;
-using Content.Shared.Roles;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.StationEvents.Components;
 
@@ -28,18 +26,15 @@ public sealed partial class VentHordeRuleComponent : Component
 
     // HardLight: horde size scales off live crew instead of a fixed RangeNumberSelector. The number of mobs is
     // clamp(round(deptHeadcount * random(MultiplierMin, MultiplierMax) + activePlayers * PerPlayer), MinCount, MaxCount),
-    // and the Table is rolled that many times (so the Table's own Rolls should be 1).
+    // and the Table is rolled that many times (so the Table's own Rolls should be 1). The department itself is a
+    // constant on VentHordeRule (security); see EventScalingSystem.ScaledCount.
 
     /// <summary>
-    /// Department whose (non-trainee) headcount scales the spawn count. Null falls back to the legacy behaviour of
-    /// letting the <see cref="Table"/>'s own Rolls decide the count.
+    /// Whether to size the swarm off live crew (the default). False keeps the legacy behaviour of letting the
+    /// <see cref="Table"/>'s own Rolls decide the count — used by flavor swarms.
     /// </summary>
     [DataField]
-    public ProtoId<DepartmentPrototype>? ScalingDepartment = "Security";
-
-    /// <summary>Trainee role in the scaling department, excluded from the headcount.</summary>
-    [DataField]
-    public ProtoId<JobPrototype>? ScalingInternJob = "SecurityCadet";
+    public bool Scaled = true;
 
     /// <summary>Random multiplier applied to the department headcount.</summary>
     [DataField]

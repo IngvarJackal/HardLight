@@ -5,7 +5,9 @@ using Content.Server.VentHorde.Components;
 using Content.Server.VentHorde.Systems;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Roles;
 using Content.Shared.Station.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -28,6 +30,11 @@ public sealed class VentHordeRule : StationEventSystem<VentHordeRuleComponent>
     [Dependency] private readonly VentHordeSystem _horde = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EventScalingSystem _scaling = default!; // HardLight
+
+    // HardLight: vent hordes size their swarm off the security department's live headcount (cadets excluded).
+    // Hardcoded for now; lift onto a shared scaling component if other event types need to pick their own department.
+    private static readonly ProtoId<DepartmentPrototype> ScalingDepartment = "Security";
+    private static readonly ProtoId<JobPrototype> ScalingInternJob = "SecurityCadet";
 
     protected override void Added(EntityUid uid, VentHordeRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
@@ -87,19 +94,18 @@ public sealed class VentHordeRule : StationEventSystem<VentHordeRuleComponent>
         _horde.StartHordeSpawn(component.ChosenVent.Value, spawns, duration);
     }
 
-    // HardLight: size the swarm off live crew (a department's headcount plus a per-player bump) instead of the
-    // table's fixed RangeNumberSelector. With no ScalingDepartment we keep the legacy single-roll behaviour.
-    private List<Robust.Shared.Prototypes.EntProtoId> ScaledSpawns(VentHordeRuleComponent component)
+    // HardLight: size the swarm off live crew (security headcount plus a per-player bump) instead of the table's
+    // fixed RangeNumberSelector. Unscaled events keep the legacy single-roll behaviour.
+    private List<EntProtoId> ScaledSpawns(VentHordeRuleComponent component)
     {
-        if (component.ScalingDepartment is not { } department)
+        if (!component.Scaled)
             return _table.GetSpawns(component.Table).ToList();
 
-        var headcount = _scaling.DepartmentHeadcount(department, component.ScalingInternJob);
-        var multiplier = _random.NextFloat(component.MultiplierMin, component.MultiplierMax);
-        var scaled = headcount * multiplier + _scaling.ActivePlayers() * component.PerPlayer;
-        var count = Math.Clamp((int)MathF.Round(scaled), component.MinCount, component.MaxCount);
+        var count = _scaling.ScaledCount(ScalingDepartment, ScalingInternJob,
+            component.MultiplierMin, component.MultiplierMax, component.PerPlayer,
+            component.MinCount, component.MaxCount);
 
-        var spawns = new List<Robust.Shared.Prototypes.EntProtoId>();
+        var spawns = new List<EntProtoId>();
         for (var i = 0; i < count; i++)
             spawns.AddRange(_table.GetSpawns(component.Table));
 

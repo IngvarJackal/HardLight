@@ -3176,7 +3176,7 @@
     weight: 6 # Really weak compared to other critters
     duration: 60
   - type: VentHordeRule
-    scalingDepartment: null # HardLight: flavor swarm, keep legacy fixed roll
+    scaled: false # HardLight: flavor swarm, keep legacy fixed roll
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
         range: 1, 50
@@ -3336,7 +3336,7 @@
     weight: 6 # Really weak compared to other critters
     duration: 10
   - type: VentHordeRule
-    scalingDepartment: null # HardLight: flavor swarm, keep legacy fixed roll
+    scaled: false # HardLight: flavor swarm, keep legacy fixed roll
     table: !type:GroupSelector
       rolls: !type:RangeNumberSelector
         range: 1, 100
