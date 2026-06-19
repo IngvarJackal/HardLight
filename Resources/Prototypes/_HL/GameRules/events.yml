@@ -170,7 +170,7 @@
     startAudio:
       path: /Audio/Announcements/attention.ogg
     weight: 5
-    earliestStart: 45
+    earliestStart: 60
     minimumPlayers: 20
     duration: 60
     requiredJobs:
@@ -434,7 +434,7 @@
   - type: AntagSpawner # Frontier
     prototype: MobHoloDragon # Frontier
   - type: EventHeat # HardLight
-    cost: 130
+    cost: 150
   - type: DragonRule
   - type: AntagObjectives
     objectives:
@@ -470,7 +470,7 @@
   - type: AntagSpawner
     prototype: MobXenoQueenNPC
   - type: EventHeat # HardLight
-    cost: 130
+    cost: 150
   - type: AntagSelection
     definitions:
     - spawnerPrototype: SpawnPointGhostXenoQueen
@@ -579,7 +579,7 @@
     requiredJobs:
       HeadOfSecurity: 1
   - type: EventHeat # HardLight
-    cost: 120
+    cost: 50
   - type: ParadoxCloneRule
     objectiveBlacklist:
       tags:
@@ -693,7 +693,7 @@
     duration: 240
     reoccurrenceDelay: 60
   - type: EventHeat # HardLight
-    cost: 70
+    cost: 30
   - type: KudzuGrowthRule
 
 - type: entity
@@ -712,7 +712,7 @@
     maxDuration: 120
     reoccurrenceDelay: 240
   - type: EventHeat # HardLight
-    cost: 50
+    cost: 10
   - type: PowerGridCheckRule
 
 - type: entity
@@ -729,7 +729,7 @@
     maxDuration: 240
     reoccurrenceDelay: 120
   - type: EventHeat # HardLight
-    cost: 30
+    cost: 20
   - type: SolarFlareRule
     onlyJamHeadsets: true
     affectedChannels:
@@ -760,7 +760,7 @@
     duration: 60
     reoccurrenceDelay: 60
   - type: EventHeat # HardLight
-    cost: 50
+    cost: 20
   - type: VentClogRule
 
 - type: entity
@@ -771,12 +771,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
+    earliestStart: 60
     minimumPlayers: 15
     weight: 2.5
     duration: 60
     reoccurrenceDelay: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight
     cost: 50
@@ -795,13 +796,14 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
+    earliestStart: 60
     minimumPlayers: 15
     weight: 2.5
     duration: 60
     reoccurrenceDelay: 60
     requiredJobs:
       HeadOfSecurity: 1
+      SecurityOfficer: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -822,12 +824,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
+    earliestStart: 60
     minimumPlayers: 15
     weight: 2.5
     duration: 60
     reoccurrenceDelay: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight
     cost: 50
@@ -846,13 +849,14 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
+    earliestStart: 60
     minimumPlayers: 15
     weight: 2.5
     duration: 60
     reoccurrenceDelay: 60
     requiredJobs:
       HeadOfSecurity: 1
+      SecurityOfficer: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -875,12 +879,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
+    earliestStart: 60
     minimumPlayers: 15
     weight: 2.5
     duration: 60
     reoccurrenceDelay: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight
     cost: 50
@@ -897,13 +902,14 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
+    earliestStart: 60
     minimumPlayers: 15
     weight: 2.5
     duration: 60
     reoccurrenceDelay: 60
     requiredJobs:
       HeadOfSecurity: 1
+      SecurityOfficer: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -923,12 +929,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
+    earliestStart: 60
     minimumPlayers: 20
     weight: 0.75
     duration: 60
     reoccurrenceDelay: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight
     cost: 50
@@ -945,7 +952,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
+    earliestStart: 60
     minimumPlayers: 20
     weight: 0.75
     duration: 60
@@ -953,7 +960,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -1147,7 +1153,7 @@
     reoccurrenceDelay: 200
     duration: 1
   - type: EventHeat # HardLight
-    cost: 50
+    cost: 25
   - type: IonStormRule
 
 - type: entity
@@ -1938,12 +1944,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/aliens.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 30
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -1968,7 +1975,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/aliens.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 30
     weight: 3 # not that weak
@@ -1976,7 +1983,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2009,12 +2015,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 20
     weight: 3
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: VentHordeRule
     table: !type:GroupSelector
@@ -2030,7 +2037,10 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
+    requiredJobs:
+      HeadOfSecurity: 1
+      SecurityOfficer: 1
     reoccurrenceDelay: 200
     minimumPlayers: 20
     weight: 3 # Really weak compared to other critters
@@ -2094,12 +2104,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 30
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2120,7 +2131,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 30
     weight: 3 # Really weak compared to other critters
@@ -2128,7 +2139,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2156,12 +2166,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 30
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2182,7 +2193,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 30
     weight: 3 # Really weak compared to other critters
@@ -2190,7 +2201,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2219,6 +2229,7 @@
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2275,7 +2286,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2325,7 +2335,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/aliens.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 30
     weight: 3 # Really weak compared to other critters
@@ -2333,7 +2343,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2369,12 +2378,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/aliens.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 30
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2399,7 +2409,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/aliens.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 30
     weight: 3 # Really weak compared to other critters
@@ -2407,7 +2417,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2434,12 +2443,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 30
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2472,7 +2482,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 30
     weight: 3 # Really weak compared to other critters
@@ -2480,7 +2490,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2518,12 +2527,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 400
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2544,7 +2554,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 400
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
@@ -2552,7 +2562,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2584,12 +2593,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/_HL/Freeallegiance/lizard10.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2608,7 +2618,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/_HL/Freeallegiance/lizard10.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
@@ -2616,7 +2626,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2638,12 +2647,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/aliens.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2662,7 +2672,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/aliens.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
@@ -2670,7 +2680,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2691,12 +2700,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/intercept.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2715,7 +2725,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/intercept.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
@@ -2723,7 +2733,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2745,12 +2754,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/intercept.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2769,7 +2779,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/intercept.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
@@ -2777,7 +2787,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2799,12 +2808,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/outbreak7.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2824,7 +2834,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/outbreak7.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
@@ -2832,7 +2842,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2857,12 +2866,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/intercept.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2885,7 +2895,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/intercept.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
@@ -2893,7 +2903,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2919,12 +2928,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/intercept.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 300
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -2945,7 +2955,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/intercept.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 300
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
@@ -2953,7 +2963,6 @@
     requiredJobs:
       HeadOfSecurity: 1
       SecurityOfficer: 1
-      Warden: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -2982,12 +2991,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -3016,13 +3026,14 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
+      SecurityOfficer: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -3055,12 +3066,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -3083,13 +3095,14 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 10
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
       HeadOfSecurity: 1
+      SecurityOfficer: 1
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
@@ -3139,12 +3152,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 40
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: VentHordeRule
     table: !type:GroupSelector
@@ -3160,7 +3174,10 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
+    requiredJobs:
+      HeadOfSecurity: 1
+      SecurityOfficer: 1
     reoccurrenceDelay: 200
     minimumPlayers: 40
     weight: 3 # Really weak compared to other critters
@@ -3184,12 +3201,13 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
     reoccurrenceDelay: 200
     minimumPlayers: 40
     weight: 3 # Really weak compared to other critters
     duration: 60
     requiredJobs:
+      HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
@@ -3207,7 +3225,10 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
+    requiredJobs:
+      HeadOfSecurity: 1
+      SecurityOfficer: 1
     reoccurrenceDelay: 200
     minimumPlayers: 40
     weight: 3 # Really weak compared to other critters
@@ -3232,7 +3253,10 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 30
+    earliestStart: 60
+    requiredJobs:
+      HeadOfSecurity: 1
+      SecurityOfficer: 1
     reoccurrenceDelay: 200
     minimumPlayers: 40
     weight: 3 # Really weak compared to other critters
