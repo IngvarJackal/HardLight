@@ -96,6 +96,9 @@
     available:
     - enum.DamageStateVisualLayers.Base:
         tape_greyscale: Rainbow
+  - type: Tag #HardLight
+    tags:
+    - CassetteTape
 
 - type: entity
   suffix: Interview with Garry Smosh

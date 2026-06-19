@@ -26,10 +26,7 @@
       range: 20
       criteria:
         components:
-          - NullSpace
-          - DarkPortal
-          - DarkHub
-          - Brighteye
+        - NullSpace
     - type: PowerCellDraw
       drawRate: 1
       useRate: 0

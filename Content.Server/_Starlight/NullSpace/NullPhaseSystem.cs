@@ -19,13 +19,15 @@ using Content.Shared.Timing;
 using Robust.Shared.Timing;
 using Content.Server._Starlight.Shadekin;
 using Content.Shared.Sprite;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Humanoid;
+using System.Numerics;
 
 namespace Content.Server._Starlight.NullSpace;
 
 public sealed class NullSpacePhaseSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly PhysicsSystem _physics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly GhostSystem _ghost = default!;
@@ -35,6 +37,7 @@ public sealed class NullSpacePhaseSystem : EntitySystem
     [Dependency] private readonly UseDelaySystem _usedelay = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedScaleVisualsSystem _scaleVisuals = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
 
     private readonly EntProtoId _shadekinShadow = "ShadekinShadow";
     private readonly EntProtoId ShadekinPhaseInEffect = "ShadekinPhaseInEffect";
@@ -208,17 +211,18 @@ public sealed class NullSpacePhaseSystem : EntitySystem
                 foreach (var light in lightQuery)
                     _ghost.DoGhostBooEvent(light);
 
-                var effect = SpawnAtPosition(ShadekinPhaseInEffect, Transform(uid).Coordinates);
-                _scaleVisuals.SetSpriteScale(effect, _scaleVisuals.GetSpriteScale(uid));
-                Transform(effect).LocalRotation = Transform(uid).LocalRotation;
+                SetPhaseEffect(uid, ShadekinPhaseInEffect);
             }
             else
-                SpawnAtPosition(_shadekinShadow, Transform(uid).Coordinates);
+                SetPhaseEffect(uid, _shadekinShadow);
 
             RemComp(uid, nullspace);
         }
         else
         {
+            if (TryComp<PullerComponent>(uid, out var puller) && puller.Pulling is not null)
+                EnsureComp<NullSpacePulledComponent>(puller.Pulling.Value);
+
             EnsureComp<NullSpaceComponent>(uid);
             RemComp<ShadegenComponent>(uid);
 
@@ -229,12 +233,23 @@ public sealed class NullSpacePhaseSystem : EntitySystem
                 foreach (var light in lightQuery)
                     _ghost.DoGhostBooEvent(light);
 
-                var effect = SpawnAtPosition(ShadekinPhaseOutEffect, Transform(uid).Coordinates);
-                _scaleVisuals.SetSpriteScale(effect, _scaleVisuals.GetSpriteScale(uid));
-                Transform(effect).LocalRotation = Transform(uid).LocalRotation;
+                SetPhaseEffect(uid, ShadekinPhaseOutEffect);
             }
             else
-                SpawnAtPosition(_shadekinShadow, Transform(uid).Coordinates);
+                SetPhaseEffect(uid, _shadekinShadow);
         }
+    }
+
+    private void SetPhaseEffect(EntityUid uid, EntProtoId effectproto)
+    {
+        var effect = SpawnAtPosition(effectproto, Transform(uid).Coordinates);
+
+        var scaled = _scaleVisuals.GetSpriteScale(uid);
+        if (HasComp<AppearanceComponent>(uid)
+            && _appearance.TryGetData<Vector2>(uid, HumanoidVisuals.Scale, out var humanoidscaled))
+            scaled = humanoidscaled;
+
+        _scaleVisuals.SetSpriteScale(effect, scaled);
+        Transform(effect).LocalRotation = Transform(uid).LocalRotation;
     }
 }

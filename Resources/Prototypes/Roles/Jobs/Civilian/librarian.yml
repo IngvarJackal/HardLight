@@ -37,6 +37,7 @@
       - Thaveyan
       - VoxPidgin
       - Sign
+      - Tradeband # HL
       understands:
       - GalacticCommon
       - Scratch
@@ -53,6 +54,7 @@
       - Thaveyan
       - VoxPidgin
       - Sign
+      - Tradeband # HL
   # Starlight end
 
 - type: startingGear

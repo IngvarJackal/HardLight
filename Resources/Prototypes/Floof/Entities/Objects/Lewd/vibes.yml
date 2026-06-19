@@ -28,6 +28,7 @@
         base:
           True: { visible: false }
           False: { visible: true }
+  - type: HLPersistOnShipSave
 
 - type: entity
   parent: BaseVibe

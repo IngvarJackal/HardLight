@@ -34,6 +34,7 @@
     solution: fleshlight
   - type: ExaminableSolution
     solution: fleshlight
+  - type: HLPersistOnShipSave
 
 - type: entity
   parent: BaseFleshlight

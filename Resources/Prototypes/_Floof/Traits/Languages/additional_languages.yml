@@ -1,0 +1,13 @@
+# These add additional non-species-specific languages.
+- type: trait
+  id: Tradeband
+  name: trait-Tradeband-name
+  description: trait-Tradeband-desc
+  category: LanguageTraits # HL
+  cost: 2 # HL increased 1 to 2
+  components:
+    - type: LanguageSpeaker # HL
+  languagesSpoken:
+    - Tradeband
+  languagesUnderstood:
+    - Tradeband

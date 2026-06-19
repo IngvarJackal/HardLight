@@ -4856,3 +4856,104 @@ Entries:
       message: Reduced the bluespace stash max size capacity from Ginormous to Huge
   id: 520
   time: '2026-06-18T09:51:38.0000000+00:00'
+- author: Shades
+  changes:
+    - type: Fix
+      message: Light Sensitivity Trait having a error icon.
+    - type: Fix
+      message: TheDark deleted itself on server cleanup.
+    - type: Fix
+      message: Fixed Phase Effect Sprite Size not getting affected.
+    - type: Fix
+      message: NullSpace Locator not working.
+    - type: Fix
+      message: NullSpacePuller not stopping the pulling action correctly.
+  id: 521
+  time: '2026-06-18T10:54:54.0000000+00:00'
+- author: ScolarVisari
+  changes:
+    - type: Add
+      message: Added Tradeband language
+  id: 522
+  time: '2026-06-18T10:55:22.0000000+00:00'
+- author: Iisazel
+  changes:
+    - type: Add
+      message: >-
+        Figurines (And sex toys) now save when left on the floor! Please dont
+        explode the server with this power
+  id: 523
+  time: '2026-06-18T10:57:25.0000000+00:00'
+- author: Notarin
+  changes:
+    - type: Add
+      message: Added the addressed telepathy psionic power.
+    - type: Tweak
+      message: Gave the mantis the addressed telepathy psionic power
+  id: 524
+  time: '2026-06-18T10:57:46.0000000+00:00'
+- author: Slatebreaker
+  changes:
+    - type: Tweak
+      message: >-
+        Document cases can now hold clipboards and casettes, and show their 100%
+        explosion resistance
+  id: 525
+  time: '2026-06-18T10:59:39.0000000+00:00'
+- author: '-'
+  changes: []
+  id: 526
+  time: '2026-06-18T11:02:09.0000000+00:00'
+- author: fenndragon
+  changes:
+    - type: Tweak
+      message: 'changed syndicate weapon values '
+    - type: Tweak
+      message: syndicate equipment no longer saves
+  id: 527
+  time: '2026-06-18T11:27:33.0000000+00:00'
+- author: IngvarJackal
+  changes:
+    - type: Fix
+      message: >-
+        Fixed saved ships losing their consoles and air vents/scrubbers when
+        loaded. Previously-saved ships are repaired automatically on load.
+  id: 528
+  time: '2026-06-19T09:44:29.0000000+00:00'
+- author: IngvarJackal
+  changes:
+    - type: Fix
+      message: >-
+        Light sensitivity traits no longer burn you in light levels they
+        shouldn't.
+  id: 529
+  time: '2026-06-19T09:44:43.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Add
+      message: >-
+        Added: Audible Ping for when you receive chat highlights! (You can
+        toggle it on/off in Accessibility settings or adjust the volume in Audio
+        settings.)
+  id: 530
+  time: '2026-06-19T09:45:38.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Add
+      message: >-
+        Added an undock all button, no longer will you have to iterate through
+        all of your docks manually
+  id: 531
+  time: '2026-06-19T09:46:49.0000000+00:00'
+- author: Petalpool
+  changes:
+    - type: Add
+      message: (Elkridge Depot) Pisoner wardrobe wall locker to perma
+    - type: Add
+      message: (Elkridge Depot) Bowl for prisoners in perma
+    - type: Tweak
+      message: >-
+        (Elkridge Depot) Cargo is no longer all access, and is instead, cargo
+        access.
+  id: 532
+  time: '2026-06-19T10:04:23.0000000+00:00'

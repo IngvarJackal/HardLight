@@ -47,6 +47,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random; // Goobstation
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.NullSpace;
 
 namespace Content.Shared.Movement.Pulling.Systems;
 
@@ -753,7 +754,7 @@ public sealed class PullingSystem : EntitySystem
         if (pullerUidNull == null)
             return true;
 
-        if (user != null && !_blocker.CanInteract(user.Value, pullableUid))
+        if (user != null && !_blocker.CanInteract(user.Value, pullableUid) && !HasComp<NullSpaceComponent>(user))
             return false;
 
         var msg = new AttemptStopPullingEvent(user);

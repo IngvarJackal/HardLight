@@ -13,7 +13,7 @@
       - Trash
     grid:
     - 0,0,19,9
-    maxItemSize: Huge
+    maxItemSize: Large
   - type: Sprite
     sprite: _HL/Objects/Specific/Salvage/debris_bag.rsi
     layers:
@@ -79,4 +79,4 @@
   - type: Storage
     grid:
     - 0,0,25,20
-    maxItemSize: Huge
+    maxItemSize: Large

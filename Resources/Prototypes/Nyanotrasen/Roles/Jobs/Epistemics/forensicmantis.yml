@@ -52,6 +52,7 @@
         powersToAdd:
           - MetapsionicPower
           - TelepathyPower
+          - TelepathicIdentificationPower # Hardlight
           - MantisSummonBlackBlade
           - AssayPower # Hardlight
 

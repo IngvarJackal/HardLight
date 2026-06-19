@@ -252,3 +252,11 @@
   initializationFeedback: assay-power-initialization-feedback
   metapsionicFeedback: assay-power-metapsionic-feedback
   dampeningModifier: 0.5
+
+- type: psionicPower
+  id: TelepathicIdentificationPower
+  name: Telepathic Identification
+  description: telepathic-identification-power-description
+  components:
+  - TelepathicIdentification
+  powerSlotCost: 0

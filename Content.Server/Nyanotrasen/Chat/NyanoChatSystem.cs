@@ -34,6 +34,15 @@ namespace Content.Server.Nyanotrasen.Chat
         {
             return Filter.Empty()
                 .AddWhereAttachedEntity(IsEligibleForTelepathy)
+                .RemoveWhereAttachedEntity(IsEligibleForAddressedTelepathy) // HardLight: Remove those with addressed telepathy bc we're gonna give them addressed telepathy instead
+                .Recipients
+                .Select(p => p.Channel);
+        }
+
+        private IEnumerable<INetChannel> GetAddressedPsionicChatClients() // Hardlight: Mantis ability to see names in telepathy
+        {
+            return Filter.Empty()
+                .AddWhereAttachedEntity(IsEligibleForAddressedTelepathy)
                 .Recipients
                 .Select(p => p.Channel);
         }
@@ -67,18 +76,31 @@ namespace Content.Server.Nyanotrasen.Chat
                 && (!TryComp<MobStateComponent>(entity, out var mobstate) || mobstate.CurrentState == MobState.Alive);
         }
 
+        private bool IsEligibleForAddressedTelepathy(EntityUid entity) // Hardlight: Mantis ability to see names in telepathy
+        {
+            return IsEligibleForTelepathy(entity) && HasComp<TelepathicIdentificationComponent>(entity);
+        }
+
         public void SendTelepathicChat(EntityUid source, string message, bool hideChat)
         {
             if (!IsEligibleForTelepathy(source))
                 return;
 
+
             var clients = GetPsionicChatClients();
+            var clientsAddressed = GetAddressedPsionicChatClients();
             var admins = GetAdminClients();
             string messageWrap;
+            string addressedMessageWrap;
             string adminMessageWrap;
 
             messageWrap = Loc.GetString("chat-manager-send-telepathic-chat-wrap-message",
                 ("telepathicChannelName", Loc.GetString("chat-manager-telepathic-channel-name")), ("message", message));
+
+            addressedMessageWrap = Loc.GetString("chat-manager-send-telepathic-chat-wrap-message-addressed",
+                ("telepathicChannelName", Loc.GetString("chat-manager-telepathic-channel-name")),
+                ("source", source),
+                ("message", message)); // Hardlight: Mantis ability to see names in telepathy
 
             adminMessageWrap = Loc.GetString("chat-manager-send-telepathic-chat-wrap-message-admin",
                 ("source", source), ("message", message));
@@ -86,6 +108,7 @@ namespace Content.Server.Nyanotrasen.Chat
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Telepathic chat from {ToPrettyString(source):Player}: {message}");
 
             _chatManager.ChatMessageToMany(ChatChannel.Telepathic, message, messageWrap, source, hideChat, true, clients.ToList(), Color.PaleVioletRed);
+            _chatManager.ChatMessageToMany(ChatChannel.Telepathic, message, addressedMessageWrap, source, hideChat, true, clientsAddressed.ToList(), Color.PaleVioletRed); // Hardlight: Mantis ability to see names in telepathy
 
             _chatManager.ChatMessageToMany(ChatChannel.Telepathic, message, adminMessageWrap, source, hideChat, true, admins, Color.PaleVioletRed);
 

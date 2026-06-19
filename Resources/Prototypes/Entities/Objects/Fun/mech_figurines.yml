@@ -17,6 +17,7 @@
   - type: Tag
     tags:
     - Figurine
+  - type: HLPersistOnShipSave
     
 #Ripley APLU
 - type: entity

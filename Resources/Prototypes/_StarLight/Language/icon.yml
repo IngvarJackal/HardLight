@@ -173,3 +173,11 @@
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
     state: thaveyan
   allowSelection: false
+
+- type: jobIcon # HL
+  parent: JobIcon
+  id: LanguageIconTradeband
+  icon:
+    sprite: /Textures/_Floof/Interface/Misc/language_icons.rsi
+    state: tradeband
+  allowSelection: false
