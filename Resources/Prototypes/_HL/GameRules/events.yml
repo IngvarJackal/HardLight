@@ -274,6 +274,8 @@
   id: BureaucraticError
   parent: BaseGameRule
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     startAnnouncement: station-event-bureaucratic-error-announcement
     minimumPlayers: 25
@@ -288,6 +290,8 @@
   id: ClericalError
   parent: BaseGameRule
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     startAnnouncement: station-event-clerical-error-announcement
     minimumPlayers: 15
@@ -610,6 +614,8 @@
   parent: BaseGameRule
   id: RevenantSpawn
   components:
+  - type: EventHeat # HardLight: minor antag
+    cost: 50
   - type: StationEvent
     weight: 7.5
     duration: 1
@@ -622,6 +628,8 @@
   parent: BaseWizardRule
   id: WizardSpawn
   components:
+  - type: EventHeat # HardLight: minor antag
+    cost: 50
   - type: StationEvent
     weight: 1 # rare
     duration: 1
@@ -1160,6 +1168,8 @@
   id: MimicVendorRule
   parent: BaseGameRule
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     earliestStart: 0
     minimumPlayers: 20
@@ -1195,6 +1205,8 @@
   parent: BaseGameRule
   id: SmugglerStashVariationPass
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     earliestStart: 0
     duration: 1
@@ -1208,6 +1220,8 @@
   parent: BaseGameRule
   id: DerelictCyborgSpawn
   components:
+  - type: EventHeat # HardLight: minor antag
+    cost: 50
   - type: StationEvent
     weight: 5
     earliestStart: 15
@@ -1289,7 +1303,7 @@
     duration: 60
     maxDuration: 120
   - type: EventHeat # HardLight
-    cost: 50
+    cost: 10
   - type: PowerGridCheckRule
 
 - type: entity
@@ -1307,7 +1321,7 @@
     duration: 120
     maxDuration: 240
   - type: EventHeat # HardLight
-    cost: 30
+    cost: 20
   - type: SolarFlareRule
     allChannels: true
     lightBreakChancePerSecond: 0.0003
@@ -1327,7 +1341,7 @@
     duration: 60
     reoccurrenceDelay: 120
   - type: EventHeat # HardLight
-    cost: 50
+    cost: 20
   - type: VentClogRule
 
 - type: entity
@@ -1340,7 +1354,7 @@
     reoccurrenceDelay: 120 # Frontier: 20<120
     duration: 1
   - type: EventHeat # HardLight
-    cost: 50
+    cost: 25
   - type: IonStormRule
 
 - type: entity
@@ -1462,6 +1476,8 @@
   name: NT Bluespace Monitoring # This name shows up in the radio messages.
   categories: [ HideSpawnMenu ]
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     startRadioAnnouncement: station-event-bluespace-scrap-start-announcement
     startRadioAnnouncementChannel: Engineering
@@ -1510,6 +1526,8 @@
   id: BluespaceCacheError
   parent: BaseStationEventShortDelay
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     startAnnouncement: station-event-bluespace-cache-start-announcement
     startAudio:
@@ -1553,6 +1571,8 @@
   id: BluespaceVaultError
   parent: BaseStationEventShortDelay
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     startAnnouncement: station-event-bluespace-vault-start-announcement
     startAudio:
@@ -1595,6 +1615,8 @@
   id: BluespaceVaultSmallError
   parent: BaseStationEventShortDelay
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     startAnnouncement: station-event-bluespace-vault-start-announcement
     startAudio:
@@ -1638,6 +1660,8 @@
   id: BluespaceSyndicateFTLInterception
   parent: BaseStationEventShortDelay
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
     startAudio:
@@ -1677,6 +1701,8 @@
   id: BluespaceWizardFederationScout
   parent: BaseStationEventShortDelay
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
     startAudio:
@@ -1716,6 +1742,8 @@
   id: BluespaceBloodMoon
   parent: BaseStationEventShortDelay
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
     startAudio:
@@ -1755,6 +1783,8 @@
   id: BluespaceCave
   parent: BaseStationEventShortDelay
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
     startAudio:
@@ -1792,6 +1822,8 @@
   id: NFBluespaceBrokenMcDelivery
   parent: BaseStationEventShortDelay
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: StationEvent
     startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
     startAudio:
@@ -1850,6 +1882,8 @@
   parent: BluespaceDungeonBase
   categories: [ HideSpawnMenu ]
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: BluespaceErrorRule
     groups:
       vgroid: !type:DungeonSpawnGroup
@@ -1880,6 +1914,8 @@
   parent: BluespaceDungeonBase
   categories: [ HideSpawnMenu ]
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: BluespaceErrorRule
     groups:
       vgroid: !type:DungeonSpawnGroup
@@ -1895,6 +1931,8 @@
   parent: BluespaceDungeonBase
   categories: [ HideSpawnMenu ]
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: BluespaceErrorRule
     groups:
       vgroid: !type:DungeonSpawnGroup
@@ -1910,6 +1948,8 @@
   parent: BluespaceDungeonBase
   categories: [ HideSpawnMenu ]
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: BluespaceErrorRule
     groups:
       vgroid: !type:DungeonSpawnGroup
@@ -1925,6 +1965,8 @@
   parent: BluespaceDungeonBase
   categories: [ HideSpawnMenu ]
   components:
+  - type: EventHeat # HardLight: loot/flavor
+    cost: 15
   - type: BluespaceErrorRule
     groups:
       vgroid: !type:DungeonSpawnGroup
