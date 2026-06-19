@@ -187,3 +187,61 @@
   - type: TypingIndicator
     proto: moth
 
+# Voice pitch: shift the pitch of emote sounds via EmotePitchComponent.
+
+- type: trait
+  id: LowVoice
+  name: trait-low-voice-name
+  description: trait-low-voice-desc
+  category: SpeechTraits
+  cost: 0
+  mutuallyExclusiveTraits:
+  - LowestVoice
+  - HighVoice
+  - HighestVoice
+  components:
+  - type: EmotePitch
+    semitones: -4
+
+- type: trait
+  id: LowestVoice
+  name: trait-lowest-voice-name
+  description: trait-lowest-voice-desc
+  category: SpeechTraits
+  cost: 0
+  mutuallyExclusiveTraits:
+  - LowVoice
+  - HighVoice
+  - HighestVoice
+  components:
+  - type: EmotePitch
+    semitones: -9
+
+- type: trait
+  id: HighVoice
+  name: trait-high-voice-name
+  description: trait-high-voice-desc
+  category: SpeechTraits
+  cost: 0
+  mutuallyExclusiveTraits:
+  - LowVoice
+  - LowestVoice
+  - HighestVoice
+  components:
+  - type: EmotePitch
+    semitones: 4
+
+- type: trait
+  id: HighestVoice
+  name: trait-highest-voice-name
+  description: trait-highest-voice-desc
+  category: SpeechTraits
+  cost: 0
+  mutuallyExclusiveTraits:
+  - LowVoice
+  - LowestVoice
+  - HighVoice
+  components:
+  - type: EmotePitch
+    semitones: 9
+

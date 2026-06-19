@@ -1,6 +1,6 @@
-﻿using Robust.Shared.GameStates;
+using Robust.Shared.GameStates;
 
-namespace Content.Shared.Traits.Assorted;
+namespace Content.Shared._HL.Traits.Assorted;
 
 /// <summary>
 /// Shifts the pitch of this entity's emote sounds by a fixed number of semitones.

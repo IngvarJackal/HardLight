@@ -36,18 +36,6 @@ trait-wheelchair-bound-desc = You cannot move without your wheelchair. Wheelchai
 trait-frontal-lisp-name = Frontal lisp
 trait-frontal-lisp-desc = You thpeak with a lithp.
 
-trait-low-voice-name = Low voice
-trait-low-voice-desc = Your emotes sound a little deeper than usual.
-
-trait-lowest-voice-name = Deep voice
-trait-lowest-voice-desc = Your emotes sound much deeper than usual.
-
-trait-high-voice-name = High voice
-trait-high-voice-desc = Your emotes sound a little higher than usual.
-
-trait-highest-voice-name = Squeaky voice
-trait-highest-voice-desc = Your emotes sound much higher than usual.
-
 trait-socialanxiety-name = Stutter
 trait-socialanxiety-desc = You speak with a stutter.
 
