@@ -61,6 +61,7 @@ namespace Content.IntegrationTests.Tests
             // "/Maps/Shuttles/ShuttleEvent/instigator.yml", // Contains EXP-320g "Friendship"
             // "/Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml", // Contains syndicate rubber stamp
             "/Maps/_NF/Outpost/frontier.yml", // Contains janitorial bomb suit closet
+            "/Maps/_NF/Outpost/frontier-old.yml", // Contains janitorial bomb suit closet
             "/Maps/_NF/POI/tinnia.yml", // Contains syndicate rubber stamp
             "/Maps/_NF/POI/lpbravo.yml", // Contains syndicate rubber stamp
             "/Maps/_NF/Shuttles/Admin/fishbowl.yml", // Contains ColComm folder
@@ -323,12 +324,20 @@ namespace Content.IntegrationTests.Tests
                 DeserializationOptions.Default,
                 renamedPrototypes,
                 deletedPrototypes);
-
-            if (!reader.TryProcessData())
+            try
             {
-                Assert.Fail($"Failed to process {map}");
+                if (!reader.TryProcessData())
+                {
+                    Assert.Fail($"Failed to process {map}");
+                    return false;
+                }
+            }
+            catch (Exception ex) // HL: Soft-fail on an exception rather than just death
+            {
+                Assert.Fail($"Failed to process {map}, {ex.ToString()}");
                 return false;
             }
+
 
             foreach (var mapId in reader.MapYamlIds)
             {

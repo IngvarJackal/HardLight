@@ -45,6 +45,8 @@ public sealed class StationPaySystemTests
             DummyTicker = false,
             Connected = true,
             InLobby = true,
+            Fresh = true,
+            Destructive = true // Messing with the round state breaks the pair for future tests
         });
 
         var server = pair.Server;

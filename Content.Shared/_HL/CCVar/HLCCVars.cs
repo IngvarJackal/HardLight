@@ -180,4 +180,10 @@ public sealed class HLCCVars
     public static readonly CVarDef<float> StumbleKnockdownSeconds =
         CVarDef.Create("hardlight.stumble.knockdown_seconds", 2.5f, CVar.SERVERONLY,
             desc: "How long the stumble knockdown lasts. <=0 uses the per-component default.");
+
+    /// <summary>
+    /// Starlight: Allows disabling the auto-spawning of colcomm...
+    /// </summary>
+    public static readonly CVarDef<bool> AutoSpawnColComm =
+        CVarDef.Create("game.autospawn_colcomm", true, CVar.SERVERONLY);
 }

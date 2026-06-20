@@ -5039,3 +5039,21 @@ Entries:
       message: Size dependent emote pitch
   id: 543
   time: '2026-06-20T09:49:19.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Tweak
+      message: >-
+        Chemmasters are back to their old transfer values (1, 5, 10, 25, 50,
+        100)
+    - type: Tweak
+      message: >-
+        Reagent dispensers are back to their old transfer values (1, 5, 10, 15,
+        20, 25, 30, 50, 100)
+  id: 544
+  time: '2026-06-20T21:50:47.0000000+00:00'
+- author: DrekkCuga
+  changes:
+    - type: Fix
+      message: Fixed the automated tests!
+  id: 545
+  time: '2026-06-20T21:54:11.0000000+00:00'

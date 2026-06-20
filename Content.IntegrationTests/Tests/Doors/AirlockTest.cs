@@ -112,7 +112,7 @@ namespace Content.IntegrationTests.Tests.Doors
         [Test]
         public async Task AirlockBlockTest()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = false, DummyTicker = true });
             var server = pair.Server;
 
             await server.WaitIdleAsync();

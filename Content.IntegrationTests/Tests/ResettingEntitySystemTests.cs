@@ -33,7 +33,10 @@ namespace Content.IntegrationTests.Tests
             {
                 DummyTicker = false,
                 Connected = true,
-                Dirty = true
+                Dirty = true,
+                Map = "Empty",
+                Fresh = true,
+                Destructive = true // HL: Messing with the round state screws up future tests
             });
             var server = pair.Server;
 

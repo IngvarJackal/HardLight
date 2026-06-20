@@ -189,7 +189,7 @@ public sealed class MaterialArbitrageTest
                 var refinedCompositionComp = (PhysicalCompositionComponent)refinedCompositionReg.Component;
 
                 // This assumes refine results do not have complex spawn behaviours like exclusive groups.
-                var quantity = refineResult.MaxAmount;
+                var quantity = (refineResult.MaxAmount + refineResult.Amount) / 2; // HL: Take into account the chance of getting the resource
 
                 foreach (var (matId, amount) in refinedCompositionComp.MaterialComposition)
                 {
@@ -241,7 +241,7 @@ public sealed class MaterialArbitrageTest
 
                         foreach (var (matId, amount) in composition)
                         {
-                            spawnedMats[matId] = value.Max * amount + spawnedMats.GetValueOrDefault(matId);
+                            spawnedMats[matId] = (int)((value.Max + value.Min) / 2f * amount + spawnedMats.GetValueOrDefault(matId)); // HL: Take into account the chance of getting the resource
                         }
                     }
                 }

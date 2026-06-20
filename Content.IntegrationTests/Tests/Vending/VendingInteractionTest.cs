@@ -142,6 +142,10 @@ public sealed class VendingInteractionTest : InteractionTest
         var vendingSystem = SEntMan.System<VendingMachineSystem>();
 
         await SpawnTarget(VendingMachineProtoId);
+        Server.Log.Info("Starting wait");
+        await Pair.RunSeconds(100); // HL: We stock machines on a delay, no idea why the seconds are so compressed but here we are
+        // This doesn't actually take 100 seconds, it takes like 2...
+        Server.Log.Info("Ending wait");
         var vendorEnt = SEntMan.GetEntity(Target.Value);
 
         var items = vendingSystem.GetAllInventory(vendorEnt);

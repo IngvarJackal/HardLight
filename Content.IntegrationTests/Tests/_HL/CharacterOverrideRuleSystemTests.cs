@@ -95,6 +95,7 @@ public sealed class CharacterOverrideRuleSystemTests
             DummyTicker = false,
             Connected = true,
             InLobby = true,
+            Dirty = true
         });
 
         var server = pair.Server;
@@ -106,9 +107,9 @@ public sealed class CharacterOverrideRuleSystemTests
         server.CfgMan.SetCVar(CCVars.GameMap, TestMapId);
 
         var prefs = prefMan.GetPreferences(userId);
-        Assert.That(prefs.SelectedCharacterIndex, Is.EqualTo(0));
+        Assert.That(prefs.SelectedCharacterIndex, Is.Zero);
 
-        var selected = (HumanoidCharacterProfile) prefs.Characters[0];
+        var selected = (HumanoidCharacterProfile)prefs.Characters[0];
         var profile = selected
             .WithName(MatchingProfileName)
             .WithTraitPreference(TraitId, server.ProtoMan);
@@ -117,7 +118,7 @@ public sealed class CharacterOverrideRuleSystemTests
 
         ticker.ToggleReadyAll(true);
         await server.WaitPost(() => ticker.StartRound());
-        await pair.RunTicksSync(10);
+        await pair.RunTicksSync(100);
 
         await server.WaitAssertion(() =>
         {
@@ -135,14 +136,15 @@ public sealed class CharacterOverrideRuleSystemTests
         await pair.CleanReturnAsync();
     }
 
-      [Test]
-      public async Task EntityOverrideIgnoresOverrideBodyRestrictionWhenReapplyingTraitsTest()
-      {
+    [Test]
+    public async Task EntityOverrideIgnoresOverrideBodyRestrictionWhenReapplyingTraitsTest()
+    {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings
         {
-          DummyTicker = false,
-          Connected = true,
-          InLobby = true,
+            DummyTicker = false,
+            Connected = true,
+            InLobby = true,
+            Dirty = true
         });
 
         var server = pair.Server;
@@ -154,9 +156,9 @@ public sealed class CharacterOverrideRuleSystemTests
         server.CfgMan.SetCVar(CCVars.GameMap, TestMapId);
 
         var prefs = prefMan.GetPreferences(userId);
-        Assert.That(prefs.SelectedCharacterIndex, Is.EqualTo(0));
+        Assert.That(prefs.SelectedCharacterIndex, Is.Zero);
 
-        var selected = (HumanoidCharacterProfile) prefs.Characters[0];
+        var selected = (HumanoidCharacterProfile)prefs.Characters[0];
         var profile = selected
           .WithName(BlacklistedMatchingProfileName)
           .WithTraitPreference(BlacklistedTraitId, server.ProtoMan);
@@ -169,17 +171,17 @@ public sealed class CharacterOverrideRuleSystemTests
 
         await server.WaitAssertion(() =>
         {
-          Assert.That(ticker.PlayerGameStatuses[userId], Is.EqualTo(PlayerGameStatus.JoinedGame));
+            Assert.That(ticker.PlayerGameStatuses[userId], Is.EqualTo(PlayerGameStatus.JoinedGame));
 
-          var attached = playerMan.GetSessionById(userId).AttachedEntity;
-          Assert.That(attached, Is.Not.Null);
+            var attached = playerMan.GetSessionById(userId).AttachedEntity;
+            Assert.That(attached, Is.Not.Null);
 
-          var meta = server.EntMan.GetComponent<MetaDataComponent>(attached!.Value);
-          Assert.That(meta.EntityPrototype?.ID, Is.EqualTo(BlacklistedOverrideEntityId));
-          Assert.That(server.EntMan.HasComponent<PlateletFactoriesComponent>(attached.Value), Is.True);
+            var meta = server.EntMan.GetComponent<MetaDataComponent>(attached!.Value);
+            Assert.That(meta.EntityPrototype?.ID, Is.EqualTo(BlacklistedOverrideEntityId));
+            Assert.That(server.EntMan.HasComponent<PlateletFactoriesComponent>(attached.Value), Is.True);
         });
 
         await server.WaitPost(() => ticker.RestartRound());
         await pair.CleanReturnAsync();
-      }
+    }
 }

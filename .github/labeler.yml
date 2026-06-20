@@ -42,10 +42,6 @@
 - changed-files:
   - any-glob-to-any-file: "**/*.xaml*"
 
-"C#":
-- changed-files:
-  - any-glob-to-any-file: "**/*.cs"
-
 "Shaders":
 - changed-files:
   - any-glob-to-any-file: '**/*.swsl'

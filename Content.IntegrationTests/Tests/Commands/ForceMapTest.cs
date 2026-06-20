@@ -44,7 +44,11 @@ public sealed class ForceMapTest
     [Test]
     public async Task TestForceMapCommand()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            Fresh = true,
+            Destructive = true // HL: Messing with the round state breaks any future tests using this pool
+        });
         var server = pair.Server;
 
         var entMan = server.EntMan;

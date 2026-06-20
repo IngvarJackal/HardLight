@@ -17,20 +17,19 @@ public sealed class FactionRadioChannelTests
     [Test]
     public async Task FactionChannelOnlyDeliversToCurrentCompany()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = false });
         var server = pair.Server;
         var entMan = server.ResolveDependency<IEntityManager>();
         var mapLoader = server.System<MapLoaderSystem>();
         var radioSystem = server.System<RadioSystem>();
 
-        await server.WaitAssertion(() =>
-        {
-            Assert.That(mapLoader.TryLoadMap(new ResPath("/Maps/Test/empty.yml"), out _, out var grids), Is.True);
-            var grid = grids.Single();
+        var testMap = await pair.CreateTestMap();
 
-            var source = entMan.SpawnEntity("MobHuman", new EntityCoordinates(grid, new Vector2(0.5f, 0.5f)));
-            var alliedListener = entMan.SpawnEntity("MobHuman", new EntityCoordinates(grid, new Vector2(1.5f, 0.5f)));
-            var outsiderListener = entMan.SpawnEntity("MobHuman", new EntityCoordinates(grid, new Vector2(2.5f, 0.5f)));
+        await server.WaitAssertion(async () =>
+        {
+            var source = entMan.SpawnEntity("MobHuman", new MapCoordinates(new Vector2(0.5f, 0.5f), testMap.MapId));
+            var alliedListener = entMan.SpawnEntity("MobHuman", new MapCoordinates(new Vector2(1.5f, 0.5f), testMap.MapId));
+            var outsiderListener = entMan.SpawnEntity("MobHuman", new MapCoordinates(new Vector2(2.5f, 0.5f), testMap.MapId));
 
             SetCompany(entMan, source, "Arcadia");
             SetCompany(entMan, alliedListener, "Arcadia");

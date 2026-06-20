@@ -121,12 +121,9 @@ namespace Content.Client.Chemistry.UI
                 ("1", ChemMasterReagentAmount.U1, StyleBase.ButtonOpenBoth),
                 ("5", ChemMasterReagentAmount.U5, StyleBase.ButtonOpenBoth),
                 ("10", ChemMasterReagentAmount.U10, StyleBase.ButtonOpenBoth),
-                ("15", ChemMasterReagentAmount.U15, StyleBase.ButtonOpenBoth),
-                ("20", ChemMasterReagentAmount.U20, StyleBase.ButtonOpenBoth),
-                ("30", ChemMasterReagentAmount.U30, StyleBase.ButtonOpenBoth),
-                ("40", ChemMasterReagentAmount.U40, StyleBase.ButtonOpenBoth),
-                ("60", ChemMasterReagentAmount.U60, StyleBase.ButtonOpenBoth),
-                ("120", ChemMasterReagentAmount.U120, StyleBase.ButtonOpenBoth),
+                ("25", ChemMasterReagentAmount.U25, StyleBase.ButtonOpenBoth),
+                ("50", ChemMasterReagentAmount.U50, StyleBase.ButtonOpenBoth),
+                ("100", ChemMasterReagentAmount.U100, StyleBase.ButtonOpenBoth),
                 (Loc.GetString("chem-master-window-buffer-all-amount"), ChemMasterReagentAmount.All, StyleBase.ButtonOpenLeft),
             };
 

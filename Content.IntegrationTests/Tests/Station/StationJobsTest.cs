@@ -27,6 +27,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
+using Content.Shared.HL.CCVar;
 
 namespace Content.IntegrationTests.Tests.Station;
 
@@ -388,7 +389,7 @@ public sealed class StationJobsTest
             Assert.That(colcommJobs.TryGetJobSlot(colcomm, "TAssistant", out _), Is.False);
             Assert.That(colcommJobs.TryGetJobSlot(colcomm, "TCaptain", out _), Is.False);
             Assert.That(stationJobs.GetAvailableJobs(station), Is.Empty);
-            Assert.That(stationJobs.GetJobs(station), Is.Empty);
+            Assert.That(stationJobs.GetJobs(station).Count, Is.EqualTo(4)); // HL: The FooStation has 4 jobs, not 0
         });
 
         await server.WaitPost(() =>
@@ -459,7 +460,11 @@ public sealed class StationJobsTest
     [Test]
     public async Task ShipCrewHiringEligibilityTest()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            Fresh = true,
+            Destructive = true
+        });
         var server = pair.Server;
 
         var prototypeManager = server.ResolveDependency<IPrototypeManager>();
@@ -785,6 +790,7 @@ public sealed class StationJobsTest
         await server.WaitPost(() =>
         {
             configManager.SetCVar(CCVars.EmergencyShuttleEnabled, false);
+            configManager.SetCVar(HLCCVars.AutoSpawnColComm, true);
 
             var stationProto = prototypeManager.Index<GameMapPrototype>("TestDynamicAllocationStation");
             station = stationSystem.InitializeNewStation(stationProto.Stations["Station"], null, "Dynamic Allocation Station");
@@ -830,7 +836,11 @@ public sealed class StationJobsTest
     [Test] // HardLight
     public async Task RoundRestartStationDeletionDoesNotOpenTrackedJobsTest()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            Fresh = true,
+            Destructive = true
+        });
         var server = pair.Server;
 
         var prototypeManager = server.ResolveDependency<IPrototypeManager>();

@@ -11,6 +11,7 @@ using Robust.Shared.Serialization.Markdown.Validation;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Robust.UnitTesting;
+using NUnit.Framework.Api;
 
 namespace Content.YAMLLinter
 {
@@ -44,6 +45,11 @@ namespace Content.YAMLLinter
             PoolManager.Startup();
             var stopwatch = new Stopwatch();
             stopwatch.Start();
+
+            // HL: Manually build the test layout because this testing system is a bit jank
+            var builder = new DefaultTestAssemblyBuilder();
+            var settings = new Dictionary<string, object>();
+            builder.Build(Assembly.GetExecutingAssembly(), settings);
 
             var (errors, fieldErrors) = await RunValidation();
 

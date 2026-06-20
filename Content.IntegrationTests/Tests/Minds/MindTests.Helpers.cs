@@ -26,7 +26,7 @@ public sealed partial class MindTests
     /// the player's mind's current entity, likely because some previous test directly changed the players attached
     /// entity.
     /// </remarks>
-    private static async Task<Pair.TestPair> SetupPair(bool dirty = false)
+    private static async Task<TestPair> SetupPair(bool dirty = false)
     {
         var pair = await PoolManager.GetServerClient(new PoolSettings
         {
