@@ -4999,3 +4999,43 @@ Entries:
       message: Size affects pitch of emotes
   id: 537
   time: '2026-06-19T10:12:35.0000000+00:00'
+- author: DrekkCuga
+  changes:
+    - type: Fix
+      message: Even more bug fixes for the automated tests!
+  id: 538
+  time: '2026-06-20T05:18:47.0000000+00:00'
+- author: DrekkCuga
+  changes:
+    - type: Fix
+      message: Fixed so many construction issues
+  id: 539
+  time: '2026-06-20T05:19:10.0000000+00:00'
+- author: DrekkCuga
+  changes:
+    - type: Fix
+      message: Fixed a bunch of maps and ships having invalid tiles.
+  id: 540
+  time: '2026-06-20T05:19:56.0000000+00:00'
+- author: DrekkCuga
+  changes:
+    - type: Tweak
+      message: >-
+        Balanced item prices so you can't get infinite money from buying/selling
+        anymore.
+  id: 541
+  time: '2026-06-20T05:21:14.0000000+00:00'
+- author: DrekkCuga
+  changes:
+    - type: Fix
+      message: Fixed some traits not having a proper name
+  id: 542
+  time: '2026-06-20T05:21:40.0000000+00:00'
+- author: IngvarJackal
+  changes:
+    - type: Add
+      message: Add 4 voice pitch traits
+    - type: Remove
+      message: Size dependent emote pitch
+  id: 543
+  time: '2026-06-20T09:49:19.0000000+00:00'

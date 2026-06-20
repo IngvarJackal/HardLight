@@ -15,13 +15,13 @@ nullspace: []
 tilemap:
   0: Space
   5: FloorDarkMono
-  9: FloorDarkMonoAlt
-  7: FloorMaintMonoSterile
+  9: FloorDarkMono
+  7: FloorTechMaint
   8: FloorMetalDiamond
   89: FloorSteel
   6: FloorTechMaint3
-  4: FloorTechMaintAlt
-  3: FloorTechMaintSterile
+  4: FloorTechMaint
+  3: FloorTechMaint
   2: Lattice
   1: Plating
 entities:
@@ -294,13 +294,9 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: ShipGridLock
-      locked: False
     - type: IFF
       color: '#00FFCCFF'
       flags: HideLabel, IsPlayerShuttle
-    - type: CloakHeat
-      lastUpdateTime: 0
 - proto: AccessBreaker
   entities:
   - uid: 2
@@ -2459,18 +2455,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-0.5
-      parent: 1
-- proto: SpawnAsakimWarrior
-  entities:
-  - uid: 364
-    components:
-    - type: Transform
-      pos: -1.5,-2.5
-      parent: 1
-  - uid: 365
-    components:
-    - type: Transform
-      pos: 0.5,-2.5
       parent: 1
 - proto: SpawnLootTechDisksPrinterT4
   entities:

@@ -14,14 +14,14 @@ orphans:
 nullspace: []
 tilemap:
   0: Space
-  5: FloorDarkAlt
-  9: FloorDarkMonoAlt
+  5: FloorDark
+  9: FloorDarkMono
   7: FloorHullReinforced
-  6: FloorMaintGridDark
+  6: FloorTechMaintDark
   8: FloorReinforced
   89: FloorSteel
   3: FloorTechMaint3
-  4: FloorTechMaintAlt
+  4: FloorTechMaint
   12: FloorXeno
   2: Lattice
   1: Plating
@@ -450,8 +450,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: ShipGridLock
-      locked: False
 - proto: AirAlarm
   entities:
   - uid: 2

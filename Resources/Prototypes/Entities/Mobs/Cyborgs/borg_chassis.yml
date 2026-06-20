@@ -218,8 +218,9 @@
       - BorgModuleGeneric
     hasMindState: borg_e
     noMindState: borg_e_r
-  - type: Construction
-    node: derelictcyborg
+#  - type: Construction
+#    node: derelictcyborg
+# HL: Not craftable anyways as derelictcyborg node doesn't exist
   - type: InteractionPopup
     interactSuccessString: petting-success-derelict-cyborg
     interactFailureString: petting-failure-derelict-cyborg

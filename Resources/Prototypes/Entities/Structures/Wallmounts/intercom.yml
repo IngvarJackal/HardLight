@@ -344,7 +344,6 @@
   id: IntercomAll
   parent: [BaseStructureIndestructible, Intercom] # Frontier - added BaseStructureIndestructible
   suffix: All
-  categories: [ DoNotMap ] # Frontier
   components:
   - type: ContainerFill
     containers:

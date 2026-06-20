@@ -111,10 +111,6 @@ entities:
           - 0
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -500,7 +496,7 @@ entities:
     - type: Transform
       pos: 2.5,0.5
       parent: 1
-- proto: WallReinforcedChitin
+- proto: WallReinforcedChitinMonolithic
   entities:
   - uid: 3
     components:

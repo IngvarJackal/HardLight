@@ -11,8 +11,7 @@ using Content.Shared.Tag;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Map.Components;
-using System.Collections.Generic;
-using System;
+using System.Collections.Concurrent;
 
 namespace Content.Server._Starlight.Plumbing.Nodes;
 
@@ -26,7 +25,7 @@ namespace Content.Server._Starlight.Plumbing.Nodes;
 public partial class PlumbingNode : PipeNode
 {
     private static readonly ProtoId<TagPrototype> PlumbingDuctTag = "PlumbingDuct";
-    private static readonly Dictionary<(EntityUid Owner, string NodeName, PipeDirection Direction), EntityUid> SelectedDuctByMachineSide = new();
+    private static readonly ConcurrentDictionary<(EntityUid Owner, string NodeName, PipeDirection Direction), EntityUid> SelectedDuctByMachineSide = new(); // HL: Make Concurrent for thread-safe operations
 
     /// <summary>
     ///     The <see cref="IPlumbingNet"/> this plumbing duct is part of.
@@ -119,7 +118,7 @@ public partial class PlumbingNode : PipeNode
 
                 if (firstConnectedCandidate == null)
                 {
-                    SelectedDuctByMachineSide.Remove(sideKey);
+                    SelectedDuctByMachineSide.TryRemove(sideKey, out _); // HL: We're thread-safe now!
                     continue;
                 }
 

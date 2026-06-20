@@ -401,7 +401,7 @@ entities:
     - type: RadarBlip
       enabled: False
       visibleFromOtherGrids: True
-      shape: Ring
+      shape: Circle
       radarColor: '#00DEFEFF'
   - uid: 4
     components:
@@ -412,7 +412,7 @@ entities:
     - type: RadarBlip
       enabled: False
       visibleFromOtherGrids: True
-      shape: Ring
+      shape: Circle
       scale: 0
       radarColor: '#00DEFEFF'
   - uid: 547
@@ -424,7 +424,7 @@ entities:
     - type: RadarBlip
       enabled: False
       visibleFromOtherGrids: True
-      shape: Ring
+      shape: Circle
       scale: 0
       radarColor: '#00DEFEFF'
 - proto: AdvancedCapacitorStockPart

@@ -36,7 +36,7 @@
   result: LiddedVial
   completetime: 2
   materials:
-    Glass: 20
+    Glass: 50 # HL: Make this use the same amount of glass as normal vials
     Steel: 15
 
 - type: latheRecipe
@@ -44,5 +44,5 @@
   result: LiddedBottle
   completetime: 2
   materials:
-    Glass: 20
+    Glass: 50 # HL: Make this use the same amount of glass as normal bottles
     Steel: 15

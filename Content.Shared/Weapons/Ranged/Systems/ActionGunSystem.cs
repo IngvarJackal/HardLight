@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Weapons.Ranged.Components;
+using Robust.Shared.Network;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -8,6 +9,7 @@ public sealed class ActionGunSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedGunSystem _gun = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     public override void Initialize()
     {
@@ -35,7 +37,7 @@ public sealed class ActionGunSystem : EntitySystem
 
     private void OnShutdown(Entity<ActionGunComponent> ent, ref ComponentShutdown args)
     {
-        if (ent.Comp.Gun != null)
+        if (ent.Comp.Gun != null && _net.IsServer) // You can't delete entities client-side in shared code, whoops
             QueueDel(ent.Comp.Gun.Value);
     }
 

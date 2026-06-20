@@ -32,11 +32,6 @@
             NFPirateCaptain: [ -1, -1]
             NFPirateFirstMate: [ -1, -1]
             NFPirate: [ -1, -1]
-            Prisoner: [ -1, -1]
-            USSPCommissar: [ -1, -1]
-            USSPSergeant: [ -1, -1]
-            USSPCorporal: [ -1, -1]
-            USSPMedic: [ -1, -1]
-            USSPRifleman: [ -1, -1]
+            Prisoner: [ -1, -1] # HL: Removed USSPCommissar, USSPSergeant, USSPCorporal, USSPMedic, USSPRifleman as they don't have spawn points
         - type: StationDeadDrop
           maxDeadDrops: 20 # Testing

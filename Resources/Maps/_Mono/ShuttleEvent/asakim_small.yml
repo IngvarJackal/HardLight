@@ -17,10 +17,10 @@ tilemap:
   8: FloorDark
   5: FloorDarkMono
   7: FloorGrayConcreteMono
-  6: FloorMaintMonoSterile
+  6: FloorTechMaint
   4: FloorMetalDiamond
   89: FloorSteel
-  3: FloorTechMaintAlt
+  3: FloorTechMaint
   2: Lattice
   1: Plating
 entities:
@@ -187,9 +187,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: SpaceArtilleryDisabledGrid
-    - type: ShipGridLock
-      locked: False
     - type: IFF
       color: '#00FFCCFF'
       flags: HideLabel, IsPlayerShuttle
@@ -1461,13 +1458,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-2.5
-      parent: 1
-- proto: SpawnAsakimWarrior
-  entities:
-  - uid: 253
-    components:
-    - type: Transform
-      pos: 0.5,-0.5
       parent: 1
 - proto: SpeedLeftLeg
   entities:

@@ -11,7 +11,7 @@
   # VRS: PlayerBorgRedactedGhostRole entity (Mono full borg roster) not yet
   # ported. ConditionalSpawner stubbed empty — map slot stays valid but no
   # ghost-role borg spawns until the borg roster is ported.
-  - type: ConditionalSpawner
+  #- type: ConditionalSpawner HL: Disable because it's not used without args
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -25,7 +25,7 @@
   parent: MarkerBase
   components:
   # VRS: see SpawnRedactedBorg note.
-  - type: ConditionalSpawner
+  #- type: ConditionalSpawner HL: Disable because it's not used without args
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -40,7 +40,7 @@
   components:
   # VRS: MobLetoferolHorrorGhostrole entity (Mono chimera roster) not yet
   # ported. ConditionalSpawner stubbed empty.
-  - type: ConditionalSpawner
+  #- type: ConditionalSpawner HL: Disable because it's not used without args
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

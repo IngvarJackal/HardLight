@@ -17,17 +17,17 @@ tilemap:
   2: FloorAsteroidSand
   27: FloorAstroAsteroidSand
   6: FloorDark
-  11: FloorDarkAlt
+  11: FloorDark
   5: FloorDarkMono
-  21: FloorDarkMonoAlt
+  21: FloorDarkMono
   26: FloorDarkPavement
   16: FloorDarkPavementVertical
   29: FloorDarkPlastic
   28: FloorFreezer
   22: FloorGrassDark
   4: FloorHullReinforced
-  10: FloorMaintGridDark
-  12: FloorMaintMonoSterile
+  10: FloorTechMaintDark
+  12: FloorTechMaint
   8: FloorMetalDiamond
   19: FloorPlastic
   25: FloorRGlass
@@ -37,9 +37,9 @@ tilemap:
   14: FloorSteelPavementVertical
   7: FloorTechMaint2
   3: FloorTechMaint3
-  9: FloorTechMaintAlt
+  9: FloorTechMaint
   30: FloorTechMaintDark
-  13: FloorTechMaintSterile
+  13: FloorTechMaint
   17: FloorWhite
   18: FloorWhiteMono
   20: FloorWoodLarge

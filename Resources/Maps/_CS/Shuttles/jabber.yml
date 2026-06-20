@@ -1228,6 +1228,8 @@ entities:
     - type: Transform
       pos: -2.5,3.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: LockerWallMaterialsFuelPlasmaFilled2
   entities:
   - uid: 121

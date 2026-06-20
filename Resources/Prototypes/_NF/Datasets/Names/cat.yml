@@ -8,7 +8,7 @@
 - type: localizedDataset
   id: names_cat_elcapo
   values:
-    prefix: names-cat-elcapo-dataset-1
+    prefix: names-cat-elcapo-dataset-
     count: 1
 
 - type: localizedDataset

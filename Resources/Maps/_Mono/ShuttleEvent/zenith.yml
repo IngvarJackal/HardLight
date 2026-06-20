@@ -16,16 +16,16 @@ tilemap:
   0: Space
   12: FloorDarkMono
   3: FloorHullReinforced
-  9: FloorMaintGrid
-  11: FloorMaintGridDark
-  13: FloorMaintMonoSterile
+  9: FloorTechMaint
+  11: FloorTechMaintDark
+  13: FloorTechMaint
   7: FloorMetalDiamond
   4: FloorRedCircuit
   89: FloorSteel
   5: FloorTechMaint
   6: FloorTechMaint2
   8: FloorTechMaint3
-  10: FloorTechMaintSterile
+  10: FloorTechMaint
   2: Lattice
   1: Plating
 entities:
@@ -332,8 +332,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: ShipGridLock
-      locked: False
   - uid: 2
     components:
     - type: MetaData
@@ -342,7 +340,7 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      shape: Ring
+      shape: Circle
       scale: 0
       radarColor: '#00DEFEFF'
   - uid: 3
@@ -353,7 +351,7 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      shape: Ring
+      shape: Circle
       scale: 0
       radarColor: '#00DEFEFF'
   - uid: 4
@@ -364,7 +362,7 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      shape: Ring
+      shape: Circle
       scale: 0
       radarColor: '#00DEFEFF'
   - uid: 5
@@ -375,7 +373,7 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      shape: Ring
+      shape: Circle
       scale: 0
       radarColor: '#00DEFEFF'
   - uid: 6
@@ -386,7 +384,7 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      shape: Ring
+      shape: Circle
       scale: 0
       radarColor: '#00DEFEFF'
   - uid: 7
@@ -397,7 +395,7 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      shape: Ring
+      shape: Circle
       scale: 0
       radarColor: '#00DEFEFF'
   - uid: 8
@@ -408,7 +406,7 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      shape: Ring
+      shape: Circle
       scale: 0
       radarColor: '#00DEFEFF'
   - uid: 9
@@ -419,7 +417,7 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      shape: Ring
+      shape: Circle
       scale: 0
       radarColor: '#00DEFEFF'
 - proto: AirlockHatch
@@ -2226,8 +2224,6 @@ entities:
     - type: Transform
       pos: -0.5,4.5
       parent: 1
-    - type: ShuttleConsoleLock
-      locked: False
     - type: ApcPowerReceiver
       powerLoad: 5
     - type: Battery

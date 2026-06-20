@@ -91,7 +91,7 @@
   - LongbowWeaponBoard
   - CharonetteWeaponBoard
   - SerpentMissileWeaponBoard
-  - HeavyShieldBoard
+#  - HeavyShieldBoard #Disabled because it's not used in anything, and not craftable
 
 - type: technology
   id: CapitalShuttleWeapons

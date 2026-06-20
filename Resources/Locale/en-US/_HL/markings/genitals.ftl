@@ -8,6 +8,9 @@ marking-Genital-Balls-Single2 = Balls, Single 2
 marking-Genital-Balls-Single2Alt-testicles_single_2_1_FRONT = Color
 marking-Genital-Balls-Single2Alt = Balls, Single 2 Alternate
 
+marking-Genital-Balls-Single3-testicles_single_3_0_FRONT = Color
+marking-Genital-Balls-Single3 = Balls, Single 3
+
 marking-Genital-Balls-Single4-testicles_single_4_0_FRONT = Color
 marking-Genital-Balls-Single4 = Balls, Single 4
 
@@ -365,4 +368,254 @@ marking-Genital-Penis-Tentacle-5-0 = Penis, Tentacle, 5
 marking-Genital-Penis-Tentacle-5-1-penis_tentacle_5_1_FRONT = Color
 marking-Genital-Penis-Tentacle-5-1 = Penis, Tentacle, 5, Alternate
 
+marking-Genital-Penis-Human-1-S-0                                       = Penis, Human, 1
+marking-Genital-Penis-Human-1-S-0-penis_human_1_s_0_FRONT               = Penis, Human, 1
+marking-Genital-Penis-Human-1-S-1                                       = Penis, Human, 1, Alternate
+marking-Genital-Penis-Human-1-S-1-penis_human_1_s_1_FRONT               = Penis, Human, 1, Alternate
+
+marking-Genital-Penis-Human-2-S-0                                       = Penis, Human, 2
+marking-Genital-Penis-Human-2-S-0-penis_human_2_s_0_FRONT               = Penis, Human, 2
+marking-Genital-Penis-Human-2-S-1                                       = Penis, Human, 2, Alternate
+marking-Genital-Penis-Human-2-S-1-penis_human_2_s_1_FRONT               = Penis, Human, 2, Alternate
+
+marking-Genital-Penis-Human-3-S-0                                       = Penis, Human, 3
+marking-Genital-Penis-Human-3-S-0-penis_human_3_s_0_FRONT               = Penis, Human, 3
+marking-Genital-Penis-Human-3-S-1                                       = Penis, Human, 3, Alternate
+marking-Genital-Penis-Human-3-S-1-penis_human_3_s_1_FRONT               = Penis, Human, 3, Alternate
+
+marking-Genital-Penis-Human-4-S-0                                       = Penis, Human, 4
+marking-Genital-Penis-Human-4-S-0-penis_human_4_s_0_FRONT               = Penis, Human, 4
+marking-Genital-Penis-Human-4-S-1                                       = Penis, Human, 4, Alternate
+marking-Genital-Penis-Human-4-S-1-penis_human_4_s_1_FRONT               = Penis, Human, 4, Alternate
+
+marking-Genital-Penis-Knotted-1-S-0                                = Penis, Knotted, 1
+marking-Genital-Penis-Knotted-1-S-0-penis_knotted_1_s_0_FRONT      = Penis, Knotted, 1
+marking-Genital-Penis-Knotted-1-S-1                                = Penis, Knotted, 1, Alternate
+marking-Genital-Penis-Knotted-1-S-1-penis_knotted_1_s_1_FRONT      = Penis, Knotted, 1, Alternate
+
+marking-Genital-Penis-Knotted-2-S-0                                = Penis, Knotted, 2
+marking-Genital-Penis-Knotted-2-S-0-penis_knotted_2_s_0_FRONT      = Penis, Knotted, 2
+marking-Genital-Penis-Knotted-2-S-1                                = Penis, Knotted, 2, Alternate
+marking-Genital-Penis-Knotted-2-S-1-penis_knotted_2_s_1_FRONT      = Penis, Knotted, 2, Alternate
+
+marking-Genital-Penis-Knotted-3-S-0                                = Penis, Knotted, 3
+marking-Genital-Penis-Knotted-3-S-0-penis_knotted_3_s_0_FRONT      = Penis, Knotted, 3
+marking-Genital-Penis-Knotted-3-S-1                                = Penis, Knotted, 3, Alternate
+marking-Genital-Penis-Knotted-3-S-1-penis_knotted_3_s_1_FRONT      = Penis, Knotted, 3, Alternate
+
+marking-Genital-Penis-Knotted-4-S-0                                = Penis, Knotted, 4
+marking-Genital-Penis-Knotted-4-S-0-penis_knotted_4_s_0_FRONT      = Penis, Knotted, 4
+marking-Genital-Penis-Knotted-4-S-1                                = Penis, Knotted, 4, Alternate
+marking-Genital-Penis-Knotted-4-S-1-penis_knotted_4_s_1_FRONT      = Penis, Knotted, 4, Alternate
+
+marking-Genital-Penis-Barbknot-1-S-0                                    = Penis, Barbknot, 1
+marking-Genital-Penis-Barbknot-1-S-0-penis_barbknot_1_s_0_FRONT         = Penis, Barbknot, 1
+marking-Genital-Penis-Barbknot-1-S-1                                    = Penis, Barbknot, 1, Alternate
+marking-Genital-Penis-Barbknot-1-S-1-penis_barbknot_1_s_1_FRONT         = Penis, Barbknot, 1, Alternate
+
+marking-Genital-Penis-Barbknot-2-S-0                                    = Penis, Barbknot, 2
+marking-Genital-Penis-Barbknot-2-S-0-penis_barbknot_2_s_0_FRONT         = Penis, Barbknot, 2
+marking-Genital-Penis-Barbknot-2-S-1                                    = Penis, Barbknot, 2, Alternate
+marking-Genital-Penis-Barbknot-2-S-1-penis_barbknot_2_s_1_FRONT         = Penis, Barbknot, 2, Alternate
+
+marking-Genital-Penis-Barbknot-3-S-0                                    = Penis, Barbknot, 3
+marking-Genital-Penis-Barbknot-3-S-0-penis_barbknot_3_s_0_FRONT         = Penis, Barbknot, 3
+marking-Genital-Penis-Barbknot-3-S-1                                    = Penis, Barbknot, 3, Alternate
+marking-Genital-Penis-Barbknot-3-S-1-penis_barbknot_3_s_1_FRONT         = Penis, Barbknot, 3, Alternate
+
+marking-Genital-Penis-Barbknot-4-S-0                                    = Penis, Barbknot, 4
+marking-Genital-Penis-Barbknot-4-S-0-penis_barbknot_4_s_0_FRONT         = Penis, Barbknot, 4
+marking-Genital-Penis-Barbknot-4-S-1                                    = Penis, Barbknot, 4, Alternate
+marking-Genital-Penis-Barbknot-4-S-1-penis_barbknot_4_s_1_FRONT         = Penis, Barbknot, 4, Alternate
+
+marking-Genital-Penis-Flared-1-S-0                                 = Penis, Flared, 1
+marking-Genital-Penis-Flared-1-S-0-penis_flared_1_s_0_FRONT        = Penis, Flared, 1
+marking-Genital-Penis-Flared-1-S-1                                 = Penis, Flared, 1, Alternate
+marking-Genital-Penis-Flared-1-S-1-penis_flared_1_s_1_FRONT        = Penis, Flared, 1, Alternate
+
+marking-Genital-Penis-Flared-2-S-0                                 = Penis, Flared, 2
+marking-Genital-Penis-Flared-2-S-0-penis_flared_2_s_0_FRONT        = Penis, Flared, 2
+marking-Genital-Penis-Flared-2-S-1                                 = Penis, Flared, 2, Alternate
+marking-Genital-Penis-Flared-2-S-1-penis_flared_2_s_1_FRONT        = Penis, Flared, 2, Alternate
+
+marking-Genital-Penis-Flared-3-S-0                                 = Penis, Flared, 3
+marking-Genital-Penis-Flared-3-S-0-penis_flared_3_s_0_FRONT        = Penis, Flared, 3
+marking-Genital-Penis-Flared-3-S-1                                 = Penis, Flared, 3, Alternate
+marking-Genital-Penis-Flared-3-S-1-penis_flared_3_s_1_FRONT        = Penis, Flared, 3, Alternate
+
+marking-Genital-Penis-Flared-4-S-0                                 = Penis, Flared, 4
+marking-Genital-Penis-Flared-4-S-0-penis_flared_4_s_0_FRONT        = Penis, Flared, 4
+marking-Genital-Penis-Flared-4-S-1                                 = Penis, Flared, 4, Alternate
+marking-Genital-Penis-Flared-4-S-1-penis_flared_4_s_1_FRONT        = Penis, Flared, 4, Alternate
+
+marking-Genital-Penis-Tentacle-1-S-0                                    = Penis, Tentacle, 1
+marking-Genital-Penis-Tentacle-1-S-0-penis_tentacle_1_s_0_FRONT         = Penis, Tentacle, 1
+
+marking-Genital-Penis-Tentacle-2-S-0                                    = Penis, Tentacle, 2
+marking-Genital-Penis-Tentacle-2-S-0-penis_tentacle_2_s_0_FRONT         = Penis, Tentacle, 2
+
+marking-Genital-Penis-Tentacle-3-S-0                                    = Penis, Tentacle, 3
+marking-Genital-Penis-Tentacle-3-S-0-penis_tentacle_3_s_0_FRONT         = Penis, Tentacle, 3
+
+marking-Genital-Penis-Tentacle-4-S-0                                    = Penis, Tentacle, 4
+marking-Genital-Penis-Tentacle-4-S-0-penis_tentacle_4_s_0_FRONT         = Penis, Tentacle, 4
+marking-Genital-Penis-Tentacle-4-S-1                                    = Penis, Tentacle, 4, Alternate
+marking-Genital-Penis-Tentacle-4-S-1-penis_tentacle_4_s_1_FRONT         = Penis, Tentacle, 4, Alternate
+
+marking-Genital-Penis-Hemi-1-S-0                                   = Penis, Hemi, 1
+marking-Genital-Penis-Hemi-1-S-0-penis_hemi_1_s_0_FRONT            = Penis, Hemi, 1
+marking-Genital-Penis-Hemi-1-S-1                                   = Penis, Hemi, 1, Alternate
+marking-Genital-Penis-Hemi-1-S-1-penis_hemi_1_s_1_FRONT            = Penis, Hemi, 1, Alternate
+
+marking-Genital-Penis-Hemi-2-S-0                                   = Penis, Hemi, 2
+marking-Genital-Penis-Hemi-2-S-0-penis_hemi_2_s_0_FRONT            = Penis, Hemi, 2
+marking-Genital-Penis-Hemi-2-S-1                                   = Penis, Hemi, 2, Alternate
+marking-Genital-Penis-Hemi-2-S-1-penis_hemi_2_s_1_FRONT            = Penis, Hemi, 2, Alternate
+
+marking-Genital-Penis-Hemi-3-S-0                                   = Penis, Hemi, 3
+marking-Genital-Penis-Hemi-3-S-0-penis_hemi_3_s_0_FRONT            = Penis, Hemi, 3
+marking-Genital-Penis-Hemi-3-S-1                                   = Penis, Hemi, 3, Alternate
+marking-Genital-Penis-Hemi-3-S-1-penis_hemi_3_s_1_FRONT            = Penis, Hemi, 3, Alternate
+
+marking-Genital-Penis-Hemi-4-S-0                                   = Penis, Hemi, 4
+marking-Genital-Penis-Hemi-4-S-0-penis_hemi_4_s_0_FRONT            = Penis, Hemi, 4
+marking-Genital-Penis-Hemi-4-S-1                                   = Penis, Hemi, 4, Alternate
+marking-Genital-Penis-Hemi-4-S-1-penis_hemi_4_s_1_FRONT            = Penis, Hemi, 4, Alternate
+
+marking-Genital-Penis-Hemiknot-1-S-0                                    = Penis, Hemiknot, 1
+marking-Genital-Penis-Hemiknot-1-S-0-penis_hemiknot_1_s_0_FRONT         = Penis, Hemiknot, 1
+marking-Genital-Penis-Hemiknot-1-S-1                                    = Penis, Hemiknot, 1, Alternate
+marking-Genital-Penis-Hemiknot-1-S-1-penis_hemiknot_1_s_1_FRONT         = Penis, Hemiknot, 1, Alternate
+
+marking-Genital-Penis-Hemiknot-2-S-0                                    = Penis, Hemiknot, 2
+marking-Genital-Penis-Hemiknot-2-S-0-penis_hemiknot_2_s_0_FRONT         = Penis, Hemiknot, 2
+marking-Genital-Penis-Hemiknot-2-S-1                                    = Penis, Hemiknot, 2, Alternate
+marking-Genital-Penis-Hemiknot-2-S-1-penis_hemiknot_2_s_1_FRONT         = Penis, Hemiknot, 2, Alternate
+
+marking-Genital-Penis-Hemiknot-3-S-0                                    = Penis, Hemiknot, 3
+marking-Genital-Penis-Hemiknot-3-S-0-penis_hemiknot_3_s_0_FRONT         = Penis, Hemiknot, 3
+marking-Genital-Penis-Hemiknot-3-S-1                                    = Penis, Hemiknot, 3, Alternate
+marking-Genital-Penis-Hemiknot-3-S-1-penis_hemiknot_3_s_1_FRONT         = Penis, Hemiknot, 3, Alternate
+
+marking-Genital-Penis-Hemiknot-4-S-0                                    = Penis, Hemiknot, 4
+marking-Genital-Penis-Hemiknot-4-S-0-penis_hemiknot_4_s_0_FRONT         = Penis, Hemiknot, 4
+marking-Genital-Penis-Hemiknot-4-S-1                                    = Penis, Hemiknot, 4, Alternate
+marking-Genital-Penis-Hemiknot-4-S-1-penis_hemiknot_4_s_1_FRONT         = Penis, Hemiknot, 4, Alternate
+
+marking-Genital-Penis-Tapered-1-S-0                                = Penis, Tapered, 1
+marking-Genital-Penis-Tapered-1-S-0-penis_tapered_1_s_0_FRONT      = Penis, Tapered, 1
+marking-Genital-Penis-Tapered-1-S-1                                = Penis, Tapered, 1, Alternate
+marking-Genital-Penis-Tapered-1-S-1-penis_tapered_1_s_1_FRONT      = Penis, Tapered, 1, Alternate
+
+marking-Genital-Penis-Tapered-2-S-0                                = Penis, Tapered, 2
+marking-Genital-Penis-Tapered-2-S-0-penis_tapered_2_s_0_FRONT      = Penis, Tapered, 2
+marking-Genital-Penis-Tapered-2-S-1                                = Penis, Tapered, 2, Alternate
+marking-Genital-Penis-Tapered-2-S-1-penis_tapered_2_s_1_FRONT      = Penis, Tapered, 2, Alternate
+
+marking-Genital-Penis-Tapered-3-S-0                                = Penis, Tapered, 3
+marking-Genital-Penis-Tapered-3-S-0-penis_tapered_3_s_0_FRONT      = Penis, Tapered, 3
+marking-Genital-Penis-Tapered-3-S-1                                = Penis, Tapered, 3, Alternate
+marking-Genital-Penis-Tapered-3-S-1-penis_tapered_3_s_1_FRONT      = Penis, Tapered, 3, Alternate
+
+marking-Genital-Penis-Tapered-4-S-0                                = Penis, Tapered, 4
+marking-Genital-Penis-Tapered-4-S-0-penis_tapered_4_s_0_FRONT      = Penis, Tapered, 4
+marking-Genital-Penis-Tapered-4-S-1                                = Penis, Tapered, 4, Alternate
+marking-Genital-Penis-Tapered-4-S-1-penis_tapered_4_s_1_FRONT      = Penis, Tapered, 4, Alternate
+
+marking-Genital-Penis-Tipknotted-1-0                                    = Penis, Tipknotted, 1
+marking-Genital-Penis-Tipknotted-1-0-penis_tipknotted_1_0_FRONT         = Penis, Tipknotted, 1
+marking-Genital-Penis-Tipknotted-1-1                                    = Penis, Tipknotted, 1, Alternate
+marking-Genital-Penis-Tipknotted-1-1-penis_tipknotted_1_1_FRONT         = Penis, Tipknotted, 1, Alternate
+
+marking-Genital-Penis-Tipknotted-2-0                                    = Penis, Tipknotted, 2
+marking-Genital-Penis-Tipknotted-2-0-penis_tipknotted_2_0_FRONT         = Penis, Tipknotted, 2
+marking-Genital-Penis-Tipknotted-2-1                                    = Penis, Tipknotted, 2, Alternate
+marking-Genital-Penis-Tipknotted-2-1-penis_tipknotted_2_1_FRONT         = Penis, Tipknotted, 2, Alternate
+
+marking-Genital-Penis-Tipknotted-3-0                                    = Penis, Tipknotted, 3
+marking-Genital-Penis-Tipknotted-3-0-penis_tipknotted_3_0_FRONT         = Penis, Tipknotted, 3
+marking-Genital-Penis-Tipknotted-3-1                                    = Penis, Tipknotted, 3, Alternate
+marking-Genital-Penis-Tipknotted-3-1-penis_tipknotted_3_1_FRONT         = Penis, Tipknotted, 3, Alternate
+
+marking-Genital-Penis-Tipknotted-5-0                                    = Penis, Tipknotted, 5
+marking-Genital-Penis-Tipknotted-5-0-penis_tipknotted_5_0_FRONT         = Penis, Tipknotted, 5
+marking-Genital-Penis-Tipknotted-5-1                                    = Penis, Tipknotted, 5, Alternate
+marking-Genital-Penis-Tipknotted-5-1-penis_tipknotted_5_1_FRONT         = Penis, Tipknotted, 5, Alternate
+
+marking-Genital-Penis-Hemi-1-0                                     = Penis, Hemi, 1
+marking-Genital-Penis-Hemi-1-0-penis_hemi_1_0_FRONT                = Penis, Hemi, 1
+marking-Genital-Penis-Hemi-1-1                                     = Penis, Hemi, 1, Alternate
+marking-Genital-Penis-Hemi-1-1-penis_hemi_1_1_FRONT                = Penis, Hemi, 1, Alternate
+
+marking-Genital-Penis-Hemi-2-0                                     = Penis, Hemi, 2
+marking-Genital-Penis-Hemi-2-0-penis_hemi_2_0_FRONT                = Penis, Hemi, 2
+marking-Genital-Penis-Hemi-2-1                                     = Penis, Hemi, 2, Alternate
+marking-Genital-Penis-Hemi-2-1-penis_hemi_2_1_FRONT                = Penis, Hemi, 2, Alternate
+
+marking-Genital-Penis-Hemi-3-0                                     = Penis, Hemi, 3
+marking-Genital-Penis-Hemi-3-0-penis_hemi_3_0_FRONT                = Penis, Hemi, 3
+marking-Genital-Penis-Hemi-3-1                                     = Penis, Hemi, 3, Alternate
+marking-Genital-Penis-Hemi-3-1-penis_hemi_3_1_FRONT                = Penis, Hemi, 3, Alternate
+
+marking-Genital-Penis-Hemi-4-0                                     = Penis, Hemi, 4
+marking-Genital-Penis-Hemi-4-0-penis_hemi_4_0_FRONT                = Penis, Hemi, 4
+marking-Genital-Penis-Hemi-4-1                                     = Penis, Hemi, 4, Alternate
+marking-Genital-Penis-Hemi-4-1-penis_hemi_4_1_FRONT                = Penis, Hemi, 4, Alternate
+
+marking-Genital-Penis-Hemi-5-0                                     = Penis, Hemi, 5
+marking-Genital-Penis-Hemi-5-0-penis_hemi_5_0_FRONT                = Penis, Hemi, 5
+marking-Genital-Penis-Hemi-5-1                                     = Penis, Hemi, 5, Alternate
+marking-Genital-Penis-Hemi-5-1-penis_hemi_5_1_FRONT                = Penis, Hemi, 5, Alternate
+
+marking-Genital-Penis-Hemiknot-1-0                                      = Penis, Hemiknot, 1
+marking-Genital-Penis-Hemiknot-1-0-penis_hemiknot_1_0_FRONT             = Penis, Hemiknot, 1
+marking-Genital-Penis-Hemiknot-1-1                                      = Penis, Hemiknot, 1, Alternate
+marking-Genital-Penis-Hemiknot-1-1-penis_hemiknot_1_1_FRONT             = Penis, Hemiknot, 1, Alternate
+
+marking-Genital-Penis-Hemiknot-2-0                                      = Penis, Hemiknot, 2
+marking-Genital-Penis-Hemiknot-2-0-penis_hemiknot_2_0_FRONT             = Penis, Hemiknot, 2
+marking-Genital-Penis-Hemiknot-2-1                                      = Penis, Hemiknot, 2, Alternate
+marking-Genital-Penis-Hemiknot-2-1-penis_hemiknot_2_1_FRONT             = Penis, Hemiknot, 2, Alternate
+
+marking-Genital-Penis-Hemiknot-3-0                                      = Penis, Hemiknot, 3
+marking-Genital-Penis-Hemiknot-3-0-penis_hemiknot_3_0_FRONT             = Penis, Hemiknot, 3
+marking-Genital-Penis-Hemiknot-3-1                                      = Penis, Hemiknot, 3, Alternate
+marking-Genital-Penis-Hemiknot-3-1-penis_hemiknot_3_1_FRONT             = Penis, Hemiknot, 3, Alternate
+
+marking-Genital-Penis-Hemiknot-4-0                                      = Penis, Hemiknot, 4
+marking-Genital-Penis-Hemiknot-4-0-penis_hemiknot_4_0_FRONT             = Penis, Hemiknot, 4
+marking-Genital-Penis-Hemiknot-4-1                                      = Penis, Hemiknot, 4, Alternate
+marking-Genital-Penis-Hemiknot-4-1-penis_hemiknot_4_1_FRONT             = Penis, Hemiknot, 4, Alternate
+
+marking-Genital-Penis-Hemiknot-5-0                                      = Penis, Hemiknot, 5
+marking-Genital-Penis-Hemiknot-5-0-penis_hemiknot_5_0_FRONT             = Penis, Hemiknot, 5
+marking-Genital-Penis-Hemiknot-5-1                                      = Penis, Hemiknot, 5, Alternate
+marking-Genital-Penis-Hemiknot-5-1-penis_hemiknot_5_1_FRONT             = Penis, Hemiknot, 5, Alternate
+
+marking-Genital-Penis-Tapered-1-0                                  = Penis, Tapered, 1
+marking-Genital-Penis-Tapered-1-0-penis_tapered_1_0_FRONT          = Penis, Tapered, 1
+marking-Genital-Penis-Tapered-1-1                                  = Penis, Tapered, 1, Alternate
+marking-Genital-Penis-Tapered-1-1-penis_tapered_1_1_FRONT          = Penis, Tapered, 1, Alternate
+
+marking-Genital-Penis-Tapered-2-0                                  = Penis, Tapered, 2
+marking-Genital-Penis-Tapered-2-0-penis_tapered_2_0_FRONT          = Penis, Tapered, 2
+marking-Genital-Penis-Tapered-2-1                                  = Penis, Tapered, 2, Alternate
+marking-Genital-Penis-Tapered-2-1-penis_tapered_2_1_FRONT          = Penis, Tapered, 2, Alternate
+
+marking-Genital-Penis-Tapered-3-0                                  = Penis, Tapered, 3
+marking-Genital-Penis-Tapered-3-0-penis_tapered_3_0_FRONT          = Penis, Tapered, 3
+marking-Genital-Penis-Tapered-3-1                                  = Penis, Tapered, 3, Alternate
+marking-Genital-Penis-Tapered-3-1-penis_tapered_3_1_FRONT          = Penis, Tapered, 3, Alternate
+
+marking-Genital-Penis-Tapered-4-0                                  = Penis, Tapered, 4
+marking-Genital-Penis-Tapered-4-0-penis_tapered_4_0_FRONT          = Penis, Tapered, 4
+marking-Genital-Penis-Tapered-4-1                                  = Penis, Tapered, 4, Alternate
+marking-Genital-Penis-Tapered-4-1-penis_tapered_4_1_FRONT          = Penis, Tapered, 4, Alternate
+
+marking-Genital-Penis-Tapered-5-0                                  = Penis, Tapered, 5
+marking-Genital-Penis-Tapered-5-0-penis_tapered_5_0_FRONT          = Penis, Tapered, 5
+marking-Genital-Penis-Tapered-5-1                                  = Penis, Tapered, 5, Alternate
+marking-Genital-Penis-Tapered-5-1-penis_tapered_5_1_FRONT          = Penis, Tapered, 5, Alternate
+
+marking-Knotted-Wolf-Cock = Knotted Wolf Cock
 # todo Finish this

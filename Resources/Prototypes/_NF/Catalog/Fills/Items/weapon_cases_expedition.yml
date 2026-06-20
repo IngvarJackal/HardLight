@@ -718,6 +718,10 @@
       amount: 1
     - id: ClothingHeadHelmetAtmosFire
       amount: 1
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Ginormous
 
 #region LMG
 - type: entity
@@ -858,6 +862,10 @@
       amount: 1
     - id: MagazineAsmgtUniversalPistol
       amount: 4
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Ginormous
 
 # Ammo
 ## 556x45mm

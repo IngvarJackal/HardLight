@@ -4442,7 +4442,8 @@ entities:
       id: Frontier
     - type: StationTransit
     - type: ProtectedGrid
-    - type: StationEmpImmune
+#    - type: StationEmpImmune
+# HL: Removed Component
     - type: SpreaderGrid
     - type: IFF
   - uid: 5691

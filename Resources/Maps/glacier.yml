@@ -53124,7 +53124,6 @@ entities:
       - BorgModuleMusique
       - BorgModuleClowning
       - BorgModuleDiagnosis
-      - BorgModuleDefibrillator
       - BorgModuleJetpack
       - BorgModulePka
       - BorgModuleAdvancedSurgery

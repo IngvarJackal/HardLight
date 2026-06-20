@@ -89,7 +89,7 @@ namespace Content.IntegrationTests.Tests
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
             // is minimal relative to the rest of the test.
-            var settings = new PoolSettings { Dirty = true };
+            var settings = new PoolSettings { Dirty = true, DummyTicker = true, Fresh = true };
             await using var pair = await PoolManager.GetServerClient(settings);
             var server = pair.Server;
             var map = await pair.CreateTestMap();

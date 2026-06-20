@@ -554,10 +554,7 @@
       entity: Gaslock
       edges:
         - to: reinforcedGirder
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetPlasteel1
-              amount: 4
+          completed: # HL: Removed Plasteel as we get the correct amount from the girder anyways
             - !type:SpawnPrototype
               prototype: GaslockFrameMachineCircuitboard
               amount: 1

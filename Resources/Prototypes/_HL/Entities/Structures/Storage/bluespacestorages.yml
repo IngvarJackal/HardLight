@@ -50,7 +50,7 @@
     price: 500000
   - type: CargoSellBlacklist
   - type: HLPersistOnShipSave
-  
+
 - type: entity
   id: BluespaceSafe
   parent: [ GunSafe, BaseBluespaceStorage ]
@@ -74,7 +74,7 @@
     node: done
   - type: StaticPrice
     price: 750000
-    
+
 - type: entity
   id: LockerWallBluespaceMini
   parent: LockerWallBluespace
@@ -121,7 +121,7 @@
   - type: HLPersistOnShipSave
   - type: ShipyardSellCondition # Frontier: Teleport to shipyard console on sale
     preserveOnSale: true
-    
+
 - type: entity
   id: ShelfWallFreezerBluespace
   parent: [ ShelfBaseReinforced, BaseBluespaceStorage]
@@ -158,7 +158,9 @@
     anchoring: true
   - type: StaticPrice
     price: 120000
-    
+  - type: Physics
+    bodyType: Static
+
 - type: entity
   id: BluespaceTabletop
   parent: BaseBluespaceStorage
@@ -186,7 +188,9 @@
     node: done
   - type: StaticPrice
     price: 90000
-    
+  - type: Physics
+    bodyType: Static
+
 - type: entity
   id: BookshelfBluespace
   parent: BaseStructure

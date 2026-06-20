@@ -33,7 +33,7 @@ tilemap:
   12: FloorSteelPavementVertical
   24: FloorTechMaint2
   25: FloorTechMaint3
-  2: FloorTechMaintAlt
+  2: FloorTechMaint
   23: FloorWhite
   27: FloorWhiteHerringbone
   22: FloorWhiteMono
