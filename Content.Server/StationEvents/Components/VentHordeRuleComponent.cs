@@ -25,9 +25,12 @@ public sealed partial class VentHordeRuleComponent : Component
     public EntityUid? ChosenVent;
 
     // HardLight: horde size scales off live crew instead of a fixed RangeNumberSelector. The number of mobs is
-    // clamp(round(deptHeadcount * random(MultiplierMin, MultiplierMax) + activePlayers * PerPlayer), MinCount, MaxCount),
-    // and the Table is rolled that many times (so the Table's own Rolls should be 1). The department itself is a
-    // constant on VentHordeRule (security); see EventScalingSystem.ScaledCount.
+    // clamp(round(deptHeadcount * multiplier + activePlayers * PerPlayer), MinCount, MaxCount), and the Table is
+    // rolled that many times (so the Table's own Rolls should be 1). The department itself is a constant on
+    // VentHordeRule (security); see EventScalingSystem.ScaledCount. The multiplier depends on which bounds are set:
+    //   both MultiplierMin and MultiplierMax -> random(MultiplierMin, MultiplierMax)
+    //   only one of them                     -> that value, used as a static multiplier
+    //   neither                              -> no crew scaling; the count is a flat random roll in [MinCount, MaxCount]
 
     /// <summary>
     /// Whether to size the swarm off live crew (the default). False keeps the legacy behaviour of letting the
@@ -36,13 +39,17 @@ public sealed partial class VentHordeRuleComponent : Component
     [DataField]
     public bool Scaled = true;
 
-    /// <summary>Random multiplier applied to the department headcount.</summary>
+    /// <summary>
+    /// Lower bound of the multiplier applied to the department headcount. When both bounds are set the multiplier is
+    /// rolled between them; when only one bound is set it is used as a static multiplier; when neither is set the
+    /// count is a flat random roll in [<see cref="MinCount"/>, <see cref="MaxCount"/>] with no crew scaling.
+    /// </summary>
     [DataField]
-    public float MultiplierMin = 2f;
+    public float? MultiplierMin;
 
     /// <inheritdoc cref="MultiplierMin"/>
     [DataField]
-    public float MultiplierMax = 4f;
+    public float? MultiplierMax;
 
     /// <summary>Extra spawns added per player online, on top of the department-scaled count.</summary>
     [DataField]

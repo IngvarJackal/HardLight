@@ -6,12 +6,12 @@ namespace Content.Server.StationEvents.Components;
 ///     HardLight: a standalone "anomaly storm" station event (split out of the old Quiet-before-storm crisis).
 ///     When its warning elapses it fires a burst of anomaly spawns scaled by the Science department's headcount,
 ///     plus a noospheric storm and a glimmer-wisp swarm. Carries its own heat. See
-///     <see cref="Content.Server.StationEvents.Events.AnomalyStormSystem"/>.
+///     <see cref="Content.Server.StationEvents.Events.AnomalyStormRule"/>.
 /// </summary>
-[RegisterComponent, Access(typeof(Events.AnomalyStormSystem))]
+[RegisterComponent, Access(typeof(Events.AnomalyStormRule))]
 public sealed partial class AnomalyStormRuleComponent : Component
 {
-    // HardLight: the scaling department (Science) is a constant on AnomalyStormSystem, not a datafield.
+    // HardLight: the scaling department (Science) is a constant on AnomalyStormRule, not a datafield.
 
     /// <summary>Severity (number of anomaly spawns) is clamped to at most this.</summary>
     [DataField]

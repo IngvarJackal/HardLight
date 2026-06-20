@@ -790,6 +790,8 @@
   - type: EventHeat # HardLight
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: MobAdultSlimesBlueAngry
@@ -843,6 +845,8 @@
   - type: EventHeat # HardLight
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: MobPurpleSnake
@@ -898,6 +902,8 @@
   - type: EventHeat # HardLight
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: MobGiantSpiderAngry
@@ -948,6 +954,8 @@
   - type: EventHeat # HardLight
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: MobClownSpider
@@ -1997,6 +2005,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: MobArgocyteSlurva
@@ -2066,6 +2076,8 @@
       HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: MobTick
@@ -2157,6 +2169,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: MobCarp
@@ -2219,6 +2233,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: MobBearSpace
@@ -2276,6 +2292,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: ReagentSlimeBeer
@@ -2431,6 +2449,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: MobXenoSpitterLarva
@@ -2496,6 +2516,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: MobRogueSiliconScrap
@@ -2580,6 +2602,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: SpawnMobSyndicateNavalEngineer
@@ -2646,6 +2670,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: SpawnMobDinosaurSmall
@@ -2700,6 +2726,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: SpawnMobAberrantFleshExpeditions
@@ -2753,6 +2781,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: SpawnMobExplorerT1
@@ -2807,6 +2837,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: SpawnMobMercenaryT1
@@ -2861,6 +2893,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: MobZTaken
@@ -2919,6 +2953,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: SpawnMobPunkT1
@@ -2981,6 +3017,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: SpawnMobBloodCultistZealotMelee
@@ -3044,6 +3082,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: BlueRainLizard
@@ -3119,6 +3159,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: HostileBlueRainLizard
@@ -3203,6 +3245,8 @@
       HeadOfSecurity: 1
       SecurityOfficer: 1
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: MobGlimmerMite
@@ -3254,6 +3298,8 @@
   - type: EventHeat # HardLight: small horde, scales off security + players
     cost: 50
   - type: VentHordeRule
+    multiplierMin: 2
+    multiplierMax: 4
     table: !type:GroupSelector
       children:
       - id: PortalAbyssalGhost
@@ -3273,14 +3319,15 @@
       SecurityOfficer: 1
     reoccurrenceDelay: 200
     minimumPlayers: 40
-    weight: 3 # Really weak compared to other critters
+    weight: 3
     duration: 60
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
-    multiplierMin: 3
-    multiplierMax: 6
-    minCount: 5
+    multiplierMin: 0.5
+    multiplierMax: 1.5
+    minCount: 1
+    maxCount: 8
     table: !type:GroupSelector
       children:
       - id: PortalAbyssal
@@ -3301,14 +3348,16 @@
       SecurityOfficer: 1
     reoccurrenceDelay: 200
     minimumPlayers: 40
-    weight: 3 # Really weak compared to other critters
+    weight: 3
     duration: 60
   - type: EventHeat # HardLight: mob-horde infestation, heavier than the lone-critter spawn
     cost: 100
   - type: VentHordeRule
-    multiplierMin: 3
-    multiplierMax: 6
-    minCount: 5
+    multiplierMin: 0.5 # E[mult]=1, so headcount drives the count: 5 sec players -> expected 5 spawns
+    multiplierMax: 1.5
+    perPlayer: 0
+    minCount: 1
+    maxCount: 8
     table: !type:GroupSelector
       children:
       - id: MobWatcherLavaland

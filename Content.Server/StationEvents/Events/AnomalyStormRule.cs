@@ -11,7 +11,7 @@ namespace Content.Server.StationEvents.Events;
 ///     Announces on start as its one-minute warning and applies its heat immediately like any event; when the
 ///     warning elapses it fires a Science-headcount-scaled burst of anomaly spawns plus its fixed side events.
 /// </summary>
-public sealed class AnomalyStormSystem : StationEventSystem<AnomalyStormRuleComponent>
+public sealed class AnomalyStormRule : StationEventSystem<AnomalyStormRuleComponent>
 {
     [Dependency] private readonly EventScalingSystem _scaling = default!;
 

@@ -56,20 +56,31 @@ public sealed class EventScalingSystem : EntitySystem
     }
 
     /// <summary>
-    /// Crew-scaled count: <c>clamp(round(deptHeadcount * rand(multiplierMin, multiplierMax) + activePlayers *
-    /// perPlayer), minCount, maxCount)</c>. The reusable scaling rule — pass the department and tuning for the event.
+    /// Crew-scaled count: <c>clamp(round(deptHeadcount * multiplier + activePlayers * perPlayer), minCount,
+    /// maxCount)</c>. The reusable scaling rule — pass the department and tuning for the event. The multiplier is
+    /// rolled between <paramref name="multiplierMin"/> and <paramref name="multiplierMax"/> when both are set; if
+    /// only one is set it is used as a static multiplier; if neither is set crew scaling is skipped and the count is
+    /// a flat random roll in [<paramref name="minCount"/>, <paramref name="maxCount"/>].
     /// </summary>
     public int ScaledCount(
         ProtoId<DepartmentPrototype> department,
         ProtoId<JobPrototype>? internRole,
-        float multiplierMin,
-        float multiplierMax,
+        float? multiplierMin,
+        float? multiplierMax,
         float perPlayer,
         int minCount,
         int maxCount)
     {
+        // No multiplier configured: skip crew scaling and roll a flat count in [minCount, maxCount].
+        if (multiplierMin == null && multiplierMax == null)
+            return _random.Next(minCount, maxCount + 1);
+
+        // Both bounds set -> roll between them; exactly one set -> use it as a static multiplier.
+        var multiplier = multiplierMin != null && multiplierMax != null
+            ? _random.NextFloat(multiplierMin.Value, multiplierMax.Value)
+            : multiplierMin ?? multiplierMax!.Value;
+
         var headcount = DepartmentHeadcount(department, internRole);
-        var multiplier = _random.NextFloat(multiplierMin, multiplierMax);
         var scaled = headcount * multiplier + ActivePlayers() * perPlayer;
         return Math.Clamp((int)MathF.Round(scaled), minCount, maxCount);
     }
