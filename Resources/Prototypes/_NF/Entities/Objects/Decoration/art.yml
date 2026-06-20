@@ -1496,6 +1496,7 @@
   - type: MultiHandedItem
   - type: Item
     size: Ginormous
+    sprite: _NF/Objects/Decoration/paintings.rsi
   - type: Damageable
     damageContainer: Inorganic
   - type: DamageExaminable
@@ -1802,5 +1803,5 @@
     children:
     - !type:NestedSelector
       tableId: TablePosterLoot
-    - !type:NestedSelector # Paintings are too big to fit in bags
-      tableId: TablePaintingLoot
+#    - !type:NestedSelector # Paintings are too big to fit in bags
+#      tableId: TablePaintingLoot

@@ -18,15 +18,15 @@ tilemap:
   18: FloorAsteroidSandRed
   13: FloorAsteroidSandUnvariantizedPlanet
   9: FloorAsteroidTile
-  4: FloorDarkAlt
-  3: FloorDarkMonoAlt
+  4: FloorDark
+  3: FloorDarkMono
   7: FloorMiningDark
   11: FloorSteel
   19: FloorSteelAlt
   12: FloorSteelMono
   20: FloorSteelMonoAlt
   6: FloorTechMaint
-  5: FloorTechMaintAlt
+  5: FloorTechMaint
   16: FloorXenoSteel
   8: Lattice
   0: Plating

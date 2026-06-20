@@ -14,9 +14,9 @@ orphans:
 nullspace: []
 tilemap:
   0: Space
-  10: FloorDarkAlt
+  10: FloorDark
   3: FloorDarkMono
-  12: FloorDarkMonoAlt
+  12: FloorDarkMono
   5: FloorHull
   4: FloorHullReinforced
   8: FloorMetalDiamond
@@ -25,7 +25,7 @@ tilemap:
   7: FloorSteelAltGrey
   9: FloorSteelMonoAlt
   11: FloorTechMaint2
-  6: FloorTechMaintAlt
+  6: FloorTechMaint
   14: FloorWoodLarge
   1: Lattice
   2: Plating

@@ -86,6 +86,11 @@ public sealed class ActionContainerSystem : EntitySystem
         DebugTools.AssertOwner(uid, comp);
         comp ??= EnsureComp<ActionsContainerComponent>(uid);
 
+        if (comp.Container == null)
+        {
+            return false; // HL: Add check for null container, it shouldn't be possible but the tests were managing it somehow...
+        }
+
         if (Exists(actionId))
         {
             if (!comp.Container.Contains(actionId.Value)

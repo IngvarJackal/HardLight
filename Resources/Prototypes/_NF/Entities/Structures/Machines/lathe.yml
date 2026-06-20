@@ -48,6 +48,14 @@
         acts: ["Destruction"]
   - type: Machine
     board: ServiceTechFabCircuitboard
+  - type: MaterialStorage
+    canEjectStoredMaterials: true
+    whitelist: # Frontier
+      tags: # Frontier
+      - Sheet # Frontier
+      - RawMaterial # Frontier
+      - Ingot # Frontier
+      - Paper
   - type: Lathe
     idleState: icon
     runningState: icon
@@ -549,8 +557,6 @@
     producingSound: /Audio/Machines/circuitprinter.ogg
     idleState: icon
     runningState: building
-    staticPacks:
-    - PowerCellsStatic
     dynamicPacks:
     - NFBlueprints
   - type: RequireProjectileTarget

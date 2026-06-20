@@ -224,7 +224,7 @@
     - state: pumpPressure
       map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
   - type: Construction
-    node: pressurepumpAlt2
+    node: pressurepumpHighFlowAlt2
 
 # GasVolumePump
 

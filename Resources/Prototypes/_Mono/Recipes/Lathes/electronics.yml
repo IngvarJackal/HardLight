@@ -35,7 +35,8 @@
   id: ComputerIFFCircuitboard
   result: ComputerIFFCircuitboard
 
-- type: latheRecipe
-  parent: BaseGoldCircuitboardRecipe
-  id: LargeThrusterMachineCircuitboard
-  result: LargeThrusterMachineCircuitboard
+# HL: We use CivBigThrusterBoard instead
+#- type: latheRecipe
+#  parent: BaseGoldCircuitboardRecipe
+#  id: LargeThrusterMachineCircuitboard
+#  result: LargeThrusterMachineCircuitboard

@@ -321,6 +321,12 @@
     layers:
     - state: space_artillery
   - type: Appearance
+  - type: ContainerContainer #HL start
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Machine
+    board: WeaponTurretM25Circuitboard #HL End
   - type: AmmoCounter
   - type: Battery
     maxCharge: 40000

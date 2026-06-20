@@ -15,9 +15,9 @@ nullspace: []
 tilemap:
   6: Space
   5: FloorAsteroidTile
-  14: FloorDarkAlt
+  14: FloorDark
   30: FloorDarkMono
-  10: FloorDarkMonoAlt
+  10: FloorDarkMono
   18: FloorLaundry
   3: FloorShuttleGrey
   9: FloorSteel
@@ -32,7 +32,7 @@ tilemap:
   2: FloorTechMaint
   15: FloorTechMaint2
   31: FloorTechMaint3
-  22: FloorTechMaintAlt
+  22: FloorTechMaint
   32: FloorTechMaintDark
   17: FloorWood
   23: FloorXeno

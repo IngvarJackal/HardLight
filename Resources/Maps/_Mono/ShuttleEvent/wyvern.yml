@@ -15,9 +15,9 @@ nullspace: []
 tilemap:
   2: Space
   58: FloorBlueCircuit
-  56: FloorDarkMonoAlt
+  56: FloorDarkMono
   24: FloorHullReinforced
-  60: FloorMaintGridDark
+  60: FloorTechMaintDark
   50: FloorMetalDiamond
   54: FloorRedCircuit
   55: FloorReinforced
@@ -83,7 +83,7 @@ entities:
       name: ADS Wyvern
     - type: Transform
       pos: -0.515625,-0.5
-      parent: 
+      parent:
     - type: InitRepairSnapshot
     - type: ShipRepairRestrict
       toolWhitelist:
@@ -1725,17 +1725,9 @@ entities:
           - 0
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
         - volume: 2500
           temperature: 293.15
           moles:
-          - 0
-          - 0
-          - 0
-          - 0
           - 0
           - 0
           - 0
@@ -1763,18 +1755,10 @@ entities:
           - 0
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 6666.982
-          - 0
-          - 0
-          - 0
-          - 0
           - 0
           - 0
           - 0
@@ -1801,14 +1785,8 @@ entities:
           - 0
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
         chunkSize: 4
     - type: GasTileOverlay
-    - type: ShipGridLock
-      locked: False
     - type: RadiationGridResistance
     - type: IFF
       color: '#00CCFFFF'
@@ -46202,7 +46180,7 @@ entities:
     - type: Transform
       pos: -2.5,82.5
       parent: 1
-- proto: WallPlastitaniumDebug
+- proto: WallPlastitanium
   entities:
   - uid: 7453
     components:

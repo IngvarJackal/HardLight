@@ -20,7 +20,7 @@ tilemap:
   9: FloorRedCircuit
   6: FloorTechMaint3
   7: FloorTechMaintDark
-  10: FloorTechMaintSterile
+  10: FloorTechMaint
   5: Lattice
   13: LatticeCornerNE
   3: LatticeCornerNW
@@ -185,8 +185,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: ShipGridLock
-      locked: False
 - proto: AirlockHatch
   entities:
   - uid: 146

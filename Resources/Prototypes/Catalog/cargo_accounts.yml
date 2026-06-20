@@ -44,9 +44,12 @@
   id: Frontier
   name: cargo-account-frontier-name
   code: cargo-account-frontier-code
+  color: "#4bcc63"
+  radioChannel: Command # HL: Added color and radio, this one isn't used but is referenced
 
 - type: cargoAccount
   id: Nfsd
   name: cargo-account-Colsec-name
   code: cargo-account-Colsec-code
-
+  color: "#7eac69"
+  radioChannel: Nfsd # HL: Added color and radio

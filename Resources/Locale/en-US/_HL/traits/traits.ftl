@@ -154,3 +154,6 @@ trait-high-voice-desc = Your emotes sound a little higher than usual.
 
 trait-highest-voice-name = Squeaky voice
 trait-highest-voice-desc = Your emotes sound much higher than usual.
+
+trait-test-bionic-spinarette-name = Test Bionic Spinarette
+trait-test-bionic-spinarette-desc = Speeeeeeen

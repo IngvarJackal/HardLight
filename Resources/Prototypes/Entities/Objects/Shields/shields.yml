@@ -63,7 +63,7 @@
                   min: 2
                   max: 2
     - type: StaticPrice
-      price: 50 # Frontier: 100<50 - TODO: material value rework
+      price: 100 # HL: Price balancing
 
 #Security Shields
 
@@ -431,8 +431,8 @@
             - !type:SpawnEntitiesBehavior
               spawn:
                 SheetGlass:
-                  min: 5
-                  max: 5
+                  min: 3
+                  max: 3 # HL: Decreased from 5/5 to 3/3 to match potential price of dropped items
 
 - type: entity
   name: energy shield

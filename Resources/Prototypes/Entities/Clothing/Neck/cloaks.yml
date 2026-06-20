@@ -188,6 +188,7 @@
       toggleable-clothing: !type:ContainerSlot {}
   - type: TypingIndicatorClothing
     proto: moth
+  - type: Appearance
 
 - type: entity
   parent: ClothingNeckBase

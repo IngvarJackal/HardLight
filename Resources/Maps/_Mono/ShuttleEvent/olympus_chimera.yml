@@ -15,9 +15,9 @@ nullspace: []
 tilemap:
   2: Space
   6: FloorDark
-  21: FloorDarkAlt
+  21: FloorDark
   7: FloorDarkMono
-  17: FloorDarkMonoAlt
+  17: FloorDarkMono
   16: FloorDarkPlastic
   3: FloorElevatorShaft
   22: FloorFlesh
@@ -28,7 +28,7 @@ tilemap:
   18: FloorMiningDark
   13: FloorRGlass
   4: FloorReinforced
-  15: FloorSteelAltGrey
+  15: FloorSteel
   19: FloorTechMaint
   12: FloorTechMaint2
   10: FloorWhite
@@ -1403,8 +1403,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: ShipGridLock
-      locked: False
     - type: BecomesStation
       id: Olympus
     - type: Roof

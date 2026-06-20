@@ -1815,7 +1815,8 @@
   - type: ApcPowerReceiver
     powerLoad: 1000
   - type: Computer
-    board: StationAiUploadCircuitboardUnlocked
+    board: StationAiUploadCircuitboard
+#HL: Reverting to non-unlocked as there's an unlocked entity you can use if needed.
   - type: AccessReader
     access: [ [ "ResearchDirector" ] ]
   - type: Lock

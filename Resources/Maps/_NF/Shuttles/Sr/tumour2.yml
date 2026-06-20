@@ -499,8 +499,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: ShipGridLock
-      locked: False
 - proto: AdvancedCapacitorStockPart
   entities:
   - uid: 235

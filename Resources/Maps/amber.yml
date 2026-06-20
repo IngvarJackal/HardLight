@@ -116349,6 +116349,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 16.5,-61.5
       parent: 2
+    - type: DeviceNetwork
     - type: AtmosPipeColor
       color: '#0335FCFF'
   - uid: 14058
@@ -116357,6 +116358,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 26.5,-61.5
       parent: 2
+    - type: DeviceNetwork
     - type: AtmosPipeColor
       color: '#0335FCFF'
   - uid: 14059
@@ -116365,6 +116367,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 35.5,-61.5
       parent: 2
+    - type: DeviceNetwork
     - type: AtmosPipeColor
       color: '#0335FCFF'
   - uid: 14060
@@ -119404,6 +119407,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 18.5,-61.5
       parent: 2
+    - type: DeviceNetwork
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 24614
@@ -119411,6 +119415,7 @@ entities:
     - type: Transform
       pos: 36.5,-58.5
       parent: 2
+    - type: DeviceNetwork
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 24646

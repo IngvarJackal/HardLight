@@ -180,6 +180,7 @@
     - state: heart
   - type: Item
     heldPrefix: hug
+    size: Normal
   - type: Storage
     maxItemSize: Normal
     grid:
@@ -219,6 +220,8 @@
     maxItemSize: Normal
     grid:
     - 0,0,6,1
+  - type: Item
+    size: Normal
   - type: SurgeryTool
     startSound:
       # path: /Audio/_Shitmed/Medical/Surgery/saw.ogg   # silence the tool

@@ -301,10 +301,11 @@
   id: SerpentMissileWeaponBoard
   result: SerpentMissileWeaponBoard
 
-- type: latheRecipe
-  parent: BaseHeavyWeaponBoardRecipe
-  id: HeavyShieldBoard
-  result: HeavyShieldBoard
+### Disabled because it's not used in anything, and not craftable
+#- type: latheRecipe
+#  parent: BaseHeavyWeaponBoardRecipe
+#  id: HeavyShieldBoard
+#  result: HeavyShieldBoard
 
 - type: latheRecipe
   parent: BaseCapitalWeaponBoardRecipe

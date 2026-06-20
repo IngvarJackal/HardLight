@@ -27,4 +27,4 @@
   description: A computer printed circuit board for a AI upload console.
   components:
     - type: ComputerBoard
-      prototype: StationAiUploadComputer
+      prototype: StationAiUploadComputerUnlocked
