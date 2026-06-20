@@ -48,6 +48,7 @@
 - type: reaction
   id: Exile
   minTemp: 540
+  priority: 1
   reactants:
     Ephedrine:
       amount: 2
@@ -88,7 +89,7 @@
 
 - type: reaction
   id: InertMechanites
-  minTemp: 750 
+  minTemp: 750
   reactants:
     Fersilicite:
       amount: 20

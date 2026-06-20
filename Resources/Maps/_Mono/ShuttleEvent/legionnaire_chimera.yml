@@ -348,8 +348,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: ShipGridLock
-      locked: False
     - type: Roof
       data:
         0,-1: 2098465768210431999
@@ -1587,8 +1585,6 @@ entities:
     - type: Transform
       pos: -0.5,-3.5
       parent: 1
-    - type: ShuttleConsoleLock
-      locked: False
     - type: ApcPowerReceiver
       powerLoad: 5
     - type: Battery

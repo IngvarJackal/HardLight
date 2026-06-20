@@ -305,11 +305,11 @@
         - Tool
         - GasAnalyzer
         - SprayPainter
-        - Flashlight
         - TrayScanner
         - HolosignProjector
       tags:
-        - CableCoil # Hardlight end
+        - CableCoil
+        - Flashlight # Hardlight end
   - type: Sprite
     layers:
     - state: base

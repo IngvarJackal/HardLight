@@ -90,6 +90,7 @@ marking-ThavenBackFin = Dorsal Fin
 marking-ThavenTailCarpish = Carpish Tail
 marking-ThavenTailFish = Fishy Tail
 marking-ThavenTailDraconic = Draconic Tail
+marking-ThavenTailDraconicLong = Dragonic Tail Long
 
 marking-ThavenHeadFinsFairy = Fairy
 marking-ThavenHeadAnglerStem = Angler Stem

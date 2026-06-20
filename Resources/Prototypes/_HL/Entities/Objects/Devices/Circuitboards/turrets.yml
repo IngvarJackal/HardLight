@@ -368,23 +368,25 @@
   - type: MachineBoard
     prototype: ShieldGeneratorMedium
 
-- type: entity
-  id: HeavyShieldBoard
-  parent: BaseHeavyShipWeaponBoard
-  name: MS-500 "Titan" Shield Generator board
-  description: A machine printed circuit board for a specific ship shield.
-  components:
-  - type: MachineBoard
-    prototype: ShieldGenerator
+### Disabled because it's not used in anything, and not craftable
+#- type: entity
+#  id: HeavyShieldBoard
+#  parent: BaseHeavyShipWeaponBoard
+#  name: MS-500 "Titan" Shield Generator board
+#  description: A machine printed circuit board for a specific ship shield.
+#  components:
+#  - type: MachineBoard
+#    prototype: ShieldGenerator
 
-- type: entity
-  id: CapitalShieldBoard
-  parent: BaseCapitalShipWeaponBoard
-  name: FS-421 "Fortress" Outpost Shield Generator board
-  description: A machine printed circuit board for a specific ship shield.
-  components:
-  - type: MachineBoard
-    prototype: ShieldGeneratorPOI
+### It's disabled everywhere else so no reason to keep the prototype alive
+#- type: entity
+#  id: CapitalShieldBoard
+#  parent: BaseCapitalShipWeaponBoard
+#  name: FS-421 "Fortress" Outpost Shield Generator board
+#  description: A machine printed circuit board for a specific ship shield.
+#  components:
+#  - type: MachineBoard
+#    prototype: ShieldGeneratorPOI
 
 ### Civ Light
 - type: entity

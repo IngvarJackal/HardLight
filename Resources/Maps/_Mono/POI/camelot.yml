@@ -19,19 +19,19 @@ tilemap:
   17: FloorBrokenWood
   39: FloorCarpetOffice
   5: FloorDark
-  28: FloorDarkAlt
+  28: FloorDark
   32: FloorDarkHerringbone
   10: FloorDarkMini
   3: FloorDarkMono
-  36: FloorDarkMonoAlt
+  36: FloorDarkMono
   12: FloorDarkPavement
   11: FloorDarkPavementVertical
   22: FloorFreezer
   33: FloorGrayConcrete
   14: FloorHullReinforced
   43: FloorKitchen
-  38: FloorMaintGrid
-  34: FloorMaintGridDark
+  38: FloorTechMaint
+  34: FloorTechMaintDark
   2: FloorMetalDiamond
   25: FloorPlastic
   41: FloorRGlass
@@ -48,8 +48,8 @@ tilemap:
   6: FloorTechMaint
   4: FloorTechMaint2
   13: FloorTechMaint3
-  29: FloorTechMaintAlt
-  31: FloorTechMaintSterile
+  29: FloorTechMaint
+  31: FloorTechMaint
   18: FloorWhite
   37: FloorWhiteMini
   20: FloorWhiteMono

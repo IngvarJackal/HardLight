@@ -16,10 +16,10 @@
   id: RandomSentienceEventData
   values:
     prefix: random-sentience-event-data-
-    count: 6
+    count: 1
 
 - type: localizedDataset
   id: RandomSentienceEventStrength
   values:
     prefix: random-sentience-event-strength-
-    count: 8
+    count: 1

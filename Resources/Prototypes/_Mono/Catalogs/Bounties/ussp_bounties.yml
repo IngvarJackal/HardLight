@@ -123,5 +123,5 @@
   - name: ussp-bounty-name-lasergun
     amount: 2
     whitelist:
-      components:
-      - HitscanBatteryAmmoProvider
+      tags:
+      - LaserWeapon # HL: Changed from HitscanBatteryAmmoProvider because you could turn in power cells lmao

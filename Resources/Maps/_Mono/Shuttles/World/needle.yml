@@ -72,8 +72,6 @@ entities:
       data:
         chunkSize: 4
     - type: GasTileOverlay
-    - type: ShipGridLock
-      locked: False
     - type: RadiationGridResistance
 - proto: AmeShielding
   entities:

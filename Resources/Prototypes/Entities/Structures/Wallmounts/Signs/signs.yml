@@ -16,9 +16,10 @@
   id: BaseSignDirectional
   abstract: true
   components:
-  - type: Construction # HardLight
-    graph: Sign
-    node: BaseSignDirectional
+#  - type: Construction # HardLight
+#    graph: Sign
+#    node: BaseSignDirectional
+# HL: Node doesn't exist anyways so just delete it, it can't be crafted anyways
   - type: Sprite
     snapCardinals: false
 

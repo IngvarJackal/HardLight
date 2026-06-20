@@ -146,16 +146,17 @@
       Glass: 20
       Steel: 20
       Uranium: 40
-- type: entity
-  id: LargeThrusterMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: large thruster machine board
-  description: A large circuitboard for a 2x2 machine frame.
-  components:
-  - type: MachineBoard
-    prototype: ThrusterLarge
-    frameSize: 2x2
-    requirements:
-      Capacitor: 4
-    stackRequirements:
-      Steel: 20
+# HL: We use CivBigThrusterBoard instead
+#- type: entity
+#  id: LargeThrusterMachineCircuitboard
+#  parent: BaseMachineCircuitboard
+#  name: large thruster machine board
+#  description: A large circuitboard for a 2x2 machine frame.
+#  components:
+#  - type: MachineBoard
+#    prototype: ThrusterLarge
+#    frameSize: 2x2
+#    requirements:
+#      Capacitor: 4
+#    stackRequirements:
+#      Steel: 20

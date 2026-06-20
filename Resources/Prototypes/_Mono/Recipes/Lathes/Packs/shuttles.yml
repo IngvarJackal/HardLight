@@ -20,4 +20,4 @@
   - MachineGCSUltraCircuitboard # HL
   - AdvancedRadarConsoleCircuitboard
   - ComputerIFFCircuitboard
-  - LargeThrusterMachineCircuitboard
+#  - LargeThrusterMachineCircuitboard HL: We use CivBigThrusterBoard instead

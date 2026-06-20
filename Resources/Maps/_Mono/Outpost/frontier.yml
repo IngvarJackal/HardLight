@@ -63,7 +63,7 @@ entities:
     - type: RadarBlip
       enabled: False
       visibleFromOtherGrids: True
-      shape: Ring
+      shape: Circle
       scale: 0
       radarColor: '#00DEFEFF'
   - uid: 3
@@ -4329,7 +4329,7 @@ entities:
     - type: RadarBlip
       enabled: False
       visibleFromOtherGrids: True
-      shape: Ring
+      shape: Circle
       scale: 52
       radarColor: '#00DEFEFF'
   - uid: 5
@@ -4341,7 +4341,7 @@ entities:
     - type: RadarBlip
       enabled: False
       visibleFromOtherGrids: True
-      shape: Ring
+      shape: Circle
       scale: 52
       radarColor: '#00DEFEFF'
   - uid: 6
@@ -4353,7 +4353,7 @@ entities:
     - type: RadarBlip
       enabled: False
       visibleFromOtherGrids: True
-      shape: Ring
+      shape: Circle
       scale: 52
       radarColor: '#00DEFEFF'
   - uid: 7
@@ -4365,7 +4365,7 @@ entities:
     - type: RadarBlip
       enabled: False
       visibleFromOtherGrids: True
-      shape: Ring
+      shape: Circle
       scale: 52
       radarColor: '#00DEFEFF'
 - proto: AirAlarm

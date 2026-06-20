@@ -9,6 +9,9 @@
   - type: Sprite
   - type: Item
     size: Huge
+  - type: Tag
+    tags:
+    - LaserWeapon
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
     quickEquip: false
@@ -454,6 +457,9 @@
   - type: Battery
     maxCharge: 10000
     startingCharge: 10000
+  - type: Tag # HL: Override tags so you can't sell this for Laser Weapon bounty
+    tags: []
+
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier

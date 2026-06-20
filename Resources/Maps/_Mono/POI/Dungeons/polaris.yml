@@ -16,10 +16,10 @@ tilemap:
   0: Space
   2: FloorBasalt
   10: FloorDark
-  25: FloorDarkAlt
+  25: FloorDark
   15: FloorDarkHerringbone
   11: FloorDarkMono
-  12: FloorDarkMonoAlt
+  12: FloorDarkMono
   13: FloorDarkPavement
   18: FloorDarkPavementVertical
   26: FloorFreezer
@@ -32,7 +32,7 @@ tilemap:
   8: FloorSteelAlt
   24: FloorSteelMonoAlt
   7: FloorTechMaint3
-  4: FloorTechMaintAlt
+  4: FloorTechMaint
   22: FloorWhite
   14: FloorWhiteHerringbone
   23: FloorWhiteMono

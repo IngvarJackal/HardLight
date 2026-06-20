@@ -1,8 +1,12 @@
 - type: consentToggle
   id: Vore
+  name: Vore
+  description: Allow yourself to be devoured by anyone... or anything.
 
 - type: consentToggle
   id: Digestion
+  name: Digestion
+  description: 'Allow yourself to be digested. WARNING: BEING DIGESTED WILL ROUND-REMOVE YOU.'
 
 # - type: consentToggle
   # id: Digestion
@@ -74,3 +78,5 @@
 
 - type: consentToggle
   id: NoClone
+  name: No Cloning
+  description: Turn this on to disallow Paradox clones of yourself.

@@ -518,7 +518,7 @@
   - node: windoorClockwork
     entity: WindoorClockwork
     edges:
-    - to: wiredClockwork
+    - to: electronicsClockwork # HL: Changed from wiredClockwork to align with assembly
       conditions:
       - !type:EntityAnchored {}
       - !type:DoorBolted

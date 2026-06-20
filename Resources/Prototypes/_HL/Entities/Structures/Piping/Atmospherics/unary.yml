@@ -19,5 +19,5 @@
       spriteLayersRsiPaths: {}
     - type: GasPort
     - type: Construction
-      graph: GasUnary
+      graph: GasUnaryHL
       node: portstorage

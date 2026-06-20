@@ -14,11 +14,11 @@ orphans:
 nullspace: []
 tilemap:
   8: Space
-  14: FloorDarkAlt
+  14: FloorDark
   5: FloorDarkMono
-  13: FloorDarkMonoAlt
+  13: FloorDarkMono
   7: FloorDarkSquiggly
-  3: FloorMaintGridDark
+  3: FloorTechMaintDark
   1: FloorXeno
   4: FloorXenoMaint
   0: FloorXenoSteel
